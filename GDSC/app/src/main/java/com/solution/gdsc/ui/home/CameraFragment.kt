@@ -6,24 +6,24 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
+import android.widget.Toast
+import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCaptureException
+import androidx.camera.core.Preview
+import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
-import android.widget.Toast
-import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.camera.core.Preview
-import androidx.camera.core.CameraSelector
-import android.util.Log
-import androidx.camera.core.ImageCaptureException
 import com.solution.gdsc.R
-import com.solution.gdsc.base.BaseActivity
-import com.solution.gdsc.databinding.ActivityCameraBinding
+import com.solution.gdsc.base.BaseFragment
+import com.solution.gdsc.databinding.FragmentCameraBinding
 import java.text.SimpleDateFormat
 import java.util.Locale
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
-class CameraActivity : BaseActivity<ActivityCameraBinding>(R.layout.activity_camera) {
+class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_camera) {
     private var imageCapture: ImageCapture? = null
 
     private lateinit var cameraExecutor: ExecutorService
@@ -33,15 +33,14 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>(R.layout.activity_cam
         if (allPermissionsGranted()) {
             startCamera()
         } else {
-            ActivityCompat.requestPermissions(
-                this@CameraActivity,
+            requestPermissions(
                 REQUIRED_PERMISSIONS,
                 REQUEST_CODE_PERMISSIONS
             )
         }
 
         // Set up the listeners for take photo and video capture buttons
-        binding.imageCaptureButton.setOnClickListener { takePhoto() }
+//        binding.ibCaptureButton.setOnClickListener { takePhoto() }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
@@ -66,7 +65,7 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>(R.layout.activity_cam
 
         // Create output options object which contains file + metadata
         val outputOptions = ImageCapture.OutputFileOptions
-            .Builder(contentResolver,
+            .Builder(requireContext().contentResolver,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 contentValues)
             .build()
@@ -75,7 +74,7 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>(R.layout.activity_cam
         // been taken
         imageCapture.takePicture(
             outputOptions,
-            ContextCompat.getMainExecutor(this),
+            ContextCompat.getMainExecutor(requireContext()),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onError(exc: ImageCaptureException) {
                     Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
@@ -84,7 +83,7 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>(R.layout.activity_cam
                 override fun
                         onImageSaved(output: ImageCapture.OutputFileResults){
                     val msg = "Photo capture succeeded: ${output.savedUri}"
-                    Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
                     Log.d(TAG, msg)
                 }
             }
@@ -92,7 +91,7 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>(R.layout.activity_cam
     }
 
     private fun startCamera() {
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
 
         cameraProviderFuture.addListener({
             // Used to bind the lifecycle of cameras to the lifecycle owner
@@ -102,7 +101,7 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>(R.layout.activity_cam
             val preview = Preview.Builder()
                 .build()
                 .also {
-                    it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
+                    it.setSurfaceProvider(binding.vf.surfaceProvider)
                 }
 
             // Select back camera as a default
@@ -120,14 +119,12 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>(R.layout.activity_cam
                 Log.e(TAG, "Use case binding failed", exc)
             }
 
-        }, ContextCompat.getMainExecutor(this))
+        }, ContextCompat.getMainExecutor(requireContext()))
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
-        Log.e("CameraActivity", "${ContextCompat.checkSelfPermission(
-            baseContext, it)}")
         ContextCompat.checkSelfPermission(
-            baseContext, it) == PackageManager.PERMISSION_GRANTED
+            requireContext(), it) == PackageManager.PERMISSION_GRANTED
     }
 
     override fun onDestroy() {
@@ -139,16 +136,14 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>(R.layout.activity_cam
         requestCode: Int, permissions: Array<String>, grantResults:
         IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        Log.e("CameraActivity", requestCode.toString())
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (allPermissionsGranted()) {
                 startCamera()
             } else {
-                Log.e("CameraActivity", "${allPermissionsGranted()}")
-                Toast.makeText(this,
+                Toast.makeText(requireContext(),
                     "Permissions not granted by the user.",
                     Toast.LENGTH_SHORT).show()
-                finish()
+                requireActivity().finish()
             }
         }
     }
@@ -166,5 +161,4 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>(R.layout.activity_cam
                 }
             }.toTypedArray()
     }
-
 }

@@ -24,9 +24,10 @@
         android:name="com.solution.gdsc.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile"/>
-    <activity
+
+    <fragment
         android:id="@+id/navigation_camera"
-        android:name="com.solution.gdsc.ui.home.CameraActivity"
-        android:label="activity_camera"
-        tools:layout="@layout/activity_camera" />
+        android:name="com.solution.gdsc.ui.home.CameraFragment"
+        android:label="CameraFragment"
+        tools:layout="@layout/fragment_camera"/>
 </navigation>
