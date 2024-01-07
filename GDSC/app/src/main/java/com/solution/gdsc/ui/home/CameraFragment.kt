@@ -15,6 +15,7 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentCameraBinding
@@ -44,8 +45,13 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
 
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
-    override fun setLayout() {
 
+    override fun onPause() {
+        super.onPause()
+        cameraExecutor.shutdown()
+    }
+
+    override fun setLayout() {
     }
 
     private fun takePhoto() {

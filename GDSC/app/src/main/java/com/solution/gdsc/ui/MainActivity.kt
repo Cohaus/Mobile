@@ -17,5 +17,22 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         navController?.let {
             bottomNavigationView.setupWithNavController(it)
         }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        changeNavigationColor()
+    }
+
+    private fun changeNavigationColor() {
+        val navController = supportFragmentManager.findFragmentById(R.id.container_main)?.findNavController()
+        navController?.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.navigation_camera) {
+                binding.bottomNavigationMain.setBackgroundResource(R.color.black_300)
+            } else {
+                binding.bottomNavigationMain.setBackgroundResource(R.color.white)
+            }
+        }
     }
 }
