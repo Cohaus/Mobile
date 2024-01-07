@@ -3,4 +3,35 @@
     <style name="App.Toolbar" parent="Widget.Material3.Toolbar" >
         <item name="titleCentered">true</item>
     </style>
+    <!--  Custom Font  -->
+    <style name="customTextViewFontStyle" parent="@android:style/Widget.DeviceDefault.TextView">
+        <item name="android:fontFamily">@font-v26/noto_sans_kr_regular</item>
+    </style>
+
+    <style name="customButtonFontStyle" parent="@android:style/Widget.DeviceDefault.Button.Borderless">
+        <item name="android:fontFamily">@font-v26/noto_sans_kr_regular</item>
+    </style>
+
+    <style name="customEditTextFontStyle" parent="@android:style/Widget.DeviceDefault.EditText">
+        <item name="android:fontFamily">@font-v26/noto_sans_kr_regular</item>
+    </style>
+    <!-- Text Style  -->
+    <style name="customTextViewFontStyle.S12" >
+        <item name="android:textSize">12sp</item>
+    </style>
+
+
+
+    <style name="customTextViewFontStyle.Bold" >
+        <item name="android:fontFamily">@font/noto_sans_kr_bold</item>
+    </style>
+    <style name="customTextViewFontStyle.Bold.S12" >
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="customTextViewFontStyle.Bold.S12.white" >
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="customTextViewFontStyle.Bold.S12.green300" >
+        <item name="android:textColor">@color/green_300</item>
+    </style>
 </resources>
