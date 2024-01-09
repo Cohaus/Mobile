@@ -12,21 +12,16 @@
         android:layout_height="match_parent"
         tools:context=".ui.home.CameraFragment">
 
-        <androidx.camera.view.PreviewView
-            android:id="@+id/vf"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <ImageButton
-            android:id="@+id/ib_capture_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="51dp"
-            android:background="@android:color/transparent"
-            android:elevation="2dp"
-            android:src="@drawable/ic_camera"
-            app:layout_constraintEnd_toEndOf="parent"
+        <ImageView
+            android:id="@+id/iv_camera_image"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/description_camera_image" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

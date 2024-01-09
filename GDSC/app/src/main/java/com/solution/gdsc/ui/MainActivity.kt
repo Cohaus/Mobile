@@ -1,7 +1,5 @@
 package com.solution.gdsc.ui
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.solution.gdsc.R
@@ -34,7 +32,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             if (destination.id == R.id.navigation_camera) {
                 binding.bottomNavigationMain.setBackgroundResource(R.color.black_300)
             } else {
-                binding.bottomNavigationMain.setBackgroundResource(R.color.white)
+                binding.bottomNavigationMain.setBackgroundResource(R.color.gray_50)
             }
         }
     }

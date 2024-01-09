@@ -4,5 +4,6 @@
     <color name="black_300">#1B1D1D</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray_400">#7F7B7B</color>
+    <color name="gray_50">#EEEEEE</color>
     <color name="green_300">#41B574</color>
 </resources>
