@@ -10,14 +10,51 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageButton
+            android:id="@+id/ib_camera_button"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/green_300"
+            android:contentDescription="@string/description_camera"
+            android:src="@drawable/ic_camera"
+            app:layout_constraintBottom_toTopOf="@id/ib_check_list_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
+            style="@style/customTextViewFontStyle.Bold.S12.white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="home"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="70dp"
+            android:text="@string/label_click"
+            app:layout_constraintBottom_toBottomOf="@id/ib_camera_button"
+            app:layout_constraintEnd_toEndOf="@id/ib_camera_button"
+            app:layout_constraintStart_toStartOf="@id/ib_camera_button"
+            app:layout_constraintTop_toTopOf="@id/ib_camera_button" />
+
+        <ImageButton
+            android:id="@+id/ib_check_list_button"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:contentDescription="@string/description_check_list_click"
+            android:src="@drawable/ic_check_box"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ib_camera_button" />
+
+        <TextView
+            style="@style/customTextViewFontStyle.Bold.S12.green300"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:text="@string/label_click"
+            app:layout_constraintEnd_toEndOf="@id/ib_check_list_button"
+            app:layout_constraintStart_toStartOf="@id/ib_check_list_button"
+            app:layout_constraintTop_toTopOf="@id/ib_check_list_button"
+            app:layout_constraintBottom_toBottomOf="@id/ib_check_list_button"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

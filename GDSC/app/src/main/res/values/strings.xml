@@ -3,4 +3,8 @@
     <string name="navigation_Map">Map</string>
     <string name="navigation_home">Home</string>
     <string name="navigation_profile">Profile</string>
+    <string name="description_camera">Camera Button</string>
+    <string name="description_check_list_click">CheckList Click</string>
+    <string name="label_click">Click</string>
+    <string name="description_camera_image">Camera Image</string>
 </resources>

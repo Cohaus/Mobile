@@ -22,6 +22,11 @@ abstract class BaseFragment<VB: ViewBinding>(@LayoutRes private val layoutRes: I
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setLayout()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
