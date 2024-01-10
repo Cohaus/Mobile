@@ -2,8 +2,13 @@
 <resources>
     <color name="black_600">#FF000000</color>
     <color name="black_300">#1B1D1D</color>
+
     <color name="white">#FFFFFFFF</color>
+
+    <color name="gray_500">#5C5C5C</color>
     <color name="gray_400">#7F7B7B</color>
+    <color name="gray_200">#9E9E9E</color>
     <color name="gray_50">#EEEEEE</color>
+
     <color name="green_300">#41B574</color>
 </resources>

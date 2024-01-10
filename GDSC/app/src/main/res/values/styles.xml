@@ -1,27 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="App.Toolbar" parent="Widget.Material3.Toolbar" >
-        <item name="titleCentered">true</item>
+        <item name="titleCentered">false</item>
     </style>
+    <style name="BottomNavigationStyle" >
+        <item name="android:background">@color/gray_50</item>
+        <item name="itemRippleColor">@null</item>
+        <item name="itemIconTint">@color/selector_bottom_navigation_color</item>
+        <item name="itemTextColor">@color/selector_bottom_navigation_color</item>
+        <item name="itemActiveIndicatorStyle">@color/gray_50</item>
+    </style>
+
+    <style name="AppRoundImage">
+        <item name="cornerSize">10dp</item>
+    </style>
+
     <!--  Custom Font  -->
     <style name="customTextViewFontStyle" parent="@android:style/Widget.DeviceDefault.TextView">
-        <item name="android:fontFamily">@font-v26/noto_sans_kr_regular</item>
+        <item name="android:fontFamily">@font/noto_sans_kr_regular</item>
     </style>
 
     <style name="customButtonFontStyle" parent="@android:style/Widget.DeviceDefault.Button.Borderless">
-        <item name="android:fontFamily">@font-v26/noto_sans_kr_regular</item>
+        <item name="android:fontFamily">@font/noto_sans_kr_regular</item>
     </style>
 
     <style name="customEditTextFontStyle" parent="@android:style/Widget.DeviceDefault.EditText">
-        <item name="android:fontFamily">@font-v26/noto_sans_kr_regular</item>
+        <item name="android:fontFamily">@font/noto_sans_kr_regular</item>
     </style>
     <!-- Text Style  -->
+    <style name="customTextViewFontStyle.light">
+        <item name="android:fontFamily">@font/noto_sans_kr_light</item>
+    </style>
+    <style name="customTextViewFontStyle.light.S12">
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="customTextViewFontStyle.light.S12.gray200">
+        <item name="android:textColor">@color/gray_200</item>
+    </style>
+
+    <style name="customTextViewFontStyle.medium">
+        <item name="android:fontFamily">@font/noto_sans_kr_medium</item>
+    </style>
+
+    <style name="customTextViewFontStyle.medium.S14">
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="customTextViewFontStyle.medium.S14.gray_500">
+        <item name="android:textSize">14sp</item>
+    </style>
+
     <style name="customTextViewFontStyle.S12" >
         <item name="android:textSize">12sp</item>
     </style>
-
-
-
     <style name="customTextViewFontStyle.Bold" >
         <item name="android:fontFamily">@font/noto_sans_kr_bold</item>
     </style>
@@ -33,5 +63,15 @@
     </style>
     <style name="customTextViewFontStyle.Bold.S12.green300" >
         <item name="android:textColor">@color/green_300</item>
+    </style>
+    <style name="customTextViewFontStyle.Bold.S12.gray200" >
+        <item name="android:textColor">@color/gray_200</item>
+    </style>
+
+    <style name="customTextViewFontStyle.S28" >
+        <item name="android:textSize">28sp</item>
+    </style>
+    <style name="customTextViewFontStyle.S28.gray_500" >
+        <item name="android:textColor">@color/gray_500</item>
     </style>
 </resources>
