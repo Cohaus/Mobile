@@ -8,7 +8,9 @@ import com.solution.gdsc.data.model.ConstPost
 import com.solution.gdsc.data.model.ConstructionSitePost
 import com.solution.gdsc.databinding.ItemConstructionSitePostBinding
 
-class ConstructionSitePostAdapter : RecyclerView.Adapter<ConstructionSitePostAdapter.ConstructionSitePostViewHolder>() {
+class ConstructionSitePostAdapter(
+    private val listener: PostClickListener
+) : RecyclerView.Adapter<ConstructionSitePostAdapter.ConstructionSitePostViewHolder>() {
     private val items = mutableListOf<ConstPost>()
 
     override fun onCreateViewHolder(
@@ -21,7 +23,7 @@ class ConstructionSitePostAdapter : RecyclerView.Adapter<ConstructionSitePostAda
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ConstructionSitePostViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(items[position], listener)
     }
 
     fun add(posts: List<ConstPost>) {
@@ -34,8 +36,10 @@ class ConstructionSitePostAdapter : RecyclerView.Adapter<ConstructionSitePostAda
         private val binding: ItemConstructionSitePostBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(post: ConstPost) {
-            binding.ivConstructionSitePostImage
+        fun bind(post: ConstPost, listener: PostClickListener) {
+             binding.ivConstructionSitePostImage.setOnClickListener {
+                 listener.onPostClick(post.category.title, post.post)
+             }
             binding.tvConstructionSitePostDate.text = post.post.postedAt
             binding.tvConstructionSitePostLocation.text = post.post.location
         }

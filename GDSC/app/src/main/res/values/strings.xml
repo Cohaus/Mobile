@@ -11,4 +11,7 @@
     <string name="label_camera_capture">Safety Capture</string>
     <string name="label_Self_checklist">Self Checklist</string>
     <string name="text_profile_greeting_name">회원님,\n오늘도 안전하게!</string>
+    <string name="description_back_icon">뒤로가기 버튼</string>
+    <string name="description_more_icon">더보기 버튼</string>
+    <string name="description_post_image">게시글 사진</string>
 </resources>
