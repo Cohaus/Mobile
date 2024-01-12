@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/ib_back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/description_back_icon"
+                android:elevation="1dp"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/ib_more_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/description_more_icon"
+                android:elevation="1dp"
+                android:src="@drawable/ic_more"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_post_detail_image"
+                android:layout_width="0dp"
+                android:layout_height="495dp"
+                android:background="@color/gray_500"
+                android:contentDescription="@string/description_post_image"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toTopOf="@id/tv_ai_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/post_category_name"
+                style="@style/customTextViewFontStyle.Bold.S28.white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A공사 현장"
+                app:layout_constraintBottom_toTopOf="@id/tv_post_date"
+                app:layout_constraintStart_toStartOf="@id/tv_post_date" />
+
+            <TextView
+                android:id="@+id/tv_post_date"
+                style="@style/customTextViewFontStyle.S15.white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginBottom="9dp"
+                android:text="2024.01.02"
+                app:layout_constraintBottom_toBottomOf="@id/iv_post_detail_image"
+                app:layout_constraintStart_toStartOf="@id/iv_post_detail_image" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_warning"
+                android:layout_marginEnd="17dp"
+                android:layout_marginBottom="7dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tv_post_capture_location" />
+
+            <TextView
+                android:id="@+id/tv_post_capture_location"
+                style="@style/customTextViewFontStyle.S12.white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="14dp"
+                android:text="서울특별시 서초구"
+                app:layout_constraintBottom_toBottomOf="@id/tv_post_date"
+                app:layout_constraintEnd_toEndOf="@id/iv_post_detail_image" />
+
+
+            <TextView
+                android:id="@+id/tv_ai_content"
+                style="@style/customTextViewFontStyle.S12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="14dp"
+                android:text="AI 진단 내용"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_post_detail_image" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

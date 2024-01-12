@@ -23,11 +23,20 @@
         android:id="@+id/navigation_profile"
         android:name="com.solution.gdsc.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profile_to_post_detail"
+            app:destination="@id/navigation_post_detail" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_camera"
         android:name="com.solution.gdsc.ui.home.CameraFragment"
         android:label="CameraFragment"
         tools:layout="@layout/fragment_camera"/>
+    <fragment
+        android:id="@+id/navigation_post_detail"
+        android:name="com.solution.gdsc.ui.profile.PostDetailFragment"
+        android:label="PostDetailFragment"
+        tools:layout="@layout/fragment_post_detail"/>
 </navigation>

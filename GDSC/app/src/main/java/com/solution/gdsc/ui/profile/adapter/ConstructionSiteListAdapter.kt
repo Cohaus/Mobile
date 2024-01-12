@@ -13,13 +13,15 @@ import com.solution.gdsc.databinding.ItemConstructionSiteCategoryPostBinding
 private const val VIEW_TYPE_SECTION_TITLE = 0
 private const val VIEW_TYPE_SECTION_ARTICLE = 1
 
-class ConstructionSiteListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ConstructionSiteListAdapter(
+    private val listener: PostClickListener
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val items = mutableListOf<ConstructionItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             VIEW_TYPE_SECTION_TITLE -> ConstructionSiteCategoryViewHolder.from(parent)
-            else -> ConstructionSiteCategoryPostViewHolder.from(parent)
+            else -> ConstructionSiteCategoryPostViewHolder.from(parent, listener)
         }
     }
 
@@ -84,9 +86,10 @@ class ConstructionSiteListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     class ConstructionSiteCategoryPostViewHolder(
-        private val binding: ItemConstructionSiteCategoryPostBinding
+        private val binding: ItemConstructionSiteCategoryPostBinding,
+        listener: PostClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
-        private val nestedAdapter = ConstructionSitePostAdapter()
+        private val nestedAdapter = ConstructionSitePostAdapter(listener)
 
         init {
             binding.rvConstructionSiteCategoryPostList.adapter = nestedAdapter
@@ -97,13 +100,14 @@ class ConstructionSiteListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder
         }
 
         companion object {
-            fun from(parent: ViewGroup): ConstructionSiteCategoryPostViewHolder {
+            fun from(parent: ViewGroup, listener: PostClickListener): ConstructionSiteCategoryPostViewHolder {
                 return ConstructionSiteCategoryPostViewHolder(
                     ItemConstructionSiteCategoryPostBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
-                    )
+                    ),
+                    listener
                 )
             }
         }
