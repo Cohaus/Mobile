@@ -14,7 +14,23 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     override fun setLayout() {
         val adapter = ConstructionSiteListAdapter(this)
         addData(adapter)
-        binding.rvConstructionSitePostList.adapter = adapter
+        setToolbarMenu()
+    }
+
+    private fun setToolbarMenu() {
+        binding.toolbarProfile.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.toolbar_ic_setting -> {
+                    val action = ProfileFragmentDirections.actionProfileToProfileSetting()
+                    findNavController().navigate(action)
+                    true
+                }
+
+                else -> {
+                    false
+                }
+            }
+        }
     }
 
     private fun addData(adapter: ConstructionSiteListAdapter) {
@@ -65,6 +81,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
                 "서울시 서초구", "2023.01.02", "D 공사현장"))
         )
         adapter.addPosts(items)
+        binding.rvConstructionSitePostList.adapter = adapter
     }
 
     override fun onPostClick(category: String, post: ConstructionSitePost) {
