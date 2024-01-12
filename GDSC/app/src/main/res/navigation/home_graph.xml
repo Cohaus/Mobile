@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_profile_to_post_detail"
             app:destination="@id/navigation_post_detail" />
+        <action
+            android:id="@+id/action_profile_to_profile_setting"
+            app:destination="@id/navigation_profile_setting" />
     </fragment>
 
     <fragment
@@ -39,4 +42,9 @@
         android:name="com.solution.gdsc.ui.profile.PostDetailFragment"
         android:label="PostDetailFragment"
         tools:layout="@layout/fragment_post_detail"/>
+    <fragment
+        android:id="@+id/navigation_profile_setting"
+        android:name="com.solution.gdsc.ui.profile.ProfileSettingFragment"
+        android:label="ProfileSettingFragment"
+        tools:layout="@layout/fragment_profile_setting"/>
 </navigation>

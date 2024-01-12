@@ -10,8 +10,15 @@
     <string name="description_camera_image">Camera Image</string>
     <string name="label_camera_capture">Safety Capture</string>
     <string name="label_Self_checklist">Self Checklist</string>
+
+    <!--  Profile  -->
     <string name="text_profile_greeting_name">회원님,\n오늘도 안전하게!</string>
     <string name="description_back_icon">뒤로가기 버튼</string>
     <string name="description_more_icon">더보기 버튼</string>
     <string name="description_post_image">게시글 사진</string>
+    <string name="label_setting">설정</string>
+    <string name="description_setting">설정</string>
+    <string name="label_login_info">로그인/회원정보</string>
+    <string name="label_logout">로그아웃</string>
+    <string name="label_withdrawal">회원탈퇴</string>
 </resources>
