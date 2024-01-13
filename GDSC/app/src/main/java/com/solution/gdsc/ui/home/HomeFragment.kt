@@ -8,14 +8,20 @@ import com.solution.gdsc.databinding.FragmentHomeBinding
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     override fun setLayout() {
-        binding.ibCameraButton.setOnClickListener {
-            //dispatchTakePictureIntent()
-            val action = HomeFragmentDirections.actionHomeToCamera()
-            findNavController().navigate(action)
-        }
-        binding.btnLoginView.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeToLogin()
-            findNavController().navigate(action)
+        with(binding) {
+            ibCameraButton.setOnClickListener {
+                //dispatchTakePictureIntent()
+                val action = HomeFragmentDirections.actionHomeToCamera()
+                findNavController().navigate(action)
+            }
+            btnLoginView.setOnClickListener {
+                val action = HomeFragmentDirections.actionHomeToLogin()
+                findNavController().navigate(action)
+            }
+            ibCheckListButton.setOnClickListener {
+                val action = HomeFragmentDirections.actionHomeToCheckList()
+                findNavController().navigate(action)
+            }
         }
     }
 }
