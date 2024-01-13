@@ -21,4 +21,7 @@
     <string name="label_login_info">로그인/회원정보</string>
     <string name="label_logout">로그아웃</string>
     <string name="label_withdrawal">회원탈퇴</string>
+    <string name="description_login_circle">login_circle</string>
+    <string name="label_login">로그인</string>
+    <string name="label_join_membership">회원가입</string>
 </resources>
