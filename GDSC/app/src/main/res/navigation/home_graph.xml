@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_home_to_camera"
             app:destination="@id/navigation_camera" />
+        <action
+            android:id="@+id/action_home_to_login"
+            app:destination="@id/navigation_login" />
     </fragment>
     <fragment
         android:id="@+id/navigation_profile"
@@ -47,4 +50,9 @@
         android:name="com.solution.gdsc.ui.profile.ProfileSettingFragment"
         android:label="ProfileSettingFragment"
         tools:layout="@layout/fragment_profile_setting"/>
+    <activity
+        android:id="@+id/navigation_login"
+        android:name="com.solution.gdsc.ui.login.LoginActivity"
+        android:label="LoginActivity"
+        tools:layout="@layout/activity_login"/>
 </navigation>

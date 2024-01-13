@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_join_membership"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="@color/black_700"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/iv_profile_image"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="45dp"
+            android:src="@drawable/ic_profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_join_membership"
+            android:contentDescription="@string/description_join_image" />
+
+        <TextView
+            style="@style/customTextViewFontStyle.Bold.S24.gray400"
+            android:id="@+id/tv_join_membership"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/label_join_membership"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_profile_image"
+            android:layout_marginStart="29dp" />
+
+        <EditText
+            style="@style/customTextViewFontStyle.Bold.S16.gray400"
+            android:id="@+id/et_input_join_id"
+            android:layout_width="0dp"
+            android:layout_marginTop="10dp"
+            android:hint="@string/hint_input_id"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="29dp"
+            android:layout_marginEnd="29dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_join_membership"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:autofillHints="false"
+            android:inputType="text" />
+
+        <EditText
+            style="@style/customTextViewFontStyle.Bold.S16.gray400"
+            android:id="@+id/et_input_join_password"
+            android:layout_width="0dp"
+            android:hint="@string/hint_input_password"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/et_input_join_id"
+            app:layout_constraintStart_toStartOf="@id/et_input_join_id"
+            app:layout_constraintEnd_toEndOf="@id/et_input_join_id"
+            android:autofillHints="false"
+            android:inputType="textPassword" />
+
+        <EditText
+            style="@style/customTextViewFontStyle.Bold.S16.gray400"
+            android:id="@+id/et_input_join_name"
+            android:layout_width="0dp"
+            android:hint="@string/hint_input_name"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/et_input_join_password"
+            app:layout_constraintStart_toStartOf="@id/et_input_join_id"
+            app:layout_constraintEnd_toEndOf="@id/et_input_join_id"
+            android:autofillHints="false"
+            android:inputType="text" />
+
+        <EditText
+            style="@style/customTextViewFontStyle.Bold.S16.gray400"
+            android:id="@+id/et_input_join_email"
+            android:layout_width="0dp"
+            android:hint="@string/hint_input_email"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/et_input_join_name"
+            app:layout_constraintStart_toStartOf="@id/et_input_join_id"
+            app:layout_constraintEnd_toEndOf="@id/et_input_join_id"
+            android:autofillHints="false"
+            android:inputType="textEmailAddress" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/customTextViewFontStyle.Bold.S16.green300"
+            android:background="@drawable/shape_button"
+            android:backgroundTint="@null"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="@string/label_complete"
+            app:layout_constraintStart_toStartOf="@id/et_input_join_id"
+            app:layout_constraintEnd_toEndOf="@id/et_input_join_id"
+            app:layout_constraintTop_toBottomOf="@id/et_input_join_email" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

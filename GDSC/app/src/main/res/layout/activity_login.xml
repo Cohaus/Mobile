@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_circle_big"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="157dp"
+            android:contentDescription="@string/description_login_circle"
+            android:src="@drawable/ic_circle_big"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="198dp"
+            android:layout_marginEnd="31dp"
+            android:contentDescription="@string/description_login_circle"
+            android:src="@drawable/ic_circle_middle"
+            app:layout_constraintEnd_toStartOf="@id/iv_circle_big"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="198dp"
+            android:contentDescription="@string/description_login_circle"
+            android:src="@drawable/ic_circle_small"
+            app:layout_constraintStart_toEndOf="@id/iv_circle_big"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_input_login_id"
+            style="@style/customTextViewFontStyle.Bold.S16.gray400"
+            android:layout_width="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:hint="@string/hint_input_id"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_circle_big"
+            android:autofillHints="false"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/et_input_login_password"
+            style="@style/customTextViewFontStyle.Bold.S16.gray400"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:hint="@string/hint_input_password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_input_login_id"
+            android:autofillHints="false"
+            android:inputType="textPassword" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_login"
+            style="@style/customTextViewFontStyle.Bold.S14.white"
+            android:layout_width="110dp"
+            android:background="@drawable/shape_button_green"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="53dp"
+            android:layout_marginStart="130dp"
+            android:text="@string/label_login"
+            android:layout_marginEnd="130dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_input_login_password" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_join"
+            style="@style/customTextViewFontStyle.Bold.S14.green300"
+            android:background="@drawable/shape_button"
+            android:layout_width="110dp"
+            android:backgroundTint="@null"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:layout_marginStart="130dp"
+            android:text="@string/label_join_membership"
+            android:layout_marginEnd="130dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_login" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
