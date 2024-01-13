@@ -24,4 +24,6 @@
     <string name="description_login_circle">login_circle</string>
     <string name="label_login">로그인</string>
     <string name="label_join_membership">회원가입</string>
+    <string name="hint_input_id">아이디</string>
+    <string name="hint_input_password">비밀번호</string>
 </resources>
