@@ -55,9 +55,4 @@
         android:name="com.solution.gdsc.ui.login.LoginActivity"
         android:label="LoginActivity"
         tools:layout="@layout/activity_login"/>
-    <fragment
-        android:id="@+id/navigation_join"
-        android:name="com.solution.gdsc.ui.login.JoinFragment"
-        android:label="JoinFragment"
-        tools:layout="@layout/fragment_join"/>
 </navigation>
