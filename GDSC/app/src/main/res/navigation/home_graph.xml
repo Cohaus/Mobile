@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_home_to_login"
             app:destination="@id/navigation_login" />
+        <action
+            android:id="@+id/action_home_to_checkList"
+            app:destination="@id/navigation_checklist" />
     </fragment>
     <fragment
         android:id="@+id/navigation_profile"
@@ -55,4 +58,9 @@
         android:name="com.solution.gdsc.ui.login.LoginActivity"
         android:label="LoginActivity"
         tools:layout="@layout/activity_login"/>
+    <fragment
+        android:id="@+id/navigation_checklist"
+        android:name="com.solution.gdsc.ui.home.CheckListFragment"
+        android:label="CheckListFragment"
+        tools:layout="@layout/fragment_checklist"/>
 </navigation>
