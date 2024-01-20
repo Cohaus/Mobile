@@ -54,8 +54,8 @@
         android:label="ProfileSettingFragment"
         tools:layout="@layout/fragment_profile_setting">
         <action
-            android:id="@+id/action_profile_setting_to_logout_dialog"
-            app:destination="@id/navigation_logout_dialog" />
+            android:id="@+id/action_profile_setting_to_setting_state_dialog"
+            app:destination="@id/navigation_setting_state_dialog" />
     </fragment>
     <activity
         android:id="@+id/navigation_login"
@@ -68,8 +68,12 @@
         android:label="CheckListFragment"
         tools:layout="@layout/fragment_checklist"/>
     <dialog
-        android:id="@+id/navigation_logout_dialog"
-        android:name="com.solution.gdsc.ui.profile.LogoutDialogFragment"
+        android:id="@+id/navigation_setting_state_dialog"
+        android:name="com.solution.gdsc.ui.profile.SettingStateDialogFragment"
         android:label="LogoutDialogFragment"
-        tools:layout="@layout/dialog_logout"/>
+        tools:layout="@layout/fragment_dialog_setting_state">
+        <argument
+            android:name="dialogCategory"
+            app:argType="com.solution.gdsc.data.DialogCategory" />
+    </dialog>
 </navigation>
