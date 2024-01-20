@@ -38,4 +38,6 @@
     <string name="description_check_box">체크박스</string>
     <string name="label_safe_checklist">안전수칙 체크리스트</string>
     <string name="label_ok">확인</string>
+    <string name="label_cancel">취소</string>
+    <string name="label_confirm">확인</string>
 </resources>
