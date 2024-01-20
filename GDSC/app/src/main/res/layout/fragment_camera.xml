@@ -12,16 +12,93 @@
         android:layout_height="match_parent"
         tools:context=".ui.home.CameraFragment">
 
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/iv_camera_image"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:contentDescription="@string/description_camera_image" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_persistent_bottom_sheet"
+            style="@style/AppBottomSheetDialog"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/background_top_rounded_corner">
+
+            <TextView
+                android:id="@+id/tv_camera_image_ai_content1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="47dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginEnd="47dp"
+                android:text="안전합니다!"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tv_camera_image_ai_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="47dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginEnd="47dp"
+                android:text="안전합니다!"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_camera_image_ai_content1" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_image_report"
+                style="@style/customTextViewFontStyle.Bold.S18"
+                android:layout_width="82dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="19dp"
+                android:background="@drawable/shape_button_red"
+                android:backgroundTint="@null"
+                android:text="@string/label_report"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_camera_image_ai_content" />
+
+            <Button
+                android:id="@+id/btn_image_save"
+                style="@style/customTextViewFontStyle.Bold.S18"
+                android:layout_width="82dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="38dp"
+                android:layout_marginBottom="19dp"
+                android:background="@drawable/shape_button_green"
+                android:text="@string/label_save"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_camera_image_ai_content" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
