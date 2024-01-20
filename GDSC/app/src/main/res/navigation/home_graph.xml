@@ -52,7 +52,11 @@
         android:id="@+id/navigation_profile_setting"
         android:name="com.solution.gdsc.ui.profile.ProfileSettingFragment"
         android:label="ProfileSettingFragment"
-        tools:layout="@layout/fragment_profile_setting"/>
+        tools:layout="@layout/fragment_profile_setting">
+        <action
+            android:id="@+id/action_profile_setting_to_logout_dialog"
+            app:destination="@id/navigation_logout_dialog" />
+    </fragment>
     <activity
         android:id="@+id/navigation_login"
         android:name="com.solution.gdsc.ui.login.LoginActivity"
@@ -63,4 +67,9 @@
         android:name="com.solution.gdsc.ui.home.CheckListFragment"
         android:label="CheckListFragment"
         tools:layout="@layout/fragment_checklist"/>
+    <dialog
+        android:id="@+id/navigation_logout_dialog"
+        android:name="com.solution.gdsc.ui.profile.LogoutDialogFragment"
+        android:label="LogoutDialogFragment"
+        tools:layout="@layout/dialog_logout"/>
 </navigation>
