@@ -6,30 +6,53 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.solution.gdsc.R
-import com.solution.gdsc.databinding.DialogLogoutBinding
+import com.solution.gdsc.data.DialogCategory
+import com.solution.gdsc.databinding.FragmentDialogSettingStateBinding
 
-class LogoutDialogFragment : DialogFragment() {
-    private var _binding: DialogLogoutBinding? = null
+class SettingStateDialogFragment : DialogFragment() {
+    private var _binding: FragmentDialogSettingStateBinding? = null
     private val binding get() = _binding!!
+    private val args: SettingStateDialogFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DialogLogoutBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentDialogSettingStateBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        when (args.dialogCategory) {
+            DialogCategory.LOGOUT -> setCategoryLogout()
+            else -> setCategoryWithdrawal()
+        }
+    }
+
+    private fun setCategoryLogout() {
         with(binding) {
+            groupLogout.visibility = ViewGroup.VISIBLE
             btnLogoutCancel.setOnClickListener {
                 findNavController().navigateUp()
             }
             btnLogoutConfirm.setOnClickListener {
                 // Logout 기능 구현
+            }
+        }
+    }
+
+    private fun setCategoryWithdrawal() {
+        with(binding) {
+            groupWithdrawal.visibility = ViewGroup.VISIBLE
+            btnWithdrawalCancel.setOnClickListener {
+                findNavController().navigateUp()
+            }
+            btnLogoutConfirm.setOnClickListener {
+                // 회원 탈퇴 기능 구가
             }
         }
     }
