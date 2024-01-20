@@ -7,8 +7,14 @@ import com.solution.gdsc.databinding.FragmentProfileSettingBinding
 
 class ProfileSettingFragment : BaseFragment<FragmentProfileSettingBinding>(R.layout.fragment_profile_setting) {
     override fun setLayout() {
-        binding.toolbarSetting.setNavigationOnClickListener {
-            findNavController().navigateUp()
+        with(binding) {
+            toolbarSetting.setNavigationOnClickListener {
+                findNavController().navigateUp()
+            }
+            tvLogout.setOnClickListener {
+                val action = ProfileSettingFragmentDirections.actionProfileSettingToLogoutDialog()
+                findNavController().navigate(action)
+            }
         }
     }
 }
