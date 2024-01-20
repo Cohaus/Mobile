@@ -79,6 +79,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:dividerColor="@color/gray_100"
+            android:layout_marginTop="8dp"
             app:dividerInsetEnd="24dp"
             app:dividerInsetStart="24dp"
             app:dividerThickness="1dp"
