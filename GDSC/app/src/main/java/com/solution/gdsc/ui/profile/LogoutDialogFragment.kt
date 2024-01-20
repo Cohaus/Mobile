@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.findNavController
 import com.solution.gdsc.R
 import com.solution.gdsc.databinding.DialogLogoutBinding
 
@@ -21,8 +22,16 @@ class LogoutDialogFragment : DialogFragment() {
         return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        with(binding) {
+            btnLogoutCancel.setOnClickListener {
+                findNavController().navigateUp()
+            }
+            btnLogoutConfirm.setOnClickListener {
+                // Logout 기능 구현
+            }
+        }
     }
 
     override fun onStart() {
