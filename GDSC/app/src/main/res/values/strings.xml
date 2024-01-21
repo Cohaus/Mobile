@@ -44,4 +44,8 @@
     <string name="label_save">저장</string>
     <string name="label_report_message_bold">신고하시겠습니까?</string>
     <string name="label_report_message_save">신고 시 해당 기록이 저장됩니다.</string>
+    <string name="description_safe_image">안전한 사진 아이콘</string>
+    <string name="description_warning_image">위험한 사진 아이콘</string>
+    <string name="label_warning">Warning</string>
+    <string name="label_safety">Safety</string>
 </resources>
