@@ -96,13 +96,14 @@
             android:inputType="textEmailAddress" />
 
         <androidx.appcompat.widget.AppCompatButton
-            style="@style/customTextViewFontStyle.Bold.S16.green300"
-            android:background="@drawable/shape_button"
+            android:id="@+id/btn_join_confirm"
+            style="@style/AppButtonSelector"
             android:backgroundTint="@null"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:text="@string/label_complete"
+            android:enabled="false"
             app:layout_constraintStart_toStartOf="@id/et_input_join_id"
             app:layout_constraintEnd_toEndOf="@id/et_input_join_id"
             app:layout_constraintTop_toBottomOf="@id/et_input_join_email" />
