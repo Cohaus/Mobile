@@ -30,6 +30,10 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
     private lateinit var currentPhotoPath: String
     override fun setLayout() {
         dispatchTakePictureIntent()
+        binding.btnImageReport.setOnClickListener {
+            val action = CameraFragmentDirections.actionCameraToReportDialog()
+            findNavController().navigate(action)
+        }
     }
 
     private fun dispatchTakePictureIntent() {
