@@ -12,37 +12,105 @@
         android:layout_height="match_parent"
         tools:context=".ui.home.CameraFragment">
 
-        <ImageButton
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_safety"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_back"
+            android:visibility="visible"
+            app:constraint_referenced_ids="iv_safe_image, btn_safety" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="iv_warning_image, btn_warning" />
+
+        <ImageButton
+            android:id="@+id/ib_back_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="20dp"
             android:background="@android:color/transparent"
+            android:elevation="1dp"
+            android:src="@drawable/ic_arrow_back"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/description_back_icon" />
 
         <ImageView
             android:id="@+id/iv_camera_image"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:contentDescription="@string/description_camera_image"
             android:orientation="vertical"
             android:scaleType="fitCenter"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:contentDescription="@string/description_camera_image" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_safe_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/description_safe_image"
+            android:elevation="1dp"
+            android:src="@drawable/ic_safe_green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ib_back_icon" />
+
+        <ImageView
+            android:id="@+id/iv_warning_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/description_warning_image"
+            android:elevation="1dp"
+            android:src="@drawable/ic_warning"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ib_back_icon" />
+
+        <Button
+            android:id="@+id/btn_safety"
+            style="@style/customTextViewFontStyle.Bold.S24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_safety"
+            android:layout_marginBottom="12dp"
+            android:layout_marginStart="123dp"
+            android:layout_marginEnd="123dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/layout_persistent_bottom_sheet" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_warning"
+            style="@style/customTextViewFontStyle.Bold.S24"
+            android:layout_width="136dp"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_button_red"
+            android:text="@string/label_warning"
+            android:layout_marginBottom="12dp"
+            android:backgroundTint="@null"
+            android:layout_marginStart="123dp"
+            android:layout_marginEnd="123dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/layout_persistent_bottom_sheet" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_persistent_bottom_sheet"
             style="@style/AppBottomSheetDialog"
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/background_top_rounded_corner"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@drawable/background_top_rounded_corner">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:id="@+id/tv_camera_image_ai_content1"
@@ -55,6 +123,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/tv_camera_image_ai_content"
                 android:layout_width="wrap_content"
@@ -78,7 +147,23 @@
                 android:background="@drawable/shape_button_red"
                 android:backgroundTint="@null"
                 android:text="@string/label_report"
+                android:visibility="visible"
                 android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_camera_image_ai_content" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_image_confirm"
+                style="@style/customTextViewFontStyle.Bold.S18.gray400"
+                android:layout_width="82dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="19dp"
+                android:background="@drawable/shape_button_gray"
+                android:backgroundTint="@null"
+                android:text="@string/label_confirm"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_camera_image_ai_content" />
