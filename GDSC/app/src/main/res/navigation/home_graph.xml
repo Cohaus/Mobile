@@ -42,7 +42,11 @@
         android:id="@+id/navigation_camera"
         android:name="com.solution.gdsc.ui.home.CameraFragment"
         android:label="CameraFragment"
-        tools:layout="@layout/fragment_camera"/>
+        tools:layout="@layout/fragment_camera">
+        <action
+            android:id="@+id/action_camera_to_report_dialog"
+            app:destination="@id/navigation_report_dialog" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_post_detail"
         android:name="com.solution.gdsc.ui.profile.PostDetailFragment"
@@ -76,4 +80,9 @@
             android:name="dialogCategory"
             app:argType="com.solution.gdsc.data.DialogCategory" />
     </dialog>
+    <dialog
+        android:id="@+id/navigation_report_dialog"
+        android:name="com.solution.gdsc.ui.home.ReportDialogFragment"
+        android:label="ReportDialogFragment"
+        tools:layout="@layout/fragment_dialog_report"/>
 </navigation>
