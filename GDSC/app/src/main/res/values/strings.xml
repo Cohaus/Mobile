@@ -48,4 +48,5 @@
     <string name="description_warning_image">위험한 사진 아이콘</string>
     <string name="label_warning">Warning</string>
     <string name="label_safety">Safety</string>
+    <string name="hint_phone_number">전화번호</string>
 </resources>

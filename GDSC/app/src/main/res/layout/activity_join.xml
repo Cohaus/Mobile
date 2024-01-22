@@ -84,16 +84,16 @@
 
         <EditText
             style="@style/customTextViewFontStyle.Bold.S16.gray400"
-            android:id="@+id/et_input_join_email"
+            android:id="@+id/et_input_join_phone_number"
             android:layout_width="0dp"
-            android:hint="@string/hint_input_email"
+            android:hint="@string/hint_phone_number"
             android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/et_input_join_name"
             app:layout_constraintStart_toStartOf="@id/et_input_join_id"
             app:layout_constraintEnd_toEndOf="@id/et_input_join_id"
             android:autofillHints="false"
-            android:inputType="textEmailAddress" />
+            android:inputType="phone" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_join_confirm"
@@ -106,6 +106,6 @@
             android:enabled="false"
             app:layout_constraintStart_toStartOf="@id/et_input_join_id"
             app:layout_constraintEnd_toEndOf="@id/et_input_join_id"
-            app:layout_constraintTop_toBottomOf="@id/et_input_join_email" />
+            app:layout_constraintTop_toBottomOf="@id/et_input_join_phone_number" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

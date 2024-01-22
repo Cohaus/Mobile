@@ -1,4 +1,4 @@
-package com.solution.gdsc.ui.home
+package com.solution.gdsc.ui.home.camera
 
 import android.app.Activity.RESULT_CANCELED
 import android.app.Activity.RESULT_OK
@@ -117,7 +117,8 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
 
     private fun galleryAddPic() {
         val contentValues = ContentValues().apply {
-            put(MediaStore.Images.Media.DISPLAY_NAME, "JPEG_${SimpleDateFormat(DATE_YEAR_MONTH_DAY_PATTERN, Locale.KOREA).format(Date())}.jpg")
+            put(MediaStore.Images.Media.DISPLAY_NAME, "JPEG_${SimpleDateFormat(
+                DATE_YEAR_MONTH_DAY_PATTERN, Locale.KOREA).format(Date())}.jpg")
             put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
             put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
         }
