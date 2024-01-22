@@ -9,12 +9,12 @@ class JoinActivity : BaseActivity<ActivityJoinBinding>(R.layout.activity_join) {
     private var userId = ""
     private var password = ""
     private var userName = ""
-    private var userEmail = ""
+    private var userPhoneNumber = ""
 
     private var isValidUserId = false
     private var isValidPassword = false
     private var isValidUserName = false
-    private var isValidUserEmail = false
+    private var isValidUserPhoneNumber = false
 
     override fun setLayout() {
         binding.toolbarJoinMembership.setNavigationOnClickListener {
@@ -41,9 +41,9 @@ class JoinActivity : BaseActivity<ActivityJoinBinding>(R.layout.activity_join) {
                 isValidUserName = isValidInput(userName)
                 updateButtonEnableState()
             }
-            etInputJoinEmail.doAfterTextChanged {
-                userEmail = it?.toString() ?: ""
-                isValidUserEmail = isValidInput(userEmail)
+            etInputJoinPhoneNumber.doAfterTextChanged {
+                userPhoneNumber = it?.toString() ?: ""
+                isValidUserPhoneNumber = isValidInput(userPhoneNumber)
                 updateButtonEnableState()
             }
         }
@@ -53,6 +53,6 @@ class JoinActivity : BaseActivity<ActivityJoinBinding>(R.layout.activity_join) {
 
     private fun updateButtonEnableState() {
         binding.btnJoinConfirm.isEnabled =
-            isValidUserId && isValidPassword && isValidUserName && isValidUserEmail
+            isValidUserId && isValidPassword && isValidUserName && isValidUserPhoneNumber
     }
 }
