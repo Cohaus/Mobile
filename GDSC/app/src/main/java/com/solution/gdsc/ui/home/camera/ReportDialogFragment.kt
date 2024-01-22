@@ -1,4 +1,4 @@
-package com.solution.gdsc.ui.home
+package com.solution.gdsc.ui.home.camera
 
 import android.os.Bundle
 import android.view.LayoutInflater

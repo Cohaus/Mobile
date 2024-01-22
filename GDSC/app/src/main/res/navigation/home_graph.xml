@@ -40,7 +40,7 @@
 
     <fragment
         android:id="@+id/navigation_camera"
-        android:name="com.solution.gdsc.ui.home.CameraFragment"
+        android:name="com.solution.gdsc.ui.home.camera.CameraFragment"
         android:label="CameraFragment"
         tools:layout="@layout/fragment_camera">
         <action
@@ -82,7 +82,7 @@
     </dialog>
     <dialog
         android:id="@+id/navigation_report_dialog"
-        android:name="com.solution.gdsc.ui.home.ReportDialogFragment"
+        android:name="com.solution.gdsc.ui.home.camera.ReportDialogFragment"
         android:label="ReportDialogFragment"
         tools:layout="@layout/fragment_dialog_report"/>
 </navigation>
