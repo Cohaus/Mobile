@@ -6,6 +6,7 @@ plugins {
     id("com.google.devtools.ksp")
     kotlin("kapt")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("com.google.dagger.hilt.android")
 }
 
 secrets {
@@ -91,6 +92,14 @@ dependencies {
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
     ksp("androidx.room:room-compiler:2.6.1")
+    // Hilt
+    implementation("com.google.dagger:hilt-android:2.50")
+    kapt("com.google.dagger:hilt-android-compiler:2.50")
+    // define a BOM and its version
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
+    // define any required OkHttp artifacts without version
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
 
     implementation("com.google.android.gms:play-services-maps:18.2.0")
 
