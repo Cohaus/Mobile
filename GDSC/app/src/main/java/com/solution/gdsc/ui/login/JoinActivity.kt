@@ -3,9 +3,9 @@ package com.solution.gdsc.ui.login
 import androidx.core.widget.doAfterTextChanged
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseActivity
-import com.solution.gdsc.databinding.FragmentJoinBinding
+import com.solution.gdsc.databinding.ActivityJoinBinding
 
-class JoinActivity : BaseActivity<FragmentJoinBinding>(R.layout.fragment_join) {
+class JoinActivity : BaseActivity<ActivityJoinBinding>(R.layout.activity_join) {
     private var userId = ""
     private var password = ""
     private var userName = ""
