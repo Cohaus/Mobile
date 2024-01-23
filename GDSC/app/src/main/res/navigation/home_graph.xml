@@ -92,5 +92,11 @@
         android:id="@+id/navigation_record_save"
         android:name="com.solution.gdsc.ui.home.save.HomeRecordSaveFragment"
         android:label="HomeRecordSaveFragment"
-        tools:layout="@layout/fragment_home_record_save"/>
+        tools:layout="@layout/fragment_home_record_save">
+        <action
+            android:id="@+id/action_record_save_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/home_graph"
+            app:popUpToInclusive="true"/>
+    </fragment>
 </navigation>

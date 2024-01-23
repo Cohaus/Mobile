@@ -20,7 +20,8 @@ class HomeRecordSaveFragment : BaseFragment<FragmentHomeRecordSaveBinding>(R.lay
                 findNavController().navigateUp()
             }
             btnRecordSave.setOnClickListener {
-                //
+                val action = HomeRecordSaveFragmentDirections.actionRecordSaveToHome()
+                findNavController().navigate(action)
             }
         }
     }
