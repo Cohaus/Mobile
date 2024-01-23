@@ -22,7 +22,7 @@ object NetworkModule {
 
     @Qualifier
     @Retention(AnnotationRetention.BINARY)
-    annotation class OtherInterceptorOkHttpClient
+    annotation class CoHousInterceptorOkHttpClient
 
     @LoginInterceptorOkHttpClient
     @Singleton
@@ -33,12 +33,35 @@ object NetworkModule {
             .build()
     }
 
+    @CoHousInterceptorOkHttpClient
+    @Singleton
+    @Provides
+    fun provideCoHousOkHttpClient(otherInterceptor: HttpLoggingInterceptor): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(otherInterceptor)
+            .build()
+    }
+
     @LoginInterceptorOkHttpClient
     @Singleton
     @Provides
     fun provideLoginRetrofit(
         gsonConverterFactory: GsonConverterFactory,
         @LoginInterceptorOkHttpClient client: OkHttpClient
+    ): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(client)
+            .addConverterFactory(gsonConverterFactory)
+            .build()
+    }
+
+    @CoHousInterceptorOkHttpClient
+    @Singleton
+    @Provides
+    fun provideCoHousRetrofit(
+        gsonConverterFactory: GsonConverterFactory,
+        @CoHousInterceptorOkHttpClient client: OkHttpClient
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
