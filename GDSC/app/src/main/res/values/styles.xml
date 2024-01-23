@@ -50,6 +50,10 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/green_300</item>
     </style>
+    
+    <style name="BtnSelectorRightAndGreen">
+        <item name="android:background">@drawable/selector_record_save</item>
+    </style>>
 
     <!--  Custom Font  -->
     <style name="customTextViewFontStyle" parent="@android:style/Widget.DeviceDefault.TextView">
@@ -89,6 +93,12 @@
     </style>
     <style name="customTextViewFontStyle.S15.white" >
         <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="customTextViewFontStyle.S18">
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="customTextViewFontStyle.S18.gray450">
+        <item name="android:textColor">@color/gray_450</item>
     </style>
     <style name="customTextViewFontStyle.S28" >
         <item name="android:textSize">28sp</item>
@@ -145,6 +155,9 @@
     </style>
     <style name="customTextViewFontStyle.Bold.S20" >
         <item name="android:textSize">20sp</item>
+    </style>
+    <style name="customTextViewFontStyle.Bold.S20.gray450" >
+        <item name="android:textColor">@color/gray_450</item>
     </style>
     <style name="customTextViewFontStyle.Bold.S20.green300" >
         <item name="android:textColor">@color/green_300</item>
