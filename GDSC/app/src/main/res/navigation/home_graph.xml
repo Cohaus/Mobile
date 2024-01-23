@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_camera_to_report_dialog"
             app:destination="@id/navigation_report_dialog" />
+        <action
+            android:id="@+id/action_camera_to_record_save"
+            app:destination="@id/navigation_record_save" />
     </fragment>
     <fragment
         android:id="@+id/navigation_post_detail"
@@ -85,4 +88,9 @@
         android:name="com.solution.gdsc.ui.home.camera.ReportDialogFragment"
         android:label="ReportDialogFragment"
         tools:layout="@layout/fragment_dialog_report"/>
+    <fragment
+        android:id="@+id/navigation_record_save"
+        android:name="com.solution.gdsc.ui.home.save.HomeRecordSaveFragment"
+        android:label="HomeRecordSaveFragment"
+        tools:layout="@layout/fragment_home_record_save"/>
 </navigation>
