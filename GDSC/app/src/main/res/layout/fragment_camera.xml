@@ -12,20 +12,6 @@
         android:layout_height="match_parent"
         tools:context=".ui.home.camera.CameraFragment">
 
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/group_safety"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            app:constraint_referenced_ids="iv_safe_image, btn_safety" />
-
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/group_warning"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:constraint_referenced_ids="iv_warning_image, btn_warning" />
-
         <ImageButton
             android:id="@+id/ib_back_icon"
             android:layout_width="wrap_content"
@@ -33,11 +19,11 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="20dp"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/description_back_icon"
             android:elevation="1dp"
             android:src="@drawable/ic_arrow_back"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/description_back_icon" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/iv_camera_image"
@@ -50,57 +36,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/iv_safe_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/description_safe_image"
-            android:elevation="1dp"
-            android:src="@drawable/ic_safe_green"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ib_back_icon" />
-
-        <ImageView
-            android:id="@+id/iv_warning_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/description_warning_image"
-            android:elevation="1dp"
-            android:src="@drawable/ic_warning"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ib_back_icon" />
-
-        <Button
-            android:id="@+id/btn_safety"
-            style="@style/customTextViewFontStyle.Bold.S24"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_safety"
-            android:layout_marginBottom="12dp"
-            android:layout_marginStart="123dp"
-            android:layout_marginEnd="123dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/layout_persistent_bottom_sheet" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_warning"
-            style="@style/customTextViewFontStyle.Bold.S24"
-            android:layout_width="136dp"
-            android:textColor="@color/white"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape_button_red"
-            android:text="@string/label_warning"
-            android:layout_marginBottom="12dp"
-            android:backgroundTint="@null"
-            android:layout_marginStart="123dp"
-            android:layout_marginEnd="123dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/layout_persistent_bottom_sheet" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_persistent_bottom_sheet"
@@ -137,49 +72,36 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_camera_image_ai_content1" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_image_report"
-                style="@style/customTextViewFontStyle.Bold.S18"
-                android:layout_width="82dp"
+                android:id="@+id/btn_camera_image_save"
+                style="@style/customTextViewFontStyle.Bold.S16.green300"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="38dp"
+                android:layout_marginStart="19dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="19dp"
-                android:background="@drawable/shape_button_red"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/shape_button_15dp_stroke"
                 android:backgroundTint="@null"
-                android:text="@string/label_report"
-                android:visibility="visible"
-                android:textColor="@color/white"
+                android:text="@string/label_record_save_button"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_camera_image_ai_content" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_image_confirm"
-                style="@style/customTextViewFontStyle.Bold.S18.gray400"
-                android:layout_width="82dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="38dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="19dp"
-                android:background="@drawable/shape_button_gray"
-                android:backgroundTint="@null"
-                android:text="@string/label_confirm"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_camera_request_repair"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_camera_image_ai_content" />
 
             <Button
-                android:id="@+id/btn_image_save"
-                style="@style/customTextViewFontStyle.Bold.S18"
-                android:layout_width="82dp"
+                android:id="@+id/btn_camera_request_repair"
+                style="@style/customTextViewFontStyle.Bold.S16"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="38dp"
-                android:layout_marginBottom="19dp"
-                android:background="@drawable/shape_button_green"
-                android:text="@string/label_save"
+                android:layout_marginEnd="19dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/shape_button_15dp_green"
+                android:text="수리 요청하기"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_camera_image_save"
                 app:layout_constraintTop_toBottomOf="@id/tv_camera_image_ai_content" />
 
 
