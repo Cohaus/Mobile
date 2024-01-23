@@ -36,18 +36,15 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
 
     private fun setClickListener() {
         with(binding) {
-            btnImageReport.setOnClickListener {
-                val action = CameraFragmentDirections.actionCameraToReportDialog()
-                findNavController().navigate(action)
-            }
             ibBackIcon.setOnClickListener {
                 findNavController().navigateUp()
             }
-            btnImageConfirm.setOnClickListener {
-                findNavController().navigateUp()
+            btnCameraImageSave.setOnClickListener {
+                val action = CameraFragmentDirections.actionCameraToRecordSave()
+                findNavController().navigate(action)
             }
-            btnImageSave.setOnClickListener {
-                // 이미지 기록 화면 이동 구현
+            btnCameraRequestRepair.setOnClickListener {
+                // 수리 요청 화면 이동
             }
         }
     }
