@@ -104,6 +104,8 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     // LiveData
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    // DataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     implementation("com.google.android.gms:play-services-maps:18.2.0")
 
