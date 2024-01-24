@@ -5,7 +5,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseActivity
 import com.solution.gdsc.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun setLayout() {

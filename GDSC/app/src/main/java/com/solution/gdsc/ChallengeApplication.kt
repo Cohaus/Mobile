@@ -9,5 +9,18 @@ import javax.inject.Inject
 class ChallengeApplication : Application() {
 
     @Inject
-    lateinit var  tokenManager: TokenManager
+    lateinit var tokenManager: TokenManager
+
+    companion object {
+        private lateinit var application: ChallengeApplication
+
+        fun getInstance(): ChallengeApplication {
+            return application
+        }
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        application = this
+    }
 }
