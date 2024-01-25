@@ -18,10 +18,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                 val action = HomeFragmentDirections.actionHomeToLogin()
                 findNavController().navigate(action)
             }
-            ibCheckListButton.setOnClickListener {
-                val action = HomeFragmentDirections.actionHomeToCheckList()
-                findNavController().navigate(action)
-            }
         }
     }
 }
