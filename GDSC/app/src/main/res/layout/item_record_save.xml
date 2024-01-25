@@ -2,14 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="160dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="4dp">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_construction_site_post_image"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="106dp"
+        android:layout_height="106dp"
         android:scaleType="centerCrop"
         android:background="@color/gray_500"
         app:layout_constraintDimensionRatio="1:1"
@@ -20,7 +20,7 @@
         tools:background="@color/gray_500" />
 
     <TextView
-        android:id="@+id/tv_construction_site_post_location"
+        android:id="@+id/tv_record_save_location"
         style="@style/customTextViewFontStyle.Bold.S12.gray200"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -35,13 +35,13 @@
 
     <TextView
         style="@style/customTextViewFontStyle.light.S12.gray200"
-        android:id="@+id/tv_construction_site_post_date"
+        android:id="@+id/tv_record_save_date"
         android:text="2024.01.03"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_construction_site_post_location"
+        app:layout_constraintTop_toBottomOf="@id/tv_record_save_location"
         tools:text="2024.01.03" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

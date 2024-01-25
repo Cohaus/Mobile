@@ -1,5 +1,6 @@
-package com.solution.gdsc.di
+package com.solution.gdsc.di.module
 
+import com.solution.gdsc.di.AuthInterceptor
 import com.solution.gdsc.util.Utils.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -36,9 +37,13 @@ object NetworkModule {
     @CoHousInterceptorOkHttpClient
     @Singleton
     @Provides
-    fun provideCoHousOkHttpClient(otherInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun provideCoHousOkHttpClient(
+        otherInterceptor: HttpLoggingInterceptor,
+        authInterceptor: AuthInterceptor
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(otherInterceptor)
+            .addInterceptor(authInterceptor)
             .build()
     }
 

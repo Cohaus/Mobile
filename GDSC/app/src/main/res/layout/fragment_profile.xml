@@ -3,22 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            style="@style/App.Toolbar"
-            android:background="@color/white"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            tools:context=".ui.profile.ProfileFragment">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar_profile"
                 style="@style/App.Toolbar"
-                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -26,47 +25,131 @@
                 app:menu="@menu/profile_toolbar_menu"
                 app:title="Safe" />
 
-        </com.google.android.material.appbar.AppBarLayout>
+            <ImageView
+                android:id="@+id/iv_user_state_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/description_user_state"
+                android:src="@drawable/ic_general_user"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar_profile" />
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="22dp"
+                android:text="@string/text_profile_name"
+                android:textColor="@color/black_600"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_user_state_image"
+                app:layout_constraintTop_toTopOf="@id/iv_user_state_image" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:id="@+id/tv_user_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/text_profile_id"
+                android:textColor="@color/black_600"
+                app:layout_constraintEnd_toEndOf="@id/tv_user_name"
+                app:layout_constraintStart_toStartOf="@id/tv_user_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_user_name" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider_profile"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".ui.profile.ProfileFragment">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                app:dividerThickness="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_user_state_image" />
 
-                <TextView
-                    android:id="@+id/tv_greeting_name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="11dp"
-                    android:text="@string/text_profile_greeting_name"
-                    android:textColor="@color/gray_500"
-                    android:textSize="28sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:Text="회원님,\n오늘도 안전하게!" />
+            <TextView
+                android:id="@+id/tv_repair_apply_list"
+                style="@style/customTextViewFontStyle.Bold.S24"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:text="@string/text_repair_apply_list"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/iv_user_state_image"
+                app:layout_constraintTop_toBottomOf="@id/divider_profile" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_construction_site_post_list"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_greeting_name"
-                    tools:listitem="@layout/item_construction_site_category_post" />
+            <ImageButton
+                android:id="@+id/ib_arrow_repair_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="@string/description_repair_list_arrow"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_repair_apply_list" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_repair_apply_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="31dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toTopOf="@id/divider_profile_save"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_repair_apply_list"
+                tools:listitem="@layout/item_repair_apply" />
 
-        </androidx.core.widget.NestedScrollView>
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider_profile_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                app:dividerThickness="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_repair_apply_list" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <TextView
+                android:id="@+id/tv_save_list"
+                style="@style/customTextViewFontStyle.Bold.S24"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:text="@string/text_save_list"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/iv_user_state_image"
+                app:layout_constraintTop_toBottomOf="@id/divider_profile_save" />
+
+            <ImageButton
+                android:id="@+id/ib_arrow_save_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="@string/description_repair_list_arrow"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_save_list" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_save_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_save_list"
+                tools:listitem="@layout/item_record_save" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </layout>

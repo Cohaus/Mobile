@@ -17,7 +17,8 @@
     <string name="label_Self_checklist">Self Checklist</string>
 
     <!--  Profile  -->
-    <string name="text_profile_greeting_name">회원님,\n오늘도 안전하게!</string>
+    <string name="text_profile_name">이름</string>
+    <string name="text_profile_id">아이디</string>
     <string name="description_back_icon">뒤로가기 버튼</string>
     <string name="description_more_icon">더보기 버튼</string>
     <string name="description_post_image">게시글 사진</string>
@@ -53,4 +54,8 @@
     <string name="hint_input_record_title">제목을 입력하세요</string>
     <string name="hint_input_record_content">내용을 입력하세요</string>
     <string name="label_record_save_button">저장하기</string>
+    <string name="description_user_state">user state image</string>
+    <string name="text_repair_apply_list">수리 신청 목록</string>
+    <string name="description_repair_list_arrow">수리 신청 목록 화면 이동 아이콘</string>
+    <string name="text_save_list">저장 목록</string>
 </resources>

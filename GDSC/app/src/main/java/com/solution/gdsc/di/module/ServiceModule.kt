@@ -1,4 +1,4 @@
-package com.solution.gdsc.di
+package com.solution.gdsc.di.module
 
 import com.solution.gdsc.data.remote.CoHousService
 import com.solution.gdsc.data.remote.LoginService
