@@ -51,7 +51,11 @@
         android:id="@+id/navigation_post_detail"
         android:name="com.solution.gdsc.ui.profile.PostDetailFragment"
         android:label="PostDetailFragment"
-        tools:layout="@layout/fragment_post_detail"/>
+        tools:layout="@layout/fragment_post_detail">
+        <argument
+            android:name="recordSaveDetail"
+            app:argType="com.solution.gdsc.data.model.RecordSaveDetail" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_profile_setting"
         android:name="com.solution.gdsc.ui.profile.ProfileSettingFragment"
