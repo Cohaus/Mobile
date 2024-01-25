@@ -47,17 +47,17 @@
                 android:background="@color/gray_500"
                 android:contentDescription="@string/description_post_image"
                 android:scaleType="fitCenter"
-                app:layout_constraintBottom_toTopOf="@id/tv_ai_content"
+                app:layout_constraintBottom_toTopOf="@id/tv_post_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/post_category_name"
+                android:id="@+id/tv_post_title"
                 style="@style/customTextViewFontStyle.Bold.S28.white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="A공사 현장"
+                android:text="일반 기록"
                 app:layout_constraintBottom_toTopOf="@id/tv_post_date"
                 app:layout_constraintStart_toStartOf="@id/tv_post_date" />
 
@@ -72,18 +72,9 @@
                 app:layout_constraintBottom_toBottomOf="@id/iv_post_detail_image"
                 app:layout_constraintStart_toStartOf="@id/iv_post_detail_image" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_warning"
-                android:layout_marginEnd="17dp"
-                android:layout_marginBottom="7dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/tv_post_capture_location" />
-
             <TextView
                 android:id="@+id/tv_post_capture_location"
-                style="@style/customTextViewFontStyle.S12.white"
+                style="@style/customTextViewFontStyle.S16.white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="14dp"
@@ -93,14 +84,14 @@
 
 
             <TextView
-                android:id="@+id/tv_ai_content"
-                style="@style/customTextViewFontStyle.S12"
+                android:id="@+id/tv_post_content"
+                style="@style/customTextViewFontStyle.S18"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="14dp"
-                android:text="AI 진단 내용"
+                android:text="사용자 작성 내용"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_post_detail_image" />

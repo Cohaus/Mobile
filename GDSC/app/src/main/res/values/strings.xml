@@ -58,4 +58,7 @@
     <string name="text_repair_apply_list">수리 신청 목록</string>
     <string name="description_repair_list_arrow">수리 신청 목록 화면 이동 아이콘</string>
     <string name="text_save_list">저장 목록</string>
+    <string name="text_ai_diagnosis">AI 진단하러 가기</string>
+    <string name="text_general_repair_apply_go">일반 수리 신청</string>
+    <string name="text_how_to_use">이용 방법</string>
 </resources>

@@ -18,6 +18,8 @@
     <color name="green_300">#41B574</color>
 
     <color name="gray_right">#DFE0DF</color>
+    <color name="gray_middle">#D9D9D9</color>
+    <color name="gray_dark">#363331</color>
 
     <color name="red">#EF554A</color>
 </resources>

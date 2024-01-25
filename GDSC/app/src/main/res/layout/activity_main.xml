@@ -28,7 +28,7 @@
             style="@style/BottomNavigationStyle"
             android:id="@+id/bottom_navigation_main"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="65dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
