@@ -51,8 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:text="우리 함께 만들어가는 어쩌구"
-            app:layout_constraintEnd_toEndOf="@id/tv_home_title_name"
-            app:layout_constraintStart_toStartOf="@id/tv_home_title_name"
+            app:layout_constraintEnd_toEndOf="@id/home_middle_description"
+            app:layout_constraintStart_toStartOf="@id/home_middle_description"
             app:layout_constraintTop_toBottomOf="@id/home_middle_description" />
 
 
