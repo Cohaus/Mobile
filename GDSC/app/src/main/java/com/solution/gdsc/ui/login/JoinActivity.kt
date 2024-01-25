@@ -1,11 +1,16 @@
 package com.solution.gdsc.ui.login
 
+import androidx.activity.viewModels
 import androidx.core.widget.doAfterTextChanged
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseActivity
 import com.solution.gdsc.databinding.ActivityJoinBinding
+import com.solution.gdsc.ui.login.viewmodel.LoginViewModel
 
 class JoinActivity : BaseActivity<ActivityJoinBinding>(R.layout.activity_join) {
+
+    private val viewModel by viewModels<LoginViewModel>()
+
     private var userId = ""
     private var password = ""
     private var userName = ""
@@ -54,5 +59,9 @@ class JoinActivity : BaseActivity<ActivityJoinBinding>(R.layout.activity_join) {
     private fun updateButtonEnableState() {
         binding.btnJoinConfirm.isEnabled =
             isValidUserId && isValidPassword && isValidUserName && isValidUserPhoneNumber
+    }
+
+    fun observe() {
+
     }
 }

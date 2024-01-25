@@ -1,5 +1,6 @@
 package com.solution.gdsc.ui.login.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val repository: LoginRepository
+    private val repository: LoginRepository,
 ) : ViewModel() {
 
     private val _userInfo = MutableLiveData<LoginResponse>()
@@ -21,8 +22,13 @@ class LoginViewModel @Inject constructor(
 
     fun login(id: String, password: String) {
         viewModelScope.launch {
-            val res = repository.login(LoginReq(id, password))
-            _userInfo.value = res
+            try {
+                repository.login(LoginReq(id, password)).collect {
+                    _userInfo.value = it
+                }
+            } catch (e: Exception) {
+                Log.e("Login Error: ", e.message.toString())
+            }
         }
     }
 }
