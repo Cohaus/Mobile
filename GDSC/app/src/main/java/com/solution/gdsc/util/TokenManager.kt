@@ -9,6 +9,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import com.solution.gdsc.util.extensions.datastore
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -28,6 +29,10 @@ class TokenManager @Inject constructor(
         .map { preferences ->
             preferences[KEY_REFRESH_TOKEN]
         }
+
+    suspend fun getAccessToken(): String {
+        return dataStore.data.first().toString()
+    }
 
     suspend fun saveAccessToken(accessToken: String) {
         if (accessToken.isNotEmpty()) {
