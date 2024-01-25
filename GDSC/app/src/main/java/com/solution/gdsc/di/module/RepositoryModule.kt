@@ -1,4 +1,4 @@
-package com.solution.gdsc.di
+package com.solution.gdsc.di.module
 
 import com.solution.gdsc.data.source.LoginDataSource
 import com.solution.gdsc.data.source.LoginRepositoryImpl

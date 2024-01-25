@@ -1,4 +1,4 @@
-package com.solution.gdsc.di
+package com.solution.gdsc.di.module
 
 import android.content.Context
 import com.solution.gdsc.util.TokenManager
