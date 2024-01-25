@@ -2,52 +2,50 @@ package com.solution.gdsc.ui.profile.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.solution.gdsc.data.model.ConstPost
-import com.solution.gdsc.data.model.ConstructionSitePost
-import com.solution.gdsc.databinding.ItemConstructionSitePostBinding
+import com.solution.gdsc.databinding.ItemRepairApplyBinding
 
-class ConstructionSitePostAdapter(
+class RepairApplyAdapter(
     private val listener: PostClickListener
-) : RecyclerView.Adapter<ConstructionSitePostAdapter.ConstructionSitePostViewHolder>() {
+) : RecyclerView.Adapter<RepairApplyAdapter.RepairApplyViewHolder>() {
     private val items = mutableListOf<ConstPost>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ConstructionSitePostViewHolder {
-        return ConstructionSitePostViewHolder.from(parent)
+    ): RepairApplyViewHolder {
+        return RepairApplyViewHolder.from(parent)
     }
 
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: ConstructionSitePostViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RepairApplyViewHolder, position: Int) {
         holder.bind(items[position], listener)
     }
 
     fun add(posts: List<ConstPost>) {
-        items.clear()
+        val positionStart = items.size
         items.addAll(posts)
-        notifyDataSetChanged()
+        notifyItemRangeInserted(positionStart, posts.size)
     }
 
-    class ConstructionSitePostViewHolder(
-        private val binding: ItemConstructionSitePostBinding
+    class RepairApplyViewHolder(
+        private val binding: ItemRepairApplyBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(post: ConstPost, listener: PostClickListener) {
              binding.ivConstructionSitePostImage.setOnClickListener {
                  listener.onPostClick(post.category.title, post.post)
              }
-            binding.tvConstructionSitePostDate.text = post.post.postedAt
-            binding.tvConstructionSitePostLocation.text = post.post.location
+            binding.tvRepairApplyDate.text = post.post.postedAt
+            binding.tvRepairLocation.text = post.post.location
         }
 
         companion object {
-            fun from(parent: ViewGroup): ConstructionSitePostViewHolder {
-                return ConstructionSitePostViewHolder(
-                    ItemConstructionSitePostBinding.inflate(
+            fun from(parent: ViewGroup): RepairApplyViewHolder {
+                return RepairApplyViewHolder(
+                    ItemRepairApplyBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
