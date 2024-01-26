@@ -17,7 +17,7 @@ class ReportDialogFragment : DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDialogReportBinding.inflate(layoutInflater, container, false)
         return binding.root
     }

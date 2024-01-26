@@ -27,6 +27,7 @@
 
         <ImageView
             android:id="@+id/iv_camera_image"
+            style="@style/customTextViewFontStyle.Bold.S14"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:contentDescription="@string/description_camera_image"
@@ -41,35 +42,52 @@
             android:id="@+id/layout_persistent_bottom_sheet"
             style="@style/AppBottomSheetDialog"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/background_top_rounded_corner"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
+                style="@style/customTextViewFontStyle.Bold.S14"
                 android:id="@+id/tv_camera_image_ai_content1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="47dp"
-                android:layout_marginTop="35dp"
-                android:layout_marginEnd="47dp"
-                android:text="안전합니다!"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="17dp"
+                android:text="@string/text_diagnosis_ai_result"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <com.solution.gdsc.ui.common.HalfCircleProgressBar
+                android:id="@+id/progress_bar_safe_grade_home"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_camera_image_ai_content1"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
             <TextView
-                android:id="@+id/tv_camera_image_ai_content"
+                android:id="@+id/tv_safe_score_home"
+                style="@style/customTextViewFontStyle.Bold.S28"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="47dp"
-                android:layout_marginTop="35dp"
-                android:layout_marginEnd="47dp"
-                android:text="안전합니다!"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_camera_image_ai_content1" />
+                android:layout_marginTop="45dp"
+                android:text="50점"
+                app:layout_constraintBottom_toBottomOf="@id/progress_bar_safe_grade_home"
+                app:layout_constraintEnd_toEndOf="@id/progress_bar_safe_grade_home"
+                app:layout_constraintStart_toStartOf="@id/progress_bar_safe_grade_home"
+                app:layout_constraintTop_toTopOf="@id/progress_bar_safe_grade_home" />
+
+            <TextView
+                android:id="@+id/tv_safe_grade"
+                style="@style/customTextViewFontStyle.Bold.S14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="매우 우수"
+                app:layout_constraintEnd_toEndOf="@id/progress_bar_safe_grade_home"
+                app:layout_constraintStart_toStartOf="@id/progress_bar_safe_grade_home"
+                app:layout_constraintTop_toBottomOf="@id/tv_safe_score_home" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_camera_image_save"
@@ -83,10 +101,10 @@
                 android:background="@drawable/shape_button_15dp_stroke"
                 android:backgroundTint="@null"
                 android:text="@string/label_record_save_button"
+                app:layout_constraintTop_toBottomOf="@id/progress_bar_safe_grade_home"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btn_camera_request_repair"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_camera_image_ai_content" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:id="@+id/btn_camera_request_repair"
@@ -98,14 +116,13 @@
                 android:layout_marginEnd="19dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/shape_button_15dp_green"
-                android:text="수리 요청하기"
+                android:text="@string/text_detail_repair"
+                app:layout_constraintTop_toBottomOf="@id/progress_bar_safe_grade_home"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btn_camera_image_save"
-                app:layout_constraintTop_toBottomOf="@id/tv_camera_image_ai_content" />
+                app:layout_constraintStart_toEndOf="@id/btn_camera_image_save" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
