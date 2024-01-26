@@ -18,6 +18,7 @@ class PostDetailFragment : BaseFragment<FragmentPostDetailBinding>(R.layout.frag
             val action = PostDetailFragmentDirections.actionPostDetailToDetailMoreDialog()
             findNavController().navigate(action)
         }
+        binding.progressBarSafeGrade.setProgress(90f)
         binding.tvPostTitle.text = detail.title
         binding.tvPostContent.text = detail.aiContent
         binding.tvPostDate.text = detail.postedAt
