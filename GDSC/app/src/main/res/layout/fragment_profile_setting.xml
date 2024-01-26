@@ -21,42 +21,32 @@
             app:navigationIcon="@drawable/ic_arrow_back"
             app:navigationIconTint="@color/black_700" />
 
-        <ImageView
-            android:id="@+id/iv_setting_big"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="30dp"
-            android:contentDescription="@string/description_setting"
-            android:src="@drawable/ic_setting_big"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_setting" />
-
         <TextView
             android:id="@+id/tv_setting"
-            style="@style/customTextViewFontStyle.Bold.S20.gray400"
+            style="@style/customTextViewFontStyle.Bold.S24"
             android:layout_width="0dp"
+            android:layout_marginStart="24dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/label_setting"
-            app:layout_constraintStart_toStartOf="@id/iv_setting_big"
-            app:layout_constraintTop_toBottomOf="@id/iv_setting_big" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_setting" />
 
         <TextView
             android:id="@+id/tv_login_info"
             style="@style/customTextViewFontStyle.Bold.S16.gray400"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/label_login_info"
-            app:layout_constraintStart_toStartOf="@id/iv_setting_big"
+            android:layout_marginTop="35dp"
+            android:text="@string/text_info_edit"
+            app:layout_constraintStart_toStartOf="@id/tv_setting"
             app:layout_constraintTop_toBottomOf="@id/tv_setting" />
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/divider_profile_setting_one"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             app:dividerColor="@color/gray_400"
             app:dividerInsetEnd="24dp"
             app:dividerInsetStart="24dp"
@@ -66,21 +56,44 @@
             app:layout_constraintTop_toBottomOf="@id/tv_login_info" />
 
         <TextView
+            android:id="@+id/tv_volunteer_registration"
+            style="@style/customTextViewFontStyle.Bold.S16.gray400"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:text="@string/text_volunteer_registration"
+            app:layout_constraintStart_toStartOf="@id/tv_setting"
+            app:layout_constraintTop_toBottomOf="@id/divider_profile_setting_one" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_profile_volunteer_registration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:dividerColor="@color/gray_400"
+            app:dividerInsetEnd="24dp"
+            app:dividerInsetStart="24dp"
+            app:dividerThickness="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_volunteer_registration" />
+
+        <TextView
             android:id="@+id/tv_logout"
             style="@style/customTextViewFontStyle.Bold.S16.gray400"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="19dp"
             android:text="@string/label_logout"
-            app:layout_constraintStart_toStartOf="@id/iv_setting_big"
-            app:layout_constraintTop_toBottomOf="@id/divider_profile_setting_one" />
+            app:layout_constraintStart_toStartOf="@id/tv_setting"
+            app:layout_constraintTop_toBottomOf="@id/divider_profile_volunteer_registration" />
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/divider_profile_setting_two"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:dividerColor="@color/gray_100"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
+            app:dividerColor="@color/gray_400"
             app:dividerInsetEnd="24dp"
             app:dividerInsetStart="24dp"
             app:dividerThickness="1dp"
@@ -93,9 +106,9 @@
             style="@style/customTextViewFontStyle.Bold.S16.gray400"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="19dp"
             android:text="@string/label_withdrawal"
-            app:layout_constraintStart_toStartOf="@id/iv_setting_big"
+            app:layout_constraintStart_toStartOf="@id/tv_setting"
             app:layout_constraintTop_toBottomOf="@id/divider_profile_setting_two" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
