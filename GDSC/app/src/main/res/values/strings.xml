@@ -61,4 +61,7 @@
     <string name="text_ai_diagnosis">AI 진단하러 가기</string>
     <string name="text_general_repair_apply_go">일반 수리 신청</string>
     <string name="text_how_to_use">이용 방법</string>
+    <string name="text_detail_repair">수리 신청하기</string>
+    <string name="text_detail_edit">수정하기</string>
+    <string name="text_detail_delete">삭제하기</string>
 </resources>
