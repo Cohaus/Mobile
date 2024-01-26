@@ -1,12 +1,15 @@
 package com.solution.gdsc.ui.login
 
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.widget.doAfterTextChanged
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseActivity
 import com.solution.gdsc.databinding.ActivityJoinBinding
 import com.solution.gdsc.ui.login.viewmodel.LoginViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class JoinActivity : BaseActivity<ActivityJoinBinding>(R.layout.activity_join) {
 
     private val viewModel by viewModels<LoginViewModel>()
@@ -15,30 +18,37 @@ class JoinActivity : BaseActivity<ActivityJoinBinding>(R.layout.activity_join) {
     private var password = ""
     private var userName = ""
     private var userPhoneNumber = ""
+    private var userEmail = ""
 
     private var isValidUserId = false
     private var isValidPassword = false
     private var isValidUserName = false
     private var isValidUserPhoneNumber = false
+    private var isValidUserEmail = false
 
     override fun setLayout() {
         binding.toolbarJoinMembership.setNavigationOnClickListener {
             finish()
         }
+        binding.btnJoinConfirm.setOnClickListener {
+            signUp()
+            finish()
+        }
         setTextInput()
+        observe()
     }
 
     private fun setTextInput() {
         with(binding) {
             etInputJoinId.doAfterTextChanged {
                 userId = it?.toString() ?: ""
-                isValidUserId = isValidInput(userId)
+                isValidUserId = isValidIdInput(userId)
                 updateButtonEnableState()
 
             }
             etInputJoinPassword.doAfterTextChanged {
                 password = it?.toString() ?: ""
-                isValidPassword = isValidInput(password)
+                isValidPassword = isValidPasswordInput(password)
                 updateButtonEnableState()
             }
             etInputJoinName.doAfterTextChanged {
@@ -51,17 +61,30 @@ class JoinActivity : BaseActivity<ActivityJoinBinding>(R.layout.activity_join) {
                 isValidUserPhoneNumber = isValidInput(userPhoneNumber)
                 updateButtonEnableState()
             }
+            etInputJoinEmail.doAfterTextChanged {
+                userEmail = it?.toString() ?: ""
+                isValidUserEmail = isValidInput(userEmail)
+                updateButtonEnableState()
+            }
         }
+    }
+
+    private fun signUp() {
+        viewModel.signUp(userId, password, userName, userPhoneNumber, userEmail)
     }
 
     private fun isValidInput(text: String): Boolean = text.isNotBlank()
 
+    private fun isValidIdInput(text: String): Boolean = text.length >= 4
+
+    private fun isValidPasswordInput(text: String): Boolean = text.length >= 4
+
     private fun updateButtonEnableState() {
         binding.btnJoinConfirm.isEnabled =
-            isValidUserId && isValidPassword && isValidUserName && isValidUserPhoneNumber
+            isValidUserId && isValidPassword && isValidUserName && isValidUserPhoneNumber && isValidUserEmail
     }
 
     fun observe() {
-
+        Log.e("Join Activity", viewModel.signUpResult.value.toString())
     }
 }
