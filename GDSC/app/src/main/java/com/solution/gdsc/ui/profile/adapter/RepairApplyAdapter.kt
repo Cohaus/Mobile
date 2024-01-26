@@ -3,13 +3,13 @@ package com.solution.gdsc.ui.profile.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.solution.gdsc.data.model.ConstPost
+import com.solution.gdsc.data.model.RecordSaveDetail
 import com.solution.gdsc.databinding.ItemRepairApplyBinding
 
 class RepairApplyAdapter(
     private val listener: PostClickListener
 ) : RecyclerView.Adapter<RepairApplyAdapter.RepairApplyViewHolder>() {
-    private val items = mutableListOf<ConstPost>()
+    private val items = mutableListOf<RecordSaveDetail>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -24,7 +24,7 @@ class RepairApplyAdapter(
         holder.bind(items[position], listener)
     }
 
-    fun add(posts: List<ConstPost>) {
+    fun add(posts: List<RecordSaveDetail>) {
         val positionStart = items.size
         items.addAll(posts)
         notifyItemRangeInserted(positionStart, posts.size)
@@ -34,12 +34,12 @@ class RepairApplyAdapter(
         private val binding: ItemRepairApplyBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(post: ConstPost, listener: PostClickListener) {
+        fun bind(post: RecordSaveDetail, listener: PostClickListener) {
              binding.ivConstructionSitePostImage.setOnClickListener {
-                 listener.onPostClick(post.category.title, post.post)
+                 listener.onPostClick(post)
              }
-            binding.tvRepairApplyDate.text = post.post.postedAt
-            binding.tvRepairLocation.text = post.post.location
+            binding.tvRepairApplyDate.text = post.postedAt
+            binding.tvRepairLocation.text = post.location
         }
 
         companion object {

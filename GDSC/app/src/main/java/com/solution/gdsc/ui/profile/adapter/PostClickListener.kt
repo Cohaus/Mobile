@@ -1,7 +1,7 @@
 package com.solution.gdsc.ui.profile.adapter
 
-import com.solution.gdsc.data.model.ConstructionSitePost
+import com.solution.gdsc.data.model.RecordSaveDetail
 
 interface PostClickListener {
-    fun onPostClick(category: String, post: ConstructionSitePost)
+    fun onPostClick(post: RecordSaveDetail)
 }
