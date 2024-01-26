@@ -65,4 +65,5 @@
     <string name="text_detail_edit">수정하기</string>
     <string name="text_detail_delete">삭제하기</string>
     <string name="text_volunteer_registration">봉사자 등록</string>
+    <string name="description_home_image">home main image</string>
 </resources>
