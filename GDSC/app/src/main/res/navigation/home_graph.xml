@@ -55,6 +55,9 @@
         <argument
             android:name="recordSaveDetail"
             app:argType="com.solution.gdsc.data.model.RecordSaveDetail" />
+        <action
+            android:id="@+id/action_post_detail_to_detail_more_dialog"
+            app:destination="@id/navigation_detail_more_dialog" />
     </fragment>
     <fragment
         android:id="@+id/navigation_profile_setting"
@@ -95,4 +98,9 @@
             app:popUpTo="@id/home_graph"
             app:popUpToInclusive="true"/>
     </fragment>
+    <dialog
+        android:id="@+id/navigation_detail_more_dialog"
+        android:name="com.solution.gdsc.ui.profile.DetailMoreDialogFragment"
+        android:label="DetailMoreDialogFragment"
+        tools:layout="@layout/fragment_detail_more_dialog"/>
 </navigation>

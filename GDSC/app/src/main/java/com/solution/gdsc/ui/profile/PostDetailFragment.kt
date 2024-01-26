@@ -14,6 +14,10 @@ class PostDetailFragment : BaseFragment<FragmentPostDetailBinding>(R.layout.frag
         binding.ibBackButton.setOnClickListener {
             findNavController().navigateUp()
         }
+        binding.ibMoreButton.setOnClickListener {
+            val action = PostDetailFragmentDirections.actionPostDetailToDetailMoreDialog()
+            findNavController().navigate(action)
+        }
         binding.tvPostTitle.text = detail.title
         binding.tvPostContent.text = detail.aiContent
         binding.tvPostDate.text = detail.postedAt

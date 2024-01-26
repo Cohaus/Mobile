@@ -40,6 +40,7 @@
         android:layout_marginBottom="40dp"
         android:gravity="center"
         android:text="@string/text_detail_delete"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/tv_detail_repair_apply"
         app:layout_constraintStart_toStartOf="@id/tv_detail_repair_apply"
         app:layout_constraintTop_toBottomOf="@id/tv_detail_edit" />
