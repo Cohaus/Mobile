@@ -2,16 +2,23 @@ package com.solution.gdsc.ui.map
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.ContentValues
 import android.content.pm.PackageManager
 import android.location.Location
+import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.android.gms.common.api.Status
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentMapBinding
@@ -29,6 +36,40 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
         val mapFragment = childFragmentManager
             .findFragmentById(R.id.container_map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+        onPlace()
+    }
+
+    private fun onPlace() {
+        // Initialize the AutocompleteSupportFragment.
+        val autocompleteFragment =
+            childFragmentManager.findFragmentById(R.id.autocomplete_fragment)
+                    as AutocompleteSupportFragment
+
+        // Specify the types of place data to return.
+        autocompleteFragment.setPlaceFields(
+            listOf(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS, Place.Field.LAT_LNG)
+        )
+
+        // Set up a PlaceSelectionListener to handle the response.
+        autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
+            override fun onPlaceSelected(place: Place) {
+                moveMapToLocation(place.latLng)
+                Log.i(ContentValues.TAG, "Place: ${place.name}, ${place.id}, ${place.address}")
+            }
+
+            override fun onError(status: Status) {
+                Log.i(ContentValues.TAG, "An error occurred: $status")
+            }
+        })
+    }
+
+
+    private fun moveMapToLocation(location: LatLng?) {
+        if (location != null) {
+            // Assuming you have a GoogleMap instance, you can move the camera to the selected location
+            // mMap is the instance of GoogleMap
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, DEFAULT_ZOOM_LEVEL))
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -169,5 +210,6 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
          * @see .onRequestPermissionsResult
          */
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
+        private const val DEFAULT_ZOOM_LEVEL = 15.0f
     }
 }

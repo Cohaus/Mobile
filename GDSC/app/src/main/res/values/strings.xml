@@ -67,4 +67,5 @@
     <string name="text_volunteer_registration">봉사자 등록</string>
     <string name="description_home_image">home main image</string>
     <string name="text_diagnosis_ai_result">AI 진단결과</string>
+    <string name="text_map_search">찾아보기</string>
 </resources>
