@@ -12,11 +12,11 @@ plugins {
 secrets {
     // Optionally specify a different file name containing your secrets.
     // The plugin defaults to "local.properties"
-    propertiesFileName = "local.properties"
+    propertiesFileName = "secrets.properties"
 
     // A properties file containing default secret values. This file can be
     // checked in version control.
-    defaultPropertiesFileName = "local.properties"
+    defaultPropertiesFileName = "local.defaults.properties"
 
     // Configure which keys should be ignored by the plugin by providing regular expressions.
     // "sdk.dir" is ignored by default.
@@ -61,6 +61,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -106,6 +107,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.9.20"))
+    implementation("com.google.android.libraries.places:places:3.3.0")
 
     implementation("com.google.android.gms:play-services-maps:18.2.0")
 

@@ -6,6 +6,7 @@ import androidx.core.widget.doAfterTextChanged
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseActivity
 import com.solution.gdsc.databinding.ActivityJoinBinding
+import com.solution.gdsc.ui.extensions.changeNextVisibleWithFocus
 import com.solution.gdsc.ui.login.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,6 +36,7 @@ class JoinActivity : BaseActivity<ActivityJoinBinding>(R.layout.activity_join) {
             finish()
         }
         setTextInput()
+        setEditTextVisible()
         observe()
     }
 
@@ -69,6 +71,15 @@ class JoinActivity : BaseActivity<ActivityJoinBinding>(R.layout.activity_join) {
         }
     }
 
+    private fun setEditTextVisible() {
+        with(binding) {
+            etInputJoinId.changeNextVisibleWithFocus(etInputJoinPassword)
+            etInputJoinPassword.changeNextVisibleWithFocus(etInputJoinName)
+            etInputJoinName.changeNextVisibleWithFocus(etInputJoinPhoneNumber)
+            etInputJoinPhoneNumber.changeNextVisibleWithFocus(etInputJoinEmail)
+        }
+    }
+
     private fun signUp() {
         viewModel.signUp(userId, password, userName, userPhoneNumber, userEmail)
     }
@@ -84,7 +95,7 @@ class JoinActivity : BaseActivity<ActivityJoinBinding>(R.layout.activity_join) {
             isValidUserId && isValidPassword && isValidUserName && isValidUserPhoneNumber && isValidUserEmail
     }
 
-    fun observe() {
+    private fun observe() {
         Log.e("Join Activity", viewModel.signUpResult.value.toString())
     }
 }

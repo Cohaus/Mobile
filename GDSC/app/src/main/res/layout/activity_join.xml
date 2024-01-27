@@ -61,6 +61,7 @@
             android:id="@+id/et_input_join_password"
             android:layout_width="0dp"
             android:hint="@string/hint_input_password"
+            android:visibility="gone"
             android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/et_input_join_id"
@@ -74,6 +75,7 @@
             android:id="@+id/et_input_join_name"
             android:layout_width="0dp"
             android:hint="@string/hint_input_name"
+            android:visibility="gone"
             android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/et_input_join_password"
@@ -93,6 +95,7 @@
             app:layout_constraintStart_toStartOf="@id/et_input_join_id"
             app:layout_constraintEnd_toEndOf="@id/et_input_join_id"
             android:autofillHints="false"
+            android:visibility="gone"
             android:inputType="phone" />
 
         <EditText
@@ -102,6 +105,7 @@
             android:hint="@string/hint_input_email"
             android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/et_input_join_phone_number"
             app:layout_constraintStart_toStartOf="@id/et_input_join_id"
             app:layout_constraintEnd_toEndOf="@id/et_input_join_id"
