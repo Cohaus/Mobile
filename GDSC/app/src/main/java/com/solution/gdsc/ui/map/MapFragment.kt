@@ -127,6 +127,7 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
                 }
         }
     }
+
     private fun showMissingPermissionError() {
         newInstance(true).show(childFragmentManager, "dialog")
     }
