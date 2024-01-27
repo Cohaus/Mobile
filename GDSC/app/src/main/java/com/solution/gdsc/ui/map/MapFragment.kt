@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.common.api.Status
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -22,7 +23,6 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentMapBinding
-import com.solution.gdsc.util.PermissionUtils
 import com.solution.gdsc.util.PermissionUtils.PermissionDeniedDialog.Companion.newInstance
 import com.solution.gdsc.util.PermissionUtils.isPermissionGranted
 
@@ -82,19 +82,19 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return
+            // Permission not granted yet, request it
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ),
+                LOCATION_PERMISSION_REQUEST_CODE
+            )
+        } else {
+            // Permission granted, enable the my location layer
+            enableMyLocation()
         }
-        map.isMyLocationEnabled = true
-        googleMap.setOnMyLocationButtonClickListener(this)
-        googleMap.setOnMyLocationClickListener(this)
-        enableMyLocation()
         googleMap.addMarker(
             MarkerOptions()
                 .position(LatLng(37.5642135, 127.0016985))
@@ -104,8 +104,7 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
 
     @SuppressLint("MissingPermission")
     private fun enableMyLocation() {
-
-        // 1. Check if permissions are granted, if so, enable the my location layer
+        // Check if permissions are granted
         if (ContextCompat.checkSelfPermission(
                 requireActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -114,36 +113,20 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
+            // Enable the my location layer
             map.isMyLocationEnabled = true
-            return
-        }
 
-        // 2. If if a permission rationale dialog should be shown
-        if (ActivityCompat.shouldShowRequestPermissionRationale(
-                requireActivity(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) || ActivityCompat.shouldShowRequestPermissionRationale(
-                requireActivity(),
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            )
-        ) {
-            PermissionUtils.RationaleDialog.newInstance(
-                LOCATION_PERMISSION_REQUEST_CODE, true
-            ).show(childFragmentManager, "dialog")
-            return
+            // Get last known location and move the camera
+            val fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location: Location? ->
+                    if (location != null) {
+                        val latLng = LatLng(location.latitude, location.longitude)
+                        map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM_LEVEL))
+                    }
+                }
         }
-
-        // 3. Otherwise, request permission
-        ActivityCompat.requestPermissions(
-            requireActivity(),
-            arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ),
-            LOCATION_PERMISSION_REQUEST_CODE
-        )
     }
-
     private fun showMissingPermissionError() {
         newInstance(true).show(childFragmentManager, "dialog")
     }
