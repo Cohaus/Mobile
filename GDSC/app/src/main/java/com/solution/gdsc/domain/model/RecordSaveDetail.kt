@@ -1,4 +1,4 @@
-package com.solution.gdsc.data.model
+package com.solution.gdsc.domain.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

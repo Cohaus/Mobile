@@ -3,7 +3,7 @@ package com.solution.gdsc.ui.profile.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.solution.gdsc.data.model.RecordSaveDetail
+import com.solution.gdsc.domain.model.RecordSaveDetail
 import com.solution.gdsc.databinding.ItemRecordSaveBinding
 
 class RecordSaveApter(

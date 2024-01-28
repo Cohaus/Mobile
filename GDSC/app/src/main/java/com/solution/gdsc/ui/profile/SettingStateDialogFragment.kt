@@ -8,7 +8,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.solution.gdsc.R
-import com.solution.gdsc.data.DialogCategory
+import com.solution.gdsc.ui.common.DialogCategory
 import com.solution.gdsc.databinding.FragmentDialogSettingStateBinding
 
 class SettingStateDialogFragment : DialogFragment() {
