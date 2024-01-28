@@ -57,7 +57,7 @@
         tools:layout="@layout/fragment_post_detail">
         <argument
             android:name="recordSaveDetail"
-            app:argType="com.solution.gdsc.data.model.RecordSaveDetail" />
+            app:argType="com.solution.gdsc.domain.model.RecordSaveDetail" />
         <action
             android:id="@+id/action_post_detail_to_detail_more_dialog"
             app:destination="@id/navigation_detail_more_dialog" />
@@ -83,7 +83,7 @@
         tools:layout="@layout/fragment_dialog_setting_state">
         <argument
             android:name="dialogCategory"
-            app:argType="com.solution.gdsc.data.DialogCategory" />
+            app:argType="com.solution.gdsc.ui.common.DialogCategory" />
     </dialog>
     <dialog
         android:id="@+id/navigation_report_dialog"

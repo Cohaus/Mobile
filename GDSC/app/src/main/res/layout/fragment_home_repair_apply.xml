@@ -120,7 +120,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="44dp"
             app:layout_constraintBottom_toTopOf="@id/btn_repair_apply_save"
-            android:inputType="date" />
+            android:inputType="number" />
 
         <ImageView
             android:layout_width="wrap_content"
