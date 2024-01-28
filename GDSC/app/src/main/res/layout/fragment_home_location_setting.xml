@@ -25,6 +25,8 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/autocomplete_fragment_home"
+            android:layout_marginStart="19dp"
+            android:layout_marginEnd="19dp"
             android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
             android:layout_width="match_parent"
             android:background="@drawable/background_text_input_normal"
