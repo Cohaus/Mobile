@@ -14,43 +14,54 @@
             android:id="@+id/toolbar_location_setting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="위치 설정"
-            app:titleTextAppearance="@style/customTextViewFontStyle.Bold.S20"
-            app:titleCentered="true"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_arrow_back"
-            app:navigationIconTint="@color/black_600" />
+            app:navigationIconTint="@color/black_600"
+            app:title="위치 설정"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/customTextViewFontStyle.Bold.S20" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/autocomplete_fragment_home"
-            android:layout_marginStart="19dp"
-            android:layout_marginEnd="19dp"
             android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
             android:layout_width="match_parent"
-            android:background="@drawable/background_text_input_normal"
             android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginEnd="19dp"
+            android:background="@drawable/background_text_input_normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar_location_setting" />
 
 
+        <androidx.fragment.app.FragmentContainerView xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/container_map_home"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/autocomplete_fragment_home"
+            tools:context=".ui.map.MapsHomeFragment" />
 
         <Button
-            style="@style/customTextViewFontStyle.Bold.S16.white"
             android:id="@+id/btn_location_setting_next"
-            android:text="@string/label_location_setting_next"
+            style="@style/customTextViewFontStyle.Bold.S16.white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="19dp"
-            android:background="@drawable/shape_button_15dp_green"
             android:layout_marginEnd="19dp"
             android:layout_marginBottom="18dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/shape_button_15dp_green"
+            android:elevation="1dp"
+            android:text="@string/label_location_setting_next"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
