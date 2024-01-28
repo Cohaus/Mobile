@@ -23,6 +23,10 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <androidx.fragment.app.FragmentContainerView
+            android:background="@drawable/background_text_input_normal"
+            android:layout_marginStart="19dp"
+            android:layout_marginEnd="19dp"
+            android:layout_marginTop="16dp"
             android:id="@+id/autocomplete_fragment"
             android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
             android:layout_width="match_parent"
@@ -37,6 +41,7 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/autocomplete_fragment"
