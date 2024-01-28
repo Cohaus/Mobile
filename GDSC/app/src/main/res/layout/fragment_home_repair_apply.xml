@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_repair_apply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="@color/black_600"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_home_repair_apply"
+            style="@style/customTextViewFontStyle.Bold.S24"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_repair_apply"
+            android:text="@string/text_user_repair_apply"
+            android:layout_marginStart="29dp"
+            android:layout_marginEnd="29dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_home_repair_apply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_repair_apply"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:dividerThickness="1dp" />
+
+        <EditText
+            android:id="@+id/et_repair_apply_title"
+            style="@style/customTextViewFontStyle.Bold.S20.gray450"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
+            android:textColor="@color/black_600"
+            android:autofillHints="false"
+            android:background="@android:color/transparent"
+            android:hint="@string/hint_input_record_title"
+            android:inputType="text"
+            android:maxLines="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider_home_repair_apply" />
+
+        <EditText
+            android:id="@+id/et_repair_apply_content"
+            style="@style/customTextViewFontStyle.S18.gray450"
+            android:layout_width="0dp"
+            android:textColor="@color/black_600"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="25dp"
+            android:autofillHints="false"
+            android:background="@android:color/transparent"
+            android:gravity="top"
+            android:hint="@string/hint_input_record_content"
+            android:inputType="textMultiLine"
+            android:scrollHorizontally="false"
+            app:layout_constraintBottom_toTopOf="@id/divider_content"
+            app:layout_constraintEnd_toEndOf="@id/et_repair_apply_title"
+            app:layout_constraintStart_toStartOf="@id/et_repair_apply_title"
+            app:layout_constraintTop_toBottomOf="@id/et_repair_apply_title" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:dividerThickness="1dp"
+            android:layout_marginBottom="23dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_repair_apply_prefer_date" />
+
+
+        <TextView
+            android:id="@+id/tv_repair_apply_prefer_date"
+            style="@style/customTextViewFontStyle.Bold.S20.gray450"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:text="희망방문일"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/et_prefer_visit_date"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <EditText
+            android:padding="12dp"
+            android:background="@drawable/background_text_input_normal"
+            android:id="@+id/et_prefer_visit_date"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="19dp"
+            android:layout_marginEnd="19dp"
+            android:textColor="@color/black_600"
+            android:textColorHint="@color/gray_400"
+            android:hint="@string/hint_visit_date_format"
+            android:importantForAutofill="no"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="44dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_repair_apply_save"
+            android:inputType="date" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_calendar"
+            android:layout_marginEnd="12dp"
+            app:layout_constraintEnd_toEndOf="@id/et_prefer_visit_date"
+            app:layout_constraintTop_toTopOf="@id/et_prefer_visit_date"
+            app:layout_constraintBottom_toBottomOf="@id/et_prefer_visit_date"
+            android:contentDescription="@string/description_calendar_image" />
+
+        <Button
+            android:id="@+id/btn_repair_apply_save"
+            style="@style/customTextViewFontStyle.Bold.S16.white"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginEnd="19dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/selector_record_save"
+            android:enabled="false"
+            android:text="@string/label_user_repair_apply"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
