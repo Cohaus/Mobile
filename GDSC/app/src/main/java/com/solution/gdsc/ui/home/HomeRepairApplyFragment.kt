@@ -11,5 +11,8 @@ class HomeRepairApplyFragment : BaseFragment<FragmentHomeRepairApplyBinding>(R.l
             val action = HomeRepairApplyFragmentDirections.actionHomeRepairApplyToHome()
             findNavController().navigate(action)
         }
+        binding.toolbarRepairApply.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 }

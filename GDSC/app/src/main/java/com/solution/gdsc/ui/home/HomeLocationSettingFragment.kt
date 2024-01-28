@@ -43,6 +43,9 @@ class HomeLocationSettingFragment :
                 HomeLocationSettingFragmentDirections.actionHomeLocationSettingToHomeRepairApply()
             findNavController().navigate(action)
         }
+        binding.toolbarLocationSetting.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun onPlace() {
