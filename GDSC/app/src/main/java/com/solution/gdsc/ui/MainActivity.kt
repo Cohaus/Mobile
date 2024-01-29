@@ -34,9 +34,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
         // Initialize the SDK
         Places.initializeWithNewPlacesApiEnabled(applicationContext, apiKey)
-
-        // Create a new PlacesClient instance
-        val placesClient = Places.createClient(this)
     }
 
     private fun setBottomNavigation() {
