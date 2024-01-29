@@ -88,6 +88,12 @@
     <style name="customTextViewFontStyle.S12.white" >
         <item name="android:textColor">@color/white</item>
     </style>
+    <style name="customTextViewFontStyle.S13" >
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="customTextViewFontStyle.S13.gray450" >
+        <item name="android:textColor">@color/gray_450</item>
+    </style>
     <style name="customTextViewFontStyle.S14" >
         <item name="android:textSize">14sp</item>
     </style>
@@ -141,6 +147,9 @@
     <style name="customTextViewFontStyle.Bold.S14.white" >
         <item name="android:textColor">@color/white</item>
     </style>
+    <style name="customTextViewFontStyle.Bold.S15" >
+        <item name="android:textSize">15sp</item>
+    </style>
     <style name="customTextViewFontStyle.Bold.S16" >
         <item name="android:textSize">16sp</item>
     </style>
@@ -183,6 +192,12 @@
     <style name="customTextViewFontStyle.Bold.S20.gray400" >
         <item name="android:textColor">@color/gray_400</item>
     </style>
+    <style name="customTextViewFontStyle.Bold.S26" >
+        <item name="android:textSize">26sp</item>
+    </style>
+    <style name="customTextViewFontStyle.Bold.S26.gray300" >
+        <item name="android:textColor">@color/gray_300</item>
+    </style>
     <style name="customTextViewFontStyle.Bold.S28" >
         <item name="android:textSize">28sp</item>
     </style>
@@ -198,6 +213,12 @@
         <item name="android:textSize">14sp</item>
     </style>
     <style name="customTextViewFontStyle.medium.S14.gray_500">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/gray_500</item>
+    </style>
+    <style name="customTextViewFontStyle.medium.S15">
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="customTextViewFontStyle.medium.S15.gray_300">
+        <item name="android:textColor">@color/gray_300</item>
     </style>
 </resources>

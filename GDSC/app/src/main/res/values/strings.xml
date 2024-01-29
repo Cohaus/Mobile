@@ -73,4 +73,14 @@
     <string name="hint_visit_date_format">09 / 05 / 1992</string>
     <string name="description_calendar_image">방문일자 입력 이미지</string>
     <string name="label_location_setting_next">다음</string>
+    <string name="text_repair_apply_info">수리 신청 정보</string>
+    <string name="text_repair_apply_date">수리신청일</string>
+    <string name="description_repair_apply_date_icon">수리 신청일 아이콘</string>
+    <string name="description_category_box_icon">카테고리 박스 아이콘</string>
+    <string name="text_wait_comment">잠시만 기다려주세요\n봉사자를 찾는중입니다</string>
+    <string name="text_apply_detail_info">신청 상세 정보</string>
+    <string name="description_visit_date_icon">방문 희망일 아이콘</string>
+    <string name="text_wish_visit_date">방문 희망일</string>
+    <string name="description_apply_location_address">신청 주소 아이콘</string>
+    <string name="text_apply_address">신청 주소</string>
 </resources>
