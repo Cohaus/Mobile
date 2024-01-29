@@ -13,6 +13,14 @@ private const val DATE_MAX_FORMAT_LENGTH = 14
 
 class HomeRepairApplyFragment : BaseFragment<FragmentHomeRepairApplyBinding>(R.layout.fragment_home_repair_apply) {
 
+    private var validDate = ""
+    private var validTitle = ""
+    private var validContent = ""
+
+    private var isValidTitle = false
+    private var isValidContent = false
+    private var isValidDate = false
+
     override fun setLayout() {
         binding.btnRepairApplySave.setOnClickListener {
             val action = HomeRepairApplyFragmentDirections.actionHomeRepairApplyToHome()
@@ -21,7 +29,39 @@ class HomeRepairApplyFragment : BaseFragment<FragmentHomeRepairApplyBinding>(R.l
         binding.toolbarRepairApply.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
+        setTextInput()
+    }
+
+    private fun setTextInput() {
         setDayMonthFormat()
+        with(binding) {
+            etRepairApplyTitle.doAfterTextChanged {
+                validTitle = it.toString()
+                if (isValidInput(validTitle)) {
+                    isValidTitle = true
+                    updateButtonEnable()
+                } else {
+                    isValidTitle = false
+                    updateButtonEnable()
+                }
+            }
+            etRepairApplyContent.doAfterTextChanged {
+                validContent = it.toString()
+                if (isValidInput(validContent)) {
+                    isValidContent = true
+                    updateButtonEnable()
+                } else {
+                    isValidContent = false
+                    updateButtonEnable()
+                }
+            }
+        }
+    }
+
+    private fun isValidInput(text: String) = text.isNotEmpty()
+
+    private fun updateButtonEnable() {
+        binding.btnRepairApplySave.isEnabled = isValidTitle && isValidContent && isValidDate
     }
 
     private fun setDayMonthFormat() {
@@ -46,6 +86,14 @@ class HomeRepairApplyFragment : BaseFragment<FragmentHomeRepairApplyBinding>(R.l
                         applyDateFormat(visitDate, 7, 10)
                     }
                 }
+                validDate = visitDate.toString()
+                if (validDate.length == DATE_MAX_FORMAT_LENGTH)  {
+                    isValidDate = true
+                    updateButtonEnable()
+                } else {
+                    isValidDate = false
+                    updateButtonEnable()
+                }
             }
         }
     }
@@ -66,12 +114,12 @@ class HomeRepairApplyFragment : BaseFragment<FragmentHomeRepairApplyBinding>(R.l
             }
         }
     }
+
     private fun setDayMaxInput() {
         with(binding) {
             etPreferVisitDate.doAfterTextChanged {
                 val visitDate = it?.toString()
                 if (visitDate.isNullOrBlank()) return@doAfterTextChanged
-                // 12 / 31 / 4233
                 if (visitDate.length < 7 || visitDate.split(" / ").size != 2 || visitDate.length >= 8) return@doAfterTextChanged
                 val split = visitDate.split(" / ")
                 val day = split[1].toInt()
