@@ -1,7 +1,7 @@
 package com.solution.gdsc.domain.model.response
 
 data class LoginResponse(
-    val userId: Long,
-    val accessToken: String,
-    val refreshToken: String
+    val status: Int,
+    val message: String,
+    val data: LoginDto
 )
