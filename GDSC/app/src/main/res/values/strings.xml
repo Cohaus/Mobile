@@ -83,4 +83,5 @@
     <string name="text_wish_visit_date">방문 희망일</string>
     <string name="description_apply_location_address">신청 주소 아이콘</string>
     <string name="text_apply_address">신청 주소</string>
+    <string name="text_view_apply_info">신청 정보 보기</string>
 </resources>

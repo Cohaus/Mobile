@@ -105,7 +105,11 @@
         android:id="@+id/navigation_detail_more_dialog"
         android:name="com.solution.gdsc.ui.profile.DetailMoreDialogFragment"
         android:label="DetailMoreDialogFragment"
-        tools:layout="@layout/fragment_detail_more_dialog"/>
+        tools:layout="@layout/fragment_detail_more_dialog">
+        <action
+            android:id="@+id/action_detail_more_dialog_to_post_repair_apply_info"
+            app:destination="@id/navigation_post_repair_apply_info" />
+    </dialog>
     <fragment
         android:id="@+id/navigation_home_repair_apply"
         android:name="com.solution.gdsc.ui.home.HomeRepairApplyFragment"
@@ -124,4 +128,9 @@
             android:id="@+id/action_home_location_setting_to_home_repair_apply"
             app:destination="@id/navigation_home_repair_apply" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_post_repair_apply_info"
+        android:name="com.solution.gdsc.ui.profile.PostRepairApplyInfoFragment"
+        android:label="PostRepairApplyInfoFragment"
+        tools:layout="@layout/fragment_post_repair_apply_info"/>
 </navigation>

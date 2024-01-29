@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/shape_bottom_sheet_28dp">
+    android:background="@drawable/shape_bottom_sheet_28dp"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_detail_repair_apply"
-        style="@style/customTextViewFontStyle.Bold.S18.gray400"
-        android:layout_width="0dp"
+        style="@style/customTextViewFontStyle.Bold.S18"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
         android:layout_marginTop="65dp"
-        android:layout_marginEnd="29dp"
         android:gravity="center"
         android:text="@string/text_detail_repair"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_detail_repair_apply_info"
+        style="@style/customTextViewFontStyle.Bold.S18"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:gravity="center"
+        android:text="@string/text_view_apply_info"
+        android:visibility="visible" />
 
     <TextView
         android:id="@+id/tv_detail_edit"
         style="@style/customTextViewFontStyle.Bold.S18.gray400"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:gravity="center"
-        android:text="@string/text_detail_edit"
-        app:layout_constraintEnd_toEndOf="@id/tv_detail_repair_apply"
-        app:layout_constraintStart_toStartOf="@id/tv_detail_repair_apply"
-        app:layout_constraintTop_toBottomOf="@id/tv_detail_repair_apply" />
+        android:text="@string/text_detail_edit" />
 
     <TextView
         android:id="@+id/tv_detail_delete"
         style="@style/customTextViewFontStyle.Bold.S18.gray400"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:layout_marginBottom="40dp"
         android:gravity="center"
-        android:text="@string/text_detail_delete"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/tv_detail_repair_apply"
-        app:layout_constraintStart_toStartOf="@id/tv_detail_repair_apply"
-        app:layout_constraintTop_toBottomOf="@id/tv_detail_edit" />
+        android:text="@string/text_detail_delete" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
