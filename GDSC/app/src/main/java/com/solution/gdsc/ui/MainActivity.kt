@@ -44,4 +44,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             bottomNavigationView.setupWithNavController(it)
         }
     }
+
+    override fun onDestroy() {
+        Places.deinitialize()
+        super.onDestroy()
+    }
 }

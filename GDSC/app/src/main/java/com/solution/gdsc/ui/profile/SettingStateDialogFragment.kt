@@ -5,16 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.solution.gdsc.R
-import com.solution.gdsc.ui.common.DialogCategory
 import com.solution.gdsc.databinding.FragmentDialogSettingStateBinding
+import com.solution.gdsc.ui.common.DialogCategory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SettingStateDialogFragment : DialogFragment() {
     private var _binding: FragmentDialogSettingStateBinding? = null
     private val binding get() = _binding!!
     private val args: SettingStateDialogFragmentArgs by navArgs()
+    private val viewModel by viewModels<ProfileViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +35,7 @@ class SettingStateDialogFragment : DialogFragment() {
             DialogCategory.LOGOUT -> setCategoryLogout()
             else -> setCategoryWithdrawal()
         }
+        observe()
     }
 
     private fun setCategoryLogout() {
@@ -40,7 +45,7 @@ class SettingStateDialogFragment : DialogFragment() {
                 findNavController().navigateUp()
             }
             btnLogoutConfirm.setOnClickListener {
-                // Logout 기능 구현
+                viewModel.logout()
             }
         }
     }
@@ -66,5 +71,11 @@ class SettingStateDialogFragment : DialogFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun observe() {
+        viewModel.isLogout.observe(viewLifecycleOwner) {
+            findNavController().navigateUp()
+        }
     }
 }
