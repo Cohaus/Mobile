@@ -6,10 +6,15 @@ import com.solution.gdsc.ChallengeApplication
 import com.solution.gdsc.data.remote.CoHousService
 import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.response.DefaultResponse
+import com.solution.gdsc.domain.model.response.RecordItem
+import com.solution.gdsc.domain.model.response.RepairRecord
+import com.solution.gdsc.domain.model.response.SaveRecord
 import com.solution.gdsc.domain.model.response.UpdateUserInfoDto
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoDto
 import com.solution.gdsc.domain.model.response.UserInfoResponse
+import com.solution.gdsc.domain.model.response.UserRecordListResponse
+import com.solution.gdsc.domain.model.response.UserRecordResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -75,6 +80,23 @@ class UserMyPageDatasource @Inject constructor(
                 ChallengeApplication.getInstance().tokenManager.deleteToken()
             }.onFailure {
                 Log.e(TAG, "Withdraw Failure")
+            }
+        }
+        return response
+    }
+
+    suspend fun getUserRecord(): UserRecordResponse {
+        var response = UserRecordResponse(status = 200, message = "성공",
+            data = UserRecordListResponse(
+                RepairRecord(listOf<RecordItem>(), true, first = true, last = true),
+                SaveRecord(listOf<RecordItem>(), true, first = true, last = true)))
+            withContext(Dispatchers.IO) {
+            runCatching {
+                coHousService.getUserRecord()
+            }.onSuccess {
+                response = it
+            }.onFailure {
+                Log.e(TAG, "Get User Record Failure")
             }
         }
         return response

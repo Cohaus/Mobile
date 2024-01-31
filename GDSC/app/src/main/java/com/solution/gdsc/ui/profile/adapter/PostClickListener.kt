@@ -1,7 +1,7 @@
 package com.solution.gdsc.ui.profile.adapter
 
-import com.solution.gdsc.domain.model.RecordSaveDetail
+import com.solution.gdsc.domain.model.response.RecordItem
 
 interface PostClickListener {
-    fun onPostClick(post: RecordSaveDetail)
+    fun onPostClick(post: RecordItem)
 }
