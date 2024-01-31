@@ -1,5 +1,6 @@
-package com.solution.gdsc.data.source
+package com.solution.gdsc.data.source.login
 
+import com.solution.gdsc.data.source.login.LoginDataSource
 import com.solution.gdsc.domain.model.request.LoginReq
 import com.solution.gdsc.domain.model.request.SignUpRequest
 import com.solution.gdsc.domain.model.response.DefaultResponse
