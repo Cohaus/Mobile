@@ -20,7 +20,6 @@ class ProfileInfoModifyFragment : BaseFragment<FragmentProfileInfoModifyBinding>
     private var validName: String = ""
     private var validTel: String = ""
     private var validEmail: String = ""
-    private var userType: String = ""
 
     private var isValidId = false
     private var isValidName = false
@@ -32,7 +31,6 @@ class ProfileInfoModifyFragment : BaseFragment<FragmentProfileInfoModifyBinding>
         val userInfo = args.userInfo
         binding.userInfo = userInfo
         setInputText()
-        setUserType()
         clickUpdateButton()
         observe()
     }
@@ -43,20 +41,8 @@ class ProfileInfoModifyFragment : BaseFragment<FragmentProfileInfoModifyBinding>
         }
     }
 
-    private fun setUserType() {
-        userType = when (args.userInfo.volunteerType) {
-            null -> UserAuthority.USER.grade
-            else -> UserAuthority.ORGANIZATION.grade
-        }
-    }
-
     private fun updateInfo() {
-        userType = when (args.userInfo.volunteerType) {
-            null -> UserAuthority.USER.grade
-            else -> UserAuthority.ORGANIZATION.grade
-        }
-        viewModel.updateUserInfo(validId, validName, validTel,
-            validEmail, userType, args.userInfo.volunteerType, args.userInfo.organizationName)
+        viewModel.updateUserInfo(validId, validName, validTel, validEmail)
     }
 
     private fun setInputText() {
