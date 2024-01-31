@@ -12,13 +12,12 @@ import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.LoginDto
 import com.solution.gdsc.domain.repository.LoginRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val repository: LoginRepository,
+    private val repository: LoginRepository
 ) : ViewModel() {
 
     private val _signUpResult = MutableLiveData<DefaultResponse>()
@@ -29,7 +28,6 @@ class LoginViewModel @Inject constructor(
 
     private val _isValidLogin = MutableLiveData<Boolean>()
     val isValidLogin: LiveData<Boolean> = _isValidLogin
-
 
     fun signUp(
         id: String, password: String,
@@ -60,8 +58,7 @@ class LoginViewModel @Inject constructor(
 
     fun autoLogin() {
         viewModelScope.launch {
-            _isValidLogin.value = ChallengeApplication.getInstance().tokenManager.accessTokenFlow.first()!!.isNotEmpty()
+            _isValidLogin.value = ChallengeApplication.getInstance().tokenManager.getAccessToken().isNullOrEmpty().not()
         }
     }
-
 }
