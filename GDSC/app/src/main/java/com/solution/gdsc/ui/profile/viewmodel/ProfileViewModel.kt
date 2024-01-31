@@ -1,4 +1,4 @@
-package com.solution.gdsc.ui.profile
+package com.solution.gdsc.ui.profile.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
