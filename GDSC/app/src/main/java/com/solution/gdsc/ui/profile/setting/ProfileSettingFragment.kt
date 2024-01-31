@@ -26,6 +26,10 @@ class ProfileSettingFragment : BaseFragment<FragmentProfileSettingBinding>(R.lay
                 val action = ProfileSettingFragmentDirections.actionProfileSettingToProfileInfoModify()
                 findNavController().navigate(action)
             }
+            tvVolunteerRegistration.setOnClickListener {
+                val action = ProfileSettingFragmentDirections.actionProfileSettingToSettingVolunteerRegistration()
+                findNavController().navigate(action)
+            }
         }
     }
 }
