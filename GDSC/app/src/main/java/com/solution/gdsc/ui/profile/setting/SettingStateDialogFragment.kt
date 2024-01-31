@@ -57,8 +57,8 @@ class SettingStateDialogFragment : DialogFragment() {
             btnWithdrawalCancel.setOnClickListener {
                 findNavController().navigateUp()
             }
-            btnLogoutConfirm.setOnClickListener {
-                // 회원 탈퇴 기능 구가
+            btnWithdrawalConfirm.setOnClickListener {
+                viewModel.withdraw()
             }
         }
     }
@@ -76,6 +76,9 @@ class SettingStateDialogFragment : DialogFragment() {
 
     private fun observe() {
         viewModel.isLogout.observe(viewLifecycleOwner) {
+            findNavController().navigateUp()
+        }
+        viewModel.isWithdraw.observe(viewLifecycleOwner) {
             findNavController().navigateUp()
         }
     }
