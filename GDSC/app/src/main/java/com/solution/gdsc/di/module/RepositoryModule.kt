@@ -1,9 +1,12 @@
 package com.solution.gdsc.di.module
 
-import com.solution.gdsc.data.source.LoginDataSource
-import com.solution.gdsc.data.source.LoginRepositoryImpl
-import com.solution.gdsc.data.source.UserMyPageDatasource
-import com.solution.gdsc.data.source.UserMyPageRepositoryImpl
+import com.solution.gdsc.data.source.home.HomeDataSource
+import com.solution.gdsc.data.source.home.HomeRepositoryImpl
+import com.solution.gdsc.data.source.login.LoginDataSource
+import com.solution.gdsc.data.source.login.LoginRepositoryImpl
+import com.solution.gdsc.data.source.profile.UserMyPageDatasource
+import com.solution.gdsc.data.source.profile.UserMyPageRepositoryImpl
+import com.solution.gdsc.domain.repository.HomeRepository
 import com.solution.gdsc.domain.repository.LoginRepository
 import com.solution.gdsc.domain.repository.UserMyPageRepository
 import dagger.Module
@@ -25,4 +28,9 @@ object RepositoryModule {
     @Provides
     fun provideUserMyPageRepository(userMyPageDatasource: UserMyPageDatasource): UserMyPageRepository =
         UserMyPageRepositoryImpl(userMyPageDatasource)
+
+    @Singleton
+    @Provides
+    fun provideHomeRepository(homeDataSource: HomeDataSource): HomeRepository =
+        HomeRepositoryImpl(homeDataSource)
 }
