@@ -109,6 +109,9 @@
             app:destination="@id/navigation_home"
             app:popUpTo="@id/home_graph"
             app:popUpToInclusive="true"/>
+        <argument
+            android:name="image"
+            app:argType="string" />
     </fragment>
     <dialog
         android:id="@+id/navigation_detail_more_dialog"

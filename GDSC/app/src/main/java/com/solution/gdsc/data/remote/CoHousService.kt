@@ -1,5 +1,6 @@
 package com.solution.gdsc.data.remote
 
+import com.solution.gdsc.domain.model.request.RecordRequest
 import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
@@ -9,6 +10,7 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PATCH
+import retrofit2.http.POST
 
 interface CoHousService {
     // Profile
@@ -26,4 +28,8 @@ interface CoHousService {
 
     @GET("my-page/records")
     suspend fun getUserRecord(): UserRecordResponse
+    // Home
+    @POST("/records")
+    suspend fun saveRecord(@Body recordRequest: RecordRequest): DefaultResponse
+
 }

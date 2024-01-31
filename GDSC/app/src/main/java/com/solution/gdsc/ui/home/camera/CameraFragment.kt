@@ -21,6 +21,7 @@ import androidx.navigation.fragment.findNavController
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentCameraBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -30,6 +31,7 @@ import java.util.Locale
 private const val REQUEST_TAKE_PHOTO = 1
 private const val DATE_YEAR_MONTH_DAY_PATTERN = "yyyy-MM-dd'T'HH:mm:ss'Z'"
 
+@AndroidEntryPoint
 class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_camera), ActivityCompat.OnRequestPermissionsResultCallback {
     private lateinit var currentPhotoPath: String
     override fun setLayout() {
@@ -44,7 +46,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
                 findNavController().navigateUp()
             }
             btnCameraImageSave.setOnClickListener {
-                val action = CameraFragmentDirections.actionCameraToRecordSave()
+                val action = CameraFragmentDirections.actionCameraToRecordSave(currentPhotoPath)
                 findNavController().navigate(action)
             }
             btnCameraRequestRepair.setOnClickListener {
