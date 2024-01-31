@@ -18,6 +18,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
 
     override fun setLayout() {
         viewModel.getUserInfo()
+        viewModel.getUserRecord()
         val adapter = RepairApplyAdapter(this)
         val saveApter = RecordSaveApter(this)
         addData(adapter)
@@ -45,6 +46,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     private fun observe() {
         viewModel.userInfo.observe(viewLifecycleOwner) {
             binding.userDto = it
+        }
+        viewModel.userRecords.observe(viewLifecycleOwner) {
+
         }
     }
 

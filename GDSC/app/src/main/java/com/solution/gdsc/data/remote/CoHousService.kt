@@ -4,6 +4,7 @@ import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoResponse
+import com.solution.gdsc.domain.model.response.UserRecordResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -22,4 +23,7 @@ interface CoHousService {
 
     @DELETE("my-page/withdraw")
     suspend fun withdraw(): DefaultResponse
+
+    @GET("my-page/records")
+    suspend fun getUserRecord(): UserRecordResponse
 }

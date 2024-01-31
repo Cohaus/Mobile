@@ -9,6 +9,7 @@ import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoDto
+import com.solution.gdsc.domain.model.response.UserRecordListResponse
 import com.solution.gdsc.domain.repository.UserMyPageRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -27,6 +28,8 @@ class ProfileViewModel @Inject constructor(
     val isWithdraw: LiveData<DefaultResponse> = _isWithdraw
     private val _isUpdate = MutableLiveData<UpdateUserInfoResponse>()
     val isUpdate: LiveData<UpdateUserInfoResponse> = _isUpdate
+    private val _userRecords = MutableLiveData<UserRecordListResponse>()
+    val userRecords: LiveData<UserRecordListResponse> = _userRecords
 
     fun logout() {
         viewModelScope.launch {
@@ -70,6 +73,16 @@ class ProfileViewModel @Inject constructor(
                 _isWithdraw.value = userMyPageRepository.withdraw()
             } catch (e: Exception) {
                 Log.e("Withdraw Error: ", e.message.toString())
+            }
+        }
+    }
+
+    fun getUserRecord() {
+        viewModelScope.launch {
+            try {
+                _userRecords.value = userMyPageRepository.getUserRecord().data
+            } catch (e: Exception) {
+                Log.e("Get User Record Error: ", e.message.toString())
             }
         }
     }
