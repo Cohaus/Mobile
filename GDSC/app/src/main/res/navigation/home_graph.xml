@@ -76,6 +76,9 @@
         <action
             android:id="@+id/action_profile_setting_to_setting_volunteer_registration"
             app:destination="@id/navigation_setting_volunteer_registration" />
+        <argument
+            android:name="userInfo"
+            app:argType="com.solution.gdsc.domain.model.response.UserInfoDto" />
     </fragment>
     <activity
         android:id="@+id/navigation_login"
@@ -143,7 +146,11 @@
         android:id="@+id/navigation_profile_info_modify"
         android:name="com.solution.gdsc.ui.profile.setting.ProfileInfoModifyFragment"
         android:label="ProfileInfoModifyFragment"
-        tools:layout="@layout/fragment_profile_info_modify"/>
+        tools:layout="@layout/fragment_profile_info_modify">
+        <argument
+            android:name="userInfo"
+            app:argType="com.solution.gdsc.domain.model.response.UserInfoDto" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_setting_volunteer_registration"
         android:name="com.solution.gdsc.ui.profile.setting.SettingVolunteerRegistrationFragment"
