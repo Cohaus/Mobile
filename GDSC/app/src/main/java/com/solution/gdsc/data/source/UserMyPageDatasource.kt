@@ -56,7 +56,7 @@ class UserMyPageDatasource @Inject constructor(
 
     suspend fun updateUserInfo(updateUserInfoRequest: UpdateUserInfoRequest): UpdateUserInfoResponse {
         var response = UpdateUserInfoResponse(200, "요청에 성공하였습니다.",
-            UpdateUserInfoDto(1, "장민수", "cty123", "010-1234-5678", null, null)
+            UpdateUserInfoDto(1, "장민수", "cty123", "mais2@ag.com", "010-1234-5678")
             )
         withContext(Dispatchers.IO) {
             runCatching {

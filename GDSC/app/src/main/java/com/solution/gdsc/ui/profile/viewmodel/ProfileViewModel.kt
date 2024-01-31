@@ -51,15 +51,11 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    fun updateUserInfo(
-        id: String, name: String, tel: String, email: String,
-        userAuthority: String, volunteerType: String?, organizationName: String?
-        ) {
+    fun updateUserInfo(id: String, name: String, tel: String, email: String) {
         viewModelScope.launch {
             try {
                 _isUpdate.value = userMyPageRepository.updateUserInfo(
-                    UpdateUserInfoRequest(id, name, tel, email,
-                        userAuthority, volunteerType, organizationName)
+                    UpdateUserInfoRequest(id, name, tel, email)
                 )
             } catch (e: Exception) {
                 Log.e("Update User Info Error: ", e.message.toString())
