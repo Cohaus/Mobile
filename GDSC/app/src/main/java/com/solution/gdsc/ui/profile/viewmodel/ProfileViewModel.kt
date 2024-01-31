@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.response.DefaultResponse
+import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoDto
 import com.solution.gdsc.domain.repository.UserMyPageRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,6 +25,8 @@ class ProfileViewModel @Inject constructor(
     val userInfo: LiveData<UserInfoDto> = _userInfo
     private val _isWithdraw = MutableLiveData<DefaultResponse>()
     val isWithdraw: LiveData<DefaultResponse> = _isWithdraw
+    private val _isUpdate = MutableLiveData<UpdateUserInfoResponse>()
+    val isUpdate: LiveData<UpdateUserInfoResponse> = _isUpdate
 
     fun logout() {
         viewModelScope.launch {
@@ -51,7 +54,7 @@ class ProfileViewModel @Inject constructor(
         ) {
         viewModelScope.launch {
             try {
-                userMyPageRepository.updateUserInfo(
+                _isUpdate.value = userMyPageRepository.updateUserInfo(
                     UpdateUserInfoRequest(id, name, tel, email,
                         userAuthority, volunteerType, organizationName)
                 )
