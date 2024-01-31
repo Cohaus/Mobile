@@ -10,7 +10,7 @@ class PostDetailFragment : BaseFragment<FragmentPostDetailBinding>(R.layout.frag
     private val args by navArgs<PostDetailFragmentArgs>()
 
     override fun setLayout() {
-        val detail = args.recordSaveDetail
+        val detail = args.recordItem
         binding.ibBackButton.setOnClickListener {
             findNavController().navigateUp()
         }
@@ -20,8 +20,6 @@ class PostDetailFragment : BaseFragment<FragmentPostDetailBinding>(R.layout.frag
         }
         binding.progressBarSafeGrade.setProgress(90f)
         binding.tvPostTitle.text = detail.title
-        binding.tvPostContent.text = detail.aiContent
-        binding.tvPostDate.text = detail.postedAt
-        binding.tvPostCaptureLocation.text = detail.location
+        binding.tvPostDate.text = detail.createdAt
     }
 }
