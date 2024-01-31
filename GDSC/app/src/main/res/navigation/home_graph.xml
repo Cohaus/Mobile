@@ -70,6 +70,9 @@
         <action
             android:id="@+id/action_profile_setting_to_setting_state_dialog"
             app:destination="@id/navigation_setting_state_dialog" />
+        <action
+            android:id="@+id/action_profile_setting_to_profile_info_modify"
+            app:destination="@id/navigation_profile_info_modify" />
     </fragment>
     <activity
         android:id="@+id/navigation_login"
@@ -133,4 +136,9 @@
         android:name="com.solution.gdsc.ui.profile.PostRepairApplyInfoFragment"
         android:label="PostRepairApplyInfoFragment"
         tools:layout="@layout/fragment_post_repair_apply_info"/>
+    <fragment
+        android:id="@+id/navigation_profile_info_modify"
+        android:name="com.solution.gdsc.ui.profile.ProfileInfoModifyFragment"
+        android:label="ProfileInfoModifyFragment"
+        tools:layout="@layout/fragment_profile_info_modify"/>
 </navigation>

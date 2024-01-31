@@ -33,7 +33,7 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar_setting" />
 
         <TextView
-            android:id="@+id/tv_login_info"
+            android:id="@+id/tv_setting_info_modify"
             style="@style/customTextViewFontStyle.Bold.S16.gray400"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
             app:dividerThickness="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_login_info" />
+            app:layout_constraintTop_toBottomOf="@id/tv_setting_info_modify" />
 
         <TextView
             android:id="@+id/tv_volunteer_registration"

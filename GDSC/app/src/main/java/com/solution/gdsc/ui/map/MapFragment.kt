@@ -54,7 +54,7 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
         autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(place: Place) {
                 moveMapToLocation(place.latLng)
-                Log.i(ContentValues.TAG, "Place: ${place.name}, ${place.id}, ${place.address}")
+                Log.i(ContentValues.TAG, "Place: ${place.name}, ${place.id}, ${place.address} ${place.latLng}")
             }
 
             override fun onError(status: Status) {
