@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_info_modify"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="@color/black_700" />
+
+        <TextView
+            android:id="@+id/tv_info_modify"
+            style="@style/customTextViewFontStyle.Bold.S24"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/label_info_modify"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_info_modify" />
+
+        <TextView
+            android:id="@+id/tv_info_id"
+            style="@style/customTextViewFontStyle.Bold.S16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="31dp"
+            android:text="@string/hint_input_id"
+            app:layout_constraintStart_toStartOf="@id/tv_info_modify"
+            app:layout_constraintTop_toBottomOf="@id/tv_info_modify" />
+
+        <EditText
+            android:id="@+id/et_input_modify_id"
+            style="@style/EditTextInfoModifyStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="29dp"
+            android:autofillHints="false"
+            android:hint="@string/hint_input_id"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_info_id" />
+
+        <TextView
+            android:id="@+id/tv_modify_name"
+            style="@style/customTextViewFontStyle.Bold.S16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/hint_input_name"
+            app:layout_constraintEnd_toEndOf="@id/tv_info_modify"
+            app:layout_constraintStart_toStartOf="@id/tv_info_modify"
+            app:layout_constraintTop_toBottomOf="@id/et_input_modify_id" />
+
+
+        <EditText
+            android:id="@+id/et_input_modify_name"
+            style="@style/EditTextInfoModifyStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:autofillHints="false"
+            android:hint="@string/hint_input_name"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@id/et_input_modify_id"
+            app:layout_constraintStart_toStartOf="@id/et_input_modify_id"
+            app:layout_constraintTop_toBottomOf="@id/tv_modify_name" />
+
+        <TextView
+            android:id="@+id/tv_modify_phone_number"
+            style="@style/customTextViewFontStyle.Bold.S16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/hint_phone_number"
+            app:layout_constraintEnd_toEndOf="@id/tv_info_modify"
+            app:layout_constraintStart_toStartOf="@id/tv_info_modify"
+            app:layout_constraintTop_toBottomOf="@id/et_input_modify_name" />
+
+        <EditText
+            android:id="@+id/et_input_modify_phone_number"
+            style="@style/EditTextInfoModifyStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:autofillHints="false"
+            android:hint="@string/hint_phone_number"
+            android:inputType="phone"
+            app:layout_constraintEnd_toEndOf="@id/et_input_modify_id"
+            app:layout_constraintStart_toStartOf="@id/et_input_modify_id"
+            app:layout_constraintTop_toBottomOf="@id/tv_modify_phone_number" />
+
+        <TextView
+            android:id="@+id/tv_modify_email"
+            style="@style/customTextViewFontStyle.Bold.S16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/hint_input_email"
+            app:layout_constraintEnd_toEndOf="@id/tv_info_modify"
+            app:layout_constraintStart_toStartOf="@id/tv_info_modify"
+            app:layout_constraintTop_toBottomOf="@id/et_input_modify_phone_number" />
+
+        <EditText
+            android:id="@+id/et_input_modify_email"
+            style="@style/EditTextInfoModifyStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:autofillHints="false"
+            android:hint="@string/hint_input_email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="@id/et_input_modify_id"
+            app:layout_constraintStart_toStartOf="@id/et_input_modify_id"
+            app:layout_constraintTop_toBottomOf="@id/tv_modify_email" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_modify_confirm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="99dp"
+            android:background="@drawable/shape_button_15dp_green"
+            android:backgroundTint="@null"
+            android:text="@string/label_modify"
+            android:textAppearance="@style/customTextViewFontStyle.Bold.S16"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@id/et_input_modify_id"
+            app:layout_constraintStart_toStartOf="@id/et_input_modify_id"
+            app:layout_constraintTop_toBottomOf="@id/et_input_modify_email" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

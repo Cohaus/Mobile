@@ -1,10 +1,10 @@
-package com.solution.gdsc.ui.profile
+package com.solution.gdsc.ui.profile.setting
 
 import androidx.navigation.fragment.findNavController
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
-import com.solution.gdsc.ui.common.DialogCategory
 import com.solution.gdsc.databinding.FragmentProfileSettingBinding
+import com.solution.gdsc.ui.common.DialogCategory
 
 class ProfileSettingFragment : BaseFragment<FragmentProfileSettingBinding>(R.layout.fragment_profile_setting) {
     override fun setLayout() {
@@ -20,6 +20,14 @@ class ProfileSettingFragment : BaseFragment<FragmentProfileSettingBinding>(R.lay
             tvWithdrawal.setOnClickListener {
                 val action = ProfileSettingFragmentDirections
                     .actionProfileSettingToSettingStateDialog(DialogCategory.WITHDRAWAL)
+                findNavController().navigate(action)
+            }
+            tvSettingInfoModify.setOnClickListener {
+                val action = ProfileSettingFragmentDirections.actionProfileSettingToProfileInfoModify()
+                findNavController().navigate(action)
+            }
+            tvVolunteerRegistration.setOnClickListener {
+                val action = ProfileSettingFragmentDirections.actionProfileSettingToSettingVolunteerRegistration()
                 findNavController().navigate(action)
             }
         }

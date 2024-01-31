@@ -64,12 +64,18 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_profile_setting"
-        android:name="com.solution.gdsc.ui.profile.ProfileSettingFragment"
+        android:name="com.solution.gdsc.ui.profile.setting.ProfileSettingFragment"
         android:label="ProfileSettingFragment"
         tools:layout="@layout/fragment_profile_setting">
         <action
             android:id="@+id/action_profile_setting_to_setting_state_dialog"
             app:destination="@id/navigation_setting_state_dialog" />
+        <action
+            android:id="@+id/action_profile_setting_to_profile_info_modify"
+            app:destination="@id/navigation_profile_info_modify" />
+        <action
+            android:id="@+id/action_profile_setting_to_setting_volunteer_registration"
+            app:destination="@id/navigation_setting_volunteer_registration" />
     </fragment>
     <activity
         android:id="@+id/navigation_login"
@@ -78,7 +84,7 @@
         tools:layout="@layout/activity_login"/>
     <dialog
         android:id="@+id/navigation_setting_state_dialog"
-        android:name="com.solution.gdsc.ui.profile.SettingStateDialogFragment"
+        android:name="com.solution.gdsc.ui.profile.setting.SettingStateDialogFragment"
         android:label="LogoutDialogFragment"
         tools:layout="@layout/fragment_dialog_setting_state">
         <argument
@@ -133,4 +139,14 @@
         android:name="com.solution.gdsc.ui.profile.PostRepairApplyInfoFragment"
         android:label="PostRepairApplyInfoFragment"
         tools:layout="@layout/fragment_post_repair_apply_info"/>
+    <fragment
+        android:id="@+id/navigation_profile_info_modify"
+        android:name="com.solution.gdsc.ui.profile.setting.ProfileInfoModifyFragment"
+        android:label="ProfileInfoModifyFragment"
+        tools:layout="@layout/fragment_profile_info_modify"/>
+    <fragment
+        android:id="@+id/navigation_setting_volunteer_registration"
+        android:name="com.solution.gdsc.ui.profile.setting.SettingVolunteerRegistrationFragment"
+        android:label="SettingVolunteerRegistrationFragment"
+        tools:layout="@layout/fragment_setting_volunteer_registration"/>
 </navigation>

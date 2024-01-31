@@ -1,5 +1,6 @@
 package com.solution.gdsc.ui.profile
 
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
@@ -8,16 +9,21 @@ import com.solution.gdsc.domain.model.RecordSaveDetail
 import com.solution.gdsc.ui.profile.adapter.PostClickListener
 import com.solution.gdsc.ui.profile.adapter.RecordSaveApter
 import com.solution.gdsc.ui.profile.adapter.RepairApplyAdapter
+import com.solution.gdsc.ui.profile.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_profile), PostClickListener {
+    private val viewModel by viewModels<ProfileViewModel>()
+
     override fun setLayout() {
+        viewModel.getUserInfo()
         val adapter = RepairApplyAdapter(this)
         val saveApter = RecordSaveApter(this)
         addData(adapter)
         addRecordSaveData(saveApter)
         setToolbarMenu()
+        observe()
     }
 
     private fun setToolbarMenu() {
@@ -33,6 +39,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
                     false
                 }
             }
+        }
+    }
+
+    private fun observe() {
+        viewModel.userInfo.observe(viewLifecycleOwner) {
+            binding.userDto = it
         }
     }
 

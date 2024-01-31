@@ -1,4 +1,4 @@
-package com.solution.gdsc.ui.profile
+package com.solution.gdsc.ui.profile.setting
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.solution.gdsc.R
 import com.solution.gdsc.databinding.FragmentDialogSettingStateBinding
 import com.solution.gdsc.ui.common.DialogCategory
+import com.solution.gdsc.ui.profile.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

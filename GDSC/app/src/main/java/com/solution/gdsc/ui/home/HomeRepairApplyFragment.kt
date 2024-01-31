@@ -71,19 +71,19 @@ class HomeRepairApplyFragment : BaseFragment<FragmentHomeRepairApplyBinding>(R.l
                 val visitDate = it?.toString()
                 when {
                     visitDate.isNullOrBlank() -> return@doAfterTextChanged
-                    isValidDelete(visitDate, 4) -> {
-                        applyDeleteFormat(visitDate, 1)
+                    isValidDelete(visitDate, 6) -> {
+                        applyDeleteFormat(visitDate, 3)
                     }
-                    visitDate.length == 2 && !visitDate.contains(DATE_FORMAT_DELIMITER) -> {
+                    visitDate.length == 4 && !visitDate.contains(DATE_FORMAT_DELIMITER) -> {
                         setMonthMaxInput()
-                        applyDateFormat(visitDate, 2, 5)
+                        applyDateFormat(visitDate, 4, 7)
                     }
-                    isValidDelete(visitDate, 9) -> {
-                        applyDeleteFormat(visitDate, 6)
+                    isValidDelete(visitDate, 11) -> {
+                        applyDeleteFormat(visitDate, 8)
                     }
-                    visitDate.length == 7 -> {
+                    visitDate.length == 9 -> {
                         setDayMaxInput()
-                        applyDateFormat(visitDate, 7, 10)
+                        applyDateFormat(visitDate, 9, 12)
                     }
                 }
                 validDate = visitDate.toString()
@@ -98,18 +98,19 @@ class HomeRepairApplyFragment : BaseFragment<FragmentHomeRepairApplyBinding>(R.l
         }
     }
 
+
     private fun setMonthMaxInput() {
         with(binding) {
             etPreferVisitDate.doAfterTextChanged {
                 val visitDate = it?.toString()
                 if (visitDate.isNullOrBlank()) return@doAfterTextChanged
-                if (visitDate.length < 2 || visitDate.length >= 3) return@doAfterTextChanged
-                val month = visitDate.substring(0, 2).toInt()
-                val etc = visitDate.substring(2)
+                if (visitDate.length < 9 || visitDate.length >= 10) return@doAfterTextChanged
+                val month = visitDate.substring(7, 9).toInt()
+                val etc = visitDate.substring(0, 7)
                 if (month <= 0 || month > 12 ) {
-                    val result = "12$etc"
+                    val result = "${etc}12"
                     etPreferVisitDate.setText(result)
-                    etPreferVisitDate.setSelection(5)
+                    etPreferVisitDate.setSelection(12)
                 }
             }
         }
@@ -120,14 +121,13 @@ class HomeRepairApplyFragment : BaseFragment<FragmentHomeRepairApplyBinding>(R.l
             etPreferVisitDate.doAfterTextChanged {
                 val visitDate = it?.toString()
                 if (visitDate.isNullOrBlank()) return@doAfterTextChanged
-                if (visitDate.length < 7 || visitDate.split(" / ").size != 2 || visitDate.length >= 8) return@doAfterTextChanged
+                if (visitDate.length < 14) return@doAfterTextChanged
                 val split = visitDate.split(" / ")
-                val day = split[1].toInt()
-                val month = split[0]
-                if (day <= 0 || day > 31 ) {
-                    val result = "$month / ${31}"
+                val day = split[2].toInt()
+                if (day <= 0 || day > 31) {
+                    val result = "${split[0]}$DATE_FORMAT_DELIMITER${split[1]} / ${31}"
                     etPreferVisitDate.setText(result)
-                    etPreferVisitDate.setSelection(10)
+                    etPreferVisitDate.setSelection(14)
                 }
             }
         }
