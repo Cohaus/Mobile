@@ -1,7 +1,6 @@
 package com.solution.gdsc.util
 
 import android.content.Context
-import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
@@ -9,7 +8,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import com.solution.gdsc.util.extensions.datastore
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -30,8 +29,15 @@ class TokenManager @Inject constructor(
             preferences[KEY_REFRESH_TOKEN]
         }
 
-    suspend fun getAccessToken(): String {
-        return dataStore.data.first().toString()
+    suspend fun deleteToken() {
+        dataStore.edit { preferences ->
+            preferences.remove(KEY_ACCESS_TOKEN)
+            preferences.remove(KEY_REFRESH_TOKEN)
+        }
+    }
+
+    suspend fun getAccessToken(): String? {
+        return dataStore.data.firstOrNull()?.get(KEY_ACCESS_TOKEN)
     }
 
     suspend fun saveAccessToken(accessToken: String) {
@@ -48,17 +54,6 @@ class TokenManager @Inject constructor(
                 preferences[KEY_REFRESH_TOKEN] = refreshToken
             }
         }
-    }
-
-    fun checkUserToken(): Boolean {
-        var isLogin = false
-        Log.e("LoginCheck", "LoginCheck")
-        dataStore.data.map {
-            if (!it[KEY_ACCESS_TOKEN].isNullOrEmpty()) {
-                isLogin = true
-            }
-        }
-        return isLogin
     }
 
     companion object {

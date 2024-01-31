@@ -56,8 +56,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     private fun observe() {
         viewModel.userInfo.observe(this) {
-            isValidToken = it.accessToken.isNotEmpty()
-            if (isValidToken) {
+            if (it.accessToken.isNotEmpty()) {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()

@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -25,10 +26,16 @@ object NetworkModule {
     @Retention(AnnotationRetention.BINARY)
     annotation class CoHousInterceptorOkHttpClient
 
+    @Provides
+    @Singleton
+    fun provideAuthInterceptor(authInterceptor: AuthInterceptor): Interceptor = authInterceptor
+
     @LoginInterceptorOkHttpClient
     @Singleton
     @Provides
-    fun provideLoginOkHttpClient(loginInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun provideLoginOkHttpClient(
+        loginInterceptor: HttpLoggingInterceptor,
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(loginInterceptor)
             .build()
@@ -38,12 +45,12 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideCoHousOkHttpClient(
-        otherInterceptor: HttpLoggingInterceptor,
-        authInterceptor: AuthInterceptor
+        authInterceptor: AuthInterceptor,
+        otherInterceptor: HttpLoggingInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(otherInterceptor)
             .addInterceptor(authInterceptor)
+            .addInterceptor(otherInterceptor)
             .build()
     }
 
@@ -56,8 +63,8 @@ object NetworkModule {
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(client)
             .addConverterFactory(gsonConverterFactory)
+            .client(client)
             .build()
     }
 
@@ -70,8 +77,8 @@ object NetworkModule {
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(client)
             .addConverterFactory(gsonConverterFactory)
+            .client(client)
             .build()
     }
 

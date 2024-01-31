@@ -3,12 +3,14 @@ package com.solution.gdsc.ui.profile
 import androidx.navigation.fragment.findNavController
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
-import com.solution.gdsc.domain.model.RecordSaveDetail
 import com.solution.gdsc.databinding.FragmentProfileBinding
+import com.solution.gdsc.domain.model.RecordSaveDetail
 import com.solution.gdsc.ui.profile.adapter.PostClickListener
 import com.solution.gdsc.ui.profile.adapter.RecordSaveApter
 import com.solution.gdsc.ui.profile.adapter.RepairApplyAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_profile), PostClickListener {
     override fun setLayout() {
         val adapter = RepairApplyAdapter(this)
