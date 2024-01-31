@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="App.Toolbar" parent="Widget.Material3.Toolbar" >
+
+    <style name="App.Toolbar" parent="Widget.Material3.Toolbar">
         <item name="titleCentered">false</item>
     </style>
 
     <style name="AppTheme" parent="Widget.Material3.Toolbar">
         <item name="android:windowTranslucentStatus">true</item>
     </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -19,7 +21,18 @@
         <item name="itemTextColor">@color/selector_bottom_navigation_color</item>
         <item name="itemActiveIndicatorStyle">@color/gray_50</item>
     </style>
-    
+
+    <style name="ButtonVolunteerSelectStyle">
+        <item name="android:background">@drawable/selector_volunteer</item>
+        <item name="android:textColor">@color/selector_volunteer_text_color</item>
+        <item name="android:textAppearance">@style/customTextViewFontStyle.Bold.S16</item>
+    </style>
+
+    <style name="InputOrganizationStyle">
+        <item name="background">@drawable/selector_input_organization</item>
+        <item name="android:textAppearance">@style/customTextViewFontStyle.medium.S15.gray_300</item>
+    </style>
+
     <style name="AppButtonSelector" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:textAppearance">@style/customTextViewFontStyle.Bold.S18</item>
         <item name="android:background">@drawable/selector_join_confirm</item>
@@ -36,10 +49,9 @@
     </style>
 
     <style name="AppBottSheetModal" parent="Widget.MaterialComponents.BottomSheet.Modal">
-    <item name="android:backgroundTint">@android:color/transparent</item>
-    <item name="behavior_peekHeight">180dp</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="behavior_peekHeight">180dp</item>
     </style>
-
 
     <style name="AppRoundImage">
         <item name="cornerSize">10dp</item>
@@ -50,10 +62,11 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/green_300</item>
     </style>
-    
+
     <style name="BtnSelectorRightAndGreen">
         <item name="android:background">@drawable/selector_record_save</item>
-    </style>>
+    </style>
+    >
 
     <style name="EditTextInfoModifyStyle">
         <item name="android:textSize">14sp</item>
@@ -83,151 +96,208 @@
     <style name="customTextViewFontStyle.light">
         <item name="android:fontFamily">@font/noto_sans_kr_light</item>
     </style>
+
     <style name="customTextViewFontStyle.light.S12">
         <item name="android:textSize">12sp</item>
     </style>
+
     <style name="customTextViewFontStyle.light.S12.gray200">
         <item name="android:textColor">@color/gray_200</item>
     </style>
 
     <!--  Regular font  -->
-    <style name="customTextViewFontStyle.S12" >
+    <style name="customTextViewFontStyle.S12">
         <item name="android:textSize">12sp</item>
     </style>
-    <style name="customTextViewFontStyle.S12.white" >
+
+    <style name="customTextViewFontStyle.S12.white">
         <item name="android:textColor">@color/white</item>
     </style>
-    <style name="customTextViewFontStyle.S13" >
+
+    <style name="customTextViewFontStyle.S13">
         <item name="android:textSize">13sp</item>
     </style>
-    <style name="customTextViewFontStyle.S13.gray450" >
+
+    <style name="customTextViewFontStyle.S13.gray450">
         <item name="android:textColor">@color/gray_450</item>
     </style>
-    <style name="customTextViewFontStyle.S14" >
+
+    <style name="customTextViewFontStyle.S14">
         <item name="android:textSize">14sp</item>
     </style>
-    <style name="customTextViewFontStyle.S15" >
+
+    <style name="customTextViewFontStyle.S15">
         <item name="android:textSize">15sp</item>
     </style>
-    <style name="customTextViewFontStyle.S15.white" >
+
+    <style name="customTextViewFontStyle.S15.white">
         <item name="android:textColor">@color/white</item>
     </style>
-    <style name="customTextViewFontStyle.S16" >
+
+    <style name="customTextViewFontStyle.S16">
         <item name="android:textSize">16sp</item>
     </style>
-    <style name="customTextViewFontStyle.S16.white" >
+
+    <style name="customTextViewFontStyle.S16.white">
         <item name="android:textColor">@color/white</item>
     </style>
+
     <style name="customTextViewFontStyle.S18">
         <item name="android:textSize">18sp</item>
     </style>
+
     <style name="customTextViewFontStyle.S18.gray450">
         <item name="android:textColor">@color/gray_450</item>
     </style>
-    <style name="customTextViewFontStyle.S28" >
+
+    <style name="customTextViewFontStyle.S28">
         <item name="android:textSize">28sp</item>
     </style>
-    <style name="customTextViewFontStyle.S28.gray_500" >
+
+    <style name="customTextViewFontStyle.S28.gray_500">
         <item name="android:textColor">@color/gray_500</item>
     </style>
 
     <!--  Bold font  -->
-    <style name="customTextViewFontStyle.Bold" >
+    <style name="customTextViewFontStyle.Bold">
+        <item name="android:windowIsTranslucent">true</item>
         <item name="android:fontFamily">@font/noto_sans_kr_bold</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S12" >
+
+    <style name="customTextViewFontStyle.Bold.S12">
         <item name="android:textSize">12sp</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S12.white" >
+
+    <style name="customTextViewFontStyle.Bold.S12.white">
         <item name="android:textColor">@color/white</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S12.green300" >
+
+    <style name="customTextViewFontStyle.Bold.S12.green300">
         <item name="android:textColor">@color/green_300</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S12.gray200" >
+
+    <style name="customTextViewFontStyle.Bold.S12.gray200">
         <item name="android:textColor">@color/gray_200</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S14" >
+
+    <style name="customTextViewFontStyle.Bold.S14">
         <item name="android:textSize">14sp</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S14.green300" >
+
+    <style name="customTextViewFontStyle.Bold.S14.green300">
         <item name="android:textColor">@color/green_300</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S14.white" >
+
+    <style name="customTextViewFontStyle.Bold.S14.white">
         <item name="android:textColor">@color/white</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S15" >
+
+    <style name="customTextViewFontStyle.Bold.S15">
         <item name="android:textSize">15sp</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S16" >
+
+    <style name="customTextViewFontStyle.Bold.S16">
         <item name="android:textSize">16sp</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S16.gray400" >
+
+    <style name="customTextViewFontStyle.Bold.S16.gray400">
         <item name="android:textColor">@color/gray_400</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S16.green300" >
+
+    <style name="customTextViewFontStyle.Bold.S16.green300">
         <item name="android:textColor">@color/green_300</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S16.white" >
+
+    <style name="customTextViewFontStyle.Bold.S16.white">
         <item name="android:textColor">@color/white</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S18" >
+
+    <style name="customTextViewFontStyle.Bold.S18">
         <item name="android:textSize">18sp</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S18.green300" >
+
+    <style name="customTextViewFontStyle.Bold.S18.green300">
         <item name="android:textColor">@color/green_300</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S18.gray400" >
+
+    <style name="customTextViewFontStyle.Bold.S18.gray400">
         <item name="android:textColor">@color/gray_400</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S20" >
+
+    <style name="customTextViewFontStyle.Bold.S20">
         <item name="android:textSize">20sp</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S20.gray450" >
+
+    <style name="customTextViewFontStyle.Bold.S20.gray450">
         <item name="android:textColor">@color/gray_450</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S20.green300" >
+
+    <style name="customTextViewFontStyle.Bold.S20.green300">
         <item name="android:textColor">@color/green_300</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S22" >
+
+    <style name="customTextViewFontStyle.Bold.S22">
         <item name="android:textSize">22sp</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S24" >
+
+    <style name="customTextViewFontStyle.Bold.S24">
         <item name="android:textSize">24sp</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S24.gray400" >
+
+    <style name="customTextViewFontStyle.Bold.S24.gray400">
         <item name="android:textColor">@color/gray_400</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S20.gray400" >
+
+    <style name="customTextViewFontStyle.Bold.S20.gray400">
         <item name="android:textColor">@color/gray_400</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S26" >
+
+    <style name="customTextViewFontStyle.Bold.S26">
         <item name="android:textSize">26sp</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S26.gray300" >
+
+    <style name="customTextViewFontStyle.Bold.S26.gray300">
         <item name="android:textColor">@color/gray_300</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S28" >
+
+    <style name="customTextViewFontStyle.Bold.S28">
         <item name="android:textSize">28sp</item>
     </style>
-    <style name="customTextViewFontStyle.Bold.S28.white" >
+
+    <style name="customTextViewFontStyle.Bold.S28.white">
         <item name="android:textColor">@color/white</item>
     </style>
 
     <!--  Medium font-->
     <style name="customTextViewFontStyle.medium">
         <item name="android:fontFamily">@font/noto_sans_kr_medium</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
+
+    <style name="customTextViewFontStyle.medium.S13">
+        <item name="android:textSize">13sp</item>
+    </style>
+
     <style name="customTextViewFontStyle.medium.S14">
         <item name="android:textSize">14sp</item>
     </style>
+
     <style name="customTextViewFontStyle.medium.S14.gray_500">
         <item name="android:textColor">@color/gray_500</item>
     </style>
+
     <style name="customTextViewFontStyle.medium.S15">
         <item name="android:textSize">15sp</item>
     </style>
+
     <style name="customTextViewFontStyle.medium.S15.gray_300">
         <item name="android:textColor">@color/gray_300</item>
+    </style>
+    <style name="customTextViewFontStyle.medium.S16">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="customTextViewFontStyle.medium.S16.gray_dark">
+        <item name="android:textColor">@color/gray_dark</item>
     </style>
 </resources>
