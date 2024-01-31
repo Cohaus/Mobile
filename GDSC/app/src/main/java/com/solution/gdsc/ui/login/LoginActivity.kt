@@ -65,7 +65,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         viewModel.isValidLogin.observe(this) {
             isValidToken = it
             if (isValidToken) {
-                checkUserLogin()
+                //checkUserLogin()
             }
         }
     }

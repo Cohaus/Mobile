@@ -4,7 +4,10 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import com.solution.gdsc.ChallengeApplication
 import com.solution.gdsc.data.remote.CoHousService
+import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.response.DefaultResponse
+import com.solution.gdsc.domain.model.response.UpdateUserInfoDto
+import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoDto
 import com.solution.gdsc.domain.model.response.UserInfoResponse
 import kotlinx.coroutines.Dispatchers
@@ -41,6 +44,37 @@ class UserMyPageDatasource @Inject constructor(
                 response = it
             }.onFailure {
                 Log.e(TAG, "Get User Info Failure")
+            }
+        }
+        return response
+    }
+
+    suspend fun updateUserInfo(updateUserInfoRequest: UpdateUserInfoRequest): UpdateUserInfoResponse {
+        var response = UpdateUserInfoResponse(200, "요청에 성공하였습니다.",
+            UpdateUserInfoDto(1, "장민수", "cty123", "010-1234-5678", null, null)
+            )
+        withContext(Dispatchers.IO) {
+            runCatching {
+                coHousService.updateUserInfo(updateUserInfoRequest)
+            }.onSuccess {
+                response = it
+            }.onFailure {
+                Log.e(TAG, "Update User Info Failure")
+            }
+        }
+        return response
+    }
+
+    suspend fun withdraw(): DefaultResponse {
+        var response = DefaultResponse(200, "회원탈퇴 성공", 1)
+        withContext(Dispatchers.IO) {
+            runCatching {
+                coHousService.withdraw()
+            }.onSuccess {
+                response = it
+                ChallengeApplication.getInstance().tokenManager.deleteToken()
+            }.onFailure {
+                Log.e(TAG, "Withdraw Failure")
             }
         }
         return response

@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="userInfo"
+            type="com.solution.gdsc.domain.model.response.UserInfoDto" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,6 +45,7 @@
 
         <EditText
             android:id="@+id/et_input_modify_id"
+            android:text="@{userInfo.id}"
             style="@style/EditTextInfoModifyStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -70,6 +73,7 @@
         <EditText
             android:id="@+id/et_input_modify_name"
             style="@style/EditTextInfoModifyStyle"
+            android:text="@{userInfo.name}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
@@ -94,6 +98,7 @@
             android:id="@+id/et_input_modify_phone_number"
             style="@style/EditTextInfoModifyStyle"
             android:layout_width="0dp"
+            android:text="@{userInfo.tel}"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:autofillHints="false"
@@ -118,6 +123,7 @@
             style="@style/EditTextInfoModifyStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="@{userInfo.email}"
             android:layout_marginTop="18dp"
             android:autofillHints="false"
             android:hint="@string/hint_input_email"

@@ -30,7 +30,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         binding.toolbarProfile.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.toolbar_ic_setting -> {
-                    val action = ProfileFragmentDirections.actionProfileToProfileSetting()
+                    val action = ProfileFragmentDirections.actionProfileToProfileSetting(binding.userDto!!)
                     findNavController().navigate(action)
                     true
                 }

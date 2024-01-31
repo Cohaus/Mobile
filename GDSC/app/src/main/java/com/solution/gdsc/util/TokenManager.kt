@@ -41,7 +41,7 @@ class TokenManager @Inject constructor(
     }
 
     suspend fun saveAccessToken(accessToken: String) {
-        if (accessToken.isNotEmpty()) {
+        if (accessToken.isNotEmpty() && accessToken.length > 10) {
             dataStore.edit { preferences ->
                 preferences[KEY_ACCESS_TOKEN] = accessToken
             }
@@ -49,7 +49,7 @@ class TokenManager @Inject constructor(
     }
 
     suspend fun saveRefreshToken(refreshToken: String) {
-        if (refreshToken.isNotEmpty()) {
+        if (refreshToken.isNotEmpty() && refreshToken.length > 10) {
             dataStore.edit { preferences ->
                 preferences[KEY_REFRESH_TOKEN] = refreshToken
             }
