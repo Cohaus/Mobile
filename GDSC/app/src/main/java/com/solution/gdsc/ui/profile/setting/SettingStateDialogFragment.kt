@@ -1,4 +1,4 @@
-package com.solution.gdsc.ui.profile
+package com.solution.gdsc.ui.profile.setting
 
 import android.os.Bundle
 import android.view.LayoutInflater

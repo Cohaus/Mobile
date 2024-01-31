@@ -1,4 +1,4 @@
-package com.solution.gdsc.ui.profile
+package com.solution.gdsc.ui.profile.setting
 
 import androidx.navigation.fragment.findNavController
 import com.solution.gdsc.R

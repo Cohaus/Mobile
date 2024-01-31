@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_profile_setting"
-        android:name="com.solution.gdsc.ui.profile.ProfileSettingFragment"
+        android:name="com.solution.gdsc.ui.profile.setting.ProfileSettingFragment"
         android:label="ProfileSettingFragment"
         tools:layout="@layout/fragment_profile_setting">
         <action
@@ -81,7 +81,7 @@
         tools:layout="@layout/activity_login"/>
     <dialog
         android:id="@+id/navigation_setting_state_dialog"
-        android:name="com.solution.gdsc.ui.profile.SettingStateDialogFragment"
+        android:name="com.solution.gdsc.ui.profile.setting.SettingStateDialogFragment"
         android:label="LogoutDialogFragment"
         tools:layout="@layout/fragment_dialog_setting_state">
         <argument
@@ -138,7 +138,7 @@
         tools:layout="@layout/fragment_post_repair_apply_info"/>
     <fragment
         android:id="@+id/navigation_profile_info_modify"
-        android:name="com.solution.gdsc.ui.profile.ProfileInfoModifyFragment"
+        android:name="com.solution.gdsc.ui.profile.setting.ProfileInfoModifyFragment"
         android:label="ProfileInfoModifyFragment"
         tools:layout="@layout/fragment_profile_info_modify"/>
 </navigation>
