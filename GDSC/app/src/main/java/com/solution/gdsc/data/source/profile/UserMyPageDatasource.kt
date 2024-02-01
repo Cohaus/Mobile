@@ -1,4 +1,4 @@
-package com.solution.gdsc.data.source
+package com.solution.gdsc.data.source.profile
 
 import android.content.ContentValues.TAG
 import android.util.Log

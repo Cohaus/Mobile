@@ -1,4 +1,4 @@
-package com.solution.gdsc.data.source
+package com.solution.gdsc.data.source.profile
 
 import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.response.DefaultResponse

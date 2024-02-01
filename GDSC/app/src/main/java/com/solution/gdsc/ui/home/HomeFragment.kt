@@ -4,7 +4,9 @@ import androidx.navigation.fragment.findNavController
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     override fun setLayout() {

@@ -1,12 +1,20 @@
 package com.solution.gdsc.ui.home.save
 
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentHomeRecordSaveBinding
+import com.solution.gdsc.ui.home.viewModel.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeRecordSaveFragment : BaseFragment<FragmentHomeRecordSaveBinding>(R.layout.fragment_home_record_save) {
+    private val viewModel by viewModels<HomeViewModel>()
+    private val args by navArgs<HomeRecordSaveFragmentArgs>()
+
     private var inputTitle = ""
     private var inputContent = ""
 
@@ -20,10 +28,14 @@ class HomeRecordSaveFragment : BaseFragment<FragmentHomeRecordSaveBinding>(R.lay
                 findNavController().navigateUp()
             }
             btnRecordSave.setOnClickListener {
-                val action = HomeRecordSaveFragmentDirections.actionRecordSaveToHome()
-                findNavController().navigate(action)
+                saveRecord()
             }
         }
+        observe()
+    }
+
+    private fun saveRecord() {
+        viewModel.saveRecord(inputTitle, inputContent, "보통", "도배", args.image)
     }
 
     private fun setTextInput() {
@@ -47,5 +59,14 @@ class HomeRecordSaveFragment : BaseFragment<FragmentHomeRecordSaveBinding>(R.lay
 
     private fun updateButtonEnableState() {
         binding.btnRecordSave.isEnabled = isValidTitle && isValidContent
+    }
+
+    private fun observe() {
+        viewModel.saveResult.observe(viewLifecycleOwner) {
+            if (it.status in 200..299) {
+                val action = HomeRecordSaveFragmentDirections.actionRecordSaveToHome()
+                findNavController().navigate(action)
+            }
+        }
     }
 }
