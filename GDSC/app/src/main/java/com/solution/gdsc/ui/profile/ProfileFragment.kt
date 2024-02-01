@@ -46,8 +46,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
             binding.userDto = it
         }
         viewModel.userRecords.observe(viewLifecycleOwner) {
-            repairAdapter.add(it.repairRecord.content)
-            saveApter.add(it.savedRecord.content)
+            val result = it
+            repairAdapter.add(result.repairRecord.content)
+            saveApter.add(result.savedRecord.content)
+            binding.rvSaveList.adapter = saveApter
+            binding.rvRepairApplyList.adapter = repairAdapter
         }
     }
 

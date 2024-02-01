@@ -6,11 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.solution.gdsc.R
 
 class MapsFragment : Fragment() {
@@ -25,9 +22,6 @@ class MapsFragment : Fragment() {
          * install it inside the SupportMapFragment. This method will only be triggered once the
          * user has installed Google Play services and returned to the app.
          */
-        val seoul = LatLng(37.5642135, 127.0016985)
-        googleMap.addMarker(MarkerOptions().position(seoul).title("Marker in Seoul"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(seoul))
     }
 
     override fun onCreateView(
