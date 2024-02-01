@@ -5,5 +5,4 @@ data class RecordRequest(
     val detail: String,
     val grade: String,
     val category: String,
-    val image: String
 )

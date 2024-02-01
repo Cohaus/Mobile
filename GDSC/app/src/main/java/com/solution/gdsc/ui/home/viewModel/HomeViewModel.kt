@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.solution.gdsc.domain.model.request.RecordRequest
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.repository.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,7 +23,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 _saveResult.value = homeRepository.saveRecord(
-                    RecordRequest(title, detail, grade, category, image)
+                    title, detail, grade, category, image
                 )
             } catch (e: Exception) {
                 Log.e("Save Record Error: ", e.message.toString())

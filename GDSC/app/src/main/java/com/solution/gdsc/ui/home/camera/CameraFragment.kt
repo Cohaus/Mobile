@@ -12,6 +12,7 @@ import android.graphics.Matrix
 import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Base64
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -22,6 +23,7 @@ import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentCameraBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -34,6 +36,7 @@ private const val DATE_YEAR_MONTH_DAY_PATTERN = "yyyy-MM-dd'T'HH:mm:ss'Z'"
 @AndroidEntryPoint
 class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_camera), ActivityCompat.OnRequestPermissionsResultCallback {
     private lateinit var currentPhotoPath: String
+    private lateinit var encodeImage: String
     override fun setLayout() {
         dispatchTakePictureIntent()
         setClickListener()
@@ -141,6 +144,35 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
         }
     }
 
+    private fun compressBitmap(bitmap: Bitmap, maxSizeInKB: Int): String? {
+        val outputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+
+        var quality = 100
+        while (outputStream.toByteArray().size / 1024 > maxSizeInKB) {
+            outputStream.reset()
+            quality -= 10
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream)
+        }
+
+        val compressedImageFile = saveBitmapToFile(outputStream.toByteArray())
+        outputStream.close()
+        return compressedImageFile?.absolutePath
+    }
+
+    private fun saveBitmapToFile(byteArray: ByteArray): File? {
+        return try {
+            val timeStamp = SimpleDateFormat(DATE_YEAR_MONTH_DAY_PATTERN, Locale.KOREA)
+            val storageDir: File? = requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+            val imageFile = File.createTempFile("JPEG_${timeStamp}_", ".jpg", storageDir)
+            imageFile.writeBytes(byteArray)
+            imageFile
+        } catch (e: IOException) {
+            e.printStackTrace()
+            null
+        }
+    }
+
     @Throws(IOException::class)
     private fun createImageFile(): File {
         val timeStamp = SimpleDateFormat(DATE_YEAR_MONTH_DAY_PATTERN, Locale.KOREA)
@@ -152,15 +184,24 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
 
     private fun setPic() {
         val options = BitmapFactory.Options()
-        options.inSampleSize = 1
+        options.inSampleSize = 2
         val bitmap = BitmapFactory.decodeFile(currentPhotoPath, options)
         val rotation = getRotationFromExif(currentPhotoPath)
         val rotatedBitmap = rotateBitmap(bitmap, rotation)
 
-        binding.ivCameraImage.setImageBitmap(rotatedBitmap)
+        // 이미지를 압축하고 크기 조절
+        val compressedImagePath = compressBitmap(rotatedBitmap, 200) // 200KB로 압축
+        if (compressedImagePath != null) {
+            currentPhotoPath = compressedImagePath
+            binding.ivCameraImage.setImageBitmap(rotatedBitmap) // 또는 압축된 이미지를 표시하려면 이 부분을 수정하세요.
+            encodeImage = encodeBitmapToBase64(rotatedBitmap)
 
-        // 갤러리에 사진 추가
-        galleryAddPic()
+            // 갤러리에 사진 추가
+            galleryAddPic()
+        } else {
+            // 압축 실패 시의 처리
+            Log.e("CameraFragment", "Failed to compress image")
+        }
     }
 
     private fun galleryAddPic() {
@@ -203,6 +244,19 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
         val matrix = Matrix()
         matrix.postRotate(rotation.toFloat())
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+    }
+
+    private fun encodeBitmapToBase64(bitmap: Bitmap): String {
+        val outputStream = ByteArrayOutputStream()
+
+        // 이미지를 JPEG 형식으로 80% 품질로 압축
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream)
+
+        val bytes = outputStream.toByteArray()
+        outputStream.close()
+
+        // Base64.NO_WRAP 옵션을 사용하여 줄 바꿈 문자 제거
+        return Base64.encodeToString(bytes, Base64.NO_WRAP)
     }
 
     companion object {
