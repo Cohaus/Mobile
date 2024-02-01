@@ -3,18 +3,27 @@ package com.solution.gdsc.ui.map
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ContentValues
+import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Typeface
 import android.location.Location
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.model.Place
@@ -95,11 +104,60 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
             // Permission granted, enable the my location layer
             enableMyLocation()
         }
-        googleMap.addMarker(
-            MarkerOptions()
-                .position(LatLng(37.5642135, 127.0016985))
-                .title("Marker")
-        )
+
+        addMarker(37.464296657058, 127.12728060383, 7)
+        addMarker(37.023, 127.512, 3)
+        addMarker(37.123, 127.766, 13)
+        addMarker(37.523, 127.456, 2)
+        addMarker(37.5642135, 127.0016985, 15)
+    }
+
+    private fun addMarker(latitude: Double, longitude: Double, count: Int) {
+        val markerLatLng = LatLng(latitude, longitude)
+
+        val markerOptions = MarkerOptions()
+            .position(markerLatLng)
+            .title("마커")
+            .icon(generateCustomMarkerBitmapDescriptor(count, requireContext()))
+
+        map.addMarker(markerOptions)
+    }
+
+    private fun generateCustomMarkerBitmapDescriptor(count: Int, context: Context): BitmapDescriptor {
+        val diameter = 120 // 마커의 지름
+        val bitmap = Bitmap.createBitmap(diameter, diameter, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        val paint = Paint()
+
+        // 배경 (하얀색 원)
+        paint.color = Color.WHITE
+        canvas.drawCircle((diameter / 2).toFloat(), (diameter / 2).toFloat(), (diameter / 2).toFloat(), paint)
+
+        // 테두리 (초록색 테두리)
+        paint.color = ContextCompat.getColor(context, R.color.green_300)
+        paint.style = Paint.Style.STROKE
+        paint.strokeWidth = 8f
+        canvas.drawCircle((diameter / 2).toFloat(), (diameter / 2).toFloat(), (diameter / 2 - 5).toFloat(), paint)
+
+        // 텍스트 (게시물 개수)
+        paint.style = Paint.Style.FILL
+        paint.color = Color.BLACK
+        paint.textSize = 50f
+        paint.textAlign = Paint.Align.CENTER
+
+        // 폰트 설정
+        paint.typeface = getCustomTypeface(context)
+
+        // 텍스트의 baseline 계산
+        val textBaseline = (canvas.height - paint.fontMetricsInt.bottom + paint.fontMetricsInt.top) / 2 - paint.fontMetricsInt.top
+
+        canvas.drawText(count.toString(), (diameter / 2).toFloat(), textBaseline.toFloat(), paint)
+
+        return BitmapDescriptorFactory.fromBitmap(bitmap)
+    }
+
+    private fun getCustomTypeface(context: Context): Typeface {
+        return ResourcesCompat.getFont(context, R.font.noto_sans_kr_bold)!!
     }
 
     @SuppressLint("MissingPermission")
