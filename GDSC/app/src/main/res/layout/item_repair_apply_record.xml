@@ -138,6 +138,7 @@
             app:layout_constraintTop_toTopOf="@id/tv_item_repair_record_date_box" />
 
         <Button
+            android:id="@+id/btn_item_record_more"
             style="@style/customTextViewFontStyle.Bold.S16.white"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
