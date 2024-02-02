@@ -192,6 +192,10 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="customTextViewFontStyle.Bold.S14.gray_400">
+        <item name="android:textColor">@color/gray_400</item>
+    </style>
+
     <style name="customTextViewFontStyle.Bold.S15">
         <item name="android:textSize">15sp</item>
     </style>
@@ -230,6 +234,10 @@
 
     <style name="customTextViewFontStyle.Bold.S20.gray450">
         <item name="android:textColor">@color/gray_450</item>
+    </style>
+
+    <style name="customTextViewFontStyle.Bold.S20.gray_dark">
+        <item name="android:textColor">@color/gray_dark</item>
     </style>
 
     <style name="customTextViewFontStyle.Bold.S20.green300">

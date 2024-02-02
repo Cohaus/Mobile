@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:background="@drawable/shape_button_15dp_green"
+        android:backgroundTint="@color/white"
+        android:layout_marginEnd="21dp">
+
+        <TextView
+            android:id="@+id/tv_repair_record_title"
+            style="@style/customTextViewFontStyle.Bold.S20.gray_dark"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:text="벽 도배 공사"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_item_repair_category_box"
+            style="@style/customTextViewFontStyle.Bold.S14"
+            android:layout_width="83dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/shape_button_24dp"
+            android:backgroundTint="#BCDFCA"
+            android:gravity="center_vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="10dp"
+            android:text="카테고리"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.36"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_repair_record_title" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/description_category_box_icon"
+            android:src="@drawable/ic_check_category"
+            app:layout_constraintBottom_toBottomOf="@id/tv_item_repair_category_box"
+            app:layout_constraintStart_toStartOf="@id/tv_item_repair_category_box"
+            app:layout_constraintTop_toTopOf="@id/tv_item_repair_category_box" />
+
+        <TextView
+            android:id="@+id/tv_item_repair_record_category"
+            style="@style/customTextViewFontStyle.Bold.S14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="도배"
+            app:layout_constraintStart_toEndOf="@id/tv_item_repair_category_box"
+            app:layout_constraintTop_toTopOf="@id/tv_item_repair_category_box" />
+
+        <TextView
+            android:id="@+id/tv_item_repair_record_address_box"
+            style="@style/customTextViewFontStyle.Bold.S14.green300"
+            android:layout_width="83dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_button_24dp"
+            android:backgroundTint="#E6F5ED"
+            android:gravity="center"
+            android:text="주소"
+            app:layout_constraintStart_toStartOf="@id/tv_item_repair_category_box"
+            app:layout_constraintTop_toBottomOf="@id/tv_item_repair_category_box" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:contentDescription="@string/description_repair_apply_date_icon"
+            android:src="@drawable/ic_location_small"
+            app:layout_constraintBottom_toBottomOf="@id/tv_item_repair_record_address_box"
+            app:layout_constraintStart_toStartOf="@id/tv_item_repair_record_address_box"
+            app:layout_constraintTop_toTopOf="@id/tv_item_repair_record_address_box"
+            app:tint="@color/green_300" />
+
+        <TextView
+            android:id="@+id/tv_item_repair_record_address"
+            style="@style/customTextViewFontStyle.Bold.S14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="서울시 서초구"
+            app:layout_constraintStart_toEndOf="@id/tv_item_repair_record_address_box"
+            app:layout_constraintTop_toTopOf="@id/tv_item_repair_record_address_box" />
+
+        <TextView
+            android:id="@+id/tv_item_repair_record_date_box"
+            style="@style/customTextViewFontStyle.Bold.S14.gray_400"
+            android:layout_width="83dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_button_24dp"
+            android:backgroundTint="@color/gray_middle"
+            android:gravity="center_vertical"
+            android:paddingStart="30dp"
+            android:paddingEnd="1dp"
+            android:text="방문일"
+            app:layout_constraintStart_toStartOf="@id/tv_item_repair_category_box"
+            app:layout_constraintTop_toBottomOf="@id/tv_item_repair_record_address_box" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:contentDescription="@string/description_repair_apply_date_icon"
+            android:src="@drawable/ic_calendar_green"
+            app:layout_constraintBottom_toBottomOf="@id/tv_item_repair_record_date_box"
+            app:layout_constraintStart_toStartOf="@id/tv_item_repair_record_date_box"
+            app:layout_constraintTop_toTopOf="@id/tv_item_repair_record_date_box"
+            app:tint="@color/gray_400" />
+
+        <TextView
+            android:id="@+id/tv_item_repair_record_date"
+            style="@style/customTextViewFontStyle.Bold.S14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="2024년 01월 01일"
+            app:layout_constraintStart_toEndOf="@id/tv_item_repair_record_date_box"
+            app:layout_constraintTop_toTopOf="@id/tv_item_repair_record_date_box" />
+
+        <Button
+            style="@style/customTextViewFontStyle.Bold.S16.white"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="39dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="27dp"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/shape_button_15dp_green"
+            android:text="자세히 보기"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_item_repair_record_date_box" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
