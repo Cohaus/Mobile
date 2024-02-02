@@ -12,6 +12,7 @@ import android.graphics.Paint
 import android.graphics.Typeface
 import android.location.Location
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -25,6 +26,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
@@ -32,14 +34,20 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentMapBinding
+import com.solution.gdsc.domain.model.response.RecordItem
+import com.solution.gdsc.ui.map.adapter.RepairApplyRecordAdapter
+import com.solution.gdsc.ui.profile.adapter.PostClickListener
 import com.solution.gdsc.util.PermissionUtils.PermissionDeniedDialog.Companion.newInstance
 import com.solution.gdsc.util.PermissionUtils.isPermissionGranted
 
 class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
     OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener,
-    GoogleMap.OnMyLocationClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
+    GoogleMap.OnMyLocationClickListener, ActivityCompat.OnRequestPermissionsResultCallback,
+    PostClickListener {
     private var permissionDenied = false
     private lateinit var map: GoogleMap
+    private lateinit var adapter: RepairApplyRecordAdapter
+    private var selectedMarker: Marker? = null
 
     override fun setLayout() {
         val mapFragment = childFragmentManager
@@ -104,6 +112,16 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
             // Permission granted, enable the my location layer
             enableMyLocation()
         }
+        map.setOnMarkerClickListener {
+            onMarkerClick(it, 5)
+            showRecyclerView()
+            true
+        }
+
+        googleMap.setOnMapClickListener {
+            // 다른 영역을 터치할 때 RecyclerView를 감춤
+            hideRecyclerView()
+        }
 
         addMarker(37.464296657058, 127.12728060383, 7)
         addMarker(37.023, 127.512, 3)
@@ -121,6 +139,32 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
             .icon(generateCustomMarkerBitmapDescriptor(count, requireContext()))
 
         map.addMarker(markerOptions)
+    }
+
+    private fun onMarkerClick(marker: Marker, count: Int) {
+        val recordItem = listOf(
+            RecordItem(1, "도배", "", "벽 도배하기", "2021", "2"),
+            RecordItem(2, "누수", "", "누수 막기", "2021", "2"),
+            RecordItem(3, "창문", "", "창문 뜯기", "2021", "2"),
+            RecordItem(4, "벽돌", "", "벽돌쌓기", "2021", "2"),
+            RecordItem(5, "바닥", "", "바닥 고치기", "2021", "2"),
+            RecordItem(6, "수리", "", "집 수리하기", "2021", "2"),
+            RecordItem(7, "도배", "", "벽 도배하기", "2021", "2"),
+            RecordItem(8, "도배", "", "벽 도배하기", "2021", "2"),
+
+        )
+        adapter = RepairApplyRecordAdapter(this)
+        adapter.add(recordItem)
+        binding.rvRepairRecordApply.adapter = adapter
+    }
+
+    private fun hideRecyclerView() {
+        binding.rvRepairRecordApply.visibility = View.GONE
+        selectedMarker = null
+    }
+
+    private fun showRecyclerView() {
+        binding.rvRepairRecordApply.visibility = View.VISIBLE
     }
 
     private fun generateCustomMarkerBitmapDescriptor(count: Int, context: Context): BitmapDescriptor {
@@ -253,5 +297,9 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
          */
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
         private const val DEFAULT_ZOOM_LEVEL = 15.0f
+    }
+
+    override fun onPostClick(post: RecordItem) {
+
     }
 }
