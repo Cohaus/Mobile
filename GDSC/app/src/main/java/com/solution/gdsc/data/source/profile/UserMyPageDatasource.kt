@@ -11,11 +11,13 @@ import com.solution.gdsc.domain.model.response.RepairRecord
 import com.solution.gdsc.domain.model.response.SaveRecord
 import com.solution.gdsc.domain.model.response.UpdateUserInfoDto
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
-import com.solution.gdsc.domain.model.response.UserInfoDto
 import com.solution.gdsc.domain.model.response.UserInfoResponse
 import com.solution.gdsc.domain.model.response.UserRecordListResponse
 import com.solution.gdsc.domain.model.response.UserRecordResponse
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -37,21 +39,14 @@ class UserMyPageDatasource @Inject constructor(
         return response
     }
 
-    suspend fun getUserInfo(): UserInfoResponse {
-        var response = UserInfoResponse(200, "유저 정보 조회 성공",
-            UserInfoDto(1, "장민수", "id",
-                "010-3211-1234", "ea@af", null, null)
-        )
-        withContext(Dispatchers.IO) {
-            runCatching {
-                coHousService.getUserInfo()
-            }.onSuccess {
-                response = it
-            }.onFailure {
-                Log.e(TAG, "Get User Info Failure")
-            }
+    suspend fun getUserInfo(): Flow<UserInfoResponse> = flow {
+        try {
+            val response = coHousService.getUserInfo()
+            emit(response)
+            delay(1000)
+        } catch (e: Exception) {
+            Log.e(TAG, "Get User Info Failure")
         }
-        return response
     }
 
     suspend fun updateUserInfo(updateUserInfoRequest: UpdateUserInfoRequest): UpdateUserInfoResponse {
