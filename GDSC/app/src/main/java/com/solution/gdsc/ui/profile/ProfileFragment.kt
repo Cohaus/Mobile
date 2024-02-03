@@ -1,6 +1,9 @@
 package com.solution.gdsc.ui.profile
 
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
@@ -11,6 +14,8 @@ import com.solution.gdsc.ui.profile.adapter.RecordSaveApter
 import com.solution.gdsc.ui.profile.adapter.RepairApplyAdapter
 import com.solution.gdsc.ui.profile.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_profile), PostClickListener {
@@ -42,9 +47,16 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     }
 
     private fun observe() {
-        viewModel.userInfo.observe(viewLifecycleOwner) {
-            binding.userDto = it
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.userInfo.collectLatest {
+                    binding.userDto = it
+                }
+            }
         }
+        /*viewModel.userInfo.observe(viewLifecycleOwner) {
+            binding.userDto = it
+        }*/
         viewModel.userRecords.observe(viewLifecycleOwner) {
             val result = it
             repairAdapter.add(result.repairRecord.content)

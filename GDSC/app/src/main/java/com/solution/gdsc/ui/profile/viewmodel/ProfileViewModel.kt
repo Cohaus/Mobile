@@ -12,6 +12,8 @@ import com.solution.gdsc.domain.model.response.UserInfoDto
 import com.solution.gdsc.domain.model.response.UserRecordListResponse
 import com.solution.gdsc.domain.repository.UserMyPageRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,8 +24,8 @@ class ProfileViewModel @Inject constructor(
 
     private val _isLogout = MutableLiveData<DefaultResponse>()
     val isLogout: LiveData<DefaultResponse> = _isLogout
-    private val _userInfo = MutableLiveData<UserInfoDto>()
-    val userInfo: LiveData<UserInfoDto> = _userInfo
+    private val _userInfo = MutableStateFlow(UserInfoDto())
+    val userInfo: StateFlow<UserInfoDto> = _userInfo
     private val _isWithdraw = MutableLiveData<DefaultResponse>()
     val isWithdraw: LiveData<DefaultResponse> = _isWithdraw
     private val _isUpdate = MutableLiveData<UpdateUserInfoResponse>()
@@ -44,7 +46,9 @@ class ProfileViewModel @Inject constructor(
     fun getUserInfo() {
         viewModelScope.launch {
             try {
-                _userInfo.value = userMyPageRepository.getUserInfo().data
+                userMyPageRepository.getUserInfo().collect {
+                    _userInfo.value = it.data
+                }
             } catch (e: Exception) {
                 Log.e("Get User Info Error: ", e.message.toString())
             }
