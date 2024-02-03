@@ -5,6 +5,7 @@ import android.util.Log
 import com.solution.gdsc.ChallengeApplication
 import com.solution.gdsc.data.remote.CoHousService
 import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
+import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.RecordItem
 import com.solution.gdsc.domain.model.response.RepairRecord
@@ -14,6 +15,8 @@ import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoResponse
 import com.solution.gdsc.domain.model.response.UserRecordListResponse
 import com.solution.gdsc.domain.model.response.UserRecordResponse
+import com.solution.gdsc.domain.model.response.VolunteerInfo
+import com.solution.gdsc.domain.model.response.VolunteerRegistrationResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -92,6 +95,23 @@ class UserMyPageDatasource @Inject constructor(
                 response = it
             }.onFailure {
                 Log.e(TAG, "Get User Record Failure")
+            }
+        }
+        return response
+    }
+
+    suspend fun putVolunteerUser(volunteerRegistrationReq: VolunteerRegistrationReq): VolunteerRegistrationResponse {
+        var response = VolunteerRegistrationResponse(1, "성공",
+            VolunteerInfo("a", null)
+        )
+        withContext(Dispatchers.IO) {
+            runCatching {
+                coHousService.putVolunteerUser(volunteerRegistrationReq)
+            }.onSuccess {
+                response =  it
+                delay(1000)
+            }.onFailure {
+                Log.e(TAG, "Put Volunteer User Failure")
             }
         }
         return response
