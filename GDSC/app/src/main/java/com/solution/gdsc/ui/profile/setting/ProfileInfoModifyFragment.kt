@@ -7,7 +7,6 @@ import androidx.navigation.fragment.navArgs
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentProfileInfoModifyBinding
-import com.solution.gdsc.ui.common.UserAuthority
 import com.solution.gdsc.ui.profile.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,6 +29,9 @@ class ProfileInfoModifyFragment : BaseFragment<FragmentProfileInfoModifyBinding>
     override fun setLayout() {
         val userInfo = args.userInfo
         binding.userInfo = userInfo
+        binding.toolbarInfoModify.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
         setInputText()
         clickUpdateButton()
         observe()

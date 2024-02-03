@@ -2,10 +2,13 @@ package com.solution.gdsc.ui.profile.setting
 
 import android.content.res.ColorStateList
 import androidx.core.widget.doAfterTextChanged
+import androidx.navigation.fragment.findNavController
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentSettingVolunteerRegistrationBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SettingVolunteerRegistrationFragment
     : BaseFragment<FragmentSettingVolunteerRegistrationBinding>(
     R.layout.fragment_setting_volunteer_registration
@@ -39,6 +42,12 @@ class SettingVolunteerRegistrationFragment
                 updateOrganizationInputState()
                 updateRegistrationButton()
                 setInputTextArea()
+            }
+            btnRegistrationVolunteer.setOnClickListener {
+                val action =
+                    SettingVolunteerRegistrationFragmentDirections
+                        .actionSettingVolunteerRegistrationToVolunteerReregistrationDialog()
+                findNavController().navigate(action)
             }
         }
     }
