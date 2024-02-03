@@ -6,10 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
+import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoDto
 import com.solution.gdsc.domain.model.response.UserRecordListResponse
+import com.solution.gdsc.domain.model.response.VolunteerRegistrationResponse
 import com.solution.gdsc.domain.repository.UserMyPageRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -32,6 +34,8 @@ class ProfileViewModel @Inject constructor(
     val isUpdate: LiveData<UpdateUserInfoResponse> = _isUpdate
     private val _userRecords = MutableLiveData<UserRecordListResponse>()
     val userRecords: LiveData<UserRecordListResponse> = _userRecords
+    private val _hasResult = MutableLiveData<VolunteerRegistrationResponse>()
+    val hasResult: LiveData<VolunteerRegistrationResponse> = _hasResult
 
     fun logout() {
         viewModelScope.launch {
@@ -83,6 +87,16 @@ class ProfileViewModel @Inject constructor(
                 _userRecords.value = userMyPageRepository.getUserRecord().data
             } catch (e: Exception) {
                 Log.e("Get User Record Error: ", e.message.toString())
+            }
+        }
+    }
+
+    fun putVolunteerUser(volunteerType: String, organizationName: String?) {
+        viewModelScope.launch {
+            try {
+                _hasResult.value = userMyPageRepository.putVolunteerUser(VolunteerRegistrationReq(volunteerType, organizationName))
+            } catch (e: Exception) {
+                Log.e("Put Volunteer Error: ", e.message.toString())
             }
         }
     }

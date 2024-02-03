@@ -6,6 +6,7 @@ import androidx.navigation.fragment.findNavController
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentSettingVolunteerRegistrationBinding
+import com.solution.gdsc.ui.common.VolunteerType
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -44,13 +45,16 @@ class SettingVolunteerRegistrationFragment
                 setInputTextArea()
             }
             btnRegistrationVolunteer.setOnClickListener {
+                val type = getUserType()
                 val action =
                     SettingVolunteerRegistrationFragmentDirections
-                        .actionSettingVolunteerRegistrationToVolunteerReregistrationDialog()
+                        .actionSettingVolunteerRegistrationToVolunteerReregistrationDialog(type, validOrganizationName)
                 findNavController().navigate(action)
             }
         }
     }
+
+    private fun getUserType() = if (isSingle == true) VolunteerType.SINGLE.type else VolunteerType.ORGANIZATION.type
 
     private fun updateOrganizationInputState() {
         if (isSingle == null) return
