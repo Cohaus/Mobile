@@ -31,13 +31,13 @@ import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentMapBinding
+import com.solution.gdsc.domain.model.response.CountRepairDto
 import com.solution.gdsc.domain.model.response.RecordItem
 import com.solution.gdsc.ui.map.adapter.RepairApplyRecordAdapter
 import com.solution.gdsc.ui.map.viewmodel.MapViewModel
@@ -133,23 +133,17 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
         }
 
         viewModel.getAllRepairRecord()
-
-        addMarker(37.464296657058, 127.12728060383, 7)
-        addMarker(37.023, 127.512, 3)
-        addMarker(37.123, 127.766, 13)
-        addMarker(37.523, 127.456, 2)
-        addMarker(37.5642135, 127.0016985, 15)
     }
 
-    private fun addMarker(latitude: Double, longitude: Double, count: Int) {
-        val markerLatLng = LatLng(latitude, longitude)
+    private fun addMarker(countRepair: CountRepairDto) {
+
+        /*val markerLatLng = LatLng(latitude, longitude)
 
         val markerOptions = MarkerOptions()
             .position(markerLatLng)
-            .title("마커")
-            .icon(generateCustomMarkerBitmapDescriptor(count, requireContext()))
+            .icon(generateCustomMarkerBitmapDescriptor(countRepair.count, requireContext()))
 
-        map.addMarker(markerOptions)
+        map.addMarker(markerOptions)*/
     }
 
     private fun onMarkerClick(marker: Marker, count: Int) {
@@ -178,7 +172,7 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
         binding.rvRepairRecordApply.visibility = View.VISIBLE
     }
 
-    private fun generateCustomMarkerBitmapDescriptor(count: Int, context: Context): BitmapDescriptor {
+    private fun generateCustomMarkerBitmapDescriptor(count: Long, context: Context): BitmapDescriptor {
         val diameter = 120 // 마커의 지름
         val bitmap = Bitmap.createBitmap(diameter, diameter, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
@@ -303,7 +297,9 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
     private fun observe() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.allRepairRecord.value
+                viewModel.allRepairRecord.value.forEach {
+                    addMarker(it)
+                }
             }
         }
     }

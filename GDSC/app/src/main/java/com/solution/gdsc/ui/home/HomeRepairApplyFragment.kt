@@ -2,16 +2,23 @@ package com.solution.gdsc.ui.home
 
 import android.text.InputFilter
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentHomeRepairApplyBinding
+import com.solution.gdsc.ui.home.viewModel.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 private const val DATE_FORMAT_DELIMITER = " / "
 private const val DATE_FORMAT_DELETE_DELIMITER = " /"
 private const val DATE_MAX_FORMAT_LENGTH = 14
 
+@AndroidEntryPoint
 class HomeRepairApplyFragment : BaseFragment<FragmentHomeRepairApplyBinding>(R.layout.fragment_home_repair_apply) {
+    private val viewModel by viewModels<HomeViewModel>()
+    private val args: HomeRepairApplyFragmentArgs by navArgs()
 
     private var validDate = ""
     private var validTitle = ""
@@ -23,13 +30,16 @@ class HomeRepairApplyFragment : BaseFragment<FragmentHomeRepairApplyBinding>(R.l
 
     override fun setLayout() {
         binding.btnRepairApplySave.setOnClickListener {
-            val action = HomeRepairApplyFragmentDirections.actionHomeRepairApplyToHome()
-            findNavController().navigate(action)
+            viewModel.postRepairBasicRecord(
+                validTitle, validContent, "도배", args.placeId, args.address,
+                args.district, validDate.replace(DATE_FORMAT_DELIMITER, "-"), args.image
+            )
         }
         binding.toolbarRepairApply.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
         setTextInput()
+        observe()
     }
 
     private fun setTextInput() {
@@ -152,5 +162,14 @@ class HomeRepairApplyFragment : BaseFragment<FragmentHomeRepairApplyBinding>(R.l
     private fun setMaxLength() {
         binding.etPreferVisitDate.filters =
             arrayOf(InputFilter.LengthFilter(DATE_MAX_FORMAT_LENGTH))
+    }
+
+    private fun observe() {
+        viewModel.repairBasicRecord.observe(viewLifecycleOwner) {
+            if (it.status == 201) {
+                val action = HomeRepairApplyFragmentDirections.actionHomeRepairApplyToHome()
+                findNavController().navigate(action)
+            }
+        }
     }
 }

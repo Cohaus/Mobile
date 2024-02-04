@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -25,13 +26,19 @@ import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentHomeLocationSettingBinding
 import com.solution.gdsc.util.PermissionUtils
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeLocationSettingFragment :
     BaseFragment<FragmentHomeLocationSettingBinding>(R.layout.fragment_home_location_setting),
     OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener,
     GoogleMap.OnMyLocationClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
     private var permissionDenied = false
     private lateinit var map: GoogleMap
+    private val args: HomeLocationSettingFragmentArgs by navArgs()
+    private var placeId: String? = null
+    private var address: String? = null
+    private var district: String? = null
 
     override fun setLayout() {
         val mapFragment = childFragmentManager
@@ -39,9 +46,13 @@ class HomeLocationSettingFragment :
         mapFragment.getMapAsync(this)
         onPlace()
         binding.btnLocationSettingNext.setOnClickListener {
-            val action =
-                HomeLocationSettingFragmentDirections.actionHomeLocationSettingToHomeRepairApply()
-            findNavController().navigate(action)
+            if (checkPlace()) {
+                val action =
+                    HomeLocationSettingFragmentDirections.actionHomeLocationSettingToHomeRepairApply(
+                        args.image, placeId!!, address!!, district!!
+                    )
+                findNavController().navigate(action)
+            }
         }
         binding.toolbarLocationSetting.setNavigationOnClickListener {
             findNavController().navigateUp()
@@ -63,6 +74,9 @@ class HomeLocationSettingFragment :
         autocompleteFragmentHome.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(place: Place) {
                 moveMapToLocation(place.latLng)
+                placeId = place.id
+                address = place.address
+                district = place.name?.let { address!!.replace(it, "") }
                 Log.i(ContentValues.TAG, "Place: ${place.name}, ${place.id}, ${place.address}")
             }
 
@@ -71,6 +85,8 @@ class HomeLocationSettingFragment :
             }
         })
     }
+
+    private fun checkPlace() = !placeId.isNullOrEmpty() && !address.isNullOrEmpty() && !district.isNullOrEmpty()
 
     private fun moveMapToLocation(location: LatLng?) {
         if (location != null) {

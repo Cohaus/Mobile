@@ -4,6 +4,8 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import com.solution.gdsc.data.remote.CoHousService
 import com.solution.gdsc.domain.model.response.DefaultResponse
+import com.solution.gdsc.domain.model.response.RepairId
+import com.solution.gdsc.domain.model.response.RepairIdResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -39,6 +41,42 @@ class HomeDataSource @Inject constructor(
             }.onFailure {
                 Log.e(TAG, "Save Record Failure", it)
                 // 에러 처리 로직 추가
+            }
+        }
+        return response
+    }
+
+    suspend fun postRepairBasicRecord(
+        title: String, detail: String, category: String,
+        placeId: String, address: String, district: String,
+        date: String, image: String
+    ): RepairIdResponse {
+        val titleRequestBody = title.toRequestBody("text/plain".toMediaTypeOrNull())
+        val detailRequestBody = detail.toRequestBody("text/plain".toMediaTypeOrNull())
+        val categoryRequestBody = category.toRequestBody("text/plain".toMediaTypeOrNull())
+        val placeIdRequestBody = placeId.toRequestBody("text/plain".toMediaTypeOrNull())
+        val addressRequestBody = address.toRequestBody("text/plain".toMediaTypeOrNull())
+        val districtRequestBody = district.toRequestBody("text/plain".toMediaTypeOrNull())
+        val dateRequestBody = date.toRequestBody("text/plain".toMediaTypeOrNull())
+
+        // imageFilePath는 이미지 파일에 해당하는 파일 경로
+        val imageFile = File(image)
+        val imageRequestBody = imageFile.asRequestBody("image/*".toMediaTypeOrNull())
+        val imagePart = MultipartBody.Part.createFormData("image", imageFile.name, imageRequestBody)
+
+        var response = RepairIdResponse(1, "성공",
+            RepairId(1, 1)
+        )
+        withContext(Dispatchers.IO) {
+            runCatching {
+                coHousService.postRepairBasicRecord(
+                    imagePart, titleRequestBody, detailRequestBody, categoryRequestBody,
+                    placeIdRequestBody, addressRequestBody, districtRequestBody, dateRequestBody
+                )
+            }.onSuccess {
+                response = it
+            }.onFailure {
+                Log.e(TAG, "Post Repair Basic Failure")
             }
         }
         return response
