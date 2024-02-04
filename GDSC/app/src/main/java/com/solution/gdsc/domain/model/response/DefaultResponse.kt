@@ -1,7 +1,7 @@
 package com.solution.gdsc.domain.model.response
 
 data class DefaultResponse(
-    var status: Int,
-    var message: String,
-    var data: Long
+    var status: Int = 0,
+    var message: String = "",
+    var data: Long = 0
 )

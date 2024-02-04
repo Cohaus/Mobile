@@ -158,5 +158,26 @@
         android:id="@+id/navigation_setting_volunteer_registration"
         android:name="com.solution.gdsc.ui.profile.setting.SettingVolunteerRegistrationFragment"
         android:label="SettingVolunteerRegistrationFragment"
-        tools:layout="@layout/fragment_setting_volunteer_registration"/>
+        tools:layout="@layout/fragment_setting_volunteer_registration">
+        <action
+            android:id="@+id/action_setting_volunteer_registration_to_volunteer_reregistration_dialog"
+            app:destination="@id/navigation_volunteer_reregistration_dialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/navigation_volunteer_reregistration_dialog"
+        android:name="com.solution.gdsc.ui.profile.setting.VolunteerReregistrationDialogFragment"
+        android:label="VolunteerReregistrationDialogFragment"
+        tools:layout="@layout/fragment_volunteer_registration_dialog">
+        <action
+            android:id="@+id/action_volunteer_reregistration_dialog_to_profile"
+            app:destination="@id/navigation_profile"
+            app:popUpTo="@id/home_graph"
+            app:popUpToInclusive="true"/>
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <argument
+            android:name="organizationName"
+            app:argType="string" />
+    </dialog>
 </navigation>
