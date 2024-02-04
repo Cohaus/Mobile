@@ -130,6 +130,16 @@
         <action
             android:id="@+id/action_home_repair_apply_to_home"
             app:destination="@id/navigation_home" />
+        <argument
+            android:name="image"
+            app:argType="string" />
+        <argument
+            android:name="placeId"
+            app:argType="string" />
+        <argument
+            android:name="address"
+            app:argType="string" />
+        <argument android:name="district" />
     </fragment>
     <fragment
         android:id="@+id/navigation_home_location_setting"
@@ -139,6 +149,9 @@
         <action
             android:id="@+id/action_home_location_setting_to_home_repair_apply"
             app:destination="@id/navigation_home_repair_apply" />
+        <argument
+            android:name="image"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/navigation_post_repair_apply_info"

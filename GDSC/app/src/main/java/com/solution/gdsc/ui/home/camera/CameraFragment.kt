@@ -53,7 +53,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
                 findNavController().navigate(action)
             }
             btnCameraRequestRepair.setOnClickListener {
-                val action = CameraFragmentDirections.actionCameraToHomeLocationSetting()
+                val action = CameraFragmentDirections.actionCameraToHomeLocationSetting(currentPhotoPath)
                 findNavController().navigate(action)
             }
         }
