@@ -2,6 +2,7 @@ package com.solution.gdsc.data.remote
 
 import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
+import com.solution.gdsc.domain.model.response.CountRepairResponse
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoResponse
@@ -48,4 +49,8 @@ interface CoHousService {
         @Part("grade") grade: RequestBody,
         @Part("category") category: RequestBody
     ): DefaultResponse
+
+    // Map
+    @GET("/map")
+    suspend fun getAllRepairRecord(): CountRepairResponse
 }
