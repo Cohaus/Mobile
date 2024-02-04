@@ -4,6 +4,7 @@ import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.CountRepairResponse
 import com.solution.gdsc.domain.model.response.DefaultResponse
+import com.solution.gdsc.domain.model.response.RepairIdResponse
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoResponse
 import com.solution.gdsc.domain.model.response.UserRecordResponse
@@ -49,6 +50,18 @@ interface CoHousService {
         @Part("grade") grade: RequestBody,
         @Part("category") category: RequestBody
     ): DefaultResponse
+
+    @POST("/repairs/basic")
+    suspend fun postRepairBasicRecord(
+        @Part image: MultipartBody.Part,
+        @Part title: RequestBody,
+        @Part detail: RequestBody,
+        @Part category: RequestBody,
+        @Part("place_id") placeId: RequestBody,
+        @Part address: RequestBody,
+        @Part district: RequestBody,
+        @Part date: RequestBody
+    ): RepairIdResponse
 
     // Map
     @GET("/map")
