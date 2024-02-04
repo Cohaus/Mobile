@@ -17,6 +17,10 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -36,10 +40,14 @@ import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentMapBinding
 import com.solution.gdsc.domain.model.response.RecordItem
 import com.solution.gdsc.ui.map.adapter.RepairApplyRecordAdapter
+import com.solution.gdsc.ui.map.viewmodel.MapViewModel
 import com.solution.gdsc.ui.profile.adapter.PostClickListener
 import com.solution.gdsc.util.PermissionUtils.PermissionDeniedDialog.Companion.newInstance
 import com.solution.gdsc.util.PermissionUtils.isPermissionGranted
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
     OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener,
     GoogleMap.OnMyLocationClickListener, ActivityCompat.OnRequestPermissionsResultCallback,
@@ -48,6 +56,7 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
     private lateinit var map: GoogleMap
     private lateinit var adapter: RepairApplyRecordAdapter
     private var selectedMarker: Marker? = null
+    private val viewModel by viewModels<MapViewModel>()
 
     override fun setLayout() {
         val mapFragment = childFragmentManager
@@ -122,6 +131,8 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
             // 다른 영역을 터치할 때 RecyclerView를 감춤
             hideRecyclerView()
         }
+
+        viewModel.getAllRepairRecord()
 
         addMarker(37.464296657058, 127.12728060383, 7)
         addMarker(37.023, 127.512, 3)
@@ -289,6 +300,18 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
         }
     }
 
+    private fun observe() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.allRepairRecord.value
+            }
+        }
+    }
+
+    override fun onPostClick(post: RecordItem) {
+
+    }
+
     companion object {
         /**
          * Request code for location permission request.
@@ -297,9 +320,5 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
          */
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
         private const val DEFAULT_ZOOM_LEVEL = 15.0f
-    }
-
-    override fun onPostClick(post: RecordItem) {
-
     }
 }
