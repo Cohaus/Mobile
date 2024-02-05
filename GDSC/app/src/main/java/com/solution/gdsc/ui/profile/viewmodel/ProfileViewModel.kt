@@ -84,6 +84,7 @@ class ProfileViewModel @Inject constructor(
     fun getUserRecord() {
         viewModelScope.launch {
             try {
+                Log.e("Profile ViewModel", userMyPageRepository.getUserRecord().data.toString())
                 _userRecords.value = userMyPageRepository.getUserRecord().data
             } catch (e: Exception) {
                 Log.e("Get User Record Error: ", e.message.toString())

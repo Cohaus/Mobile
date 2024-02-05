@@ -22,6 +22,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     private val viewModel by viewModels<ProfileViewModel>()
     private val repairAdapter = RepairApplyAdapter(this)
     private val saveApter = RecordSaveApter(this)
+    private var savedList = mutableListOf<RecordItem>()
+    private  var repairList = mutableListOf<RecordItem>()
 
     override fun setLayout() {
         viewModel.getUserInfo()
@@ -46,6 +48,13 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         }
     }
 
+    private fun initAdapter() {
+        repairAdapter.update(repairList)
+        saveApter.update(savedList)
+        binding.rvSaveList.adapter = saveApter
+        binding.rvRepairApplyList.adapter = repairAdapter
+    }
+
     private fun observe() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -59,10 +68,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         }*/
         viewModel.userRecords.observe(viewLifecycleOwner) {
             val result = it
-            repairAdapter.add(result.repairRecord.content)
-            saveApter.add(result.savedRecord.content)
-            binding.rvSaveList.adapter = saveApter
-            binding.rvRepairApplyList.adapter = repairAdapter
+            savedList.clear()
+            savedList.addAll(result.savedRecord.content)
+            repairList.clear()
+            repairList.addAll(result.repairRecord.content)
+            initAdapter()
         }
     }
 

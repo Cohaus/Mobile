@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.solution.gdsc.databinding.ItemRecordSaveBinding
 import com.solution.gdsc.domain.model.response.RecordItem
+import com.solution.gdsc.ui.extensions.load
 
 class RecordSaveApter(
     private val listener: PostClickListener
@@ -24,10 +25,10 @@ class RecordSaveApter(
         holder.bind(items[position], listener)
     }
 
-    fun add(posts: List<RecordItem>) {
-        val positionStart = items.size
+    fun update(posts: List<RecordItem>) {
+        items.clear()
         items.addAll(posts)
-        notifyItemRangeInserted(positionStart, posts.size)
+        notifyDataSetChanged()
     }
 
     class RecordSaveViewHolder(
@@ -38,6 +39,7 @@ class RecordSaveApter(
              binding.ivConstructionSitePostImage.setOnClickListener {
                  listener.onPostClick(post)
              }
+            binding.ivConstructionSitePostImage.load(post.image)
             binding.tvRecordSaveDate.text = post.createdAt
             binding.tvRecordSaveLocation.text = post.title
         }
