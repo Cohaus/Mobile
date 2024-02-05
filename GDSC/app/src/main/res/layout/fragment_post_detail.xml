@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="savedRecordInfo"
+            type="com.solution.gdsc.domain.model.response.SavedRecordDto" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -45,9 +47,10 @@
                 android:id="@+id/iv_post_detail_image"
                 android:layout_width="0dp"
                 android:layout_height="495dp"
+                imageUrl="@{savedRecordInfo.image}"
                 android:background="@color/gray_500"
                 android:contentDescription="@string/description_post_image"
-                android:scaleType="fitCenter"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toTopOf="@id/tv_post_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +61,7 @@
                 style="@style/customTextViewFontStyle.Bold.S28.white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="일반 기록"
+                android:text="@{savedRecordInfo.title}"
                 app:layout_constraintBottom_toTopOf="@id/tv_post_date"
                 app:layout_constraintStart_toStartOf="@id/tv_post_date" />
 
@@ -69,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
                 android:layout_marginBottom="9dp"
-                android:text="2024.01.02"
+                changeTimeFormat="@{savedRecordInfo.createdAt}"
                 app:layout_constraintBottom_toBottomOf="@id/iv_post_detail_image"
                 app:layout_constraintStart_toStartOf="@id/iv_post_detail_image" />
 
@@ -79,7 +82,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="14dp"
-                android:text="서울특별시 서초구"
                 app:layout_constraintBottom_toBottomOf="@id/tv_post_date"
                 app:layout_constraintEnd_toEndOf="@id/iv_post_detail_image" />
 
@@ -92,7 +94,7 @@
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="14dp"
-                android:text="사용자 작성 내용"
+                android:text="@{savedRecordInfo.detail}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_post_detail_image" />
@@ -146,7 +148,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
-                    android:text="80점"
+                    android:text="@{savedRecordInfo.grade}"
                     app:layout_constraintBottom_toBottomOf="@id/progress_bar_safe_grade"
                     app:layout_constraintEnd_toEndOf="@id/progress_bar_safe_grade"
                     app:layout_constraintStart_toStartOf="@id/progress_bar_safe_grade"

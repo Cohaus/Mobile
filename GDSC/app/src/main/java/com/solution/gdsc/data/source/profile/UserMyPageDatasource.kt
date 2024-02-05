@@ -7,6 +7,7 @@ import com.solution.gdsc.data.remote.CoHousService
 import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.DefaultResponse
+import com.solution.gdsc.domain.model.response.SavedRecordResponse
 import com.solution.gdsc.domain.model.response.UpdateUserInfoDto
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoResponse
@@ -83,7 +84,9 @@ class UserMyPageDatasource @Inject constructor(
     suspend fun getUserRecord(): Flow<UserRecordResponse> = flow {
         val response = coHousService.getUserRecord()
         emit(response)
-    }.catch { Log.e(TAG, "Get User Record Failure") }
+    }.catch {
+        Log.e(TAG, "Get User Record Failure ${it.message}")
+    }
 
     suspend fun putVolunteerUser(volunteerRegistrationReq: VolunteerRegistrationReq): VolunteerRegistrationResponse {
         var response = VolunteerRegistrationResponse(1, "성공",
@@ -100,5 +103,12 @@ class UserMyPageDatasource @Inject constructor(
             }
         }
         return response
+    }
+
+    fun getRecordInfo(recordId: Long): Flow<SavedRecordResponse> = flow {
+        val response = coHousService.getRecordInfo(recordId)
+        emit(response)
+    }.catch {
+        Log.e(TAG, "Get Record Info Failure ${it.message}")
     }
 }
