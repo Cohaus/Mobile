@@ -25,7 +25,7 @@ class PostDetailFragment : BaseFragment<FragmentPostDetailBinding>(R.layout.frag
             findNavController().navigateUp()
         }
         binding.ibMoreButton.setOnClickListener {
-            val action = PostDetailFragmentDirections.actionPostDetailToDetailMoreDialog()
+            val action = PostDetailFragmentDirections.actionPostDetailToDetailMoreDialog(args.recordItem.recordId)
             findNavController().navigate(action)
         }
         binding.progressBarSafeGrade.setProgress(90f)
