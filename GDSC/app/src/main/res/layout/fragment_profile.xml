@@ -4,6 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
+        <variable
+            name="isLoading"
+            type="java.lang.Boolean" />
         <variable
             name="userDto"
             type="com.solution.gdsc.domain.model.response.UserInfoDto" />
@@ -17,6 +21,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".ui.profile.ProfileFragment">
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:indeterminate="true"
+                android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"/>
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar_profile"
@@ -156,6 +170,5 @@
                 tools:listitem="@layout/item_record_save" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.core.widget.NestedScrollView>
 </layout>

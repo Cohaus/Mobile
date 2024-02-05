@@ -11,49 +11,29 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/iv_circle_big"
+            android:id="@+id/iv_cohous"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="157dp"
-            android:contentDescription="@string/description_login_circle"
-            android:src="@drawable/ic_circle_big"
+            android:src="@drawable/ic_cohaus"
+            android:layout_marginTop="174dp"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:contentDescription="@string/description_coHous" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="198dp"
-            android:layout_marginEnd="31dp"
-            android:contentDescription="@string/description_login_circle"
-            android:src="@drawable/ic_circle_middle"
-            app:layout_constraintEnd_toStartOf="@id/iv_circle_big"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="198dp"
-            android:contentDescription="@string/description_login_circle"
-            android:src="@drawable/ic_circle_small"
-            app:layout_constraintStart_toEndOf="@id/iv_circle_big"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/et_input_login_id"
             style="@style/customTextViewFontStyle.Bold.S16.gray400"
             android:layout_width="0dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="38dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:hint="@string/hint_input_id"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_circle_big"
+            app:layout_constraintTop_toBottomOf="@id/iv_cohous"
             android:autofillHints="false"
             android:inputType="text" />
 

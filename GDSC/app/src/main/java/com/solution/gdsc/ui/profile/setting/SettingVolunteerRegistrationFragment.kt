@@ -51,6 +51,9 @@ class SettingVolunteerRegistrationFragment
                         .actionSettingVolunteerRegistrationToVolunteerReregistrationDialog(type, validOrganizationName)
                 findNavController().navigate(action)
             }
+            toolbarVolunteerRegistration.setNavigationOnClickListener {
+                findNavController().navigateUp()
+            }
         }
     }
 

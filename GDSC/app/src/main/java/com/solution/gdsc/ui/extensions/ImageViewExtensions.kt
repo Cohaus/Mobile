@@ -9,7 +9,7 @@ import com.solution.gdsc.R
 fun ImageView.load(url: String?) {
     if (!url.isNullOrEmpty()) {
         Glide.with(this)
-            .load(url)
+            .load("https://storage.googleapis.com/gces_bucket/$url")
             .placeholder(R.color.gray_300)
             .error(R.drawable.home_image)
             .into(this)

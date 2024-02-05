@@ -177,8 +177,13 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
     private fun createImageFile(): File {
         val timeStamp = SimpleDateFormat(DATE_YEAR_MONTH_DAY_PATTERN, Locale.KOREA)
         val storageDir: File? = requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+
+        // 외부 사진 디렉토리에서 상대 경로 대신에 절대 경로를 사용하도록 수정
         val imageFile = File.createTempFile("JPEG_${timeStamp}_", ".jpg", storageDir)
         currentPhotoPath = imageFile.absolutePath
+
+        Log.d("CameraFragment", "Image File Path: $currentPhotoPath") // 로그 추가
+
         return imageFile
     }
 
@@ -191,12 +196,11 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
 
         // 이미지를 압축하고 크기 조절
         val compressedImagePath = compressBitmap(rotatedBitmap, 200) // 200KB로 압축
+        Log.d("CameraFragment", "Compressed Image Path: $compressedImagePath") // 로그 추가
         if (compressedImagePath != null) {
             currentPhotoPath = compressedImagePath
             binding.ivCameraImage.setImageBitmap(rotatedBitmap) // 또는 압축된 이미지를 표시하려면 이 부분을 수정하세요.
             encodeImage = encodeBitmapToBase64(rotatedBitmap)
-
-            // 갤러리에 사진 추가
             galleryAddPic()
         } else {
             // 압축 실패 시의 처리

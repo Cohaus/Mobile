@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.solution.gdsc.databinding.ItemRepairApplyBinding
 import com.solution.gdsc.domain.model.response.RecordItem
+import com.solution.gdsc.ui.extensions.load
 
 class RepairApplyAdapter(
     private val listener: PostClickListener
@@ -24,10 +25,10 @@ class RepairApplyAdapter(
         holder.bind(items[position], listener)
     }
 
-    fun add(posts: List<RecordItem>) {
-        val positionStart = items.size
+    fun update(posts: List<RecordItem>) {
+        items.clear()
         items.addAll(posts)
-        notifyItemRangeInserted(positionStart, posts.size)
+        notifyDataSetChanged()
     }
 
     class RepairApplyViewHolder(
@@ -38,6 +39,7 @@ class RepairApplyAdapter(
              binding.ivConstructionSitePostImage.setOnClickListener {
                  listener.onPostClick(post)
              }
+            binding.ivConstructionSitePostImage.load(post.image)
             binding.tvRepairApplyDate.text = post.createdAt
             binding.tvRepairLocation.text = post.title
         }
