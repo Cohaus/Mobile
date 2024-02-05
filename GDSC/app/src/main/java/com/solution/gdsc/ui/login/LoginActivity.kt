@@ -3,12 +3,18 @@ package com.solution.gdsc.ui.login
 import android.content.Intent
 import androidx.activity.viewModels
 import androidx.core.widget.doAfterTextChanged
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.solution.gdsc.ChallengeApplication
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseActivity
 import com.solution.gdsc.databinding.ActivityLoginBinding
 import com.solution.gdsc.ui.MainActivity
 import com.solution.gdsc.ui.login.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
@@ -16,9 +22,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     private var validId = ""
     private var validPassword = ""
-    private var isValidToken = false
 
     override fun setLayout() {
+        binding.isLoading = true
         viewModel.autoLogin()
         setInputText()
         setLoginClick()
@@ -55,6 +61,16 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     }
 
     private fun observe() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+                if (ChallengeApplication.getInstance().tokenManager.accessTokenFlow.first() != null) {
+                    autoLogin()
+                    finish()
+                } else {
+                    binding.isLoading = false
+                }
+            }
+        }
         viewModel.userInfo.observe(this) {
             if (it.accessToken.isNotEmpty()) {
                 val intent = Intent(this, MainActivity::class.java)
@@ -62,18 +78,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 finish()
             }
         }
-        viewModel.isValidLogin.observe(this) {
-            isValidToken = it
-            if (isValidToken) {
-                //checkUserLogin()
-            }
-        }
     }
 
-    private fun checkUserLogin() {
-        if (isValidToken) {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
+    private fun autoLogin() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 }

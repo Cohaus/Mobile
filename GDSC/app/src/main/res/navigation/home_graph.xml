@@ -93,6 +93,11 @@
         <argument
             android:name="dialogCategory"
             app:argType="com.solution.gdsc.ui.common.DialogCategory" />
+        <action
+            android:id="@+id/action_setting_state_dialog_to_login"
+            app:destination="@id/navigation_login"
+            app:popUpTo="@id/home_graph"
+            app:popUpToInclusive="true"/>
     </dialog>
     <dialog
         android:id="@+id/navigation_report_dialog"

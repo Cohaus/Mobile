@@ -17,8 +17,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private lateinit var placeClient: PlacesClient
 
     override fun setLayout() {
-        setBottomNavigation()
         initPlaceClient()
+        setBottomNavigation()
     }
 
     private fun initPlaceClient() {
