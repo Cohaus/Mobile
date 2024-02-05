@@ -27,12 +27,14 @@ class HomeDataSource @Inject constructor(
         val gradeRequestBody = grade.toRequestBody("text/plain".toMediaTypeOrNull())
         val categoryRequestBody = category.toRequestBody("text/plain".toMediaTypeOrNull())
 
-        // imageFilePath는 이미지 파일에 해당하는 파일 경로
-        val imageFile = File(imageFilePath)
-        val imageRequestBody = imageFile.asRequestBody("image/*".toMediaTypeOrNull())
-        val imagePart = MultipartBody.Part.createFormData("image", imageFile.name, imageRequestBody)
+        val file = File(imageFilePath)
+        val imageRequestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
+        val imagePart = MultipartBody.Part.createFormData("image", file.name, imageRequestBody)
 
         var response = DefaultResponse(200, "성공", 1)
+        Log.e("Image", imageFilePath)
+        Log.e("Image", file.toString())
+        Log.e("Image", imageRequestBody.toString())
         withContext(Dispatchers.IO) {
             runCatching {
                 coHousService.saveRecord(imagePart, titleRequestBody, detailRequestBody, gradeRequestBody, categoryRequestBody)
@@ -43,6 +45,7 @@ class HomeDataSource @Inject constructor(
                 // 에러 처리 로직 추가
             }
         }
+
         return response
     }
 
