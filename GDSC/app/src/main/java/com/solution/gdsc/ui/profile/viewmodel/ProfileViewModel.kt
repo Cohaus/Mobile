@@ -8,9 +8,9 @@ import androidx.lifecycle.viewModelScope
 import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.DefaultResponse
+import com.solution.gdsc.domain.model.response.RecordItem
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoDto
-import com.solution.gdsc.domain.model.response.UserRecordListResponse
 import com.solution.gdsc.domain.model.response.VolunteerRegistrationResponse
 import com.solution.gdsc.domain.repository.UserMyPageRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -32,10 +32,12 @@ class ProfileViewModel @Inject constructor(
     val isWithdraw: LiveData<DefaultResponse> = _isWithdraw
     private val _isUpdate = MutableLiveData<UpdateUserInfoResponse>()
     val isUpdate: LiveData<UpdateUserInfoResponse> = _isUpdate
-    private val _userRecords = MutableLiveData<UserRecordListResponse>()
-    val userRecords: LiveData<UserRecordListResponse> = _userRecords
     private val _hasResult = MutableLiveData<VolunteerRegistrationResponse>()
     val hasResult: LiveData<VolunteerRegistrationResponse> = _hasResult
+    private val _savedRecords = MutableStateFlow<List<RecordItem>>(emptyList())
+    val savedRecords: StateFlow<List<RecordItem>> = _savedRecords
+    private val _repairRecords = MutableStateFlow<List<RecordItem>>(emptyList())
+    val repairRecords: StateFlow<List<RecordItem>> = _repairRecords
 
     fun logout() {
         viewModelScope.launch {
@@ -84,10 +86,13 @@ class ProfileViewModel @Inject constructor(
     fun getUserRecord() {
         viewModelScope.launch {
             try {
-                Log.e("Profile ViewModel", userMyPageRepository.getUserRecord().data.toString())
-                _userRecords.value = userMyPageRepository.getUserRecord().data
+                userMyPageRepository.getUserRecord().collect {
+                    _savedRecords.value = it.data.savedRecord.content
+                    _repairRecords.value = it.data.repairRecord.content
+                }
+                Log.e("Profile", _savedRecords.value.toString())
             } catch (e: Exception) {
-                Log.e("Get User Record Error: ", e.message.toString())
+                Log.e("User Record Error: ", e.message.toString())
             }
         }
     }

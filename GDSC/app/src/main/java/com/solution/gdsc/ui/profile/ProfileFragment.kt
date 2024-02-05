@@ -14,20 +14,23 @@ import com.solution.gdsc.ui.profile.adapter.RecordSaveApter
 import com.solution.gdsc.ui.profile.adapter.RepairApplyAdapter
 import com.solution.gdsc.ui.profile.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
-class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_profile), PostClickListener {
+class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_profile),
+    PostClickListener {
     private val viewModel by viewModels<ProfileViewModel>()
     private val repairAdapter = RepairApplyAdapter(this)
     private val saveApter = RecordSaveApter(this)
-    private var savedList = mutableListOf<RecordItem>()
-    private  var repairList = mutableListOf<RecordItem>()
+    private var repairList = mutableListOf<RecordItem>()
 
     override fun setLayout() {
-        viewModel.getUserInfo()
+        binding.isLoading = true
         viewModel.getUserRecord()
+        viewModel.getUserInfo()
         setToolbarMenu()
         observe()
     }
@@ -36,7 +39,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         binding.toolbarProfile.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.toolbar_ic_setting -> {
-                    val action = ProfileFragmentDirections.actionProfileToProfileSetting(binding.userDto!!)
+                    val action =
+                        ProfileFragmentDirections.actionProfileToProfileSetting(binding.userDto!!)
                     findNavController().navigate(action)
                     true
                 }
@@ -48,31 +52,30 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         }
     }
 
-    private fun initAdapter() {
-        repairAdapter.update(repairList)
-        saveApter.update(savedList)
-        binding.rvSaveList.adapter = saveApter
-        binding.rvRepairApplyList.adapter = repairAdapter
-    }
-
     private fun observe() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.userInfo.collectLatest {
-                    binding.userDto = it
+                    withContext(Dispatchers.Main) {
+                        binding.userDto = it
+                        binding.isLoading = false
+                    }
                 }
             }
         }
-        /*viewModel.userInfo.observe(viewLifecycleOwner) {
-            binding.userDto = it
-        }*/
-        viewModel.userRecords.observe(viewLifecycleOwner) {
-            val result = it
-            savedList.clear()
-            savedList.addAll(result.savedRecord.content)
-            repairList.clear()
-            repairList.addAll(result.repairRecord.content)
-            initAdapter()
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+                viewModel.savedRecords.collectLatest {
+                    saveApter.update(it)
+                    binding.rvSaveList.adapter = saveApter
+                    binding.isLoading = false
+                }
+                viewModel.repairRecords.collectLatest {
+                    repairAdapter.update(it)
+                    binding.rvRepairApplyList.adapter = repairAdapter
+                    binding.isLoading = false
+                }
+            }
         }
     }
 
