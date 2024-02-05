@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.DefaultResponse
+import com.solution.gdsc.domain.model.response.DeleteSavedRecordResponse
 import com.solution.gdsc.domain.model.response.RecordItem
 import com.solution.gdsc.domain.model.response.SavedRecordDto
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
@@ -41,6 +42,8 @@ class ProfileViewModel @Inject constructor(
     val repairRecords: StateFlow<List<RecordItem>> = _repairRecords
     private val _savedRecordInfo = MutableStateFlow(SavedRecordDto())
     val savedRecordInfo: StateFlow<SavedRecordDto> = _savedRecordInfo
+    private val _deleteSavedRecord = MutableStateFlow(DeleteSavedRecordResponse(1, "", 1))
+    val deleteSavedRecord: StateFlow<DeleteSavedRecordResponse> = _deleteSavedRecord
 
     fun logout() {
         viewModelScope.launch {
@@ -118,6 +121,18 @@ class ProfileViewModel @Inject constructor(
                 }
             } catch (e: Exception) {
                 Log.e("Get Save Record Info Error: ", e.message.toString())
+            }
+        }
+    }
+
+    fun deleteSavedRecord(recordId: Long) {
+        viewModelScope.launch {
+            try {
+                userMyPageRepository.deleteSavedRecord(recordId).collect {
+                    _deleteSavedRecord.value = it
+                }
+            } catch (e: Exception) {
+                Log.e("Delete Saved Record Error: ", e.message.toString())
             }
         }
     }

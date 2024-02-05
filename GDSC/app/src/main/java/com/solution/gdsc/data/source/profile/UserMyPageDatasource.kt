@@ -7,6 +7,7 @@ import com.solution.gdsc.data.remote.CoHousService
 import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.DefaultResponse
+import com.solution.gdsc.domain.model.response.DeleteSavedRecordResponse
 import com.solution.gdsc.domain.model.response.SavedRecordResponse
 import com.solution.gdsc.domain.model.response.UpdateUserInfoDto
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
@@ -110,5 +111,12 @@ class UserMyPageDatasource @Inject constructor(
         emit(response)
     }.catch {
         Log.e(TAG, "Get Record Info Failure ${it.message}")
+    }
+
+    fun deleteSavedRecord(recordId: Long): Flow<DeleteSavedRecordResponse> = flow {
+        val response = coHousService.deleteSavedRecord(recordId)
+        emit(response)
+    }.catch {
+        Log.e(TAG, "Delete Saved Record Failure ${it.message}")
     }
 }
