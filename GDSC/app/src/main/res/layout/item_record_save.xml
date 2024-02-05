@@ -1,47 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="10dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_construction_site_post_image"
-        android:layout_width="106dp"
-        android:layout_height="106dp"
-        android:background="@color/gray_500"
-        android:scaleType="centerCrop"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/AppRoundImage"
-        tools:background="@color/gray_500" />
+    <data>
+        <variable
+            name="listener"
+            type="com.solution.gdsc.ui.profile.adapter.PostClickListener" />
+        <variable
+            name="record"
+            type="com.solution.gdsc.domain.model.response.RecordItem" />
+    </data>
 
-    <TextView
-        android:id="@+id/tv_record_save_location"
-        style="@style/customTextViewFontStyle.Bold.S12.gray200"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:text="서울 특별시 서초구"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_construction_site_post_image"
-        tools:text="서울 특별시 서초구" />
+        android:onClick="@{() -> listener.onPostClick(record)}"
+        android:layout_marginStart="10dp">
 
-    <TextView
-        android:id="@+id/tv_record_save_date"
-        style="@style/customTextViewFontStyle.light.S12.gray200"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="2024.01.03"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_record_save_location"
-        tools:text="2024.01.03" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_construction_site_post_image"
+            android:layout_width="106dp"
+            android:layout_height="106dp"
+            android:background="@color/gray_500"
+            android:scaleType="centerCrop"
+            imageUrl="@{record.image}"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/AppRoundImage"
+            tools:background="@color/gray_500" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_record_save_location"
+            style="@style/customTextViewFontStyle.Bold.S12.gray200"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{record.title}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_construction_site_post_image"
+            tools:text="서울 특별시 서초구" />
+
+        <TextView
+            android:id="@+id/tv_record_save_date"
+            style="@style/customTextViewFontStyle.light.S12.gray200"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{record.createdAt}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_record_save_location"
+            tools:text="2024.01.03" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
