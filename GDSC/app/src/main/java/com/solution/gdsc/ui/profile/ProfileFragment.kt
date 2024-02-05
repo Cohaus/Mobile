@@ -66,12 +66,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.savedRecords.collectLatest {
-                    saveApter.update(it)
+                    saveApter.update(it.reversed())
                     binding.rvSaveList.adapter = saveApter
                     binding.isLoading = false
                 }
                 viewModel.repairRecords.collectLatest {
-                    repairAdapter.update(it)
+                    repairAdapter.update(it.reversed())
                     binding.rvRepairApplyList.adapter = repairAdapter
                     binding.isLoading = false
                 }
