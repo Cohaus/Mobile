@@ -5,6 +5,7 @@ import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.CountRepairResponse
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.RepairIdResponse
+import com.solution.gdsc.domain.model.response.SavedRecordResponse
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoResponse
 import com.solution.gdsc.domain.model.response.UserRecordResponse
@@ -19,6 +20,7 @@ import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Part
+import retrofit2.http.Path
 
 interface CoHousService {
     // Profile
@@ -36,6 +38,8 @@ interface CoHousService {
 
     @GET("/my-page/records")
     suspend fun getUserRecord(): UserRecordResponse
+    @GET("/records/{recordId}")
+    suspend fun getRecordInfo(@Path("recordId") recordId: Long): SavedRecordResponse
 
     @PUT("/volunteers/users")
     suspend fun putVolunteerUser(@Body volunteerRegistrationReq: VolunteerRegistrationReq): VolunteerRegistrationResponse

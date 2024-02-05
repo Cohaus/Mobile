@@ -9,6 +9,7 @@ import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.RecordItem
+import com.solution.gdsc.domain.model.response.SavedRecordDto
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoDto
 import com.solution.gdsc.domain.model.response.VolunteerRegistrationResponse
@@ -38,6 +39,8 @@ class ProfileViewModel @Inject constructor(
     val savedRecords: StateFlow<List<RecordItem>> = _savedRecords
     private val _repairRecords = MutableStateFlow<List<RecordItem>>(emptyList())
     val repairRecords: StateFlow<List<RecordItem>> = _repairRecords
+    private val _savedRecordInfo = MutableStateFlow(SavedRecordDto())
+    val savedRecordInfo: StateFlow<SavedRecordDto> = _savedRecordInfo
 
     fun logout() {
         viewModelScope.launch {
@@ -103,6 +106,18 @@ class ProfileViewModel @Inject constructor(
                 _hasResult.value = userMyPageRepository.putVolunteerUser(VolunteerRegistrationReq(volunteerType, organizationName))
             } catch (e: Exception) {
                 Log.e("Put Volunteer Error: ", e.message.toString())
+            }
+        }
+    }
+
+    fun getSaveRecordInfo(recordId: Long) {
+        viewModelScope.launch {
+            try {
+                userMyPageRepository.getSavedRecordInfo(recordId).collect {
+                    _savedRecordInfo.value = it.data
+                }
+            } catch (e: Exception) {
+                Log.e("Get Save Record Info Error: ", e.message.toString())
             }
         }
     }

@@ -3,6 +3,7 @@ package com.solution.gdsc.data.source.profile
 import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.DefaultResponse
+import com.solution.gdsc.domain.model.response.SavedRecordResponse
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoResponse
 import com.solution.gdsc.domain.model.response.UserRecordResponse
@@ -20,4 +21,5 @@ class UserMyPageRepositoryImpl @Inject constructor(
     override suspend fun withdraw(): DefaultResponse = dataSource.withdraw()
     override suspend fun getUserRecord(): Flow<UserRecordResponse> = dataSource.getUserRecord()
     override suspend fun putVolunteerUser(volunteerRegistrationReq: VolunteerRegistrationReq): VolunteerRegistrationResponse = dataSource.putVolunteerUser(volunteerRegistrationReq)
+    override suspend fun getSavedRecordInfo(recordId: Long): Flow<SavedRecordResponse> = dataSource.getRecordInfo(recordId)
 }
