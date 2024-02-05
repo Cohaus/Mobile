@@ -51,7 +51,7 @@
             style="@style/customTextViewFontStyle.light.S12.gray200"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{record.createdAt}"
+            changeTimeFormat="@{record.createdAt}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_record_save_location"
