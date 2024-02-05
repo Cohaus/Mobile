@@ -16,10 +16,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                 val action = HomeFragmentDirections.actionHomeToCamera()
                 findNavController().navigate(action)
             }
-            btnLoginView.setOnClickListener {
-                val action = HomeFragmentDirections.actionHomeToLogin()
-                findNavController().navigate(action)
-            }
         }
     }
 }

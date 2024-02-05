@@ -11,13 +11,15 @@ import com.solution.gdsc.domain.model.request.SignUpRequest
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.LoginDto
 import com.solution.gdsc.domain.repository.LoginRepository
+import com.solution.gdsc.domain.repository.UserMyPageRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val repository: LoginRepository
+    private val repository: LoginRepository,
+    private val profileRepository: UserMyPageRepository
 ) : ViewModel() {
 
     private val _signUpResult = MutableLiveData<DefaultResponse>()
@@ -25,9 +27,6 @@ class LoginViewModel @Inject constructor(
 
     private val _userInfo = MutableLiveData<LoginDto>()
     val userInfo: LiveData<LoginDto> = _userInfo
-
-    private val _isValidLogin = MutableLiveData<Boolean>()
-    val isValidLogin: LiveData<Boolean> = _isValidLogin
 
     fun signUp(
         id: String, password: String,
@@ -56,9 +55,9 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun autoLogin() {
+    fun checkToken() {
         viewModelScope.launch {
-            _isValidLogin.value = ChallengeApplication.getInstance().tokenManager.getAccessToken().isNullOrEmpty().not()
+            profileRepository.getUserInfo()
         }
     }
 }

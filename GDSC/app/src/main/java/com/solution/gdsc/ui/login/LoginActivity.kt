@@ -24,8 +24,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     private var validPassword = ""
 
     override fun setLayout() {
+        viewModel.checkToken()
         binding.isLoading = true
-        viewModel.autoLogin()
         setInputText()
         setLoginClick()
         setSignUpButtonClick()
