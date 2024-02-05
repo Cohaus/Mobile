@@ -76,10 +76,14 @@ class SettingStateDialogFragment : DialogFragment() {
 
     private fun observe() {
         viewModel.isLogout.observe(viewLifecycleOwner) {
-            findNavController().navigateUp()
+            val action = SettingStateDialogFragmentDirections.actionSettingStateDialogToLogin()
+            findNavController().navigate(action)
+            requireActivity().finish()
         }
         viewModel.isWithdraw.observe(viewLifecycleOwner) {
-            findNavController().navigateUp()
+            val action = SettingStateDialogFragmentDirections.actionSettingStateDialogToLogin()
+            findNavController().navigate(action)
+            requireActivity().finish()
         }
     }
 }
