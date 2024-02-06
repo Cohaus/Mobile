@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.solution.gdsc.domain.model.request.UpdateSavedRecordReq
 import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.DefaultResponse
@@ -44,6 +45,8 @@ class ProfileViewModel @Inject constructor(
     val savedRecordInfo: StateFlow<SavedRecordDto> = _savedRecordInfo
     private val _deleteSavedRecord = MutableStateFlow(DeleteSavedRecordResponse(1, "", 1))
     val deleteSavedRecord: StateFlow<DeleteSavedRecordResponse> = _deleteSavedRecord
+    private val _updateSavedRecord = MutableStateFlow(0)
+    val updateSavedRecord: StateFlow<Int> = _updateSavedRecord
 
     fun logout() {
         viewModelScope.launch {
@@ -133,6 +136,18 @@ class ProfileViewModel @Inject constructor(
                 }
             } catch (e: Exception) {
                 Log.e("Delete Saved Record Error: ", e.message.toString())
+            }
+        }
+    }
+
+    fun updateSavedRecord(recordId: Long, title: String, detail: String, category: String) {
+        viewModelScope.launch {
+            try {
+                userMyPageRepository.updateSavedRecord(recordId, UpdateSavedRecordReq(title, detail, category)).collect {
+                    _updateSavedRecord.value = it.status
+                }
+            } catch (e: Exception) {
+                Log.e("Update Saved Record Error: ", e.message.toString())
             }
         }
     }
