@@ -9,6 +9,7 @@ import androidx.navigation.fragment.navArgs
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentPostDetailBinding
+import com.solution.gdsc.domain.model.response.SavedRecordDto
 import com.solution.gdsc.ui.profile.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -18,6 +19,7 @@ import kotlinx.coroutines.launch
 class PostDetailFragment : BaseFragment<FragmentPostDetailBinding>(R.layout.fragment_post_detail) {
     private val args by navArgs<PostDetailFragmentArgs>()
     private val viewModel by viewModels<ProfileViewModel>()
+    private var savedRecordDto: SavedRecordDto? = null
 
     override fun setLayout() {
         viewModel.getSaveRecordInfo(args.recordItem.recordId)
@@ -25,8 +27,12 @@ class PostDetailFragment : BaseFragment<FragmentPostDetailBinding>(R.layout.frag
             findNavController().navigateUp()
         }
         binding.ibMoreButton.setOnClickListener {
-            val action = PostDetailFragmentDirections.actionPostDetailToDetailMoreDialog(args.recordItem.recordId)
-            findNavController().navigate(action)
+            if (savedRecordDto != null) {
+                val action = PostDetailFragmentDirections.actionPostDetailToDetailMoreDialog(
+                    args.recordItem.recordId, savedRecordDto!!
+                )
+                findNavController().navigate(action)
+            }
         }
         binding.progressBarSafeGrade.setProgress(90f)
         setRecordInfo()
@@ -36,7 +42,8 @@ class PostDetailFragment : BaseFragment<FragmentPostDetailBinding>(R.layout.frag
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.savedRecordInfo.collectLatest {
-                    binding.savedRecordInfo = it
+                    savedRecordDto = it
+                    binding.savedRecordInfo = savedRecordDto
                 }
             }
         }

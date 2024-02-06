@@ -1,10 +1,12 @@
 package com.solution.gdsc.domain.repository
 
+import com.solution.gdsc.domain.model.request.UpdateSavedRecordReq
 import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.DeleteSavedRecordResponse
 import com.solution.gdsc.domain.model.response.SavedRecordResponse
+import com.solution.gdsc.domain.model.response.UpdateSavedRecordResponse
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoResponse
 import com.solution.gdsc.domain.model.response.UserRecordResponse
@@ -20,4 +22,5 @@ interface UserMyPageRepository {
     suspend fun putVolunteerUser(volunteerRegistrationReq: VolunteerRegistrationReq): VolunteerRegistrationResponse
     suspend fun getSavedRecordInfo(recordId: Long): Flow<SavedRecordResponse>
     suspend fun deleteSavedRecord(recordId: Long): Flow<DeleteSavedRecordResponse>
+    suspend fun updateSavedRecord(recordId: Long, updateSavedRecordReq: UpdateSavedRecordReq): Flow<UpdateSavedRecordResponse>
 }

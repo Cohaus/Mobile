@@ -1,10 +1,12 @@
 package com.solution.gdsc.data.source.profile
 
+import com.solution.gdsc.domain.model.request.UpdateSavedRecordReq
 import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.DeleteSavedRecordResponse
 import com.solution.gdsc.domain.model.response.SavedRecordResponse
+import com.solution.gdsc.domain.model.response.UpdateSavedRecordResponse
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoResponse
 import com.solution.gdsc.domain.model.response.UserRecordResponse
@@ -24,4 +26,5 @@ class UserMyPageRepositoryImpl @Inject constructor(
     override suspend fun putVolunteerUser(volunteerRegistrationReq: VolunteerRegistrationReq): VolunteerRegistrationResponse = dataSource.putVolunteerUser(volunteerRegistrationReq)
     override suspend fun getSavedRecordInfo(recordId: Long): Flow<SavedRecordResponse> = dataSource.getRecordInfo(recordId)
     override suspend fun deleteSavedRecord(recordId: Long): Flow<DeleteSavedRecordResponse> = dataSource.deleteSavedRecord(recordId)
+    override suspend fun updateSavedRecord(recordId: Long, updateSavedRecordReq: UpdateSavedRecordReq): Flow<UpdateSavedRecordResponse> = dataSource.updateSavedRecord(recordId, updateSavedRecordReq)
 }

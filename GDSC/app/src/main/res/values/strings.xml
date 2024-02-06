@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CoHous</string>
+    <string name="app_name">CoHaus</string>
     <!--  Permission  -->
     <string name="permission_rationale_location">Access to the location service is required to demonstrate the \'my location\' feature, which shows your current location on the map.</string>
     <string name="location_permission_denied">This sample requires location permission to enable the \'my location\' layer. Please try again and grant access to use the location.\nIf the permission has been permanently denied, it can be enabled from the System Settings &gt; Apps &gt; \'Google Maps API Demos\'.</string>
@@ -87,4 +87,5 @@
     <string name="label_info_modify">회원정보 수정</string>
     <string name="label_modify">수정하기</string>
     <string name="description_coHous">코하우스 텍스트</string>
+    <string name="text_reocrd_detail_modify">기록 수정</string>
 </resources>

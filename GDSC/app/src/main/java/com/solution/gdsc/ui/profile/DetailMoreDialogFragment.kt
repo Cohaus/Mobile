@@ -50,6 +50,10 @@ class DetailMoreDialogFragment : BottomSheetDialogFragment() {
                     DetailMoreDialogFragmentDirections.actionDetailMoreDialogToPostRepairApplyInfo()
                 findNavController().navigate(action)
             }
+            tvDetailEdit.setOnClickListener {
+                val action = DetailMoreDialogFragmentDirections.actionDetailMoreDialogToSettingDetailModify(args.savedRecordDto)
+                findNavController().navigate(action)
+            }
             tvDetailDelete.setOnClickListener {
                 viewModel.deleteSavedRecord(args.reocrdId)
                 deleteRecord()
