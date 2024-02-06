@@ -4,11 +4,13 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import com.solution.gdsc.ChallengeApplication
 import com.solution.gdsc.data.remote.CoHousService
+import com.solution.gdsc.domain.model.request.UpdateSavedRecordReq
 import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.DeleteSavedRecordResponse
 import com.solution.gdsc.domain.model.response.SavedRecordResponse
+import com.solution.gdsc.domain.model.response.UpdateSavedRecordResponse
 import com.solution.gdsc.domain.model.response.UpdateUserInfoDto
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoResponse
@@ -118,5 +120,12 @@ class UserMyPageDatasource @Inject constructor(
         emit(response)
     }.catch {
         Log.e(TAG, "Delete Saved Record Failure ${it.message}")
+    }
+
+    fun updateSavedRecord(recordId: Long, updateSavedRecordReq: UpdateSavedRecordReq): Flow<UpdateSavedRecordResponse> = flow {
+        val response = coHousService.updateSavedRecord(recordId, updateSavedRecordReq)
+        emit(response)
+    }.catch {
+        Log.e(TAG, "Update Saved Record Failure ${it.message}")
     }
 }
