@@ -130,8 +130,8 @@ class UserMyPageDatasource @Inject constructor(
         Log.e(TAG, "Update Saved Record Failure ${it.message}")
     }
 
-    suspend fun getRepairsRecord(recordId: Long): Flow<RepairRecordResponse> = flow {
-        val response = coHousService.getRepairsRecord(recordId)
+    suspend fun getRepairsRecord(repairId: Long): Flow<RepairRecordResponse> = flow {
+        val response = coHousService.getRepairsRecord(repairId)
         emit(response)
     }.catch {
         Log.e(TAG, "Get Repairs Record Failure ${it.message}")

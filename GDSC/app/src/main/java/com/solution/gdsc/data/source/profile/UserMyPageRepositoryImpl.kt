@@ -28,5 +28,5 @@ class UserMyPageRepositoryImpl @Inject constructor(
     override suspend fun getSavedRecordInfo(recordId: Long): Flow<SavedRecordResponse> = dataSource.getRecordInfo(recordId)
     override suspend fun deleteSavedRecord(recordId: Long): Flow<DeleteSavedRecordResponse> = dataSource.deleteSavedRecord(recordId)
     override suspend fun updateSavedRecord(recordId: Long, updateSavedRecordReq: UpdateSavedRecordReq): Flow<UpdateSavedRecordResponse> = dataSource.updateSavedRecord(recordId, updateSavedRecordReq)
-    override suspend fun getRepairsRecord(recordId: Long): Flow<RepairRecordResponse> = dataSource.getRepairsRecord(recordId)
+    override suspend fun getRepairsRecord(repairId: Long): Flow<RepairRecordResponse> = dataSource.getRepairsRecord(repairId)
 }

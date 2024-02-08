@@ -24,5 +24,5 @@ interface UserMyPageRepository {
     suspend fun getSavedRecordInfo(recordId: Long): Flow<SavedRecordResponse>
     suspend fun deleteSavedRecord(recordId: Long): Flow<DeleteSavedRecordResponse>
     suspend fun updateSavedRecord(recordId: Long, updateSavedRecordReq: UpdateSavedRecordReq): Flow<UpdateSavedRecordResponse>
-    suspend fun getRepairsRecord(recordId: Long): Flow<RepairRecordResponse>
+    suspend fun getRepairsRecord(repairId: Long): Flow<RepairRecordResponse>
 }
