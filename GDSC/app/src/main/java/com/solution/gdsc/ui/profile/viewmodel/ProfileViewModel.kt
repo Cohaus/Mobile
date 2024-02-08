@@ -11,6 +11,7 @@ import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.DeleteSavedRecordResponse
 import com.solution.gdsc.domain.model.response.RecordItem
+import com.solution.gdsc.domain.model.response.RepairRecordResponse
 import com.solution.gdsc.domain.model.response.SavedRecordDto
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoDto
@@ -47,6 +48,8 @@ class ProfileViewModel @Inject constructor(
     val deleteSavedRecord: StateFlow<DeleteSavedRecordResponse> = _deleteSavedRecord
     private val _updateSavedRecord = MutableStateFlow(0)
     val updateSavedRecord: StateFlow<Int> = _updateSavedRecord
+    private val _repairRecord = MutableStateFlow(RepairRecordResponse(data = null))
+    val repairRecord: StateFlow<RepairRecordResponse> = _repairRecord
 
     fun logout() {
         viewModelScope.launch {
@@ -148,6 +151,20 @@ class ProfileViewModel @Inject constructor(
                 }
             } catch (e: Exception) {
                 Log.e("Update Saved Record Error: ", e.message.toString())
+            }
+        }
+    }
+
+    fun getRepairsRecord(repairId: Long) {
+        viewModelScope.launch {
+            try {
+                userMyPageRepository.getRepairsRecord(repairId).collect {
+                    if (it.data != null) {
+                        _repairRecord.value = it
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("Get Repairs Record Error: ", e.message.toString())
             }
         }
     }
