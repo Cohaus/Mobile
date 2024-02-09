@@ -11,26 +11,28 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_marginTop="25dp"
             android:contentDescription="@string/description_home_image"
-            android:src="@drawable/home_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_home_title_name"
-            style="@style/customTextViewFontStyle.Bold.S24"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="52dp"
-            android:layout_marginEnd="24dp"
-            android:text="@string/app_name"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_home_main_image"
+            app:layout_constraintBottom_toTopOf="@+id/btn_ai_diagnosis"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/iv_home_title_name" />
+
+        <ImageView
+            android:id="@+id/iv_home_title_name"
+            style="@style/customTextViewFontStyle.Bold.S24"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_cohaus"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/description_coHous" />
 
         <TextView
             android:id="@+id/home_middle_description"
@@ -40,10 +42,10 @@
             android:layout_marginStart="26dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="26dp"
-            android:text="편안한 공간을 위한 ~"
+            android:text="편안한 공간을 위한"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_home_title_name" />
+            app:layout_constraintTop_toBottomOf="@id/iv_home_title_name" />
 
         <TextView
             android:id="@+id/home_bottom_description"
@@ -56,53 +58,110 @@
             app:layout_constraintStart_toStartOf="@id/home_middle_description"
             app:layout_constraintTop_toBottomOf="@id/home_middle_description" />
 
+        <ImageView
+            android:id="@+id/iv_ai_capture"
+            android:background="@drawable/shape_button_9dp_dark_green"
+            android:layout_width="48dp"
+            android:scaleType="center"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_ai_capture"
+            app:layout_constraintBottom_toBottomOf="@id/btn_ai_diagnosis"
+            app:layout_constraintTop_toTopOf="@id/btn_ai_diagnosis"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_ai_diagnosis"
+            android:contentDescription="@string/description_ai_capture" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_ai_diagnosis"
-            style="@style/customTextViewFontStyle.Bold.S22"
+            style="@style/customTextViewFontStyle.Bold.S18"
             android:layout_width="0dp"
-            android:layout_height="84dp"
-            android:layout_marginBottom="28dp"
-            android:background="@drawable/shape_home_button_30dp_gray"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
             android:gravity="center_vertical"
-            android:paddingStart="40dp"
-            android:paddingEnd="40dp"
+            app:layout_constraintStart_toStartOf="@id/btn_basic_capture"
+            app:layout_constraintEnd_toEndOf="@id/btn_basic_capture"
+            app:layout_constraintBottom_toTopOf="@id/btn_basic_capture"
             android:text="@string/text_ai_diagnosis"
-            app:layout_constraintBottom_toTopOf="@id/btn_general_repair_apply"
-            app:layout_constraintEnd_toEndOf="@id/btn_how_use"
-            app:layout_constraintStart_toStartOf="@id/btn_how_use" />
+            app:layout_constraintStart_toEndOf="@id/iv_ai_capture" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back_large"
+            app:layout_constraintTop_toTopOf="@id/btn_ai_diagnosis"
+            app:layout_constraintBottom_toBottomOf="@id/btn_ai_diagnosis"
+            app:layout_constraintEnd_toEndOf="@id/btn_ai_diagnosis"
+            android:contentDescription="@string/description_back_icon" />
+
+        <ImageView
+            android:id="@+id/iv_basic_capture"
+            android:background="@drawable/shape_button_9dp_dark_green"
+            android:layout_marginEnd="10dp"
+            android:layout_width="48dp"
+            android:scaleType="center"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_construction"
+            app:layout_constraintBottom_toBottomOf="@id/btn_basic_capture"
+            app:layout_constraintStart_toStartOf="@id/iv_use_guide"
+            android:contentDescription="@string/description_basic_capture" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_general_repair_apply"
-            style="@style/customTextViewFontStyle.Bold.S22"
+            android:id="@+id/btn_basic_capture"
+            style="@style/customTextViewFontStyle.Bold.S18"
             android:layout_width="0dp"
-            android:layout_height="84dp"
-            android:layout_marginBottom="28dp"
-            android:background="@drawable/shape_home_button_30dp_gray"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
             android:gravity="center_vertical"
-            android:paddingStart="40dp"
-            android:paddingEnd="40dp"
             android:text="@string/text_general_repair_apply_go"
-            app:layout_constraintBottom_toTopOf="@id/btn_how_use"
-            app:layout_constraintEnd_toEndOf="@id/btn_how_use"
-            app:layout_constraintStart_toStartOf="@id/btn_how_use" />
+            app:layout_constraintBottom_toTopOf="@id/btn_use_guide"
+            app:layout_constraintEnd_toEndOf="@id/btn_use_guide"
+            app:layout_constraintStart_toStartOf="@id/btn_use_guide" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back_large"
+            app:layout_constraintTop_toTopOf="@id/btn_basic_capture"
+            app:layout_constraintBottom_toBottomOf="@id/btn_basic_capture"
+            app:layout_constraintEnd_toEndOf="@id/btn_basic_capture"
+            android:contentDescription="@string/description_back_icon" />
+
+        <ImageView
+            android:id="@+id/iv_use_guide"
+            android:background="@drawable/shape_button_9dp_dark_green"
+            android:layout_marginStart="21dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="48dp"
+            android:scaleType="center"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_info"
+            app:layout_constraintBottom_toBottomOf="@id/btn_use_guide"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_use_guide"
+            android:contentDescription="@string/description_use_guide" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_how_use"
-            style="@style/customTextViewFontStyle.Bold.S22"
+            android:id="@+id/btn_use_guide"
+            style="@style/customTextViewFontStyle.Bold.S18"
             android:layout_width="0dp"
-            android:layout_height="84dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="32dp"
-            android:background="@drawable/shape_home_button_30dp_gray"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="23dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="11dp"
             android:gravity="center_vertical"
-            android:paddingStart="40dp"
-            android:paddingEnd="40dp"
             android:text="@string/text_how_to_use"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toEndOf="@id/iv_use_guide" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back_large"
+            app:layout_constraintTop_toTopOf="@id/btn_use_guide"
+            app:layout_constraintBottom_toBottomOf="@id/btn_use_guide"
+            app:layout_constraintEnd_toEndOf="@id/btn_use_guide"
+            android:contentDescription="@string/description_back_icon" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
