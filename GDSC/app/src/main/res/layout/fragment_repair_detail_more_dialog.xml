@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_bottom_sheet_28dp"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_detail_repair_apply_info"
+        style="@style/customTextViewFontStyle.Bold.S18"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:gravity="center"
+        android:text="@string/text_view_apply_info" />
+
+    <TextView
+        android:id="@+id/tv_repair_detail_edit"
+        style="@style/customTextViewFontStyle.Bold.S18.gray400"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:text="@string/text_detail_edit" />
+
+    <TextView
+        android:id="@+id/tv_repair_detail_delete"
+        style="@style/customTextViewFontStyle.Bold.S18.gray400"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="40dp"
+        android:gravity="center"
+        android:text="@string/text_detail_delete" />
+</LinearLayout>
