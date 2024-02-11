@@ -35,7 +35,7 @@ class HomeRecordSaveFragment : BaseFragment<FragmentHomeRecordSaveBinding>(R.lay
     }
 
     private fun saveRecord() {
-        viewModel.saveRecord(inputTitle, inputContent, "보통", "도배", args.image)
+        viewModel.saveRecord(inputTitle, inputContent, "보통", "CRACK", args.image)
     }
 
     private fun setTextInput() {

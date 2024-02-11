@@ -27,7 +27,7 @@ class HalfCircleProgressBar(context: Context, attrs: AttributeSet) : View(contex
     private val matrix = Matrix()
 
     init {
-        // 진행 중인 부분의 색상 및 스트로크 설정
+        // 진행 중인 부분의 색상 및 스트로크
         progressPaint.color = context.getColor(R.color.green_300)
         progressPaint.style = Paint.Style.STROKE
         progressPaint.strokeWidth = 47f // 스트로크의 너비 조절
@@ -67,7 +67,6 @@ class HalfCircleProgressBar(context: Context, attrs: AttributeSet) : View(contex
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-
         // View의 중심 좌표와 radius 계산
         val centerX = width / 2f
         val centerY = height.toFloat() // 전체 뷰의 높이만큼 사용

@@ -1,5 +1,6 @@
 package com.solution.gdsc.ui.profile
 
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -44,8 +45,34 @@ class PostDetailFragment : BaseFragment<FragmentPostDetailBinding>(R.layout.frag
                 viewModel.savedRecordInfo.collectLatest {
                     savedRecordDto = it
                     binding.savedRecordInfo = savedRecordDto
+                    setProgress(it.grade)
+                }
+            }
+        }
+    }
+
+    private fun setProgress(grade: String) {
+        with(binding) {
+            when (grade) {
+                // to 등급에 따른 텍스트 변경 do
+                "우수" -> {
+                    progressBarSafeGrade.setProgress(100f)
+                    groupAiResult.visibility = View.VISIBLE
+                }
+                "보통" -> {
+                    binding.progressBarSafeGrade.setProgress(50f)
+                    groupAiResult.visibility = View.VISIBLE
+                }
+                "불량" -> {
+                    binding.progressBarSafeGrade.setProgress(30f)
+                    groupAiResult.visibility = View.VISIBLE
+                }
+                else -> {
+                    binding.progressBarSafeGrade.setProgress(0f)
+                    groupAiResult.visibility = View.GONE
                 }
             }
         }
     }
 }
+

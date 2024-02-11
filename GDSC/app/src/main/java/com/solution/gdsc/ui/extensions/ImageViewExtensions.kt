@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 fun ImageView.load(url: String?) {
     if (!url.isNullOrEmpty()) {
         Glide.with(this)
-            .load("https://storage.googleapis.com/gces_bucket/$url")
+            .load(url)
             .into(this)
     }
 }

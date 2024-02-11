@@ -66,16 +66,17 @@ interface CoHousService {
         @Part("category") category: RequestBody
     ): DefaultResponse
 
+    @Multipart
     @POST("/repairs/basic")
     suspend fun postRepairBasicRecord(
         @Part image: MultipartBody.Part,
-        @Part title: RequestBody,
-        @Part detail: RequestBody,
-        @Part category: RequestBody,
+        @Part("title") title: RequestBody,
+        @Part("detail") detail: RequestBody,
+        @Part("category") category: RequestBody,
         @Part("place_id") placeId: RequestBody,
-        @Part address: RequestBody,
-        @Part district: RequestBody,
-        @Part date: RequestBody
+        @Part("address") address: RequestBody,
+        @Part("district") district: RequestBody,
+        @Part("date") date: RequestBody
     ): RepairIdResponse
 
     // Map

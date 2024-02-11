@@ -70,7 +70,7 @@
     <string name="text_map_search">찾아보기</string>
     <string name="label_user_repair_apply">수리 신청할게요</string>
     <string name="text_user_repair_apply">수리 신청</string>
-    <string name="hint_visit_date_format">09 / 05 / 1992</string>
+    <string name="hint_visit_date_format">2024 / 01 / 01</string>
     <string name="description_calendar_image">방문일자 입력 이미지</string>
     <string name="label_location_setting_next">다음</string>
     <string name="text_repair_apply_info">수리 신청 정보</string>

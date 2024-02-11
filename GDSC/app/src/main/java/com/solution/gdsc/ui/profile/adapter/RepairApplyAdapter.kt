@@ -3,9 +3,8 @@ package com.solution.gdsc.ui.profile.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.solution.gdsc.databinding.ItemRecordSaveBinding
+import com.solution.gdsc.databinding.ItemRecordRepairBinding
 import com.solution.gdsc.domain.model.response.RecordItem
-import com.solution.gdsc.ui.extensions.load
 
 class RepairApplyAdapter(
     private val listener: PostClickListener
@@ -32,22 +31,18 @@ class RepairApplyAdapter(
     }
 
     class RepairApplyViewHolder(
-        private val binding: ItemRecordSaveBinding
+        private val binding: ItemRecordRepairBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(post: RecordItem, listener: PostClickListener) {
-             binding.ivConstructionSitePostImage.setOnClickListener {
-                 listener.onPostClick(post)
-             }
-            binding.ivConstructionSitePostImage.load(post.image)
-            binding.tvRecordSaveDate.text = post.createdAt
-            binding.tvRecordSaveLocation.text = post.title
+            binding.listener = listener
+            binding.record = post
         }
 
         companion object {
             fun from(parent: ViewGroup): RepairApplyViewHolder {
                 return RepairApplyViewHolder(
-                    ItemRecordSaveBinding.inflate(
+                    ItemRecordRepairBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
