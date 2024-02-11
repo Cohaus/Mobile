@@ -47,12 +47,12 @@ class RepairApplyRecordDetailFragment : BaseFragment<FragmentRepairApplyRecordDe
             ibRepairBackButton.setOnClickListener {
                 findNavController().navigateUp()
             }
-            /*ibRepairMoreButton.setOnClickListener {
+            ibRepairMoreButton.setOnClickListener {
                 val action =
                     RepairApplyRecordDetailFragmentDirections
-                        .actionRepairApplyRecordDetailFragmentToDetailMoreDialog(args.repairID, null, repairRecord)
+                        .actionRepairApplyRecordDetailToRepairDetailMore(args.repairID)
                 findNavController().navigate(action)
-            }*/
+            }
         }
     }
 }

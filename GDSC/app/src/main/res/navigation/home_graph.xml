@@ -248,7 +248,7 @@
             android:id="@+id/action_repair_detail_more_to_post_repair_apply_info"
             app:destination="@id/navigation_post_repair_apply_info" />
         <argument
-            android:name="repairRecord"
-            app:argType="com.solution.gdsc.domain.model.response.RepairRecordDto" />
+            android:name="repairId"
+            app:argType="long" />
     </dialog>
 </navigation>

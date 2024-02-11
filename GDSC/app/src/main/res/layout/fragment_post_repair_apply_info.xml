@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="repairInfo"
+            type="com.solution.gdsc.domain.model.response.RepairInfoDto" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="42dp"
-            android:progress="70"
+            setProgressByStatus="@{repairInfo.repairStatus}"
             app:indicatorColor="@color/green_300"
             app:indicatorDirectionCircular="counterclockwise"
             app:indicatorSize="110dp"
@@ -67,7 +69,7 @@
             style="@style/customTextViewFontStyle.Bold.S26.gray300"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="신청"
+            android:text="@{repairInfo.repairStatus}"
             app:layout_constraintBottom_toBottomOf="@id/progress_bar_repair_info"
             app:layout_constraintEnd_toEndOf="@id/progress_bar_repair_info"
             app:layout_constraintStart_toStartOf="@id/progress_bar_repair_info"
@@ -108,7 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="도배"
+            android:text="@{repairInfo.category}"
             app:layout_constraintStart_toEndOf="@id/tv_repair_category_box"
             app:layout_constraintTop_toTopOf="@id/tv_repair_category_box" />
 
@@ -144,7 +146,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="24-01-01"
+            android:text="@{repairInfo.requestDate}"
             app:layout_constraintStart_toEndOf="@id/tv_repair_apply_date_box"
             app:layout_constraintTop_toTopOf="@id/tv_repair_apply_date_box" />
 
@@ -305,7 +307,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="2024년 01월 01일"
+            android:text="@{repairInfo.date}"
             app:layout_constraintStart_toStartOf="@id/iv_visit_date_icon"
             app:layout_constraintTop_toBottomOf="@id/iv_visit_date_icon" />
 
@@ -335,7 +337,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
-            android:text="경기도 성남시 수정구 성남대로 1342"
+            android:text="@{repairInfo.address}"
+            android:layout_marginEnd="33dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/iv_location_icon"
             app:layout_constraintTop_toBottomOf="@id/iv_location_icon" />
 

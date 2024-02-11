@@ -22,7 +22,7 @@ class RepairDetailMoreDialogFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentRepairDetailMoreDialogBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModels<ProfileViewModel>()
-    private val args by navArgs<DetailMoreDialogFragmentArgs>()
+    private val args by navArgs<RepairDetailMoreDialogFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,7 +47,7 @@ class RepairDetailMoreDialogFragment : BottomSheetDialogFragment() {
         with(binding) {
             tvDetailRepairApplyInfo.setOnClickListener {
                 val action =
-                    RepairDetailMoreDialogFragmentDirections.actionRepairDetailMoreToPostRepairApplyInfo(args.reocrdId)
+                    RepairDetailMoreDialogFragmentDirections.actionRepairDetailMoreToPostRepairApplyInfo(args.repairId)
                 findNavController().navigate(action)
             }
             /*tvRepairDetailEdit.setOnClickListener {
@@ -73,5 +73,4 @@ class RepairDetailMoreDialogFragment : BottomSheetDialogFragment() {
             }
         }
     }
-
 }

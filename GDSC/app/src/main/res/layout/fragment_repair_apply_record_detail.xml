@@ -25,7 +25,7 @@
                 app:constraint_referenced_ids="layout_progress, tv_ai_diagnosis_result, divider_home" />
 
             <ImageButton
-                android:id="@+id/ib_repair_backw_button"
+                android:id="@+id/ib_repair_back_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"

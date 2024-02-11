@@ -49,11 +49,6 @@ class DetailMoreDialogFragment : BottomSheetDialogFragment() {
                 val action = DetailMoreDialogFragmentDirections.actionDetailMoreDialogToHomeLocationSetting(args.savedRecordDto.image)
                 findNavController().navigate(action)
             }
-            tvDetailRepairApplyInfo.setOnClickListener {
-                val action =
-                    DetailMoreDialogFragmentDirections.actionDetailMoreDialogToPostRepairApplyInfo()
-                findNavController().navigate(action)
-            }
             tvDetailEdit.setOnClickListener {
                 val action = DetailMoreDialogFragmentDirections.actionDetailMoreDialogToSettingDetailModify(args.savedRecordDto)
                 findNavController().navigate(action)
