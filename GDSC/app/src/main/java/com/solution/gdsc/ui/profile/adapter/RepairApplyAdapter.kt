@@ -3,7 +3,7 @@ package com.solution.gdsc.ui.profile.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.solution.gdsc.databinding.ItemRecordSaveBinding
+import com.solution.gdsc.databinding.ItemRecordRepairBinding
 import com.solution.gdsc.domain.model.response.RecordItem
 
 class RepairApplyAdapter(
@@ -31,7 +31,7 @@ class RepairApplyAdapter(
     }
 
     class RepairApplyViewHolder(
-        private val binding: ItemRecordSaveBinding
+        private val binding: ItemRecordRepairBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(post: RecordItem, listener: PostClickListener) {
@@ -42,7 +42,7 @@ class RepairApplyAdapter(
         companion object {
             fun from(parent: ViewGroup): RepairApplyViewHolder {
                 return RepairApplyViewHolder(
-                    ItemRecordSaveBinding.inflate(
+                    ItemRecordRepairBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
