@@ -50,6 +50,7 @@ class UserMyPageDatasource @Inject constructor(
             emit(response)
             delay(1000)
         } catch (e: Exception) {
+            ChallengeApplication.getInstance().tokenManager.deleteToken()
             Log.e(TAG, "Get User Info Failure")
         }
     }
