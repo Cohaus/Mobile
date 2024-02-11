@@ -6,7 +6,7 @@
     <data>
         <variable
             name="listener"
-            type="com.solution.gdsc.ui.profile.adapter.PostClickListener" />
+            type="com.solution.gdsc.ui.profile.adapter.RepairClickListener" />
         <variable
             name="record"
             type="com.solution.gdsc.domain.model.response.RecordItem" />
@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> listener.onPostClick(record)}"
+        android:onClick="@{() -> listener.onRepairClick(record.recordId)}"
         android:layout_marginStart="10dp">
 
         <com.google.android.material.imageview.ShapeableImageView

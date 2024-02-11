@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="repairRecordDto"
+            type="com.solution.gdsc.domain.model.response.RepairRecordDto" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_repair_ai_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="layout_progress, tv_ai_diagnosis_result, divider_home" />
+
+            <ImageButton
+                android:id="@+id/ib_repair_back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/description_back_icon"
+                android:elevation="1dp"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/ib_repair_more_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/description_more_icon"
+                android:elevation="1dp"
+                android:src="@drawable/ic_more"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_repair_detail_image"
+                android:layout_width="0dp"
+                android:layout_height="495dp"
+                imageUrl="@{repairRecordDto.image}"
+                android:background="@color/gray_500"
+                android:contentDescription="@string/description_post_image"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toTopOf="@id/tv_post_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_repair_title"
+                style="@style/customTextViewFontStyle.Bold.S28.white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{repairRecordDto.title}"
+                app:layout_constraintBottom_toTopOf="@id/tv_repair_date"
+                app:layout_constraintStart_toStartOf="@id/tv_repair_date" />
+
+            <TextView
+                android:id="@+id/tv_repair_date"
+                style="@style/customTextViewFontStyle.S15.white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginBottom="9dp"
+                changeTimeFormat="@{repairRecordDto.createdAt}"
+                app:layout_constraintBottom_toBottomOf="@id/iv_repair_detail_image"
+                app:layout_constraintStart_toStartOf="@id/iv_repair_detail_image" />
+
+            <TextView
+                android:id="@+id/tv_repair_capture_location"
+                style="@style/customTextViewFontStyle.S16.white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="14dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_repair_date"
+                app:layout_constraintEnd_toEndOf="@id/iv_repair_detail_image" />
+
+
+            <TextView
+                android:id="@+id/tv_post_content"
+                style="@style/customTextViewFontStyle.S18"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="14dp"
+                android:lines="4"
+                android:text="@{repairRecordDto.detail}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_repair_detail_image" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                app:dividerColor="@color/gray_right"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_post_content" />
+
+            <TextView
+                android:id="@+id/tv_ai_diagnosis_result"
+                style="@style/customTextViewFontStyle.Bold.S24"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="14dp"
+                android:text="AI 진단 결과"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider_home" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:layout_marginBottom="31dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_ai_diagnosis_result"
+                tools:context=".MainActivity">
+
+                <com.solution.gdsc.ui.common.HalfCircleProgressBar
+                    android:id="@+id/progress_bar_safe_grade"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_centerInParent="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_safe_score"
+                    style="@style/customTextViewFontStyle.Bold.S28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="45dp"
+                    android:text="@{repairRecordDto.grade}"
+                    app:layout_constraintBottom_toBottomOf="@id/progress_bar_safe_grade"
+                    app:layout_constraintEnd_toEndOf="@id/progress_bar_safe_grade"
+                    app:layout_constraintStart_toStartOf="@id/progress_bar_safe_grade"
+                    app:layout_constraintTop_toTopOf="@id/progress_bar_safe_grade" />
+
+                <TextView
+                    android:id="@+id/tv_safe_grade"
+                    style="@style/customTextViewFontStyle.Bold.S14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="매우 우수"
+                    app:layout_constraintEnd_toEndOf="@id/progress_bar_safe_grade"
+                    app:layout_constraintStart_toStartOf="@id/progress_bar_safe_grade"
+                    app:layout_constraintTop_toBottomOf="@id/tv_safe_score" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

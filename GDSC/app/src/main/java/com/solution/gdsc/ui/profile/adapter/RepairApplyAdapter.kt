@@ -7,7 +7,7 @@ import com.solution.gdsc.databinding.ItemRecordRepairBinding
 import com.solution.gdsc.domain.model.response.RecordItem
 
 class RepairApplyAdapter(
-    private val listener: PostClickListener
+    private val listener: RepairClickListener
 ) : RecyclerView.Adapter<RepairApplyAdapter.RepairApplyViewHolder>() {
     private val items = mutableListOf<RecordItem>()
 
@@ -34,7 +34,7 @@ class RepairApplyAdapter(
         private val binding: ItemRecordRepairBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(post: RecordItem, listener: PostClickListener) {
+        fun bind(post: RecordItem, listener: RepairClickListener) {
             binding.listener = listener
             binding.record = post
         }
