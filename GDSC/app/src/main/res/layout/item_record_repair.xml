@@ -34,7 +34,7 @@
 
         <TextView
             android:id="@+id/tv_item_repair_record_title"
-            style="@style/customTextViewFontStyle.Bold.S12.gray200"
+            style="@style/customTextViewFontStyle.Bold.S14.gray_400"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -48,7 +48,7 @@
 
         <TextView
             android:id="@+id/tv_item_repair_record_date"
-            style="@style/customTextViewFontStyle.light.S12.gray200"
+            style="@style/customTextViewFontStyle.Bold.S12.gray400"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             changeTimeFormat="@{record.createdAt}"

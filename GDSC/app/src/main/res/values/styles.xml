@@ -164,6 +164,14 @@
         <item name="android:fontFamily">@font/noto_sans_kr_bold</item>
     </style>
 
+    <style name="customTextViewFontStyle.Bold.S10">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="customTextViewFontStyle.Bold.S10.gray400">
+        <item name="android:textColor">@color/gray_400</item>
+    </style>
+
     <style name="customTextViewFontStyle.Bold.S12">
         <item name="android:textSize">12sp</item>
     </style>
@@ -178,6 +186,10 @@
 
     <style name="customTextViewFontStyle.Bold.S12.gray200">
         <item name="android:textColor">@color/gray_200</item>
+    </style>
+
+    <style name="customTextViewFontStyle.Bold.S12.gray400">
+        <item name="android:textColor">@color/gray_400</item>
     </style>
 
     <style name="customTextViewFontStyle.Bold.S14">
