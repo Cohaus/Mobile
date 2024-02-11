@@ -30,8 +30,7 @@ class PostDetailFragment : BaseFragment<FragmentPostDetailBinding>(R.layout.frag
         binding.ibMoreButton.setOnClickListener {
             if (savedRecordDto != null) {
                 val action = PostDetailFragmentDirections.actionPostDetailToDetailMoreDialog(
-                    args.recordItem.recordId, savedRecordDto!!
-                )
+                    args.recordItem.recordId, savedRecordDto!!)
                 findNavController().navigate(action)
             }
         }

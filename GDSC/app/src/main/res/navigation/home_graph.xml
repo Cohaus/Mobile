@@ -35,7 +35,7 @@
             app:destination="@id/navigation_profile_setting" />
         <action
             android:id="@+id/action_profile_to_repair_apply_record_detail"
-            app:destination="@id/repairApplyRecordDetailFragment" />
+            app:destination="@id/navigation_repair_apply_record_detail" />
     </fragment>
 
     <fragment
@@ -127,9 +127,6 @@
         android:label="DetailMoreDialogFragment"
         tools:layout="@layout/fragment_detail_more_dialog">
         <action
-            android:id="@+id/action_detail_more_dialog_to_post_repair_apply_info"
-            app:destination="@id/navigation_post_repair_apply_info" />
-        <action
             android:id="@+id/action_detail_more_dialog_to_profile"
             app:destination="@id/navigation_profile"
             app:popUpTo="@id/home_graph"
@@ -182,7 +179,10 @@
         android:id="@+id/navigation_post_repair_apply_info"
         android:name="com.solution.gdsc.ui.profile.PostRepairApplyInfoFragment"
         android:label="PostRepairApplyInfoFragment"
-        tools:layout="@layout/fragment_post_repair_apply_info"/>
+        tools:layout="@layout/fragment_post_repair_apply_info">
+        <argument android:name="repairId"
+            app:argType="long" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_profile_info_modify"
         android:name="com.solution.gdsc.ui.profile.setting.ProfileInfoModifyFragment"
@@ -228,12 +228,27 @@
             app:argType="com.solution.gdsc.domain.model.response.SavedRecordDto" />
     </fragment>
     <fragment
-        android:id="@+id/repairApplyRecordDetailFragment"
-        android:name="com.solution.gdsc.ui.profile.viewmodel.RepairApplyRecordDetailFragment"
+        android:id="@+id/navigation_repair_apply_record_detail"
+        android:name="com.solution.gdsc.ui.profile.RepairApplyRecordDetailFragment"
         android:label="RepairApplyRecordDetailFragment"
         tools:layout="@layout/fragment_repair_apply_record_detail">
         <argument
             android:name="repairID"
             app:argType="long" />
+        <action
+            android:id="@+id/action_repair_apply_record_detail_to_repair_detail_more"
+            app:destination="@id/navigation_repair_detail_more" />
     </fragment>
+    <dialog
+        android:id="@+id/navigation_repair_detail_more"
+        android:name="com.solution.gdsc.ui.profile.RepairDetailMoreDialogFragment"
+        android:label="RepairDetailMoreDialogFragment"
+        tools:layout="@layout/fragment_repair_detail_more_dialog">
+        <action
+            android:id="@+id/action_repair_detail_more_to_post_repair_apply_info"
+            app:destination="@id/navigation_post_repair_apply_info" />
+        <argument
+            android:name="repairId"
+            app:argType="long" />
+    </dialog>
 </navigation>
