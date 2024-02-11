@@ -20,7 +20,7 @@ class RepairApplyRecordDetailFragment : BaseFragment<FragmentRepairApplyRecordDe
 
     override fun setLayout() {
         Log.e("ARGS", args.repairID.toString())
-        viewModel.getSaveRecordInfo(args.repairID)
+        viewModel.getRepairsRecord(args.repairID)
         setInfo()
     }
 
@@ -28,7 +28,10 @@ class RepairApplyRecordDetailFragment : BaseFragment<FragmentRepairApplyRecordDe
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.repairRecord.collectLatest {
-                    binding.repairRecordDto = it.data
+                    if (it.status == 200) {
+                        Log.e("data", it.data.toString())
+                        binding.repairRecordDto = it.data
+                    }
                 }
             }
         }

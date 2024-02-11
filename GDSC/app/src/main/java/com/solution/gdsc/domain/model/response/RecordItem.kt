@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class RecordItem(
-    @SerializedName("record_id")
+    @SerializedName("id")
     val recordId: Long,
     val type: String,
     val image: String,
