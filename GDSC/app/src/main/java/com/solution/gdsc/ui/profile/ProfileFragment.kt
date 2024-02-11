@@ -69,13 +69,17 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.savedRecords.collectLatest {
-                    saveApter.update(it.reversed())
+                    saveApter.update(it)
                     binding.rvSaveList.adapter = saveApter
                     binding.isLoading = false
                     changeGroupVisibility(saveApter.itemCount, binding.groupSave)
                 }
+            }
+        }
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.repairRecords.collectLatest {
-                    repairAdapter.update(it.reversed())
+                    repairAdapter.update(it)
                     binding.rvRepairApplyList.adapter = repairAdapter
                     binding.isLoading = false
                     changeGroupVisibility(repairAdapter.itemCount, binding.groupRepair)

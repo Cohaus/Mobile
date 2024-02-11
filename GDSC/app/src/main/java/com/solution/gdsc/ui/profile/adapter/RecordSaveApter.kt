@@ -58,7 +58,7 @@ class RecordSaveApter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(post: RecordItem) {
-             binding.listener = listener
+            binding.listener = listener
             binding.record = post
         }
 
