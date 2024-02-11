@@ -17,6 +17,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_ai_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="layout_progress, tv_ai_diagnosis_result, divider_home" />
+
             <ImageButton
                 android:id="@+id/ib_back_button"
                 android:layout_width="wrap_content"
@@ -94,6 +101,7 @@
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="14dp"
+                android:lines="4"
                 android:text="@{savedRecordInfo.detail}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -114,6 +122,7 @@
                 style="@style/customTextViewFontStyle.Bold.S24"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
                 android:layout_marginStart="14dp"
                 android:layout_marginEnd="14dp"
                 android:text="AI 진단 결과"
