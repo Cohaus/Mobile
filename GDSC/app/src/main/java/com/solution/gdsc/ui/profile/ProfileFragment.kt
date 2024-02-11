@@ -1,5 +1,6 @@
 package com.solution.gdsc.ui.profile
 
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -81,11 +82,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     }
 
     private fun setProfileImage(type: String?) {
-        if (type.isNullOrEmpty()) {
-            binding.ivUserStateImage.setImageResource(R.drawable.ic_normal_user)
-        } else {
-            binding.ivUserStateImage.setImageResource(R.drawable.ic_volunteer_user)
+        with(binding) {
+            if (type.isNullOrEmpty()) {
+                binding.ivUserStateImage.setImageResource(R.drawable.ic_normal_user)
+            } else {
+                binding.ivUserStateImage.setImageResource(R.drawable.ic_volunteer_user)
+            }
         }
+        binding.ivUserStateImage.visibility = View.VISIBLE
     }
 
     override fun onPostClick(post: RecordItem) {

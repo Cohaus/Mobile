@@ -4,10 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+
         <variable
             name="isLoading"
             type="java.lang.Boolean" />
+
         <variable
             name="userDto"
             type="com.solution.gdsc.domain.model.response.UserInfoDto" />
@@ -25,12 +28,13 @@
             <com.google.android.material.progressindicator.CircularProgressIndicator
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:indeterminate="true"
-                android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"/>
+                android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:trackColor="@color/green_300" />
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar_profile"
@@ -53,16 +57,17 @@
                 android:layout_marginTop="10dp"
                 android:contentDescription="@string/description_user_state"
                 android:src="@drawable/ic_normal_user"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/toolbar_profile" />
 
             <TextView
-                android:layout_marginTop="12dp"
-                style="@style/customTextViewFontStyle.Bold.S18"
                 android:id="@+id/tv_user_name"
+                style="@style/customTextViewFontStyle.Bold.S18"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="22dp"
                 android:text="@{userDto.name}"
                 android:textColor="@color/black_600"
@@ -85,6 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17dp"
+                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
                 app:dividerThickness="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -97,6 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="19dp"
                 android:text="@string/text_repair_apply_list"
+                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/iv_user_state_image"
                 app:layout_constraintTop_toBottomOf="@id/divider_profile" />
@@ -109,6 +116,7 @@
                 android:backgroundTint="@android:color/transparent"
                 android:contentDescription="@string/description_repair_list_arrow"
                 android:src="@drawable/ic_right_arrow"
+                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tv_repair_apply_list" />
 
@@ -118,6 +126,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="31dp"
                 android:orientation="horizontal"
+                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toTopOf="@id/divider_profile_save"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -130,6 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17dp"
+                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
                 app:dividerThickness="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -142,6 +152,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="19dp"
                 android:text="@string/text_save_list"
+                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/iv_user_state_image"
                 app:layout_constraintTop_toBottomOf="@id/divider_profile_save" />
@@ -154,6 +165,7 @@
                 android:backgroundTint="@android:color/transparent"
                 android:contentDescription="@string/description_repair_list_arrow"
                 android:src="@drawable/ic_right_arrow"
+                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tv_save_list" />
 
@@ -164,6 +176,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:orientation="horizontal"
+                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
