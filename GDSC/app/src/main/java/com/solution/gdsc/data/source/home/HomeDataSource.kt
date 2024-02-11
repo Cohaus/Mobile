@@ -32,9 +32,6 @@ class HomeDataSource @Inject constructor(
         val imagePart = MultipartBody.Part.createFormData("image", file.name, imageRequestBody)
 
         var response = DefaultResponse(200, "성공", 1)
-        Log.e("Image", imageFilePath)
-        Log.e("Image", file.toString())
-        Log.e("Image", imageRequestBody.toString())
         withContext(Dispatchers.IO) {
             runCatching {
                 coHousService.saveRecord(imagePart, titleRequestBody, detailRequestBody, gradeRequestBody, categoryRequestBody)
@@ -54,6 +51,7 @@ class HomeDataSource @Inject constructor(
         placeId: String, address: String, district: String,
         date: String, image: String
     ): RepairIdResponse {
+        Log.e("Post Repairs", "$title, $detail, $category, $placeId, $address, $district, $date")
         val titleRequestBody = title.toRequestBody("text/plain".toMediaTypeOrNull())
         val detailRequestBody = detail.toRequestBody("text/plain".toMediaTypeOrNull())
         val categoryRequestBody = category.toRequestBody("text/plain".toMediaTypeOrNull())
@@ -62,11 +60,10 @@ class HomeDataSource @Inject constructor(
         val districtRequestBody = district.toRequestBody("text/plain".toMediaTypeOrNull())
         val dateRequestBody = date.toRequestBody("text/plain".toMediaTypeOrNull())
 
-        // imageFilePath는 이미지 파일에 해당하는 파일 경로
-        val imageFile = File(image)
-        val imageRequestBody = imageFile.asRequestBody("image/*".toMediaTypeOrNull())
-        val imagePart = MultipartBody.Part.createFormData("image", imageFile.name, imageRequestBody)
-
+        val file = File(image)
+        val imageRequestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
+        val imagePart = MultipartBody.Part.createFormData("image", file.name, imageRequestBody)
+        Log.e("PostRepairs", "$titleRequestBody, $detailRequestBody, $categoryRequestBody, $placeIdRequestBody, $addressRequestBody, $districtRequestBody, $dateRequestBody")
         var response = RepairIdResponse(1, "성공",
             RepairId(1, 1)
         )
@@ -79,7 +76,7 @@ class HomeDataSource @Inject constructor(
             }.onSuccess {
                 response = it
             }.onFailure {
-                Log.e(TAG, "Post Repair Basic Failure")
+                Log.e(TAG, "Post Repair Basic Failure ${it.message}")
             }
         }
         return response

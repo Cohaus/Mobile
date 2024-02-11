@@ -31,7 +31,7 @@ class HomeRepairApplyFragment : BaseFragment<FragmentHomeRepairApplyBinding>(R.l
     override fun setLayout() {
         binding.btnRepairApplySave.setOnClickListener {
             viewModel.postRepairBasicRecord(
-                validTitle, validContent, "도배", args.placeId, args.address,
+                validTitle, validContent, "CRACK", args.placeId, args.address,
                 args.district, validDate.replace(DATE_FORMAT_DELIMITER, "-"), args.image
             )
         }
