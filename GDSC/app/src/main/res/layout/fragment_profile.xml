@@ -25,16 +25,31 @@
             android:layout_height="match_parent"
             tools:context=".ui.profile.ProfileFragment">
 
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_repair"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="tv_repair_apply_list, rv_repair_apply_list, ib_arrow_repair_list,divider_profile"/>
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="tv_save_list, rv_save_list, ib_arrow_save_list, divider_profile_save" />
+
             <com.google.android.material.progressindicator.CircularProgressIndicator
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:indeterminate="true"
+                app:indicatorColor="@color/green_300"
                 android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:trackColor="@color/green_300" />
+                app:trackColor="@color/gray_middle" />
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar_profile"
@@ -90,7 +105,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17dp"
-                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
                 app:dividerThickness="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -103,7 +117,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="19dp"
                 android:text="@string/text_repair_apply_list"
-                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/iv_user_state_image"
                 app:layout_constraintTop_toBottomOf="@id/divider_profile" />
@@ -116,7 +129,6 @@
                 android:backgroundTint="@android:color/transparent"
                 android:contentDescription="@string/description_repair_list_arrow"
                 android:src="@drawable/ic_right_arrow"
-                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tv_repair_apply_list" />
 
@@ -126,7 +138,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="31dp"
                 android:orientation="horizontal"
-                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toTopOf="@id/divider_profile_save"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -139,7 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17dp"
-                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
+                android:visibility="gone"
                 app:dividerThickness="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -152,7 +163,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="19dp"
                 android:text="@string/text_save_list"
-                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/iv_user_state_image"
                 app:layout_constraintTop_toBottomOf="@id/divider_profile_save" />
@@ -165,7 +175,6 @@
                 android:backgroundTint="@android:color/transparent"
                 android:contentDescription="@string/description_repair_list_arrow"
                 android:src="@drawable/ic_right_arrow"
-                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tv_save_list" />
 
@@ -176,7 +185,6 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:orientation="horizontal"
-                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
