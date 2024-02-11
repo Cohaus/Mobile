@@ -9,6 +9,7 @@ import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.DeleteSavedRecordResponse
+import com.solution.gdsc.domain.model.response.RepairInfoResponse
 import com.solution.gdsc.domain.model.response.RepairRecordResponse
 import com.solution.gdsc.domain.model.response.SavedRecordResponse
 import com.solution.gdsc.domain.model.response.UpdateSavedRecordResponse
@@ -136,5 +137,12 @@ class UserMyPageDatasource @Inject constructor(
         emit(response)
     }.catch {
         Log.e(TAG, "Get Repairs Record Failure ${it.message}")
+    }
+
+    suspend fun getRepairInfo(repairId: Long): Flow<RepairInfoResponse> = flow {
+        val response = coHousService.getRepairInfo(repairId)
+        emit(response)
+    }.catch {
+        Log.e(TAG, "Get Repair Info Failure ${it.message}")
     }
 }
