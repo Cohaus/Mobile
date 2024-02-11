@@ -4,10 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+
         <variable
             name="isLoading"
             type="java.lang.Boolean" />
+
         <variable
             name="userDto"
             type="com.solution.gdsc.domain.model.response.UserInfoDto" />
@@ -22,15 +25,31 @@
             android:layout_height="match_parent"
             tools:context=".ui.profile.ProfileFragment">
 
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_repair"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="tv_repair_apply_list, rv_repair_apply_list, ib_arrow_repair_list,divider_profile"/>
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="tv_save_list, rv_save_list, ib_arrow_save_list, divider_profile_save" />
+
             <com.google.android.material.progressindicator.CircularProgressIndicator
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:indeterminate="true"
-                android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"/>
+                app:indicatorColor="@color/green_300"
+                android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:trackColor="@color/gray_middle" />
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar_profile"
@@ -52,15 +71,18 @@
                 android:layout_marginStart="22dp"
                 android:layout_marginTop="10dp"
                 android:contentDescription="@string/description_user_state"
-                android:src="@drawable/ic_general_user"
+                android:src="@drawable/ic_normal_user"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/toolbar_profile" />
 
             <TextView
                 android:id="@+id/tv_user_name"
+                style="@style/customTextViewFontStyle.Bold.S18"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="22dp"
                 android:text="@{userDto.name}"
                 android:textColor="@color/black_600"
@@ -128,6 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17dp"
+                android:visibility="gone"
                 app:dividerThickness="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

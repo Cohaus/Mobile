@@ -1,5 +1,7 @@
 package com.solution.gdsc.ui.profile
 
+import android.view.View
+import androidx.constraintlayout.widget.Group
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -59,6 +61,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
                     withContext(Dispatchers.Main) {
                         binding.userDto = it
                         binding.isLoading = false
+                        setProfileImage(it.volunteerType)
                     }
                 }
             }
@@ -69,13 +72,32 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
                     saveApter.update(it.reversed())
                     binding.rvSaveList.adapter = saveApter
                     binding.isLoading = false
+                    changeGroupVisibility(saveApter.itemCount, binding.groupSave)
                 }
                 viewModel.repairRecords.collectLatest {
                     repairAdapter.update(it.reversed())
                     binding.rvRepairApplyList.adapter = repairAdapter
                     binding.isLoading = false
+                    changeGroupVisibility(repairAdapter.itemCount, binding.groupRepair)
                 }
             }
+        }
+    }
+
+    private fun setProfileImage(type: String?) {
+        with(binding) {
+            if (type.isNullOrEmpty()) {
+                binding.ivUserStateImage.setImageResource(R.drawable.ic_normal_user)
+            } else {
+                binding.ivUserStateImage.setImageResource(R.drawable.ic_volunteer_user)
+            }
+        }
+        binding.ivUserStateImage.visibility = View.VISIBLE
+    }
+
+    private fun changeGroupVisibility(count: Int, group: Group) {
+        if (count > 0) {
+            group.visibility = View.VISIBLE
         }
     }
 

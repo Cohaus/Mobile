@@ -88,4 +88,7 @@
     <string name="label_modify">수정하기</string>
     <string name="description_coHous">코하우스 텍스트</string>
     <string name="text_reocrd_detail_modify">기록 수정</string>
+    <string name="description_use_guide">이용 방법 아이콘</string>
+    <string name="description_basic_capture">일반 수리 신청 아이콘</string>
+    <string name="description_ai_capture">ai 진단 아이콘</string>
 </resources>

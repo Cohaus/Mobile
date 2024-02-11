@@ -7,6 +7,7 @@ import com.solution.gdsc.domain.model.response.CountRepairResponse
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.DeleteSavedRecordResponse
 import com.solution.gdsc.domain.model.response.RepairIdResponse
+import com.solution.gdsc.domain.model.response.RepairRecordResponse
 import com.solution.gdsc.domain.model.response.SavedRecordResponse
 import com.solution.gdsc.domain.model.response.UpdateSavedRecordResponse
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
@@ -47,6 +48,9 @@ interface CoHousService {
     suspend fun deleteSavedRecord(@Path("recordId") recordId: Long): DeleteSavedRecordResponse
     @PATCH("/records/{recordId}")
     suspend fun updateSavedRecord(@Path("recordId") recordId: Long, @Body updateSavedRecordDto: UpdateSavedRecordReq): UpdateSavedRecordResponse
+
+    @GET("/repairs/{repairId}")
+    suspend fun getRepairsRecord(@Path("repairId") repairId: Long): RepairRecordResponse
 
     @PUT("/volunteers/users")
     suspend fun putVolunteerUser(@Body volunteerRegistrationReq: VolunteerRegistrationReq): VolunteerRegistrationResponse
