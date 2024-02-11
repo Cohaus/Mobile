@@ -59,6 +59,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
                     withContext(Dispatchers.Main) {
                         binding.userDto = it
                         binding.isLoading = false
+                        setProfileImage(it.volunteerType)
                     }
                 }
             }
@@ -76,6 +77,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
                     binding.isLoading = false
                 }
             }
+        }
+    }
+
+    private fun setProfileImage(type: String?) {
+        if (type.isNullOrEmpty()) {
+            binding.ivUserStateImage.setImageResource(R.drawable.ic_normal_user)
+        } else {
+            binding.ivUserStateImage.setImageResource(R.drawable.ic_volunteer_user)
         }
     }
 

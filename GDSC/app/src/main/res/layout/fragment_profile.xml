@@ -52,11 +52,13 @@
                 android:layout_marginStart="22dp"
                 android:layout_marginTop="10dp"
                 android:contentDescription="@string/description_user_state"
-                android:src="@drawable/ic_general_user"
+                android:src="@drawable/ic_normal_user"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/toolbar_profile" />
 
             <TextView
+                android:layout_marginTop="12dp"
+                style="@style/customTextViewFontStyle.Bold.S18"
                 android:id="@+id/tv_user_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
