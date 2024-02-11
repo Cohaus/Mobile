@@ -14,6 +14,7 @@ import com.solution.gdsc.domain.model.response.RecordItem
 import com.solution.gdsc.ui.profile.adapter.PostClickListener
 import com.solution.gdsc.ui.profile.adapter.RecordSaveApter
 import com.solution.gdsc.ui.profile.adapter.RepairApplyAdapter
+import com.solution.gdsc.ui.profile.adapter.RepairClickListener
 import com.solution.gdsc.ui.profile.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -23,7 +24,7 @@ import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_profile),
-    PostClickListener {
+    PostClickListener, RepairClickListener {
     private val viewModel by viewModels<ProfileViewModel>()
     private val repairAdapter = RepairApplyAdapter(this)
     private val saveApter = RecordSaveApter(this)
@@ -91,12 +92,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     private fun setProfileImage(type: String?) {
         with(binding) {
             if (type.isNullOrEmpty()) {
-                binding.ivUserStateImage.setImageResource(R.drawable.ic_normal_user)
+                ivUserStateImage.setImageResource(R.drawable.ic_normal_user)
             } else {
-                binding.ivUserStateImage.setImageResource(R.drawable.ic_volunteer_user)
+                ivUserStateImage.setImageResource(R.drawable.ic_volunteer_user)
             }
+            ivUserStateImage.visibility = View.VISIBLE
         }
-        binding.ivUserStateImage.visibility = View.VISIBLE
     }
 
     private fun changeGroupVisibility(count: Int, group: Group) {
@@ -107,6 +108,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
 
     override fun onPostClick(post: RecordItem) {
         val action = ProfileFragmentDirections.actionProfileToPostDetail(post)
+        findNavController().navigate(action)
+    }
+
+    override fun onRepairClick(repairId: Long) {
+        val action = ProfileFragmentDirections.actionProfileToRepairApplyRecordDetail(repairId)
         findNavController().navigate(action)
     }
 }
