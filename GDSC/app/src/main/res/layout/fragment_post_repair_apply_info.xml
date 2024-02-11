@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -9,6 +10,20 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_find_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="tv_volunteer_user_name, tv_meet_user, iv_volunteer_tel,
+             tv_volunteer_user_tel, iv_volunteer_apply_user_image, tv_apply_user_info" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_find_before"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tv_find_volunteer, iv_wait_volunteer, iv_question_mark" />
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar_repair_apply_info"
@@ -76,6 +91,7 @@
             app:layout_constraintTop_toTopOf="@id/progress_bar_repair_info" />
 
         <ImageView
+            android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
@@ -112,6 +128,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_repair_category_box" />
 
         <ImageView
+            android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -137,32 +154,108 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="42dp"
             app:dividerColor="@color/gray_50"
-            app:dividerThickness="10dp"
+            app:dividerThickness="4dp"
             app:layout_constraintTop_toBottomOf="@id/progress_bar_repair_info" />
 
         <ImageView
-            android:id="@+id/iv_repair_info_user_image"
+            android:layout_marginTop="32dp"
+            android:id="@+id/iv_wait_volunteer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/ic_general_user"
+            android:src="@drawable/ic_wait_volunteer"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider_repair_info_one"
+            android:contentDescription="@string/description_find_volunteer_image" />
+
+        <ImageView
+            android:id="@+id/iv_question_mark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_question_mark"
+            app:layout_constraintStart_toStartOf="@id/iv_wait_volunteer"
+            app:layout_constraintEnd_toEndOf="@id/iv_wait_volunteer"
+            app:layout_constraintTop_toTopOf="@id/iv_wait_volunteer"
+            app:layout_constraintBottom_toBottomOf="@id/iv_wait_volunteer"
+            android:contentDescription="@string/description_question_mark" />
+
+        <TextView
+            android:id="@+id/tv_find_volunteer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="51dp"
+            android:gravity="center"
+            android:layout_marginTop="35dp"
+            android:text="@string/text_find_volunteer"
+            app:layout_constraintBottom_toTopOf="@+id/divider_repair_info_two"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_wait_volunteer" />
+
+        <TextView
+            android:id="@+id/tv_apply_user_info"
+            style="@style/customTextViewFontStyle.Bold.S18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="22dp"
+            android:text="@string/text_volunteer_info"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider_repair_info_one" />
 
+        <ImageView
+            android:id="@+id/iv_volunteer_apply_user_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:src="@drawable/ic_volunteer_user"
+            app:layout_constraintBottom_toTopOf="@+id/divider_repair_info_two"
+            app:layout_constraintEnd_toEndOf="@id/tv_apply_user_info"
+            app:layout_constraintTop_toBottomOf="@id/tv_apply_user_info"
+            android:contentDescription="@string/description_volunteer_image" />
+
         <TextView
-            android:id="@+id/tv_wait_comment"
-            style="@style/customTextViewFontStyle.S13.gray450"
+            android:id="@+id/tv_volunteer_user_name"
+            style="@style/customTextViewFontStyle.Bold.S16"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:layout_marginBottom="30dp"
-            app:layout_constraintBottom_toTopOf="@id/divider_repair_info_two"
-            android:text="@string/text_wait_comment"
+            android:layout_marginStart="51dp"
+            android:layout_marginEnd="48dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_repair_info_user_image" />
+            app:layout_constraintStart_toEndOf="@id/iv_volunteer_apply_user_image"
+            app:layout_constraintTop_toTopOf="@id/iv_volunteer_apply_user_image"
+            tools:text="김신청" />
+
+        <TextView
+            android:id="@+id/tv_meet_user"
+            style="@style/customTextViewFontStyle.medium.S16.gray_450"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/text_meet_volunteer"
+            app:layout_constraintEnd_toEndOf="@id/tv_volunteer_user_name"
+            app:layout_constraintStart_toStartOf="@id/tv_volunteer_user_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_volunteer_user_name" />
+
+        <ImageView
+            android:id="@+id/iv_volunteer_tel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/ic_tel"
+            app:layout_constraintStart_toStartOf="@id/tv_volunteer_user_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_meet_user"
+            android:contentDescription="@string/description_tel_icon" />
+
+        <TextView
+            android:id="@+id/tv_volunteer_user_tel"
+            style="@style/customTextViewFontStyle.Bold.S16.gray400"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            app:layout_constraintEnd_toEndOf="@id/tv_volunteer_user_name"
+            app:layout_constraintStart_toEndOf="@id/iv_volunteer_tel"
+            app:layout_constraintTop_toBottomOf="@id/tv_meet_user"
+            tools:text="010-1111-1111" />
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/divider_repair_info_two"
@@ -170,7 +263,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="159dp"
             app:dividerColor="@color/gray_50"
-            app:dividerThickness="10dp"
+            app:dividerThickness="4dp"
             app:layout_constraintTop_toBottomOf="@id/divider_repair_info_one" />
 
         <TextView
@@ -200,11 +293,11 @@
             style="@style/customTextViewFontStyle.medium.S15.gray_300"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/iv_visit_date_icon"
-            app:layout_constraintStart_toEndOf="@id/iv_visit_date_icon"
-            app:layout_constraintBottom_toBottomOf="@id/iv_visit_date_icon"
+            android:layout_marginStart="8dp"
             android:text="@string/text_wish_visit_date"
-            android:layout_marginStart="8dp" />
+            app:layout_constraintBottom_toBottomOf="@id/iv_visit_date_icon"
+            app:layout_constraintStart_toEndOf="@id/iv_visit_date_icon"
+            app:layout_constraintTop_toTopOf="@id/iv_visit_date_icon" />
 
         <TextView
             android:id="@+id/tv_info_wish_visit_date"
@@ -213,8 +306,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="2024년 01월 01일"
-            app:layout_constraintTop_toBottomOf="@id/iv_visit_date_icon"
-            app:layout_constraintStart_toStartOf="@id/iv_visit_date_icon" />
+            app:layout_constraintStart_toStartOf="@id/iv_visit_date_icon"
+            app:layout_constraintTop_toBottomOf="@id/iv_visit_date_icon" />
 
         <ImageView
             android:id="@+id/iv_location_icon"
@@ -230,11 +323,11 @@
             style="@style/customTextViewFontStyle.medium.S15.gray_300"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/iv_location_icon"
-            app:layout_constraintStart_toEndOf="@id/iv_location_icon"
-            app:layout_constraintBottom_toBottomOf="@id/iv_location_icon"
+            android:layout_marginStart="8dp"
             android:text="@string/text_apply_address"
-            android:layout_marginStart="8dp" />
+            app:layout_constraintBottom_toBottomOf="@id/iv_location_icon"
+            app:layout_constraintStart_toEndOf="@id/iv_location_icon"
+            app:layout_constraintTop_toTopOf="@id/iv_location_icon" />
 
         <TextView
             android:id="@+id/tv_info_apply_address"
@@ -243,8 +336,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:text="경기도 성남시 수정구 성남대로 1342"
-            app:layout_constraintTop_toBottomOf="@id/iv_location_icon"
-            app:layout_constraintStart_toStartOf="@id/iv_location_icon" />
+            app:layout_constraintStart_toStartOf="@id/iv_location_icon"
+            app:layout_constraintTop_toBottomOf="@id/iv_location_icon" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
