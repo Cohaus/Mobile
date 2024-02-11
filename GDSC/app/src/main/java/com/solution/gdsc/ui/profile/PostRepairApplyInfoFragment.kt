@@ -10,5 +10,6 @@ class PostRepairApplyInfoFragment : BaseFragment<FragmentPostRepairApplyInfoBind
         binding.toolbarRepairApplyInfo.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
+        binding.progressBarRepairInfo.progress = 33
     }
 }

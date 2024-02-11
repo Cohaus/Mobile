@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_profile_to_profile_setting"
             app:destination="@id/navigation_profile_setting" />
+        <action
+            android:id="@+id/action_profile_to_repair_apply_record_detail"
+            app:destination="@id/repairApplyRecordDetailFragment" />
     </fragment>
 
     <fragment
@@ -140,6 +143,9 @@
         <argument
             android:name="savedRecordDto"
             app:argType="com.solution.gdsc.domain.model.response.SavedRecordDto" />
+        <action
+            android:id="@+id/action_detail_more_dialog_to_home_location_setting"
+            app:destination="@id/navigation_home_location_setting" />
     </dialog>
     <fragment
         android:id="@+id/navigation_home_repair_apply"
@@ -220,5 +226,14 @@
         <argument
             android:name="savedRecordDto"
             app:argType="com.solution.gdsc.domain.model.response.SavedRecordDto" />
+    </fragment>
+    <fragment
+        android:id="@+id/repairApplyRecordDetailFragment"
+        android:name="com.solution.gdsc.ui.profile.viewmodel.RepairApplyRecordDetailFragment"
+        android:label="RepairApplyRecordDetailFragment"
+        tools:layout="@layout/fragment_repair_apply_record_detail">
+        <argument
+            android:name="repairID"
+            app:argType="long" />
     </fragment>
 </navigation>

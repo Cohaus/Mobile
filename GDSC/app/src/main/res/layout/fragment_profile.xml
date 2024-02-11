@@ -16,13 +16,33 @@
             type="com.solution.gdsc.domain.model.response.UserInfoDto" />
     </data>
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar_profile"
+                style="@style/App.Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:menu="@menu/profile_toolbar_menu"
+                app:title="Safe" />
+        </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:context=".ui.profile.ProfileFragment">
 
             <androidx.constraintlayout.widget.Group
@@ -51,19 +71,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:trackColor="@color/gray_middle" />
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar_profile"
-                style="@style/App.Toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_scrollFlags="enterAlways"
-                app:menu="@menu/profile_toolbar_menu"
-                app:title="Safe" />
-
             <ImageView
                 android:id="@+id/iv_user_state_image"
                 android:layout_width="wrap_content"
@@ -74,7 +81,7 @@
                 android:src="@drawable/ic_normal_user"
                 android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/toolbar_profile" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_user_name"
@@ -194,4 +201,5 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
