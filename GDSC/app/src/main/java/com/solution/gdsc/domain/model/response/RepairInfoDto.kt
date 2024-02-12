@@ -1,7 +1,10 @@
 package com.solution.gdsc.domain.model.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class RepairInfoDto(
     @SerializedName("repair_status")
     val repairStatus: String,
@@ -10,6 +13,8 @@ data class RepairInfoDto(
     val requestDate: String,
     @SerializedName("proceed_date")
     val proceedDate: String?,
+    @SerializedName("complete_date")
+    val completeDate: String?,
     @SerializedName("user_id")
     val userId: Long,
     @SerializedName("user_name")
@@ -24,4 +29,4 @@ data class RepairInfoDto(
     val volunteerTel: String?,
     val date: String,
     val address: String
-)
+) : Parcelable

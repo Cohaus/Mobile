@@ -29,7 +29,7 @@ class MapRepairRecordDetailFragment : BaseFragment<FragmentMapRepairRecordDetail
         with(binding) {
             tvMapRepairApply.setOnClickListener {
                 val action = MapRepairRecordDetailFragmentDirections
-                    .actionMapNavigationRepairRecordDetailToMapRepairInfoFragment(args.repairId)
+                    .actionMapNavigationRepairRecordDetailToMapRepairInfoFragment(args.repairId, binding.tvMapRepairTitle.text.toString())
                 findNavController().navigate(action)
             }
         }

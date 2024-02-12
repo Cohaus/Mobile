@@ -5,6 +5,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
@@ -24,6 +25,7 @@ class MapRepairInfoFragment : BaseFragment<FragmentMapRepairInfoBinding>(R.layou
     override fun setLayout() {
         viewModel.getRepairInfo(args.repairId)
         setRepairInfo()
+        setClickListener()
     }
 
     private fun setRepairInfo() {
@@ -37,6 +39,13 @@ class MapRepairInfoFragment : BaseFragment<FragmentMapRepairInfoBinding>(R.layou
                     }
                 }
             }
+        }
+    }
+
+    private fun setClickListener() {
+        binding.btnVolunteerApplyButton.setOnClickListener {
+            val action = MapRepairInfoFragmentDirections.actionMapRepairInfoToMapRepairApply(repairInfo, args.title, args.repairId)
+            findNavController().navigate(action)
         }
     }
 
