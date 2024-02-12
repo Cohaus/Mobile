@@ -11,9 +11,6 @@
         android:label="MapFragment"
         tools:layout="@layout/fragment_map">
         <action
-            android:id="@+id/action_navigation_map_to_navigation_repair_apply_record_detail"
-            app:destination="@id/navigation_repair_apply_record_detail" />
-        <action
             android:id="@+id/action_map_to_map_repair_record_detail"
             app:destination="@id/map_navigation_repair_record_detail" />
     </fragment>
@@ -292,6 +289,17 @@
         tools:layout="@layout/fragment_map_repair_record_detail">
         <argument
             android:name="repairId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_map_navigation_repair_record_detail_to_mapRepairInfoFragment"
+            app:destination="@id/mapRepairInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapRepairInfoFragment"
+        android:name="com.solution.gdsc.ui.map.MapRepairInfoFragment"
+        android:label="MapRepairInfoFragment"
+        tools:layout="@layout/fragment_map_repair_info">
+        <argument android:name="repairId"
             app:argType="long" />
     </fragment>
 </navigation>

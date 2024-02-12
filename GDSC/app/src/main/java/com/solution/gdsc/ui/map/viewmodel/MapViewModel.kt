@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.solution.gdsc.domain.model.response.CountRepairDto
+import com.solution.gdsc.domain.model.response.RepairInfoResponse
 import com.solution.gdsc.domain.model.response.RepairRecordResponse
 import com.solution.gdsc.domain.model.response.RequestRepairItem
 import com.solution.gdsc.domain.repository.MapRepository
@@ -26,6 +27,8 @@ class MapViewModel @Inject constructor(
     val requestRepairList: StateFlow<List<RequestRepairItem>> = _requestRepairList
     private val _repairRecordDetail = MutableStateFlow(RepairRecordResponse(data = null))
     val repairRecordDetail: StateFlow<RepairRecordResponse> = _repairRecordDetail
+    private val _repairInfo = MutableStateFlow(RepairInfoResponse(data = null))
+    val repairInfo: StateFlow<RepairInfoResponse> = _repairInfo
 
     fun getAllRepairRecord() {
         viewModelScope.launch {
@@ -59,6 +62,18 @@ class MapViewModel @Inject constructor(
                 }
             } catch (e: Exception) {
                 Log.e("Get Repair Record Detail Error: ", e.message.toString())
+            }
+        }
+    }
+
+    fun getRepairInfo(repairId: Long) {
+        viewModelScope.launch {
+            try {
+                profileRepository.getRepairInfo(repairId).collect {
+                    _repairInfo.value = it
+                }
+            }catch (e: Exception) {
+                Log.e("Get Repair Info Error: ", e.message.toString())
             }
         }
     }

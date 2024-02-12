@@ -4,6 +4,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
@@ -21,13 +22,26 @@ class MapRepairRecordDetailFragment : BaseFragment<FragmentMapRepairRecordDetail
     override fun setLayout() {
         viewModel.getRepairRecordDetail(args.repairId)
         setRecordDetail()
+        setClickListener()
+    }
+
+    private fun setClickListener() {
+        with(binding) {
+            tvMapRepairApply.setOnClickListener {
+                val action = MapRepairRecordDetailFragmentDirections
+                    .actionMapNavigationRepairRecordDetailToMapRepairInfoFragment(args.repairId)
+                findNavController().navigate(action)
+            }
+        }
     }
 
     private fun setRecordDetail() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.repairRecordDetail.collectLatest {
-                    if (it.status in 200..299) binding.repairRecordDto = it.data
+                    if (it.status in 200..299) {
+                        binding.repairRecordDto = it.data
+                    }
                 }
             }
         }

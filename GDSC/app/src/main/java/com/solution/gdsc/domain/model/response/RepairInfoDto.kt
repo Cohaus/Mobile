@@ -17,11 +17,11 @@ data class RepairInfoDto(
     @SerializedName("user_tel")
     val userTel: String,
     @SerializedName("volunteer_id")
-    val volunteerId: Long,
+    val volunteerId: Long?,
     @SerializedName("volunteer_name")
-    val volunteerName: String,
+    val volunteerName: String?,
     @SerializedName("volunteer_tel")
-    val volunteerTel: String,
+    val volunteerTel: String?,
     val date: String,
     val address: String
 )
