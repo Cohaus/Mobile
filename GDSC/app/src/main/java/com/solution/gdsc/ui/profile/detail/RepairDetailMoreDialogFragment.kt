@@ -50,10 +50,10 @@ class RepairDetailMoreDialogFragment : BottomSheetDialogFragment() {
                     RepairDetailMoreDialogFragmentDirections.actionRepairDetailMoreToPostRepairApplyInfo(args.repairId)
                 findNavController().navigate(action)
             }
-            /*tvRepairDetailEdit.setOnClickListener {
-                val action = RepairDetailMoreDialogFragmentDirections.actionDetailMoreDialogToSettingDetailModify(args.savedRecordDto)
+            tvRepairDetailEdit.setOnClickListener {
+                val action = RepairDetailMoreDialogFragmentDirections.actionRepairDetailMoreToDetailRecordModify(args.repairRecord)
                 findNavController().navigate(action)
-            }*/
+            }
             tvRepairDetailDelete.setOnClickListener {
                 viewModel.deleteSavedRecord(args.repairId)
                 deleteRecord()
