@@ -1,4 +1,4 @@
-package com.solution.gdsc.ui.profile
+package com.solution.gdsc.ui.profile.detail
 
 import android.view.View
 import androidx.fragment.app.viewModels
