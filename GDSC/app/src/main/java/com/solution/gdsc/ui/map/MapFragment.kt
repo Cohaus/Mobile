@@ -23,6 +23,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -41,20 +42,20 @@ import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentMapBinding
 import com.solution.gdsc.domain.model.response.CountRepairDto
-import com.solution.gdsc.domain.model.response.RecordItem
 import com.solution.gdsc.ui.map.adapter.RepairApplyRecordAdapter
 import com.solution.gdsc.ui.map.viewmodel.MapViewModel
-import com.solution.gdsc.ui.profile.adapter.PostClickListener
+import com.solution.gdsc.ui.profile.adapter.RepairClickListener
 import com.solution.gdsc.util.PermissionUtils.PermissionDeniedDialog.Companion.newInstance
 import com.solution.gdsc.util.PermissionUtils.isPermissionGranted
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
     OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener,
     GoogleMap.OnMyLocationClickListener, ActivityCompat.OnRequestPermissionsResultCallback,
-    PostClickListener {
+    RepairClickListener {
     private var permissionDenied = false
     private lateinit var map: GoogleMap
     private lateinit var adapter: RepairApplyRecordAdapter
@@ -127,7 +128,7 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
             enableMyLocation()
         }
         map.setOnMarkerClickListener {
-            onMarkerClick(it, 5)
+            onMarkerClick(it)
             showRecyclerView()
             true
         }
@@ -156,26 +157,27 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
 
         val markerOptions = MarkerOptions()
             .position(markerLatLng)
+            .title(countRepair.legalDistrict.toString())
             .icon(generateCustomMarkerBitmapDescriptor(countRepair.count, requireContext()))
 
         map.addMarker(markerOptions)
     }
 
-    private fun onMarkerClick(marker: Marker, count: Int) {
-        val recordItem = listOf(
-            RecordItem(1, "도배", "", "벽 도배하기", "2021", "2"),
-            RecordItem(2, "누수", "", "누수 막기", "2021", "2"),
-            RecordItem(3, "창문", "", "창문 뜯기", "2021", "2"),
-            RecordItem(4, "벽돌", "", "벽돌쌓기", "2021", "2"),
-            RecordItem(5, "바닥", "", "바닥 고치기", "2021", "2"),
-            RecordItem(6, "수리", "", "집 수리하기", "2021", "2"),
-            RecordItem(7, "도배", "", "벽 도배하기", "2021", "2"),
-            RecordItem(8, "도배", "", "벽 도배하기", "2021", "2"),
+    private fun onMarkerClick(marker: Marker) {
+        viewModel.getRequestRepairList(marker.title!!.toLong())
+        val repairAdapter = RepairApplyRecordAdapter(this)
+        initRequestRepairAdapter(repairAdapter)
+        binding.rvRepairRecordApply.adapter = repairAdapter
+    }
 
-        )
-        adapter = RepairApplyRecordAdapter(this)
-        adapter.add(recordItem)
-        binding.rvRepairRecordApply.adapter = adapter
+    private fun initRequestRepairAdapter(repairAdapter: RepairApplyRecordAdapter) {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.requestRepairList.collectLatest {
+                    repairAdapter.update(it)
+                }
+            }
+        }
     }
 
     private fun hideRecyclerView() {
@@ -311,7 +313,7 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
 
     private fun observe() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.allRepairRecord.collect {
                     it.forEach { countRepairDto ->
                         addMarker(countRepairDto)
@@ -319,10 +321,6 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
                 }
             }
         }
-    }
-
-    override fun onPostClick(post: RecordItem) {
-
     }
 
     companion object {
@@ -333,5 +331,14 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
          */
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
         private const val DEFAULT_ZOOM_LEVEL = 15.0f
+    }
+
+    override fun onRepairClick(repairId: Long) {
+        //
+    }
+
+    override fun onCompleteClick(repairId: Long) {
+        val action = MapFragmentDirections.actionNavigationMapToNavigationRepairApplyRecordDetail(repairId)
+        findNavController().navigate(action)
     }
 }

@@ -9,7 +9,11 @@
         android:id="@+id/navigation_map"
         android:name="com.solution.gdsc.ui.map.MapFragment"
         android:label="MapFragment"
-        tools:layout="@layout/fragment_map"/>
+        tools:layout="@layout/fragment_map">
+        <action
+            android:id="@+id/action_navigation_map_to_navigation_repair_apply_record_detail"
+            app:destination="@id/navigation_repair_apply_record_detail" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.solution.gdsc.ui.home.HomeFragment"
