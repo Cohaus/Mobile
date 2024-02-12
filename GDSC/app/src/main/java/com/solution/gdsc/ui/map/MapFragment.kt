@@ -3,6 +3,7 @@ package com.solution.gdsc.ui.map
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -10,6 +11,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
+import android.location.Geocoder
 import android.location.Location
 import android.util.Log
 import android.view.View
@@ -31,6 +33,7 @@ import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
@@ -57,8 +60,10 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
     private lateinit var adapter: RepairApplyRecordAdapter
     private var selectedMarker: Marker? = null
     private val viewModel by viewModels<MapViewModel>()
+    private lateinit var geocoder: Geocoder
 
     override fun setLayout() {
+        geocoder = Geocoder(requireContext())
         val mapFragment = childFragmentManager
             .findFragmentById(R.id.container_map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -131,19 +136,29 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
             // 다른 영역을 터치할 때 RecyclerView를 감춤
             hideRecyclerView()
         }
-
         viewModel.getAllRepairRecord()
+        observe()
     }
 
     private fun addMarker(countRepair: CountRepairDto) {
+        val lat = geocoder.getFromLocationName(countRepair.district, 10)
+        val latitude: Double
+        val longitude: Double
+        if (!lat.isNullOrEmpty()) {
+            latitude = lat[0].latitude
+            longitude = lat[0].longitude
+        } else {
+            Log.e(TAG, "주소가 존재하지 않음")
+            return
+        }
 
-        /*val markerLatLng = LatLng(latitude, longitude)
+        val markerLatLng = LatLng(latitude, longitude)
 
         val markerOptions = MarkerOptions()
             .position(markerLatLng)
             .icon(generateCustomMarkerBitmapDescriptor(countRepair.count, requireContext()))
 
-        map.addMarker(markerOptions)*/
+        map.addMarker(markerOptions)
     }
 
     private fun onMarkerClick(marker: Marker, count: Int) {
@@ -297,8 +312,10 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
     private fun observe() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.allRepairRecord.value.forEach {
-                    addMarker(it)
+                viewModel.allRepairRecord.collect {
+                    it.forEach { countRepairDto ->
+                        addMarker(countRepairDto)
+                    }
                 }
             }
         }
