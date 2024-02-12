@@ -54,10 +54,10 @@ class RepairDetailMoreDialogFragment : BottomSheetDialogFragment() {
                 val action = RepairDetailMoreDialogFragmentDirections.actionDetailMoreDialogToSettingDetailModify(args.savedRecordDto)
                 findNavController().navigate(action)
             }*/
-            /*tvRepairDetailDelete.setOnClickListener {
-                viewModel.deleteSavedRecord(args.reocrdId)
+            tvRepairDetailDelete.setOnClickListener {
+                viewModel.deleteSavedRecord(args.repairId)
                 deleteRecord()
-            }*/
+            }
         }
     }
 
@@ -66,7 +66,7 @@ class RepairDetailMoreDialogFragment : BottomSheetDialogFragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.deleteSavedRecord.collectLatest {
                     if (it.status == 200) {
-                        val action = DetailMoreDialogFragmentDirections.actionDetailMoreDialogToProfile()
+                        val action = RepairDetailMoreDialogFragmentDirections.actionRepairDetailMoreToProfile()
                         findNavController().navigate(action)
                     }
                 }

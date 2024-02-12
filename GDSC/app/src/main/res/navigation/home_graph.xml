@@ -257,6 +257,11 @@
         <argument
             android:name="repairId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_repair_detail_more_to_profile"
+            app:destination="@id/navigation_profile"
+            app:popUpTo="@id/home_graph"
+            app:popUpToInclusive="true"/>
     </dialog>
     <fragment
         android:id="@+id/navigation_volunteer_proceed_detail"
