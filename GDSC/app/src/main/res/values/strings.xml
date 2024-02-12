@@ -99,4 +99,6 @@
     <string name="text_find_volunteer">잠시만 기다려주세요\n봉사자를 찾는중입니다</string>
     <string name="description_question_mark">물음표 마크</string>
     <string name="description_find_volunteer_image">봉자사를 찾는 아이콘</string>
+    <string name="text_proceed_volunteer_list">진행 봉사 목록</string>
+    <string name="text_complete_volunteer_list">완료 봉사 목록</string>
 </resources>

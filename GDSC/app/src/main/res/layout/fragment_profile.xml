@@ -18,7 +18,7 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -34,172 +34,281 @@
                 app:title="Safe" />
         </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:context=".ui.profile.ProfileFragment">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <androidx.constraintlayout.widget.Group
-                android:id="@+id/group_repair"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:constraint_referenced_ids="tv_repair_apply_list, rv_repair_apply_list, ib_arrow_repair_list,divider_profile"/>
-
-            <androidx.constraintlayout.widget.Group
-                android:id="@+id/group_save"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:constraint_referenced_ids="tv_save_list, rv_save_list, ib_arrow_save_list, divider_profile_save" />
-
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:indeterminate="true"
-                app:indicatorColor="@color/green_300"
-                android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:trackColor="@color/gray_middle" />
-
-            <ImageView
-                android:id="@+id/iv_user_state_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
-                android:layout_marginTop="10dp"
-                android:contentDescription="@string/description_user_state"
-                android:src="@drawable/ic_normal_user"
-                android:visibility="invisible"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_user_name"
-                style="@style/customTextViewFontStyle.Bold.S18"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="22dp"
-                android:text="@{userDto.name}"
-                android:textColor="@color/black_600"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/iv_user_state_image"
-                app:layout_constraintTop_toTopOf="@id/iv_user_state_image" />
-
-            <TextView
-                android:id="@+id/tv_user_id"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@{userDto.id}"
-                android:textColor="@color/black_600"
-                app:layout_constraintEnd_toEndOf="@id/tv_user_name"
-                app:layout_constraintStart_toStartOf="@id/tv_user_name"
-                app:layout_constraintTop_toBottomOf="@id/tv_user_name" />
-
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/divider_profile"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
-                app:dividerThickness="1dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_user_state_image" />
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:context=".ui.profile.ProfileFragment">
 
-            <TextView
-                android:id="@+id/tv_repair_apply_list"
-                style="@style/customTextViewFontStyle.Bold.S24"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="19dp"
-                android:text="@string/text_repair_apply_list"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/iv_user_state_image"
-                app:layout_constraintTop_toBottomOf="@id/divider_profile" />
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/group_repair"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="tv_repair_apply_list,
+                 rv_repair_apply_list, ib_arrow_repair_list,divider_profile" />
 
-            <ImageButton
-                android:id="@+id/ib_arrow_repair_list"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:backgroundTint="@android:color/transparent"
-                android:contentDescription="@string/description_repair_list_arrow"
-                android:src="@drawable/ic_right_arrow"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_repair_apply_list" />
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/group_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="tv_save_list, rv_save_list,
+                 ib_arrow_save_list, divider_profile_save" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_repair_apply_list"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="31dp"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toTopOf="@id/divider_profile_save"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_repair_apply_list"
-                tools:listitem="@layout/item_repair_apply" />
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/group_proceed"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="divider_profile_tree, tv_proceed_volunteer_list,
+                 ib_proceed_volunteer_list, rv_proceed_volunteer_list" />
 
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/divider_profile_save"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
-                android:visibility="gone"
-                app:dividerThickness="1dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rv_repair_apply_list" />
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/group_complete"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="divider_profile_four, tv_complete_list,
+                ib_arrow_complete_list, rv_complete_list" />
 
-            <TextView
-                android:id="@+id/tv_save_list"
-                style="@style/customTextViewFontStyle.Bold.S24"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="19dp"
-                android:text="@string/text_save_list"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/iv_user_state_image"
-                app:layout_constraintTop_toBottomOf="@id/divider_profile_save" />
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
+                    app:indicatorColor="@color/green_300"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:trackColor="@color/gray_middle" />
 
-            <ImageButton
-                android:id="@+id/ib_arrow_save_list"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:backgroundTint="@android:color/transparent"
-                android:contentDescription="@string/description_repair_list_arrow"
-                android:src="@drawable/ic_right_arrow"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_save_list" />
+                <ImageView
+                    android:id="@+id/iv_user_state_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="10dp"
+                    android:contentDescription="@string/description_user_state"
+                    android:src="@drawable/ic_normal_user"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_save_list"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_save_list"
-                tools:listitem="@layout/item_record_save" />
+                <TextView
+                    android:id="@+id/tv_user_name"
+                    style="@style/customTextViewFontStyle.Bold.S18"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="22dp"
+                    android:text="@{userDto.name}"
+                    android:textColor="@color/black_600"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/iv_user_state_image"
+                    app:layout_constraintTop_toTopOf="@id/iv_user_state_image" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+                <TextView
+                    android:id="@+id/tv_user_id"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{userDto.id}"
+                    android:textColor="@color/black_600"
+                    app:layout_constraintEnd_toEndOf="@id/tv_user_name"
+                    app:layout_constraintStart_toStartOf="@id/tv_user_name"
+                    app:layout_constraintTop_toBottomOf="@id/tv_user_name" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
+                    app:dividerThickness="1dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_user_state_image" />
+
+                <TextView
+                    android:id="@+id/tv_repair_apply_list"
+                    style="@style/customTextViewFontStyle.Bold.S24"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="19dp"
+                    android:text="@string/text_repair_apply_list"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/iv_user_state_image"
+                    app:layout_constraintTop_toBottomOf="@id/divider_profile" />
+
+                <ImageButton
+                    android:id="@+id/ib_arrow_repair_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/description_repair_list_arrow"
+                    android:src="@drawable/ic_right_arrow"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_repair_apply_list" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_repair_apply_list"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="31dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toTopOf="@id/divider_profile_save"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_repair_apply_list"
+                    tools:listitem="@layout/item_repair_apply" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider_profile_save"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
+                    android:visibility="gone"
+                    app:dividerThickness="1dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_repair_apply_list" />
+
+                <TextView
+                    android:id="@+id/tv_save_list"
+                    style="@style/customTextViewFontStyle.Bold.S24"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="19dp"
+                    android:text="@string/text_save_list"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/iv_user_state_image"
+                    app:layout_constraintTop_toBottomOf="@id/divider_profile_save" />
+
+                <ImageButton
+                    android:id="@+id/ib_arrow_save_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/description_repair_list_arrow"
+                    android:src="@drawable/ic_right_arrow"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_save_list" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_save_list"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_save_list"
+                    tools:listitem="@layout/item_record_save" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider_profile_tree"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
+                    app:dividerThickness="1dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_save_list" />
+
+                <TextView
+                    android:id="@+id/tv_proceed_volunteer_list"
+                    style="@style/customTextViewFontStyle.Bold.S24"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="19dp"
+                    android:text="@string/text_proceed_volunteer_list"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/iv_user_state_image"
+                    app:layout_constraintTop_toBottomOf="@id/divider_profile_tree" />
+
+                <ImageButton
+                    android:id="@+id/ib_proceed_volunteer_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/description_repair_list_arrow"
+                    android:src="@drawable/ic_right_arrow"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_proceed_volunteer_list" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_proceed_volunteer_list"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="31dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toTopOf="@id/divider_profile_four"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_proceed_volunteer_list"
+                    tools:listitem="@layout/item_repair_apply" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider_profile_four"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
+                    app:dividerThickness="1dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_proceed_volunteer_list" />
+
+                <TextView
+                    android:id="@+id/tv_complete_list"
+                    style="@style/customTextViewFontStyle.Bold.S24"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="19dp"
+                    android:text="@string/text_complete_volunteer_list"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/iv_user_state_image"
+                    app:layout_constraintTop_toBottomOf="@id/divider_profile_four" />
+
+                <ImageButton
+                    android:id="@+id/ib_arrow_complete_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/description_repair_list_arrow"
+                    android:src="@drawable/ic_right_arrow"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_complete_list" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_complete_list"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_complete_list"
+                    tools:listitem="@layout/item_record_save" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
