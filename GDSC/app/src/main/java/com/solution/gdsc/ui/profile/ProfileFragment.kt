@@ -15,6 +15,8 @@ import com.solution.gdsc.ui.profile.adapter.PostClickListener
 import com.solution.gdsc.ui.profile.adapter.RecordSaveApter
 import com.solution.gdsc.ui.profile.adapter.RepairApplyAdapter
 import com.solution.gdsc.ui.profile.adapter.RepairClickListener
+import com.solution.gdsc.ui.profile.adapter.VolunteerCompleteAdapter
+import com.solution.gdsc.ui.profile.adapter.VolunteerProceedAdapter
 import com.solution.gdsc.ui.profile.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -28,6 +30,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     private val viewModel by viewModels<ProfileViewModel>()
     private val repairAdapter = RepairApplyAdapter(this)
     private val saveApter = RecordSaveApter(this)
+    private val proceedAdapter = VolunteerProceedAdapter()
+    private val completeAdapter = VolunteerCompleteAdapter()
     private var repairList = mutableListOf<RecordItem>()
 
     override fun setLayout() {
@@ -36,6 +40,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         viewModel.getUserInfo()
         setToolbarMenu()
         observe()
+        initVolunteerProceed()
+        initVolunteerComplete()
     }
 
     private fun setToolbarMenu() {
@@ -51,6 +57,22 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
                 else -> {
                     false
                 }
+            }
+        }
+    }
+
+    private fun initVolunteerProceed() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+
+            }
+        }
+    }
+
+    private fun initVolunteerComplete() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+
             }
         }
     }
