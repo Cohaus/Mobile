@@ -338,7 +338,7 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
     }
 
     override fun onCompleteClick(repairId: Long) {
-        val action = MapFragmentDirections.actionNavigationMapToNavigationRepairApplyRecordDetail(repairId)
+        val action = MapFragmentDirections.actionMapToMapRepairRecordDetail(repairId)
         findNavController().navigate(action)
     }
 }
