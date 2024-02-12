@@ -17,6 +17,7 @@ import com.solution.gdsc.domain.model.response.SavedRecordDto
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoDto
 import com.solution.gdsc.domain.model.response.VolunteerRegistrationResponse
+import com.solution.gdsc.domain.model.response.VolunteerRepairListResponse
 import com.solution.gdsc.domain.repository.UserMyPageRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -53,6 +54,8 @@ class ProfileViewModel @Inject constructor(
     val repairRecord: StateFlow<RepairRecordResponse> = _repairRecord
     private val _repairInfo = MutableStateFlow(RepairInfoResponse(data = null))
     val repairInfo: StateFlow<RepairInfoResponse> = _repairInfo
+    private val _volunteerRepairList = MutableStateFlow(VolunteerRepairListResponse(data = null))
+    val volunteerRepairList: StateFlow<VolunteerRepairListResponse> = _volunteerRepairList
 
     fun logout() {
         viewModelScope.launch {
@@ -182,6 +185,19 @@ class ProfileViewModel @Inject constructor(
                 }
             } catch (e: Exception) {
                 Log.e("Get Repair Info Error: ", e.message.toString())
+            }
+        }
+    }
+
+    fun getVolunteerRepairList() {
+        viewModelScope.launch {
+            try {
+                userMyPageRepository.getVolunteerRepairList().collect {
+                    if (it.data != null) _volunteerRepairList.value = it
+                }
+            } catch (e: Exception) {
+                Log.e("Get Volunteer Repair List Error: ", e.message.toString())
+
             }
         }
     }

@@ -15,6 +15,8 @@ import com.solution.gdsc.ui.profile.adapter.PostClickListener
 import com.solution.gdsc.ui.profile.adapter.RecordSaveApter
 import com.solution.gdsc.ui.profile.adapter.RepairApplyAdapter
 import com.solution.gdsc.ui.profile.adapter.RepairClickListener
+import com.solution.gdsc.ui.profile.adapter.VolunteerCompleteAdapter
+import com.solution.gdsc.ui.profile.adapter.VolunteerProceedAdapter
 import com.solution.gdsc.ui.profile.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -28,14 +30,18 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     private val viewModel by viewModels<ProfileViewModel>()
     private val repairAdapter = RepairApplyAdapter(this)
     private val saveApter = RecordSaveApter(this)
+    private val proceedAdapter = VolunteerProceedAdapter(this)
+    private val completeAdapter = VolunteerCompleteAdapter(this)
     private var repairList = mutableListOf<RecordItem>()
 
     override fun setLayout() {
         binding.isLoading = true
         viewModel.getUserRecord()
         viewModel.getUserInfo()
+        viewModel.getVolunteerRepairList()
         setToolbarMenu()
         observe()
+        initVolunteerList()
     }
 
     private fun setToolbarMenu() {
@@ -55,6 +61,23 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         }
     }
 
+    private fun initVolunteerList() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+                viewModel.volunteerRepairList.collectLatest {
+                    if (it.status in 200..299) {
+                        proceedAdapter.update(it.data!!.proceedingRepair.content)
+                        completeAdapter.update(it.data.completeRepair.content)
+                        binding.rvCompleteList.adapter = completeAdapter
+                        binding.rvProceedVolunteerList.adapter = proceedAdapter
+                        changeGroupVisibility(proceedAdapter.itemCount, binding.groupProceed)
+                        changeGroupVisibility(completeAdapter.itemCount, binding.groupComplete)
+                    }
+                }
+            }
+        }
+    }
+
     private fun observe() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
@@ -67,6 +90,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
                 }
             }
         }
+
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.savedRecords.collectLatest {
@@ -113,6 +137,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
 
     override fun onRepairClick(repairId: Long) {
         val action = ProfileFragmentDirections.actionProfileToRepairApplyRecordDetail(repairId)
+        findNavController().navigate(action)
+    }
+
+    override fun onCompleteClick(repairId: Long) {
+        val action = ProfileFragmentDirections.actionProfileToVolunteerProceedDetail()
         findNavController().navigate(action)
     }
 }

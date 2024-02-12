@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_profile_to_repair_apply_record_detail"
             app:destination="@id/navigation_repair_apply_record_detail" />
+        <action
+            android:id="@+id/action_profile_to_volunteer_proceed_detail"
+            app:destination="@id/navigation_volunteer_proceed_detail" />
     </fragment>
 
     <fragment
@@ -251,4 +254,8 @@
             android:name="repairId"
             app:argType="long" />
     </dialog>
+    <fragment
+        android:id="@+id/navigation_volunteer_proceed_detail"
+        android:name="com.solution.gdsc.ui.profile.VolunteerProceedDetailFragment"
+        android:label="VolunteerProceedDetailFragment" />
 </navigation>

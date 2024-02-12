@@ -15,6 +15,7 @@ import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoResponse
 import com.solution.gdsc.domain.model.response.UserRecordResponse
 import com.solution.gdsc.domain.model.response.VolunteerRegistrationResponse
+import com.solution.gdsc.domain.model.response.VolunteerRepairListResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Body
@@ -57,6 +58,8 @@ interface CoHousService {
 
     @PUT("/volunteers/users")
     suspend fun putVolunteerUser(@Body volunteerRegistrationReq: VolunteerRegistrationReq): VolunteerRegistrationResponse
+    @GET("/volunteers/repairs")
+    suspend fun getVolunteerRepairList(): VolunteerRepairListResponse
 
     // Home
     @Multipart
