@@ -4,7 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="requestRepairItem"
+            type="com.solution.gdsc.domain.model.response.RequestRepairItem" />
+        <variable
+            name="listener"
+            type="com.solution.gdsc.ui.profile.adapter.RepairClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +29,7 @@
             android:layout_marginTop="18dp"
             android:layout_marginEnd="20dp"
             android:gravity="center"
-            android:text="벽 도배 공사"
+            android:text="@{requestRepairItem.title}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -63,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="도배"
+            android:text="@{requestRepairItem.category}"
             app:layout_constraintStart_toEndOf="@id/tv_item_repair_category_box"
             app:layout_constraintTop_toTopOf="@id/tv_item_repair_category_box" />
 
@@ -97,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="서울시 서초구"
+            android:text="@{requestRepairItem.district}"
             app:layout_constraintStart_toEndOf="@id/tv_item_repair_record_address_box"
             app:layout_constraintTop_toTopOf="@id/tv_item_repair_record_address_box" />
 
@@ -133,7 +138,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="2024년 01월 01일"
+            android:text="@{requestRepairItem.visitDate}"
             app:layout_constraintStart_toEndOf="@id/tv_item_repair_record_date_box"
             app:layout_constraintTop_toTopOf="@id/tv_item_repair_record_date_box" />
 
@@ -148,6 +153,7 @@
             android:layout_marginBottom="18dp"
             android:background="@drawable/shape_button_15dp_green"
             android:text="자세히 보기"
+            android:onClick="@{() -> listener.onCompleteClick(requestRepairItem.repairId)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

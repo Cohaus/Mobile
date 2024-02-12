@@ -75,13 +75,16 @@ class HomeLocationSettingFragment :
             override fun onPlaceSelected(place: Place) {
                 moveMapToLocation(place.latLng)
                 placeId = place.id
-                address = place.address
-                district = place.name?.let { address!!.replace(it, "") }
-                Log.i(ContentValues.TAG, "Place: ${place.name}, ${place.id}, ${place.address}")
+                address = place.name
+                district = place.address!!
+                    .replace(address!!, "")
+                    .replace(Regex("경기도|경상남도|경상북도|전라남도|전라북도|강원도|충청북도|충청남도"), "")
+                    .trim()
+                    .replace("\\s+".toRegex(), " ")
             }
 
             override fun onError(status: Status) {
-                Log.i(ContentValues.TAG, "An error occurred: $status")
+                Log.e(ContentValues.TAG, "An error occurred: $status")
             }
         })
     }

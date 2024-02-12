@@ -1,4 +1,4 @@
-package com.solution.gdsc.ui.profile
+package com.solution.gdsc.ui.profile.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,25 +11,25 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.solution.gdsc.databinding.FragmentDetailMoreDialogBinding
+import com.solution.gdsc.databinding.FragmentRepairDetailMoreDialogBinding
 import com.solution.gdsc.ui.profile.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class DetailMoreDialogFragment : BottomSheetDialogFragment() {
-    private var _binding: FragmentDetailMoreDialogBinding? = null
+class RepairDetailMoreDialogFragment : BottomSheetDialogFragment() {
+    private var _binding: FragmentRepairDetailMoreDialogBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModels<ProfileViewModel>()
-    private val args by navArgs<DetailMoreDialogFragmentArgs>()
+    private val args by navArgs<RepairDetailMoreDialogFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDetailMoreDialogBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentRepairDetailMoreDialogBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -45,16 +45,17 @@ class DetailMoreDialogFragment : BottomSheetDialogFragment() {
 
     private fun setLayout() {
         with(binding) {
-            tvDetailRepairApply.setOnClickListener {
-                val action = DetailMoreDialogFragmentDirections.actionDetailMoreDialogToHomeLocationSetting(args.savedRecordDto.image)
+            tvDetailRepairApplyInfo.setOnClickListener {
+                val action =
+                    RepairDetailMoreDialogFragmentDirections.actionRepairDetailMoreToPostRepairApplyInfo(args.repairId)
                 findNavController().navigate(action)
             }
-            tvDetailEdit.setOnClickListener {
-                val action = DetailMoreDialogFragmentDirections.actionDetailMoreDialogToSettingDetailModify(args.savedRecordDto)
+            tvRepairDetailEdit.setOnClickListener {
+                val action = RepairDetailMoreDialogFragmentDirections.actionRepairDetailMoreToDetailRecordModify(args.repairRecord)
                 findNavController().navigate(action)
             }
-            tvDetailDelete.setOnClickListener {
-                viewModel.deleteSavedRecord(args.reocrdId)
+            tvRepairDetailDelete.setOnClickListener {
+                viewModel.deleteSavedRecord(args.repairId)
                 deleteRecord()
             }
         }
@@ -65,12 +66,11 @@ class DetailMoreDialogFragment : BottomSheetDialogFragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.deleteSavedRecord.collectLatest {
                     if (it.status == 200) {
-                        val action = DetailMoreDialogFragmentDirections.actionDetailMoreDialogToProfile()
+                        val action = RepairDetailMoreDialogFragmentDirections.actionRepairDetailMoreToProfile()
                         findNavController().navigate(action)
                     }
                 }
             }
         }
     }
-
 }

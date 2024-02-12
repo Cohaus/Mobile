@@ -1,4 +1,4 @@
-package com.solution.gdsc.ui.profile
+package com.solution.gdsc.ui.profile.detail
 
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment

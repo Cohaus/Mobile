@@ -9,7 +9,11 @@
         android:id="@+id/navigation_map"
         android:name="com.solution.gdsc.ui.map.MapFragment"
         android:label="MapFragment"
-        tools:layout="@layout/fragment_map"/>
+        tools:layout="@layout/fragment_map">
+        <action
+            android:id="@+id/action_navigation_map_to_navigation_repair_apply_record_detail"
+            app:destination="@id/navigation_repair_apply_record_detail" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.solution.gdsc.ui.home.HomeFragment"
@@ -58,7 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_post_detail"
-        android:name="com.solution.gdsc.ui.profile.PostDetailFragment"
+        android:name="com.solution.gdsc.ui.profile.detail.PostDetailFragment"
         android:label="PostDetailFragment"
         tools:layout="@layout/fragment_post_detail">
         <action
@@ -126,7 +130,7 @@
     </fragment>
     <dialog
         android:id="@+id/navigation_detail_more_dialog"
-        android:name="com.solution.gdsc.ui.profile.DetailMoreDialogFragment"
+        android:name="com.solution.gdsc.ui.profile.detail.DetailMoreDialogFragment"
         android:label="DetailMoreDialogFragment"
         tools:layout="@layout/fragment_detail_more_dialog">
         <action
@@ -180,7 +184,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_post_repair_apply_info"
-        android:name="com.solution.gdsc.ui.profile.PostRepairApplyInfoFragment"
+        android:name="com.solution.gdsc.ui.profile.detail.PostRepairApplyInfoFragment"
         android:label="PostRepairApplyInfoFragment"
         tools:layout="@layout/fragment_post_repair_apply_info">
         <argument android:name="repairId"
@@ -232,7 +236,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_repair_apply_record_detail"
-        android:name="com.solution.gdsc.ui.profile.RepairApplyRecordDetailFragment"
+        android:name="com.solution.gdsc.ui.profile.detail.RepairApplyRecordDetailFragment"
         android:label="RepairApplyRecordDetailFragment"
         tools:layout="@layout/fragment_repair_apply_record_detail">
         <argument
@@ -244,7 +248,7 @@
     </fragment>
     <dialog
         android:id="@+id/navigation_repair_detail_more"
-        android:name="com.solution.gdsc.ui.profile.RepairDetailMoreDialogFragment"
+        android:name="com.solution.gdsc.ui.profile.detail.RepairDetailMoreDialogFragment"
         android:label="RepairDetailMoreDialogFragment"
         tools:layout="@layout/fragment_repair_detail_more_dialog">
         <action
@@ -253,9 +257,29 @@
         <argument
             android:name="repairId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_repair_detail_more_to_profile"
+            app:destination="@id/navigation_profile"
+            app:popUpTo="@id/home_graph"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_repair_detail_more_to_detail_record_modify"
+            app:destination="@id/navigation_detail_record_modify" />
+        <argument
+            android:name="repairRecord"
+            app:argType="com.solution.gdsc.domain.model.response.RepairRecordDto" />
     </dialog>
     <fragment
         android:id="@+id/navigation_volunteer_proceed_detail"
-        android:name="com.solution.gdsc.ui.profile.VolunteerProceedDetailFragment"
+        android:name="com.solution.gdsc.ui.profile.detail.VolunteerProceedDetailFragment"
         android:label="VolunteerProceedDetailFragment" />
+    <fragment
+        android:id="@+id/navigation_detail_record_modify"
+        android:name="com.solution.gdsc.ui.profile.detail.DetailRecordModifyFragment"
+        android:label="DetailRecordModifyFragment"
+        tools:layout="@layout/fragment_detail_reocrd_modify">
+        <argument
+            android:name="repairRecordDto"
+            app:argType="com.solution.gdsc.domain.model.response.RepairRecordDto" />
+    </fragment>
 </navigation>

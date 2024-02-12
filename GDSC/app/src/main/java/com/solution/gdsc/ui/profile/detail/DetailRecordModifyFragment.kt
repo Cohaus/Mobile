@@ -1,4 +1,4 @@
-package com.solution.gdsc.ui.profile.setting
+package com.solution.gdsc.ui.profile.detail
 
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
@@ -9,16 +9,16 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
-import com.solution.gdsc.databinding.FragmentSettingDetailModifyBinding
+import com.solution.gdsc.databinding.FragmentDetailReocrdModifyBinding
 import com.solution.gdsc.ui.profile.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SettingDetailModifyFragment : BaseFragment<FragmentSettingDetailModifyBinding>(R.layout.fragment_setting_detail_modify) {
+class DetailRecordModifyFragment : BaseFragment<FragmentDetailReocrdModifyBinding>(R.layout.fragment_detail_reocrd_modify) {
     private val viewModel by viewModels<ProfileViewModel>()
-    private val args by navArgs<SettingDetailModifyFragmentArgs>()
+    private val args by navArgs<DetailRecordModifyFragmentArgs>()
 
     private var inputTitle = ""
     private var inputContent = ""
@@ -28,13 +28,13 @@ class SettingDetailModifyFragment : BaseFragment<FragmentSettingDetailModifyBind
 
     override fun setLayout() {
         setTextInput()
-        binding.savedRecordInfo = args.savedRecordDto
+        binding.repairRecord = args.repairRecordDto
         with(binding) {
-            toolbarRecordEdit.setNavigationOnClickListener {
+            toolbarDetailRecordEdit.setNavigationOnClickListener {
                 findNavController().navigateUp()
             }
-            btnEditRecordSave.setOnClickListener {
-                viewModel.updateSavedRecord(args.savedRecordDto.recordId, inputTitle, inputContent)
+            btnDetailEditRecordSave.setOnClickListener {
+                viewModel.updateSavedRecord(args.repairRecordDto.recordId, inputTitle, inputContent)
                 updateSavedRecord()
             }
         }
@@ -42,13 +42,13 @@ class SettingDetailModifyFragment : BaseFragment<FragmentSettingDetailModifyBind
 
     private fun setTextInput() {
         with(binding) {
-            etEditRecordInputTitle.doAfterTextChanged {
+            etDetailEditRecordInputTitle.doAfterTextChanged {
                 inputTitle = it?.toString() ?: ""
                 isValidTitle = isValidInput(inputTitle)
                 updateButtonEnableState()
 
             }
-            etEditRecordInputContent.doAfterTextChanged {
+            etDetailEditRecordInputContent.doAfterTextChanged {
                 inputContent = it?.toString() ?: ""
                 isValidContent = isValidInput(inputContent)
                 updateButtonEnableState()
@@ -60,7 +60,7 @@ class SettingDetailModifyFragment : BaseFragment<FragmentSettingDetailModifyBind
     private fun isValidInput(text: String): Boolean = text.isNotBlank()
 
     private fun updateButtonEnableState() {
-        binding.btnEditRecordSave.isEnabled = isValidTitle && isValidContent
+        binding.btnDetailEditRecordSave.isEnabled = isValidTitle && isValidContent
     }
 
     private fun updateSavedRecord() {

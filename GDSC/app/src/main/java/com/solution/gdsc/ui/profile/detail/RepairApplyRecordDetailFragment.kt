@@ -1,4 +1,4 @@
-package com.solution.gdsc.ui.profile
+package com.solution.gdsc.ui.profile.detail
 
 import android.util.Log
 import androidx.fragment.app.viewModels
@@ -50,7 +50,7 @@ class RepairApplyRecordDetailFragment : BaseFragment<FragmentRepairApplyRecordDe
             ibRepairMoreButton.setOnClickListener {
                 val action =
                     RepairApplyRecordDetailFragmentDirections
-                        .actionRepairApplyRecordDetailToRepairDetailMore(args.repairID)
+                        .actionRepairApplyRecordDetailToRepairDetailMore(repairRecord.recordId, repairRecord)
                 findNavController().navigate(action)
             }
         }

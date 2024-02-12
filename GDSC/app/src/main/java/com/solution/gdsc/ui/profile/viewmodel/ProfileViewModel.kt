@@ -149,10 +149,10 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    fun updateSavedRecord(recordId: Long, title: String, detail: String, category: String) {
+    fun updateSavedRecord(recordId: Long, title: String, detail: String) {
         viewModelScope.launch {
             try {
-                userMyPageRepository.updateSavedRecord(recordId, UpdateSavedRecordReq(title, detail, category)).collect {
+                userMyPageRepository.updateSavedRecord(recordId, UpdateSavedRecordReq(title, detail)).collect {
                     _updateSavedRecord.value = it.status
                 }
             } catch (e: Exception) {

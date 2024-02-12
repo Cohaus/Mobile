@@ -9,6 +9,7 @@ import com.solution.gdsc.domain.model.response.DeleteSavedRecordResponse
 import com.solution.gdsc.domain.model.response.RepairIdResponse
 import com.solution.gdsc.domain.model.response.RepairInfoResponse
 import com.solution.gdsc.domain.model.response.RepairRecordResponse
+import com.solution.gdsc.domain.model.response.RequestRepairListResponse
 import com.solution.gdsc.domain.model.response.SavedRecordResponse
 import com.solution.gdsc.domain.model.response.UpdateSavedRecordResponse
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
@@ -88,4 +89,6 @@ interface CoHousService {
     // Map
     @GET("/map")
     suspend fun getAllRepairRecord(): CountRepairResponse
+    @GET("/map/districts/{districtId}")
+    suspend fun getRequestRepairList(@Path("districtId") districtId: Long): RequestRepairListResponse
 }
