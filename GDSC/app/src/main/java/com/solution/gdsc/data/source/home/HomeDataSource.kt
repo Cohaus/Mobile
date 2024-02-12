@@ -51,7 +51,6 @@ class HomeDataSource @Inject constructor(
         placeId: String, address: String, district: String,
         date: String, image: String
     ): RepairIdResponse {
-        Log.e("Post Repairs", "$title, $detail, $category, $placeId, $address, $district, $date")
         val titleRequestBody = title.toRequestBody("text/plain".toMediaTypeOrNull())
         val detailRequestBody = detail.toRequestBody("text/plain".toMediaTypeOrNull())
         val categoryRequestBody = category.toRequestBody("text/plain".toMediaTypeOrNull())
@@ -63,7 +62,6 @@ class HomeDataSource @Inject constructor(
         val file = File(image)
         val imageRequestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
         val imagePart = MultipartBody.Part.createFormData("image", file.name, imageRequestBody)
-        Log.e("PostRepairs", "$titleRequestBody, $detailRequestBody, $categoryRequestBody, $placeIdRequestBody, $addressRequestBody, $districtRequestBody, $dateRequestBody")
         var response = RepairIdResponse(1, "성공",
             RepairId(1, 1)
         )
