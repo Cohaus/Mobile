@@ -13,6 +13,7 @@ import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoResponse
 import com.solution.gdsc.domain.model.response.UserRecordResponse
 import com.solution.gdsc.domain.model.response.VolunteerRegistrationResponse
+import com.solution.gdsc.domain.model.response.VolunteerRepairListResponse
 import kotlinx.coroutines.flow.Flow
 
 interface UserMyPageRepository {
@@ -27,4 +28,5 @@ interface UserMyPageRepository {
     suspend fun updateSavedRecord(recordId: Long, updateSavedRecordReq: UpdateSavedRecordReq): Flow<UpdateSavedRecordResponse>
     suspend fun getRepairsRecord(repairId: Long): Flow<RepairRecordResponse>
     suspend fun getRepairInfo(repairId: Long): Flow<RepairInfoResponse>
+    suspend fun getVolunteerRepairList(): Flow<VolunteerRepairListResponse>
 }
