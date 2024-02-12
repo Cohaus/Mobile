@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.solution.gdsc.databinding.ItemRecordProceedBinding
 import com.solution.gdsc.domain.model.response.RepairItem
 
-class VolunteerProceedAdapter : RecyclerView.Adapter<VolunteerProceedAdapter.VolunteerProceedViewHolder>()  {
+class VolunteerProceedAdapter(private val listener: RepairClickListener) : RecyclerView.Adapter<VolunteerProceedAdapter.VolunteerProceedViewHolder>()  {
     private val items = mutableListOf<RepairItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VolunteerProceedViewHolder {
-        return VolunteerProceedViewHolder.from(parent)
+        return VolunteerProceedViewHolder.from(parent, listener)
     }
 
     override fun getItemCount(): Int = items.size
@@ -48,20 +48,23 @@ class VolunteerProceedAdapter : RecyclerView.Adapter<VolunteerProceedAdapter.Vol
     }
 
     class VolunteerProceedViewHolder(
-        private val binding: ItemRecordProceedBinding
+        private val binding: ItemRecordProceedBinding,
+        private val listener: RepairClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: RepairItem) {
             binding.record = item
+            binding.listener = listener
         }
 
         companion object {
-            fun from(parent: ViewGroup): VolunteerProceedViewHolder {
+            fun from(parent: ViewGroup, listener: RepairClickListener): VolunteerProceedViewHolder {
                 return VolunteerProceedViewHolder(
                     ItemRecordProceedBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
-                    )
+                    ),
+                    listener
                 )
             }
         }

@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.solution.gdsc.databinding.ItemRecordProceedBinding
 import com.solution.gdsc.domain.model.response.RepairItem
 
-class VolunteerCompleteAdapter : RecyclerView.Adapter<VolunteerCompleteAdapter.VolunteerCompleteViewHolder>()  {
+class VolunteerCompleteAdapter(private val listener: RepairClickListener) : RecyclerView.Adapter<VolunteerCompleteAdapter.VolunteerCompleteViewHolder>()  {
     private val items = mutableListOf<RepairItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VolunteerCompleteViewHolder {
-        return VolunteerCompleteViewHolder.from(parent)
+        return VolunteerCompleteViewHolder.from(parent, listener)
     }
 
     override fun getItemCount(): Int = items.size
@@ -48,20 +48,23 @@ class VolunteerCompleteAdapter : RecyclerView.Adapter<VolunteerCompleteAdapter.V
     }
 
     class VolunteerCompleteViewHolder(
-        private val binding: ItemRecordProceedBinding
+        private val binding: ItemRecordProceedBinding,
+        private val listener: RepairClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: RepairItem) {
             binding.record = item
+            binding.listener = listener
         }
 
         companion object {
-            fun from(parent: ViewGroup): VolunteerCompleteViewHolder {
+            fun from(parent: ViewGroup, listener: RepairClickListener): VolunteerCompleteViewHolder {
                 return VolunteerCompleteViewHolder(
                     ItemRecordProceedBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
-                    )
+                    ),
+                    listener
                 )
             }
         }
