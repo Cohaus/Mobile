@@ -1,6 +1,7 @@
 package com.solution.gdsc.data.source.map
 
 import com.solution.gdsc.domain.model.response.CountRepairResponse
+import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.RequestRepairListResponse
 import com.solution.gdsc.domain.repository.MapRepository
 import kotlinx.coroutines.flow.Flow
@@ -11,4 +12,5 @@ class MapRepositoryImpl @Inject constructor(
 ) : MapRepository {
     override suspend fun getAllRepairRecord(): Flow<CountRepairResponse> = dataSource.getAllRepairRecord()
     override suspend fun getRequestRepairList(districtId: Long): Flow<RequestRepairListResponse> = dataSource.getRequestRepairList(districtId)
+    override suspend fun patchRepairInfo(date: String, repairId: Long): Flow<DefaultResponse> = dataSource.patchRepairInfo(date, repairId)
 }
