@@ -8,19 +8,30 @@
     android:background="@drawable/shape_button_15dp_green"
     android:backgroundTint="@color/white">
 
-    <TextView
-        android:id="@+id/tv_volunteer_registration_text"
-        style="@style/customTextViewFontStyle.Bold.S20"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/ib_signup_welcome_image"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginTop="40dp"
-        android:gravity="center"
-        android:text="봉사자로 등록 하시겠어요?"
+        android:layout_marginTop="25dp"
+        android:contentDescription="@string/description_volunteer_registration_image"
+        android:src="@drawable/ic_signup_welcome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_volunteer_registration_text"
+        style="@style/customTextViewFontStyle.Bold.S16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="49dp"
+        android:gravity="center"
+        android:text="@string/text_volunteer_registration_complete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ib_signup_welcome_image" />
 
     <Button
         android:id="@+id/btn_volunteer_registration_confirm"

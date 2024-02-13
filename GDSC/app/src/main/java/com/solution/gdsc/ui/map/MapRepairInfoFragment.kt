@@ -47,6 +47,9 @@ class MapRepairInfoFragment : BaseFragment<FragmentMapRepairInfoBinding>(R.layou
             val action = MapRepairInfoFragmentDirections.actionMapRepairInfoToMapRepairApply(repairInfo.date, args.title, args.repairId)
             findNavController().navigate(action)
         }
+        binding.toolbarRepairApplyInfo.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun changeVisibility() {

@@ -55,7 +55,7 @@ class RepairDetailMoreDialogFragment : BottomSheetDialogFragment() {
                 findNavController().navigate(action)
             }
             tvRepairDetailDelete.setOnClickListener {
-                viewModel.deleteSavedRecord(args.repairId)
+                viewModel.deleteSavedRecord(args.repairRecord.recordId)
                 deleteRecord()
             }
         }

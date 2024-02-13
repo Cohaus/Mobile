@@ -141,7 +141,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     }
 
     override fun onCompleteClick(repairId: Long) {
-        val action = ProfileFragmentDirections.actionProfileToVolunteerProceedDetail()
+        val action = ProfileFragmentDirections.actionProfileToVolunteerProceedDetail(repairId)
         findNavController().navigate(action)
     }
 }
