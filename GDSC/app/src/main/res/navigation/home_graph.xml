@@ -11,8 +11,8 @@
         android:label="MapFragment"
         tools:layout="@layout/fragment_map">
         <action
-            android:id="@+id/action_navigation_map_to_navigation_repair_apply_record_detail"
-            app:destination="@id/navigation_repair_apply_record_detail" />
+            android:id="@+id/action_map_to_map_repair_record_detail"
+            app:destination="@id/navigation_map_repair_record_detail" />
     </fragment>
     <fragment
         android:id="@+id/navigation_home"
@@ -282,4 +282,50 @@
             android:name="repairRecordDto"
             app:argType="com.solution.gdsc.domain.model.response.RepairRecordDto" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_map_repair_record_detail"
+        android:name="com.solution.gdsc.ui.map.MapRepairRecordDetailFragment"
+        android:label="MapRepairRecordDetailFragment"
+        tools:layout="@layout/fragment_map_repair_record_detail">
+        <argument
+            android:name="repairId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_map_navigation_repair_record_detail_to_mapRepairInfoFragment"
+            app:destination="@id/navigation_map_repair_info" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_map_repair_info"
+        android:name="com.solution.gdsc.ui.map.MapRepairInfoFragment"
+        android:label="MapRepairInfoFragment"
+        tools:layout="@layout/fragment_map_repair_info">
+        <argument android:name="repairId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_map_repair_info_to_map_repair_apply"
+            app:destination="@id/navigation_map_repair_apply" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </fragment>
+    <dialog
+        android:id="@+id/navigation_map_repair_apply"
+        android:name="com.solution.gdsc.ui.map.DialogMapRepairApplyFragment"
+        android:label="DialogMapRepairApplyFragment"
+        tools:layout="@layout/fragment_dialog_map_repair_apply">
+        <argument
+            android:name="date"
+            app:argType="string" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="repairId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_map_repair_apply_to_map"
+            app:destination="@id/navigation_map"
+            app:popUpTo="@id/home_graph"
+            app:popUpToInclusive="true"/>
+    </dialog>
 </navigation>

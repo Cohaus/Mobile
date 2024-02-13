@@ -28,6 +28,7 @@ import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface CoHousService {
     // Profile
@@ -91,4 +92,9 @@ interface CoHousService {
     suspend fun getAllRepairRecord(): CountRepairResponse
     @GET("/map/districts/{districtId}")
     suspend fun getRequestRepairList(@Path("districtId") districtId: Long): RequestRepairListResponse
+    @PATCH("/volunteers/repairs/{repairId}/proceed")
+    suspend fun patchRepairInfo(
+        @Path("repairId") repairId: Long,
+        @Query("date") date: String
+    ): DefaultResponse
 }
