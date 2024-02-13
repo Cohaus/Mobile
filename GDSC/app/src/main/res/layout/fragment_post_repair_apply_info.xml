@@ -226,7 +226,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_volunteer_apply_user_image"
             app:layout_constraintTop_toTopOf="@id/iv_volunteer_apply_user_image"
-            tools:text="김신청" />
+            tools:text="@{repairInfo.volunteerName}" />
 
         <TextView
             android:id="@+id/tv_meet_user"
@@ -257,7 +257,7 @@
             app:layout_constraintEnd_toEndOf="@id/tv_volunteer_user_name"
             app:layout_constraintStart_toEndOf="@id/iv_volunteer_tel"
             app:layout_constraintTop_toBottomOf="@id/tv_meet_user"
-            tools:text="010-1111-1111" />
+            tools:text="@{repairInfo.volunteerTel}" />
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/divider_repair_info_two"

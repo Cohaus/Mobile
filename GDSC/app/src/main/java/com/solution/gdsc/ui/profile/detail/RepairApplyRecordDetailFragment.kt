@@ -50,7 +50,7 @@ class RepairApplyRecordDetailFragment : BaseFragment<FragmentRepairApplyRecordDe
             ibRepairMoreButton.setOnClickListener {
                 val action =
                     RepairApplyRecordDetailFragmentDirections
-                        .actionRepairApplyRecordDetailToRepairDetailMore(repairRecord.recordId, repairRecord)
+                        .actionRepairApplyRecordDetailToRepairDetailMore(args.repairID, repairRecord)
                 findNavController().navigate(action)
             }
         }
