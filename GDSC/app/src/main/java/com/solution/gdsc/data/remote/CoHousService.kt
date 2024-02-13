@@ -94,7 +94,7 @@ interface CoHousService {
     suspend fun getRequestRepairList(@Path("districtId") districtId: Long): RequestRepairListResponse
     @PATCH("/volunteers/repairs/{repairId}/proceed")
     suspend fun patchRepairInfo(
-        @Query("date") date: String,
-        @Path("repairId") repairId: Long
+        @Path("repairId") repairId: Long,
+        @Query("date") date: String
     ): DefaultResponse
 }

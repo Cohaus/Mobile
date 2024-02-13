@@ -1,5 +1,6 @@
 package com.solution.gdsc.ui.map.viewmodel
 
+import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -84,7 +85,8 @@ class MapViewModel @Inject constructor(
     fun patchRepairInfo(date:String, repairId: Long) {
         viewModelScope.launch {
             try {
-                repository.patchRepairInfo(date, repairId).collect {
+                Log.e(TAG, date)
+                repository.patchRepairInfo("20$date", repairId).collect {
                     _patchSuccess.value = it
                 }
             } catch (e: Exception) {

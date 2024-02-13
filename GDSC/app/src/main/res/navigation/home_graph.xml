@@ -322,5 +322,10 @@
         <argument
             android:name="repairId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_map_repair_apply_to_map"
+            app:destination="@id/navigation_map"
+            app:popUpTo="@id/home_graph"
+            app:popUpToInclusive="true"/>
     </dialog>
 </navigation>
