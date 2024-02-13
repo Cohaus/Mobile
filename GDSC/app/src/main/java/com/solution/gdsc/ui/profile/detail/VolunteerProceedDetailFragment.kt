@@ -33,6 +33,9 @@ class VolunteerProceedDetailFragment : BaseFragment<FragmentVolunteerProceedDeta
                 )
             findNavController().navigate(action)
         }
+        binding.ibProceedBackButton.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun setProceedDetail() {

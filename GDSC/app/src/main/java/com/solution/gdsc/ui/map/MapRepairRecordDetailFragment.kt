@@ -32,6 +32,9 @@ class MapRepairRecordDetailFragment : BaseFragment<FragmentMapRepairRecordDetail
                     .actionMapNavigationRepairRecordDetailToMapRepairInfoFragment(args.repairId, binding.tvMapRepairTitle.text.toString())
                 findNavController().navigate(action)
             }
+            ibMapRepairBackButton.setOnClickListener {
+                findNavController().navigateUp()
+            }
         }
     }
 
