@@ -12,9 +12,9 @@
         style="@style/customTextViewFontStyle.Bold.S18"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="49dp"
         android:layout_marginTop="25dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="49dp"
         android:gravity="center"
         android:text="@string/text_map_repair_apply"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,13 +26,13 @@
         style="@style/customTextViewFontStyle.Bold.S14.gray_400"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="49dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="49dp"
         android:gravity="center"
         android:text="@string/text_repair_apply_message"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tv_repair_apply_message_Bold"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_repair_apply_message_Bold" />
 
     <androidx.appcompat.widget.AppCompatButton

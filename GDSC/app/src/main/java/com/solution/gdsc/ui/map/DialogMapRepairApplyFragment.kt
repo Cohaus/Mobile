@@ -40,7 +40,6 @@ class DialogMapRepairApplyFragment : DialogFragment() {
         val title = binding.tvRepairApplyMessageBold.text
         val name = binding.tvRepairApplyMessageMedium.text
         binding.tvRepairApplyMessageBold.text = title.toString().format(args.title)
-        binding.tvRepairApplyMessageMedium.text = name.toString().format(args.repairInfo.userName)
     }
 
     override fun onDestroyView() {

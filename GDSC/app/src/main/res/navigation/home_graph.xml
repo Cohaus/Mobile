@@ -314,8 +314,8 @@
         android:label="DialogMapRepairApplyFragment"
         tools:layout="@layout/fragment_dialog_map_repair_apply">
         <argument
-            android:name="repairInfo"
-            app:argType="com.solution.gdsc.domain.model.response.RepairInfoDto" />
+            android:name="date"
+            app:argType="string" />
         <argument
             android:name="title"
             app:argType="string" />

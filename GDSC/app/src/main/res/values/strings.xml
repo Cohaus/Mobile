@@ -102,5 +102,5 @@
     <string name="text_proceed_volunteer_list">진행 봉사 목록</string>
     <string name="text_complete_volunteer_list">완료 봉사 목록</string>
     <string name="text_map_repair_apply">\'%s\'을\n신청하시겠습니까?</string>
-    <string name="text_repair_apply_message">신청 시 취소가 어렵습니다.\n%s 님과의 약속을 꼭 지켜주세요.</string>
+    <string name="text_repair_apply_message">신청 시 취소가 어렵습니다.\n신청자님과의 약속을 꼭 지켜주세요.</string>
 </resources>

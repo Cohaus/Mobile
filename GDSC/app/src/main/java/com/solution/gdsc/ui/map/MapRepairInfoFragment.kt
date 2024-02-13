@@ -44,7 +44,7 @@ class MapRepairInfoFragment : BaseFragment<FragmentMapRepairInfoBinding>(R.layou
 
     private fun setClickListener() {
         binding.btnVolunteerApplyButton.setOnClickListener {
-            val action = MapRepairInfoFragmentDirections.actionMapRepairInfoToMapRepairApply(repairInfo, args.title, args.repairId)
+            val action = MapRepairInfoFragmentDirections.actionMapRepairInfoToMapRepairApply(repairInfo.date, args.title, args.repairId)
             findNavController().navigate(action)
         }
     }
