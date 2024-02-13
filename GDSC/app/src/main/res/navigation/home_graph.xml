@@ -277,6 +277,9 @@
         <argument
             android:name="repairId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_volunteer_proceed_detail_to_map_repair_info"
+            app:destination="@id/navigation_map_repair_info" />
     </fragment>
     <fragment
         android:id="@+id/navigation_detail_record_modify"

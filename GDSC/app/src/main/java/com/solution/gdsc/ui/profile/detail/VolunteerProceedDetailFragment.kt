@@ -4,6 +4,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
@@ -21,6 +22,17 @@ class VolunteerProceedDetailFragment : BaseFragment<FragmentVolunteerProceedDeta
     override fun setLayout() {
         viewModel.getRepairsRecord(args.repairId)
         setProceedDetail()
+        clickInfo()
+    }
+
+    private fun clickInfo() {
+        binding.tvProceedMore.setOnClickListener {
+            val action = VolunteerProceedDetailFragmentDirections
+                .actionVolunteerProceedDetailToMapRepairInfo(
+                    args.repairId, binding.tvProceedTitle.text.toString()
+                )
+            findNavController().navigate(action)
+        }
     }
 
     private fun setProceedDetail() {
