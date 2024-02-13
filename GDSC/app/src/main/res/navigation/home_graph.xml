@@ -272,7 +272,12 @@
     <fragment
         android:id="@+id/navigation_volunteer_proceed_detail"
         android:name="com.solution.gdsc.ui.profile.detail.VolunteerProceedDetailFragment"
-        android:label="VolunteerProceedDetailFragment" />
+        android:label="VolunteerProceedDetailFragment"
+        tools:layout="@layout/fragment_volunteer_proceed_detail">
+        <argument
+            android:name="repairId"
+            app:argType="long" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_detail_record_modify"
         android:name="com.solution.gdsc.ui.profile.detail.DetailRecordModifyFragment"
