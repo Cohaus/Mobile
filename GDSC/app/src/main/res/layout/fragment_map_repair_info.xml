@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="repairInfo"
             type="com.solution.gdsc.domain.model.response.RepairInfoDto" />
@@ -26,7 +27,7 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             app:constraint_referenced_ids="tv_apply_user_info, tv_meet_user,
-             tv_volunteer_user_tel, iv_volunteer_tel, tv_volunteer_user_name" />
+             tv_volunteer_user_tel, iv_volunteer_tel, tv_volunteer_user_name, tv_volunteer_repair_complete" />
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar_repair_apply_info"
@@ -37,6 +38,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:navigationIconTint="@color/black_600" />
+
+        <TextView
+            android:id="@+id/tv_volunteer_repair_complete"
+            style="@style/customTextViewFontStyle.Bold.S16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="23dp"
+            android:text="완료하기"
+            app:layout_constraintBottom_toBottomOf="@id/toolbar_repair_apply_info"
+            app:layout_constraintEnd_toEndOf="@id/toolbar_repair_apply_info"
+            app:layout_constraintTop_toTopOf="@id/toolbar_repair_apply_info" />
 
         <TextView
             android:id="@+id/tv_repair_apply_info"
@@ -52,11 +64,11 @@
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progress_bar_repair_info"
+            setProgressByStatus="@{repairInfo.repairStatus}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="42dp"
-            setProgressByStatus="@{repairInfo.repairStatus}"
             app:indicatorColor="@color/green_300"
             app:indicatorDirectionCircular="counterclockwise"
             app:indicatorSize="110dp"

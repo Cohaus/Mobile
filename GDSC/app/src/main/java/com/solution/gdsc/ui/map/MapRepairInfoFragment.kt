@@ -39,16 +39,35 @@ class MapRepairInfoFragment : BaseFragment<FragmentMapRepairInfoBinding>(R.layou
                     }
                 }
             }
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.repairInfo.collectLatest {
+                    if (it.status in 200..299) {
+                        repairInfo = it.data!!
+                        binding.repairInfo = repairInfo
+                        changeVisibility()
+                    }
+                }
+            }
         }
     }
 
     private fun setClickListener() {
-        binding.btnVolunteerApplyButton.setOnClickListener {
-            val action = MapRepairInfoFragmentDirections.actionMapRepairInfoToMapRepairApply(repairInfo.date, args.title, args.repairId)
-            findNavController().navigate(action)
-        }
-        binding.toolbarRepairApplyInfo.setNavigationOnClickListener {
-            findNavController().navigateUp()
+        with(binding) {
+            btnVolunteerApplyButton.setOnClickListener {
+                val action = MapRepairInfoFragmentDirections.actionMapRepairInfoToMapRepairApply(
+                    repairInfo!!.date,
+                    args.title,
+                    args.repairId
+                )
+                findNavController().navigate(action)
+            }
+            toolbarRepairApplyInfo.setNavigationOnClickListener {
+                findNavController().navigateUp()
+            }
+            tvVolunteerRepairComplete.setOnClickListener {
+                val action = MapRepairInfoFragmentDirections.actionMapRepairInfoToDialogRepairComplete(args.repairId, repairInfo!!.date)
+                findNavController().navigate(action)
+            }
         }
     }
 

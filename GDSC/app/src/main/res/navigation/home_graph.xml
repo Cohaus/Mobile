@@ -315,6 +315,9 @@
         <argument
             android:name="title"
             app:argType="string" />
+        <action
+            android:id="@+id/action_map_repair_info_to_dialog_repair_complete"
+            app:destination="@id/navigation_repair_complete" />
     </fragment>
     <dialog
         android:id="@+id/navigation_map_repair_apply"
@@ -335,5 +338,17 @@
             app:destination="@id/navigation_map"
             app:popUpTo="@id/home_graph"
             app:popUpToInclusive="true"/>
+    </dialog>
+    <dialog
+        android:id="@+id/navigation_repair_complete"
+        android:name="com.solution.gdsc.ui.map.DialogRepairCompleteFragment"
+        android:label="DialogRepairCompleteFragment"
+        tools:layout="@layout/fragment_dialog_repair_complete">
+        <argument
+            android:name="repairId"
+            app:argType="long" />
+        <argument
+            android:name="date"
+            app:argType="string" />
     </dialog>
 </navigation>

@@ -1,6 +1,5 @@
 package com.solution.gdsc.ui.map.viewmodel
 
-import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -85,12 +84,23 @@ class MapViewModel @Inject constructor(
     fun patchRepairInfo(date:String, repairId: Long) {
         viewModelScope.launch {
             try {
-                Log.e(TAG, date)
                 repository.patchRepairInfo("20$date", repairId).collect {
                     _patchSuccess.value = it
                 }
             } catch (e: Exception) {
                 Log.e("Patch Repair Info Error: ", e.message.toString())
+            }
+        }
+    }
+
+    fun patchRepairComplete(repairId: Long, date: String) {
+        viewModelScope.launch {
+            try {
+                repository.patchRepairComplete(repairId, "20$date").collect {
+                    _patchSuccess.value = it
+                }
+            } catch (e: Exception) {
+                Log.e("Patch Repair Complete Error: ", e.message.toString())
             }
         }
     }
