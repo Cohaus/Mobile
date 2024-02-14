@@ -111,7 +111,9 @@ class MapViewModel @Inject constructor(
     fun getWasteFacilityInfo(repairId: Long) {
         viewModelScope.launch {
             try {
-
+                repository.getWasteFacilityInfo(repairId).collect {
+                    _wasteFacilityInfo.value = it
+                }
             } catch (e: Exception) {
                 Log.e("Get Waste Facility Info Error: ", e.message.toString())
             }

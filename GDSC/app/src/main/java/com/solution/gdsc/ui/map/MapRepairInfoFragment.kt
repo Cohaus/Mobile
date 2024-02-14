@@ -31,7 +31,7 @@ class MapRepairInfoFragment : BaseFragment<FragmentMapRepairInfoBinding>(R.layou
 
     private fun setRepairInfo() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.repairInfo.collectLatest {
                     if (it.status in 200..299) {
                         repairInfo = it.data!!
