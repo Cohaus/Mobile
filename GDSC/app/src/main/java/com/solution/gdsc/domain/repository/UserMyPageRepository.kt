@@ -14,7 +14,6 @@ import com.solution.gdsc.domain.model.response.UserInfoResponse
 import com.solution.gdsc.domain.model.response.UserRecordResponse
 import com.solution.gdsc.domain.model.response.VolunteerRegistrationResponse
 import com.solution.gdsc.domain.model.response.VolunteerRepairListResponse
-import com.solution.gdsc.domain.model.response.WasteFacilityResponse
 import kotlinx.coroutines.flow.Flow
 
 interface UserMyPageRepository {
@@ -30,5 +29,4 @@ interface UserMyPageRepository {
     suspend fun getRepairsRecord(repairId: Long): Flow<RepairRecordResponse>
     suspend fun getRepairInfo(repairId: Long): Flow<RepairInfoResponse>
     suspend fun getVolunteerRepairList(): Flow<VolunteerRepairListResponse>
-    suspend fun getWasteFacilityInfo(repairId: Long): Flow<WasteFacilityResponse>
 }

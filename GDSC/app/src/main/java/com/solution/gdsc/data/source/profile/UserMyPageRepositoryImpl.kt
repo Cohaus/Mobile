@@ -14,7 +14,6 @@ import com.solution.gdsc.domain.model.response.UserInfoResponse
 import com.solution.gdsc.domain.model.response.UserRecordResponse
 import com.solution.gdsc.domain.model.response.VolunteerRegistrationResponse
 import com.solution.gdsc.domain.model.response.VolunteerRepairListResponse
-import com.solution.gdsc.domain.model.response.WasteFacilityResponse
 import com.solution.gdsc.domain.repository.UserMyPageRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -57,6 +56,4 @@ class UserMyPageRepositoryImpl @Inject constructor(
 
     override suspend fun getVolunteerRepairList(): Flow<VolunteerRepairListResponse> =
         dataSource.getVolunteerRepairList()
-
-    override suspend fun getWasteFacilityInfo(repairId: Long): Flow<WasteFacilityResponse> = dataSource.getWasteFacilityInfo(repairId)
 }

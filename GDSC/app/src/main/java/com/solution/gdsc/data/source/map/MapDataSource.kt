@@ -6,6 +6,7 @@ import com.solution.gdsc.data.remote.CoHousService
 import com.solution.gdsc.domain.model.response.CountRepairResponse
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.RequestRepairListResponse
+import com.solution.gdsc.domain.model.response.WasteFacilityResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -41,5 +42,12 @@ class MapDataSource @Inject constructor(
         emit(response)
     }.catch {
         Log.e(TAG, "Patch Repair Complete Failure ${it.message.toString()}")
+    }
+
+    fun getWasteFacilityInfo(repairId: Long): Flow<WasteFacilityResponse> = flow {
+        val response = coHousService.getWasteFacilityInfo(repairId)
+        emit(response)
+    }.catch {
+        Log.e(TAG, "Get Waste Facility Info ${it.message}")
     }
 }
