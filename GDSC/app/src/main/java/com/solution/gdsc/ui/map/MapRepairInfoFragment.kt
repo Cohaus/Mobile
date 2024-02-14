@@ -11,6 +11,7 @@ import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentMapRepairInfoBinding
 import com.solution.gdsc.domain.model.response.RepairInfoDto
+import com.solution.gdsc.ui.common.RepairStatus
 import com.solution.gdsc.ui.map.viewmodel.MapViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -30,12 +31,13 @@ class MapRepairInfoFragment : BaseFragment<FragmentMapRepairInfoBinding>(R.layou
 
     private fun setRepairInfo() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.repairInfo.collectLatest {
                     if (it.status in 200..299) {
                         repairInfo = it.data!!
                         binding.repairInfo = repairInfo
                         changeVisibility()
+                        setEcoWasteDialog(repairInfo.repairStatus)
                     }
                 }
             }
@@ -48,6 +50,14 @@ class MapRepairInfoFragment : BaseFragment<FragmentMapRepairInfoBinding>(R.layou
                     }
                 }
             }
+        }
+    }
+
+    private fun setEcoWasteDialog(repairStatus: String) {
+        if (repairStatus == RepairStatus.COMPLETE.type) {
+            binding.tvVolunteerRepairComplete.visibility = View.GONE
+            val action = MapRepairInfoFragmentDirections.actionMapRepairInfoToDialogEcoWaste(args.repairId)
+            findNavController().navigate(action)
         }
     }
 

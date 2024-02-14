@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="wasteFacilityItem"
+            type="com.solution.gdsc.domain.model.response.WasteFacilityItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            style="@style/customTextViewFontStyle.Bold.S15"
+            android:id="@+id/tv_waste_facility_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="13dp"
+            android:text="@{wasteFacilityItem.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/customTextViewFontStyle.medium.S13.gray_450"
+            android:id="@+id/tv_waste_facility_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@{wasteFacilityItem.address}"
+            app:layout_constraintStart_toStartOf="@id/tv_waste_facility_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_waste_facility_name"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_waste_facility_tel"
+            style="@style/customTextViewFontStyle.medium.S13.gray_450"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@{wasteFacilityItem.tel}"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_waste_facility_address"
+            app:layout_constraintTop_toBottomOf="@id/tv_waste_facility_name" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

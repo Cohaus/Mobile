@@ -105,4 +105,9 @@
     <string name="text_repair_apply_message">신청 시 취소가 어렵습니다.\n신청자님과의 약속을 꼭 지켜주세요.</string>
     <string name="text_volunteer_registration_complete">감사합니다 :)\n봉사자 등록이 완료되었습니다!</string>
     <string name="description_volunteer_registration_image">봉사자 등록 확인 이미지</string>
+    <string name="description_waste_eco">폐기물 처리 아이콘</string>
+    <string name="text_waste_eco_message_first">폐기물이 발생했나요?\n폐기물 처리 시설을 찾아드릴게요.</string>
+    <string name="text_waste_eco_message_second">폐기물 처리 시설에서 폐기물을 처리하고\n환경 보호에 동참해보세요:)</string>
+    <string name="text_no_ok">괜찮아요</string>
+    <string name="text_find">찾아보기</string>
 </resources>

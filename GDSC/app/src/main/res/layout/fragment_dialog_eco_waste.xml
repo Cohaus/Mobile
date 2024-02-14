@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
+        android:background="@drawable/shape_button_15dp_stroke_gray">
+
+        <ImageView
+            android:id="@+id/iv_waste_eco_icon"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/description_waste_eco"
+            android:src="@drawable/ic_waste_eco_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_waste_eco_message_Bold"
+            style="@style/customTextViewFontStyle.Bold.S18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:text="@string/text_waste_eco_message_first"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_waste_eco_icon" />
+
+        <TextView
+            android:id="@+id/tv_waste_eco_message_medium"
+            style="@style/customTextViewFontStyle.Bold.S14.gray_400"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="38dp"
+            android:gravity="center"
+            android:text="@string/text_waste_eco_message_second"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_waste_eco_message_Bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_map_waste_eco_cancel"
+            style="@style/customTextViewFontStyle.Bold.S16.white"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/shape_button_20dp_gray_middle"
+            android:text="@string/text_no_ok"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_map_waste_eco_find"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_waste_eco_message_medium" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_map_waste_eco_find"
+            style="@style/customTextViewFontStyle.Bold.S16.white"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/shape_button_20dp_green"
+            android:text="@string/text_find"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_map_waste_eco_cancel"
+            app:layout_constraintTop_toBottomOf="@id/tv_waste_eco_message_medium" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
