@@ -14,7 +14,7 @@ data class SavedRecordDto(
     val title: String = "",
     val detail: String = "",
     val category: String = "",
-    val grade: String = "",
+    val grade: String? = "",
     @SerializedName("created_at")
     val createdAt: String = "",
     @SerializedName("updated_at")

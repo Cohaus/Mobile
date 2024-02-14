@@ -12,9 +12,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     override fun setLayout() {
         with(binding) {
             btnAiDiagnosis.setOnClickListener {
+                // ai 진단
+            }
+            btnBasicCapture.setOnClickListener {
                 //dispatchTakePictureIntent()
                 val action = HomeFragmentDirections.actionHomeToCamera()
                 findNavController().navigate(action)
+            }
+            btnUseGuide.setOnClickListener {
+                // 이용 방법
             }
         }
     }

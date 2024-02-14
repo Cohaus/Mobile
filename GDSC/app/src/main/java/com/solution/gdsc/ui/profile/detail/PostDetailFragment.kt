@@ -50,7 +50,7 @@ class PostDetailFragment : BaseFragment<FragmentPostDetailBinding>(R.layout.frag
         }
     }
 
-    private fun setProgress(grade: String) {
+    private fun setProgress(grade: String?) {
         with(binding) {
             when (grade) {
                 // to 등급에 따른 텍스트 변경 do

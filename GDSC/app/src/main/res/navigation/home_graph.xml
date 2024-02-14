@@ -318,6 +318,9 @@
         <action
             android:id="@+id/action_map_repair_info_to_dialog_repair_complete"
             app:destination="@id/navigation_repair_complete" />
+        <action
+            android:id="@+id/action_map_repair_info_to_dialog_eco_waste"
+            app:destination="@id/navigation_dialog_eco_waste" />
     </fragment>
     <dialog
         android:id="@+id/navigation_map_repair_apply"
@@ -350,5 +353,13 @@
         <argument
             android:name="date"
             app:argType="string" />
+    </dialog>
+    <dialog
+        android:id="@+id/navigation_dialog_eco_waste"
+        android:name="com.solution.gdsc.ui.map.DialogEcoWasteFragment"
+        android:label="DialogEcoWasteFragment"
+        tools:layout="@layout/fragment_dialog_eco_waste">
+        <argument android:name="repairId"
+            app:argType="long" />
     </dialog>
 </navigation>
