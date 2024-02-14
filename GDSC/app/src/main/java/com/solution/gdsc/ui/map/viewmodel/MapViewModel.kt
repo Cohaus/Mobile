@@ -8,6 +8,7 @@ import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.RepairInfoResponse
 import com.solution.gdsc.domain.model.response.RepairRecordResponse
 import com.solution.gdsc.domain.model.response.RequestRepairItem
+import com.solution.gdsc.domain.model.response.WasteFacilityResponse
 import com.solution.gdsc.domain.repository.MapRepository
 import com.solution.gdsc.domain.repository.UserMyPageRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -32,6 +33,8 @@ class MapViewModel @Inject constructor(
     val repairInfo: StateFlow<RepairInfoResponse> = _repairInfo
     private val _patchSuccess = MutableStateFlow(DefaultResponse())
     val patchSuccess: StateFlow<DefaultResponse> = _patchSuccess
+    private val _wasteFacilityInfo = MutableStateFlow(WasteFacilityResponse(data = null))
+    val wasteFacilityInfo: StateFlow<WasteFacilityResponse> = _wasteFacilityInfo
 
     fun getAllRepairRecord() {
         viewModelScope.launch {
@@ -101,6 +104,16 @@ class MapViewModel @Inject constructor(
                 }
             } catch (e: Exception) {
                 Log.e("Patch Repair Complete Error: ", e.message.toString())
+            }
+        }
+    }
+
+    fun getWasteFacilityInfo(repairId: Long) {
+        viewModelScope.launch {
+            try {
+
+            } catch (e: Exception) {
+                Log.e("Get Waste Facility Info Error: ", e.message.toString())
             }
         }
     }

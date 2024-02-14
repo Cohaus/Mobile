@@ -298,6 +298,10 @@
         <item name="android:textSize">13sp</item>
     </style>
 
+    <style name="customTextViewFontStyle.medium.S13.gray_450">
+        <item name="android:textColor">@color/gray_450</item>
+    </style>
+
     <style name="customTextViewFontStyle.medium.S14">
         <item name="android:textSize">14sp</item>
     </style>
@@ -323,5 +327,13 @@
 
     <style name="customTextViewFontStyle.medium.S16.gray_dark">
         <item name="android:textColor">@color/gray_dark</item>
+    </style>
+
+    <style name="customTextViewFontStyle.medium.S18">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="customTextViewFontStyle.medium.S18.gray_middle">
+        <item name="android:textColor">@color/gray_450</item>
     </style>
 </resources>
