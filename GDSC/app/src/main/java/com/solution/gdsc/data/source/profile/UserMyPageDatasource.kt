@@ -20,6 +20,7 @@ import com.solution.gdsc.domain.model.response.UserRecordResponse
 import com.solution.gdsc.domain.model.response.VolunteerInfo
 import com.solution.gdsc.domain.model.response.VolunteerRegistrationResponse
 import com.solution.gdsc.domain.model.response.VolunteerRepairListResponse
+import com.solution.gdsc.domain.model.response.WasteFacilityResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -152,5 +153,12 @@ class UserMyPageDatasource @Inject constructor(
         emit(response)
     }.catch {
         Log.e(TAG, "Get Volunteer Repair List Failure ${it.message}")
+    }
+
+    fun getWasteFacilityInfo(repairId: Long): Flow<WasteFacilityResponse> = flow {
+        val response = coHousService.getWasteFacilityInfo(repairId)
+        emit(response)
+    }.catch {
+        Log.e(TAG, "Get Waste Facility Info ${it.message}")
     }
 }

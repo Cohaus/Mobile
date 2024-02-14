@@ -17,6 +17,7 @@ import com.solution.gdsc.domain.model.response.UserInfoResponse
 import com.solution.gdsc.domain.model.response.UserRecordResponse
 import com.solution.gdsc.domain.model.response.VolunteerRegistrationResponse
 import com.solution.gdsc.domain.model.response.VolunteerRepairListResponse
+import com.solution.gdsc.domain.model.response.WasteFacilityResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Body
@@ -113,4 +114,7 @@ interface CoHousService {
         @Path("repairId") repairId: Long,
         @Query("date") date: String
     ): DefaultResponse
+
+    @GET("/repairs/{repairId}/waste-facility")
+    suspend fun getWasteFacilityInfo(@Path("repairId") repairId: Long): WasteFacilityResponse
 }
