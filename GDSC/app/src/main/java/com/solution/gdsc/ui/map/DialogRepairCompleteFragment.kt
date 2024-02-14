@@ -15,13 +15,14 @@ import com.solution.gdsc.R
 import com.solution.gdsc.databinding.FragmentDialogRepairCompleteBinding
 import com.solution.gdsc.ui.map.viewmodel.MapViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DialogRepairCompleteFragment : DialogFragment() {
     private var _binding: FragmentDialogRepairCompleteBinding? = null
     private val binding get() = _binding!!
-    private val args by navArgs<DialogMapRepairApplyFragmentArgs>()
+    private val args by navArgs<DialogRepairCompleteFragmentArgs>()
     private val viewModel by viewModels<MapViewModel>()
 
     override fun onCreateView(
@@ -52,6 +53,7 @@ class DialogRepairCompleteFragment : DialogFragment() {
                 findNavController().navigateUp()
             }
             btnMapVolunteerComplete.setOnClickListener {
+                viewModel.patchRepairComplete(args.repairId, args.date)
             }
         }
     }
@@ -59,7 +61,11 @@ class DialogRepairCompleteFragment : DialogFragment() {
     private fun pop() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-
+                viewModel.patchSuccess.collectLatest {
+                    if (it.status in 200..299) {
+                        findNavController().navigateUp()
+                    }
+                }
             }
         }
     }

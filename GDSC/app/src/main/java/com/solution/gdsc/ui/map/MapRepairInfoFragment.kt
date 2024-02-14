@@ -39,6 +39,15 @@ class MapRepairInfoFragment : BaseFragment<FragmentMapRepairInfoBinding>(R.layou
                     }
                 }
             }
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.repairInfo.collectLatest {
+                    if (it.status in 200..299) {
+                        repairInfo = it.data!!
+                        binding.repairInfo = repairInfo
+                        changeVisibility()
+                    }
+                }
+            }
         }
     }
 
