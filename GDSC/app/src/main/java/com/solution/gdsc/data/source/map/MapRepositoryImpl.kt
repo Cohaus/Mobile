@@ -13,4 +13,5 @@ class MapRepositoryImpl @Inject constructor(
     override suspend fun getAllRepairRecord(): Flow<CountRepairResponse> = dataSource.getAllRepairRecord()
     override suspend fun getRequestRepairList(districtId: Long): Flow<RequestRepairListResponse> = dataSource.getRequestRepairList(districtId)
     override suspend fun patchRepairInfo(date: String, repairId: Long): Flow<DefaultResponse> = dataSource.patchRepairInfo(date, repairId)
+    override suspend fun patchRepairComplete(repairId: Long, date: String): Flow<DefaultResponse> = dataSource.patchRepairComplete(repairId, date)
 }

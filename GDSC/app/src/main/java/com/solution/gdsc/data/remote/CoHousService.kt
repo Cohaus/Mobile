@@ -46,20 +46,28 @@ interface CoHousService {
 
     @GET("/my-page/records")
     suspend fun getUserRecord(): UserRecordResponse
+
     @GET("/records/{recordId}")
     suspend fun getRecordInfo(@Path("recordId") recordId: Long): SavedRecordResponse
+
     @DELETE("/records/{recordId}")
     suspend fun deleteSavedRecord(@Path("recordId") recordId: Long): DeleteSavedRecordResponse
+
     @PATCH("/records/{recordId}")
-    suspend fun updateSavedRecord(@Path("recordId") recordId: Long, @Body updateSavedRecordDto: UpdateSavedRecordReq): UpdateSavedRecordResponse
+    suspend fun updateSavedRecord(
+        @Path("recordId") recordId: Long,
+        @Body updateSavedRecordDto: UpdateSavedRecordReq
+    ): UpdateSavedRecordResponse
 
     @GET("/repairs/{repairId}")
     suspend fun getRepairsRecord(@Path("repairId") repairId: Long): RepairRecordResponse
+
     @GET("/repairs/{repairId}/info")
     suspend fun getRepairInfo(@Path("repairId") repairId: Long): RepairInfoResponse
 
     @PUT("/volunteers/users")
     suspend fun putVolunteerUser(@Body volunteerRegistrationReq: VolunteerRegistrationReq): VolunteerRegistrationResponse
+
     @GET("/volunteers/repairs")
     suspend fun getVolunteerRepairList(): VolunteerRepairListResponse
 
@@ -90,10 +98,18 @@ interface CoHousService {
     // Map
     @GET("/map")
     suspend fun getAllRepairRecord(): CountRepairResponse
+
     @GET("/map/districts/{districtId}")
     suspend fun getRequestRepairList(@Path("districtId") districtId: Long): RequestRepairListResponse
+
     @PATCH("/volunteers/repairs/{repairId}/proceed")
     suspend fun patchRepairInfo(
+        @Path("repairId") repairId: Long,
+        @Query("date") date: String
+    ): DefaultResponse
+
+    @PATCH("/volunteers/repairs/{repairId}/complete")
+    suspend fun patchRepairComplete(
         @Path("repairId") repairId: Long,
         @Query("date") date: String
     ): DefaultResponse

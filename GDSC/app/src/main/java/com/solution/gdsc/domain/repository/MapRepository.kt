@@ -9,4 +9,5 @@ interface MapRepository {
     suspend fun getAllRepairRecord(): Flow<CountRepairResponse>
     suspend fun getRequestRepairList(districtId: Long): Flow<RequestRepairListResponse>
     suspend fun patchRepairInfo(date:String, repairId: Long): Flow<DefaultResponse>
+    suspend fun patchRepairComplete(repairId: Long, date: String): Flow<DefaultResponse>
 }

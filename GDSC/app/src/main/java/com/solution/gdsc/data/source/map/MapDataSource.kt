@@ -35,4 +35,11 @@ class MapDataSource @Inject constructor(
     }.catch {
         Log.e(TAG, "Patch Repair Info Failure ${it.message.toString()}")
     }
+
+    fun patchRepairComplete(repairId: Long, date: String): Flow<DefaultResponse> = flow {
+        val response = coHousService.patchRepairComplete(repairId, date)
+        emit(response)
+    }.catch {
+        Log.e(TAG, "Patch Repair Complete Failure ${it.message.toString()}")
+    }
 }
