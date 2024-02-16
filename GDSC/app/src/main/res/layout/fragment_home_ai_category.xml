@@ -91,6 +91,7 @@
         app:layout_constraintTop_toTopOf="@id/btn_category_crack" />
 
     <Button
+        android:id="@+id/btn_category_next_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
