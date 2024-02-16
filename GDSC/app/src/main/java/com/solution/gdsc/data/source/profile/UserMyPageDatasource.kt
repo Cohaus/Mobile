@@ -47,15 +47,12 @@ class UserMyPageDatasource @Inject constructor(
     }
 
     suspend fun getUserInfo(): Flow<UserInfoResponse> = flow {
-        try {
-            val response = coHousService.getUserInfo()
-            emit(response)
-            delay(1000)
-        } catch (e: Exception) {
+        val response = coHousService.getUserInfo()
+        emit(response)
+        }.catch {
             ChallengeApplication.getInstance().tokenManager.deleteToken()
-            Log.e(TAG, "Get User Info Failure")
+            Log.e(TAG, "Get User Info Failure: ${it.message.toString()}")
         }
-    }
 
     suspend fun updateUserInfo(updateUserInfoRequest: UpdateUserInfoRequest): UpdateUserInfoResponse {
         var response = UpdateUserInfoResponse(200, "요청에 성공하였습니다.",
