@@ -14,6 +14,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -47,7 +48,15 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
         category = args.category
         dispatchTakePictureIntent()
         setClickListener()
+        setHalfCircleIndicator()
+    }
 
+    private fun setHalfCircleIndicator() {
+        if (category == null) {
+            binding.groupCameraAiResult.visibility = View.GONE
+        } else {
+            binding.groupCameraAiResult.visibility = View.VISIBLE
+        }
     }
 
     private fun setClickListener() {

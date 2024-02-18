@@ -48,6 +48,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_camera_ai_result"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="tv_camera_image_ai_content1, progress_bar_safe_grade_home, tv_safe_score_home, tv_safe_grade" />
+
             <TextView
                 style="@style/customTextViewFontStyle.Bold.S14"
                 android:id="@+id/tv_camera_image_ai_content1"
