@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.exifinterface.media.ExifInterface
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentCameraBinding
@@ -35,9 +36,13 @@ private const val DATE_YEAR_MONTH_DAY_PATTERN = "yyyy-MM-dd'T'HH:mm:ss'Z'"
 
 @AndroidEntryPoint
 class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_camera), ActivityCompat.OnRequestPermissionsResultCallback {
+    private val args by navArgs<CameraFragmentArgs>()
     private lateinit var currentPhotoPath: String
     private lateinit var encodeImage: String
+    private var category: String? = null
+
     override fun setLayout() {
+        category = args.category
         dispatchTakePictureIntent()
         setClickListener()
 
@@ -49,7 +54,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
                 findNavController().navigateUp()
             }
             btnCameraImageSave.setOnClickListener {
-                val action = CameraFragmentDirections.actionCameraToRecordSave(currentPhotoPath)
+                val action = CameraFragmentDirections.actionCameraToRecordSave(currentPhotoPath, category)
                 findNavController().navigate(action)
             }
             btnCameraRequestRepair.setOnClickListener {
