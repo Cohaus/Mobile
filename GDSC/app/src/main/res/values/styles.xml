@@ -8,6 +8,10 @@
     <style name="AppTheme" parent="Widget.Material3.Toolbar">
         <item name="android:windowTranslucentStatus">true</item>
     </style>
+    
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:windowSplashScreenBackground">@color/white</item>
+    </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
