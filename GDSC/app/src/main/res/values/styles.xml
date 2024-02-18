@@ -66,7 +66,11 @@
     <style name="BtnSelectorRightAndGreen">
         <item name="android:background">@drawable/selector_record_save</item>
     </style>
-    >
+
+    <style name="roundedImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">15dp</item>
+    </style>
 
     <style name="EditTextInfoModifyStyle">
         <item name="android:textSize">14sp</item>
@@ -242,6 +246,10 @@
 
     <style name="customTextViewFontStyle.Bold.S20">
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="customTextViewFontStyle.Bold.S20.white">
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="customTextViewFontStyle.Bold.S20.gray450">

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_ai_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="@color/black_600"
+            app:title="AI 진단"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/customTextViewFontStyle.Bold.S20" />
+
+        <TextView
+            style="@style/customTextViewFontStyle.Bold.S20"
+            android:id="@+id/tv_category_select_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="카테고리를 선택하여\nAI 진단 기능을 사용해 보세요"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_ai_category" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/btn_category_rebar"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="29dp"
+            android:scaleType="centerCrop"
+            android:enabled="false"
+            android:src="@drawable/image_rebar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_category_select_message"
+            app:shapeAppearanceOverlay="@style/roundedImageView" />
+
+        <TextView
+            android:id="@+id/tv_category_rebar"
+            style="@style/customTextViewFontStyle.Bold.S20.white"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="철근 노출"
+            app:layout_constraintBottom_toBottomOf="@id/btn_category_rebar"
+            app:layout_constraintEnd_toEndOf="@id/btn_category_rebar"
+            app:layout_constraintStart_toStartOf="@id/btn_category_rebar"
+            app:layout_constraintTop_toTopOf="@id/btn_category_rebar"
+            app:layout_constraintVertical_bias="0.35" />
+
+        <TextView
+            style="@style/customTextViewFontStyle.medium.S14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="강철 재료가 외부에 노출되어 보이는 현상"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@id/btn_category_rebar"
+            app:layout_constraintStart_toStartOf="@id/btn_category_rebar"
+            app:layout_constraintTop_toBottomOf="@id/tv_category_rebar" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/btn_category_peeling"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="29dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/image_peeling"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_category_rebar"
+            app:shapeAppearanceOverlay="@style/roundedImageView" />
+
+        <TextView
+            android:id="@+id/tv_category_peeling"
+            style="@style/customTextViewFontStyle.Bold.S20.white"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="박리 박락"
+            app:layout_constraintBottom_toBottomOf="@id/btn_category_peeling"
+            app:layout_constraintEnd_toEndOf="@id/btn_category_peeling"
+            app:layout_constraintStart_toStartOf="@id/btn_category_peeling"
+            app:layout_constraintTop_toTopOf="@id/btn_category_peeling"
+            app:layout_constraintVertical_bias="0.35" />
+
+        <TextView
+            style="@style/customTextViewFontStyle.medium.S14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="콘크리트가 균열을 따라서 떨어져 나가는 현상"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@id/btn_category_peeling"
+            app:layout_constraintStart_toStartOf="@id/btn_category_peeling"
+            app:layout_constraintTop_toBottomOf="@id/tv_category_peeling" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/btn_category_crack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="29dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/image_crack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_category_peeling"
+            app:shapeAppearanceOverlay="@style/roundedImageView"
+            app:layout_constraintBottom_toTopOf="@id/btn_category_next_button"/>
+
+        <TextView
+            android:id="@+id/tv_category_crack"
+            style="@style/customTextViewFontStyle.Bold.S20.white"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="균열"
+            app:layout_constraintBottom_toBottomOf="@id/btn_category_crack"
+            app:layout_constraintEnd_toEndOf="@id/btn_category_crack"
+            app:layout_constraintStart_toStartOf="@id/btn_category_crack"
+            app:layout_constraintTop_toTopOf="@id/btn_category_crack"
+            app:layout_constraintVertical_bias="0.35" />
+
+
+        <TextView
+            style="@style/customTextViewFontStyle.medium.S14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="건물 구조, 지반 변화 등으로 갈라진 틈"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@id/btn_category_crack"
+            app:layout_constraintStart_toStartOf="@id/btn_category_crack"
+            app:layout_constraintTop_toBottomOf="@id/tv_category_crack" />
+
+        <Button
+            android:id="@+id/btn_category_next_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="19dp"
+            android:layout_marginBottom="21dp"
+            android:text="다음"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_category_crack"
+            app:layout_constraintVertical_bias="0.954" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
