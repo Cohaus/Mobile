@@ -14,6 +14,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -35,7 +36,8 @@ private const val REQUEST_TAKE_PHOTO = 1
 private const val DATE_YEAR_MONTH_DAY_PATTERN = "yyyy-MM-dd'T'HH:mm:ss'Z'"
 
 @AndroidEntryPoint
-class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_camera), ActivityCompat.OnRequestPermissionsResultCallback {
+class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_camera),
+    ActivityCompat.OnRequestPermissionsResultCallback {
     private val args by navArgs<CameraFragmentArgs>()
     private lateinit var currentPhotoPath: String
     private lateinit var encodeImage: String
@@ -101,12 +103,11 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
                 }
             }
         } else {
-            // Request camera permission
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(Manifest.permission.CAMERA),
-                REQUEST_CAMERA_PERMISSION
-            )
+            Toast
+                .makeText(requireActivity(), "카메라 정보 제공에 동의 해주세요!", Toast.LENGTH_SHORT)
+                .show()
+
+            findNavController().navigateUp()
         }
     }
 
