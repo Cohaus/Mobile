@@ -156,7 +156,7 @@
                     style="@style/customTextViewFontStyle.Bold.S28"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="45dp"
+                    android:layout_marginTop="10dp"
                     android:text="@{savedRecordInfo.grade}"
                     app:layout_constraintBottom_toBottomOf="@id/progress_bar_safe_grade"
                     app:layout_constraintEnd_toEndOf="@id/progress_bar_safe_grade"
@@ -168,7 +168,7 @@
                     style="@style/customTextViewFontStyle.Bold.S14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="매우 우수"
+                    setGradeMessage="@{savedRecordInfo.grade}"
                     app:layout_constraintEnd_toEndOf="@id/progress_bar_safe_grade"
                     app:layout_constraintStart_toStartOf="@id/progress_bar_safe_grade"
                     app:layout_constraintTop_toBottomOf="@id/tv_safe_score" />
