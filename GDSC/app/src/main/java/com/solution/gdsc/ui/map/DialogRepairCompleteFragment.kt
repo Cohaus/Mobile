@@ -48,7 +48,6 @@ class DialogRepairCompleteFragment : DialogFragment() {
 
     private fun setLayout() {
         with(binding) {
-            val title = tvRepairCompleteMessageBold.text
             btnMapCompleteCancel.setOnClickListener {
                 findNavController().navigateUp()
             }

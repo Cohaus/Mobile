@@ -11,6 +11,7 @@ import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentPostDetailBinding
 import com.solution.gdsc.domain.model.response.SavedRecordDto
+import com.solution.gdsc.ui.common.AiGrade
 import com.solution.gdsc.ui.profile.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -45,7 +46,18 @@ class PostDetailFragment : BaseFragment<FragmentPostDetailBinding>(R.layout.frag
                     savedRecordDto = it
                     binding.savedRecordInfo = savedRecordDto
                     setProgress(it.grade)
+                    setProgressbarColor()
                 }
+            }
+        }
+    }
+
+    private fun setProgressbarColor() {
+        with(binding) {
+            when (savedRecordDto!!.grade) {
+                AiGrade.SUPERIORITY.grade -> progressBarSafeGrade.setProgressBarColor(R.color.green_300)
+                AiGrade.GENERAL.grade -> progressBarSafeGrade.setProgressBarColor(R.color.green_300)
+                AiGrade.FAULTY.grade -> progressBarSafeGrade.setProgressBarColor(R.color.red)
             }
         }
     }

@@ -79,8 +79,7 @@
                 style="@style/customTextViewFontStyle.Bold.S28"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="45dp"
-                android:text="50점"
+                android:layout_marginTop="10dp"
                 app:layout_constraintBottom_toBottomOf="@id/progress_bar_safe_grade_home"
                 app:layout_constraintEnd_toEndOf="@id/progress_bar_safe_grade_home"
                 app:layout_constraintStart_toStartOf="@id/progress_bar_safe_grade_home"
@@ -91,7 +90,6 @@
                 style="@style/customTextViewFontStyle.Bold.S14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="매우 우수"
                 app:layout_constraintEnd_toEndOf="@id/progress_bar_safe_grade_home"
                 app:layout_constraintStart_toStartOf="@id/progress_bar_safe_grade_home"
                 app:layout_constraintTop_toBottomOf="@id/tv_safe_score_home" />

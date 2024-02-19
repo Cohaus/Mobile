@@ -2,7 +2,7 @@ package com.solution.gdsc.data.source.home
 
 import android.content.ContentValues.TAG
 import android.util.Log
-import com.solution.gdsc.data.remote.CoHousService
+import com.solution.gdsc.data.remote.CoHausService
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.RepairIdResponse
 import kotlinx.coroutines.flow.Flow
@@ -16,7 +16,7 @@ import java.io.File
 import javax.inject.Inject
 
 class HomeDataSource @Inject constructor(
-    private val coHousService: CoHousService
+    private val coHausService: CoHausService
 ) {
     suspend fun saveRecord(
         title: String, detail: String, grade: String, category: String,
@@ -31,7 +31,7 @@ class HomeDataSource @Inject constructor(
         val imageRequestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
         val imagePart = MultipartBody.Part.createFormData("image", file.name, imageRequestBody)
 
-        val response = coHousService.saveRecord(imagePart, titleRequestBody, detailRequestBody, gradeRequestBody, categoryRequestBody)
+        val response = coHausService.saveRecord(imagePart, titleRequestBody, detailRequestBody, gradeRequestBody, categoryRequestBody)
         emit(response)
     }.catch {
         Log.e(TAG, "Save Record Failure ${it.message.toString()}")
@@ -54,7 +54,7 @@ class HomeDataSource @Inject constructor(
         val imageRequestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
         val imagePart = MultipartBody.Part.createFormData("image", file.name, imageRequestBody)
 
-        val response = coHousService.postRepairBasicRecord(
+        val response = coHausService.postRepairBasicRecord(
             imagePart, titleRequestBody, detailRequestBody, categoryRequestBody,
             placeIdRequestBody, addressRequestBody, districtRequestBody, dateRequestBody
         )
