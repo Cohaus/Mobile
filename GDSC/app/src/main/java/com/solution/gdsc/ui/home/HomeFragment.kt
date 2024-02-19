@@ -18,6 +18,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
     override fun setLayout() {
         requestLocationPermission()
         requestCameraPermission()
+        setClickListener()
+    }
+
+    private fun setClickListener() {
         with(binding) {
             btnAiDiagnosis.setOnClickListener {
                 val action = HomeFragmentDirections.actionHomeToHomeAiCategory()
@@ -29,7 +33,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
                 findNavController().navigate(action)
             }
             btnUseGuide.setOnClickListener {
-                // 이용 방법
+                val action = HomeFragmentDirections.actionHomeToHomeUseGuid()
+                findNavController().navigate(action)
             }
         }
     }
