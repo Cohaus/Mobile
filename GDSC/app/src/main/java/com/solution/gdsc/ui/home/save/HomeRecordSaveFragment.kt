@@ -2,6 +2,9 @@ package com.solution.gdsc.ui.home.save
 
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.solution.gdsc.R
@@ -9,9 +12,12 @@ import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentHomeRecordSaveBinding
 import com.solution.gdsc.ui.home.viewModel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeRecordSaveFragment : BaseFragment<FragmentHomeRecordSaveBinding>(R.layout.fragment_home_record_save) {
+class HomeRecordSaveFragment :
+    BaseFragment<FragmentHomeRecordSaveBinding>(R.layout.fragment_home_record_save) {
     private val viewModel by viewModels<HomeViewModel>()
     private val args by navArgs<HomeRecordSaveFragmentArgs>()
 
@@ -31,12 +37,12 @@ class HomeRecordSaveFragment : BaseFragment<FragmentHomeRecordSaveBinding>(R.lay
                 saveRecord()
             }
         }
-        observe()
     }
 
     private fun saveRecord() {
         //val category = if (args.category == null) "" else args.category
         viewModel.saveRecord(inputTitle, inputContent, "보통", "CRACK", args.image)
+        complete()
     }
 
     private fun setTextInput() {
@@ -62,11 +68,15 @@ class HomeRecordSaveFragment : BaseFragment<FragmentHomeRecordSaveBinding>(R.lay
         binding.btnRecordSave.isEnabled = isValidTitle && isValidContent
     }
 
-    private fun observe() {
-        viewModel.saveResult.observe(viewLifecycleOwner) {
-            if (it.status in 200..299) {
-                val action = HomeRecordSaveFragmentDirections.actionRecordSaveToHome()
-                findNavController().navigate(action)
+    private fun complete() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.saveResult.collectLatest {
+                    if (it.status in 200..299) {
+                        val action = HomeRecordSaveFragmentDirections.actionRecordSaveToHome()
+                        findNavController().navigate(action)
+                    }
+                }
             }
         }
     }

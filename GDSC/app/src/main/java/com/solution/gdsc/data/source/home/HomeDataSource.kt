@@ -4,10 +4,10 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import com.solution.gdsc.data.remote.CoHousService
 import com.solution.gdsc.domain.model.response.DefaultResponse
-import com.solution.gdsc.domain.model.response.RepairId
 import com.solution.gdsc.domain.model.response.RepairIdResponse
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -21,7 +21,7 @@ class HomeDataSource @Inject constructor(
     suspend fun saveRecord(
         title: String, detail: String, grade: String, category: String,
         imageFilePath: String
-    ): DefaultResponse {
+    ): Flow<DefaultResponse> = flow {
         val titleRequestBody = title.toRequestBody("text/plain".toMediaTypeOrNull())
         val detailRequestBody = detail.toRequestBody("text/plain".toMediaTypeOrNull())
         val gradeRequestBody = grade.toRequestBody("text/plain".toMediaTypeOrNull())
@@ -31,26 +31,17 @@ class HomeDataSource @Inject constructor(
         val imageRequestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
         val imagePart = MultipartBody.Part.createFormData("image", file.name, imageRequestBody)
 
-        var response = DefaultResponse(200, "성공", 1)
-        withContext(Dispatchers.IO) {
-            runCatching {
-                coHousService.saveRecord(imagePart, titleRequestBody, detailRequestBody, gradeRequestBody, categoryRequestBody)
-            }.onSuccess {
-                response = it
-            }.onFailure {
-                Log.e(TAG, "Save Record Failure", it)
-                // 에러 처리 로직 추가
-            }
-        }
-
-        return response
+        val response = coHousService.saveRecord(imagePart, titleRequestBody, detailRequestBody, gradeRequestBody, categoryRequestBody)
+        emit(response)
+    }.catch {
+        Log.e(TAG, "Save Record Failure ${it.message.toString()}")
     }
 
     suspend fun postRepairBasicRecord(
         title: String, detail: String, category: String,
         placeId: String, address: String, district: String,
         date: String, image: String
-    ): RepairIdResponse {
+    ): Flow<RepairIdResponse> = flow<RepairIdResponse> {
         val titleRequestBody = title.toRequestBody("text/plain".toMediaTypeOrNull())
         val detailRequestBody = detail.toRequestBody("text/plain".toMediaTypeOrNull())
         val categoryRequestBody = category.toRequestBody("text/plain".toMediaTypeOrNull())
@@ -62,21 +53,13 @@ class HomeDataSource @Inject constructor(
         val file = File(image)
         val imageRequestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
         val imagePart = MultipartBody.Part.createFormData("image", file.name, imageRequestBody)
-        var response = RepairIdResponse(1, "성공",
-            RepairId(1, 1)
+
+        val response = coHousService.postRepairBasicRecord(
+            imagePart, titleRequestBody, detailRequestBody, categoryRequestBody,
+            placeIdRequestBody, addressRequestBody, districtRequestBody, dateRequestBody
         )
-        withContext(Dispatchers.IO) {
-            runCatching {
-                coHousService.postRepairBasicRecord(
-                    imagePart, titleRequestBody, detailRequestBody, categoryRequestBody,
-                    placeIdRequestBody, addressRequestBody, districtRequestBody, dateRequestBody
-                )
-            }.onSuccess {
-                response = it
-            }.onFailure {
-                Log.e(TAG, "Post Repair Basic Failure ${it.message}")
-            }
-        }
-        return response
+        emit(response)
+    }.catch {
+        Log.e(TAG, "Post Repair Basic Failure ${it.message}")
     }
 }

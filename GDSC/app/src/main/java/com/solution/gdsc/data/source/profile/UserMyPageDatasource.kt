@@ -9,41 +9,30 @@ import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.DeleteSavedRecordResponse
+import com.solution.gdsc.domain.model.response.LogoutResponse
 import com.solution.gdsc.domain.model.response.RepairInfoResponse
 import com.solution.gdsc.domain.model.response.RepairRecordResponse
 import com.solution.gdsc.domain.model.response.SavedRecordResponse
 import com.solution.gdsc.domain.model.response.UpdateSavedRecordResponse
-import com.solution.gdsc.domain.model.response.UpdateUserInfoDto
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoResponse
 import com.solution.gdsc.domain.model.response.UserRecordResponse
-import com.solution.gdsc.domain.model.response.VolunteerInfo
 import com.solution.gdsc.domain.model.response.VolunteerRegistrationResponse
 import com.solution.gdsc.domain.model.response.VolunteerRepairListResponse
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class UserMyPageDatasource @Inject constructor(
     private val coHousService: CoHousService
 ) {
-    suspend fun logout(): DefaultResponse {
-        var response = DefaultResponse(200, "로그아웃 성공", 13)
-        withContext(Dispatchers.IO) {
-            runCatching {
-                coHousService.logout()
-            }.onSuccess {
-                response = it
-                ChallengeApplication.getInstance().tokenManager.deleteToken()
-            }.onFailure {
-                Log.e(TAG, "Logout Failure")
-            }
-        }
-        return response
+    suspend fun logout(): Flow<LogoutResponse> = flow {
+        val response = coHousService.logout()
+        ChallengeApplication.getInstance().tokenManager.deleteToken()
+        emit(response)
+    }.catch {
+        Log.e(TAG, "Logout Failure ${it.message.toString()}")
     }
 
     suspend fun getUserInfo(): Flow<UserInfoResponse> = flow {
@@ -54,35 +43,21 @@ class UserMyPageDatasource @Inject constructor(
             Log.e(TAG, "Get User Info Failure: ${it.message.toString()}")
         }
 
-    suspend fun updateUserInfo(updateUserInfoRequest: UpdateUserInfoRequest): UpdateUserInfoResponse {
-        var response = UpdateUserInfoResponse(200, "요청에 성공하였습니다.",
-            UpdateUserInfoDto(1, "장민수", "cty123", "mais2@ag.com", "010-1234-5678")
-            )
-        withContext(Dispatchers.IO) {
-            runCatching {
-                coHousService.updateUserInfo(updateUserInfoRequest)
-            }.onSuccess {
-                response = it
-            }.onFailure {
-                Log.e(TAG, "Update User Info Failure")
-            }
-        }
-        return response
+    suspend fun updateUserInfo(
+        updateUserInfoRequest: UpdateUserInfoRequest
+    ): Flow<UpdateUserInfoResponse> = flow<UpdateUserInfoResponse> {
+        val response = coHousService.updateUserInfo(updateUserInfoRequest)
+        emit(response)
+    }.catch {
+        Log.e(TAG, "Update User Info Failure ${it.message.toString()}")
     }
 
-    suspend fun withdraw(): DefaultResponse {
-        var response = DefaultResponse(200, "회원탈퇴 성공", 1)
-        withContext(Dispatchers.IO) {
-            runCatching {
-                coHousService.withdraw()
-            }.onSuccess {
-                response = it
-                ChallengeApplication.getInstance().tokenManager.deleteToken()
-            }.onFailure {
-                Log.e(TAG, "Withdraw Failure")
-            }
-        }
-        return response
+    suspend fun withdraw(): Flow<DefaultResponse> = flow {
+        val response = coHousService.withdraw()
+        ChallengeApplication.getInstance().tokenManager.deleteToken()
+        emit(response)
+    }.catch {
+        Log.e(TAG, "Withdraw Failure ${it.message.toString()}")
     }
 
     suspend fun getUserRecord(): Flow<UserRecordResponse> = flow {
@@ -92,21 +67,13 @@ class UserMyPageDatasource @Inject constructor(
         Log.e(TAG, "Get User Record Failure ${it.message}")
     }
 
-    suspend fun putVolunteerUser(volunteerRegistrationReq: VolunteerRegistrationReq): VolunteerRegistrationResponse {
-        var response = VolunteerRegistrationResponse(1, "성공",
-            VolunteerInfo("a", null)
-        )
-        withContext(Dispatchers.IO) {
-            runCatching {
-                coHousService.putVolunteerUser(volunteerRegistrationReq)
-            }.onSuccess {
-                response =  it
-                delay(1000)
-            }.onFailure {
-                Log.e(TAG, "Put Volunteer User Failure")
-            }
-        }
-        return response
+    suspend fun putVolunteerUser(
+        volunteerRegistrationReq: VolunteerRegistrationReq
+    ): Flow<VolunteerRegistrationResponse> = flow<VolunteerRegistrationResponse> {
+        val response = coHousService.putVolunteerUser(volunteerRegistrationReq)
+        emit(response)
+    }.catch {
+        Log.e(TAG, "Put Volunteer User Failure ${it.message.toString()}")
     }
 
     fun getRecordInfo(recordId: Long): Flow<SavedRecordResponse> = flow {

@@ -2,18 +2,26 @@ package com.solution.gdsc.ui.profile.setting
 
 import android.content.res.ColorStateList
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentSettingVolunteerRegistrationBinding
 import com.solution.gdsc.ui.common.VolunteerType
+import com.solution.gdsc.ui.profile.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SettingVolunteerRegistrationFragment
     : BaseFragment<FragmentSettingVolunteerRegistrationBinding>(
     R.layout.fragment_setting_volunteer_registration
 ) {
+    val viewModel by viewModels<ProfileViewModel>()
 
     private var isSingle: Boolean? = null
     private var isSelect = false
@@ -46,10 +54,8 @@ class SettingVolunteerRegistrationFragment
             }
             btnRegistrationVolunteer.setOnClickListener {
                 val type = getUserType()
-                val action =
-                    SettingVolunteerRegistrationFragmentDirections
-                        .actionSettingVolunteerRegistrationToVolunteerReregistrationDialog(type, validOrganizationName)
-                findNavController().navigate(action)
+                putVolunteer(type)
+                observe()
             }
             toolbarVolunteerRegistration.setNavigationOnClickListener {
                 findNavController().navigateUp()
@@ -97,6 +103,28 @@ class SettingVolunteerRegistrationFragment
             else if (isSingle == false && isSelect && isValidOrganizationName) {
                 btnRegistrationVolunteer.isEnabled = true
             } else btnRegistrationVolunteer.isEnabled = isSingle == true && isSelect
+        }
+    }
+
+    private fun putVolunteer(type: String) {
+        var name: String? = null
+        if (validOrganizationName != "") {
+            name = validOrganizationName
+        }
+        viewModel.putVolunteerUser(type, name)
+    }
+
+    private fun observe() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.hasResult.collectLatest {
+                    if (it.status in 200..299) {
+                        val action = SettingVolunteerRegistrationFragmentDirections
+                            .actionSettingVolunteerRegistrationToVolunteerReregistrationDialog()
+                        findNavController().navigate(action)
+                    }
+                }
+            }
         }
     }
 }

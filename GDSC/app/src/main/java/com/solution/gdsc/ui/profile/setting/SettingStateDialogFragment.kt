@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.solution.gdsc.R
@@ -13,6 +16,8 @@ import com.solution.gdsc.databinding.FragmentDialogSettingStateBinding
 import com.solution.gdsc.ui.common.DialogCategory
 import com.solution.gdsc.ui.profile.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SettingStateDialogFragment : DialogFragment() {
@@ -36,7 +41,6 @@ class SettingStateDialogFragment : DialogFragment() {
             DialogCategory.LOGOUT -> setCategoryLogout()
             else -> setCategoryWithdrawal()
         }
-        observe()
     }
 
     private fun setCategoryLogout() {
@@ -47,6 +51,7 @@ class SettingStateDialogFragment : DialogFragment() {
             }
             btnLogoutConfirm.setOnClickListener {
                 viewModel.logout()
+                logout()
             }
         }
     }
@@ -59,6 +64,7 @@ class SettingStateDialogFragment : DialogFragment() {
             }
             btnWithdrawalConfirm.setOnClickListener {
                 viewModel.withdraw()
+                withdraw()
             }
         }
     }
@@ -74,16 +80,33 @@ class SettingStateDialogFragment : DialogFragment() {
         _binding = null
     }
 
-    private fun observe() {
-        viewModel.isLogout.observe(viewLifecycleOwner) {
-            val action = SettingStateDialogFragmentDirections.actionSettingStateDialogToLogin()
-            findNavController().navigate(action)
-            requireActivity().finish()
+    private fun logout() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.isLogout.collectLatest {
+                    if (it.status in 200..299) {
+                        val action =
+                            SettingStateDialogFragmentDirections.actionSettingStateDialogToLogin()
+                        findNavController().navigate(action)
+                        requireActivity().finish()
+                    }
+                }
+            }
         }
-        viewModel.isWithdraw.observe(viewLifecycleOwner) {
-            val action = SettingStateDialogFragmentDirections.actionSettingStateDialogToLogin()
-            findNavController().navigate(action)
-            requireActivity().finish()
+    }
+
+    private fun withdraw() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.isWithdraw.collectLatest {
+                    if (it.status in 200..299) {
+                        val action =
+                            SettingStateDialogFragmentDirections.actionSettingStateDialogToLogin()
+                        findNavController().navigate(action)
+                        requireActivity().finish()
+                    }
+                }
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.DeleteSavedRecordResponse
+import com.solution.gdsc.domain.model.response.LogoutResponse
 import com.solution.gdsc.domain.model.response.RepairInfoResponse
 import com.solution.gdsc.domain.model.response.RepairRecordResponse
 import com.solution.gdsc.domain.model.response.SavedRecordResponse
@@ -21,17 +22,17 @@ import javax.inject.Inject
 class UserMyPageRepositoryImpl @Inject constructor(
     private val dataSource: UserMyPageDatasource
 ) : UserMyPageRepository {
-    override suspend fun logout(): DefaultResponse = dataSource.logout()
+    override suspend fun logout(): Flow<LogoutResponse> = dataSource.logout()
     override suspend fun getUserInfo(): Flow<UserInfoResponse> = dataSource.getUserInfo()
     override suspend fun updateUserInfo(
         updateUserInfoRequest: UpdateUserInfoRequest
-    ): UpdateUserInfoResponse = dataSource.updateUserInfo(updateUserInfoRequest)
+    ): Flow<UpdateUserInfoResponse> = dataSource.updateUserInfo(updateUserInfoRequest)
 
-    override suspend fun withdraw(): DefaultResponse = dataSource.withdraw()
+    override suspend fun withdraw(): Flow<DefaultResponse> = dataSource.withdraw()
     override suspend fun getUserRecord(): Flow<UserRecordResponse> = dataSource.getUserRecord()
     override suspend fun putVolunteerUser(
         volunteerRegistrationReq: VolunteerRegistrationReq
-    ): VolunteerRegistrationResponse = dataSource.putVolunteerUser(volunteerRegistrationReq)
+    ): Flow<VolunteerRegistrationResponse> = dataSource.putVolunteerUser(volunteerRegistrationReq)
 
     override suspend fun getSavedRecordInfo(
         recordId: Long
