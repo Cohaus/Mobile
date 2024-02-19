@@ -13,6 +13,7 @@ import com.solution.gdsc.databinding.ActivityLoginBinding
 import com.solution.gdsc.ui.MainActivity
 import com.solution.gdsc.ui.login.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
@@ -57,6 +58,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     private fun setLoginClick() {
         binding.btnLogin.setOnClickListener {
             viewModel.login(validId, validPassword)
+            login()
         }
     }
 
@@ -71,13 +73,24 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 }
             }
         }
-        viewModel.userInfo.observe(this) {
-            if (it.accessToken.isNotEmpty()) {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
+    }
+
+    private fun login() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.userInfo.collectLatest {
+                    if (it.status in 200..299) {
+                        next()
+                    }
+                }
             }
         }
+    }
+
+    private fun next() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun autoLogin() {

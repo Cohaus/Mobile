@@ -8,5 +8,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface LoginRepository {
     suspend fun signUp(signUp: SignUpRequest): Flow<SignUpResponse>
-    suspend fun login(loginReq: LoginReq): LoginResponse
+    suspend fun login(loginReq: LoginReq): Flow<LoginResponse>
 }

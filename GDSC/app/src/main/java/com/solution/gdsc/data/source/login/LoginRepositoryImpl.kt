@@ -15,6 +15,6 @@ class LoginRepositoryImpl @Inject constructor(
 ) : LoginRepository {
     override suspend fun signUp(signUp: SignUpRequest): Flow<SignUpResponse> = dataSource.signUp(signUp)
 
-    override suspend fun login(loginReq: LoginReq): LoginResponse = dataSource.login(loginReq)
+    override suspend fun login(loginReq: LoginReq): Flow<LoginResponse> = dataSource.login(loginReq)
 
 }
