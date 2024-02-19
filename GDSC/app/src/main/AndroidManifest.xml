@@ -63,5 +63,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.login.JoinCompleteActivity"
+            android:exported="false"/>
     </application>
 </manifest>

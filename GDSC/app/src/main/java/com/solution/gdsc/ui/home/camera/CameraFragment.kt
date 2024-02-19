@@ -14,11 +14,14 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.exifinterface.media.ExifInterface
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentCameraBinding
@@ -34,13 +37,26 @@ private const val REQUEST_TAKE_PHOTO = 1
 private const val DATE_YEAR_MONTH_DAY_PATTERN = "yyyy-MM-dd'T'HH:mm:ss'Z'"
 
 @AndroidEntryPoint
-class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_camera), ActivityCompat.OnRequestPermissionsResultCallback {
+class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_camera),
+    ActivityCompat.OnRequestPermissionsResultCallback {
+    private val args by navArgs<CameraFragmentArgs>()
     private lateinit var currentPhotoPath: String
     private lateinit var encodeImage: String
+    private var category: String? = null
+
     override fun setLayout() {
+        category = args.category
         dispatchTakePictureIntent()
         setClickListener()
+        setHalfCircleIndicator()
+    }
 
+    private fun setHalfCircleIndicator() {
+        if (category == null) {
+            binding.groupCameraAiResult.visibility = View.GONE
+        } else {
+            binding.groupCameraAiResult.visibility = View.VISIBLE
+        }
     }
 
     private fun setClickListener() {
@@ -49,7 +65,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
                 findNavController().navigateUp()
             }
             btnCameraImageSave.setOnClickListener {
-                val action = CameraFragmentDirections.actionCameraToRecordSave(currentPhotoPath)
+                val action = CameraFragmentDirections.actionCameraToRecordSave(currentPhotoPath, category)
                 findNavController().navigate(action)
             }
             btnCameraRequestRepair.setOnClickListener {
@@ -96,12 +112,11 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
                 }
             }
         } else {
-            // Request camera permission
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(Manifest.permission.CAMERA),
-                REQUEST_CAMERA_PERMISSION
-            )
+            Toast
+                .makeText(requireActivity(), "카메라 정보 제공에 동의 해주세요!", Toast.LENGTH_SHORT)
+                .show()
+
+            findNavController().navigateUp()
         }
     }
 

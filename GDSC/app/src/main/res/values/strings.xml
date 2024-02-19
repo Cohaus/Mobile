@@ -110,4 +110,7 @@
     <string name="text_waste_eco_message_second">폐기물 처리 시설에서 폐기물을 처리하고\n환경 보호에 동참해보세요:)</string>
     <string name="text_no_ok">괜찮아요</string>
     <string name="text_find">찾아보기</string>
+    <string name="description_join_complete_message">회원가입 완료 이미지</string>
+    <string name="text_join_complete_message">회원가입 완료!\n%s님 환영합니다.</string>
+    <string name="text_start_service">서비스 시작하기</string>
 </resources>

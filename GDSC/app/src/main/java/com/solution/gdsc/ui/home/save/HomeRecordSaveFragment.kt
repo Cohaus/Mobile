@@ -35,6 +35,7 @@ class HomeRecordSaveFragment : BaseFragment<FragmentHomeRecordSaveBinding>(R.lay
     }
 
     private fun saveRecord() {
+        //val category = if (args.category == null) "" else args.category
         viewModel.saveRecord(inputTitle, inputContent, "보통", "CRACK", args.image)
     }
 
