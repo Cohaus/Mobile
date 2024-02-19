@@ -11,5 +11,5 @@ interface HomeRepository {
         title: String, detail: String, category: String,
         placeId: String, address: String, district: String,
         date: String, image: String
-    ): RepairIdResponse
+    ): Flow<RepairIdResponse>
 }

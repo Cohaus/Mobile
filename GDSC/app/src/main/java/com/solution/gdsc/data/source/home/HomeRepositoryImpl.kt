@@ -18,7 +18,7 @@ class HomeRepositoryImpl @Inject constructor(
         title: String, detail: String, category: String,
         placeId: String, address: String, district: String,
         date: String, image: String
-    ): RepairIdResponse = dateSource.postRepairBasicRecord(
+    ): Flow<RepairIdResponse> = dateSource.postRepairBasicRecord(
         title, detail, category,
         placeId, address, district, date, image
     )

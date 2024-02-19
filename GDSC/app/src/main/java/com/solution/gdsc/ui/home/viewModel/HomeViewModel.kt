@@ -1,8 +1,6 @@
 package com.solution.gdsc.ui.home.viewModel
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.solution.gdsc.domain.model.response.DefaultResponse
@@ -22,8 +20,8 @@ class HomeViewModel @Inject constructor(
 
     private val _saveResult = MutableStateFlow(DefaultResponse())
     val saveResult: StateFlow<DefaultResponse> = _saveResult
-    private val _repairBasicRecord = MutableLiveData<RepairIdResponse>()
-    val repairBasicRecord: LiveData<RepairIdResponse> = _repairBasicRecord
+    private val _repairBasicRecord = MutableStateFlow(RepairIdResponse(data = null))
+    val repairBasicRecord: StateFlow<RepairIdResponse> = _repairBasicRecord
 
     fun saveRecord(title: String, detail: String, grade: String, category: String, image: String) {
         viewModelScope.launch {
@@ -46,9 +44,11 @@ class HomeViewModel @Inject constructor(
     ) {
         viewModelScope.launch {
             try {
-                _repairBasicRecord.value = homeRepository.postRepairBasicRecord(
+                homeRepository.postRepairBasicRecord(
                     title, detail, category, placeId, address, district, date, image
-                )
+                ).collectLatest {
+                    _repairBasicRecord.value = it
+                }
             } catch (e: Exception) {
                 Log.e("Post Repair Error: ", e.message.toString())
             }
