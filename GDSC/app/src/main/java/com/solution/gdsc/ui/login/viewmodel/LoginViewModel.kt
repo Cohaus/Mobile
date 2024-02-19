@@ -8,11 +8,13 @@ import androidx.lifecycle.viewModelScope
 import com.solution.gdsc.ChallengeApplication
 import com.solution.gdsc.domain.model.request.LoginReq
 import com.solution.gdsc.domain.model.request.SignUpRequest
-import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.LoginDto
+import com.solution.gdsc.domain.model.response.SignUpResponse
 import com.solution.gdsc.domain.repository.LoginRepository
 import com.solution.gdsc.domain.repository.UserMyPageRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,8 +24,8 @@ class LoginViewModel @Inject constructor(
     private val profileRepository: UserMyPageRepository
 ) : ViewModel() {
 
-    private val _signUpResult = MutableLiveData<DefaultResponse>()
-    val signUpResult get(): LiveData<DefaultResponse> = _signUpResult
+    private val _signUpResult = MutableStateFlow(SignUpResponse(data = null))
+    val signUpResult get(): StateFlow<SignUpResponse> = _signUpResult
 
     private val _userInfo = MutableLiveData<LoginDto>()
     val userInfo: LiveData<LoginDto> = _userInfo
@@ -32,13 +34,10 @@ class LoginViewModel @Inject constructor(
         id: String, password: String,
         name: String, tel: String, email: String
     ) {
-        try {
-            viewModelScope.launch {
-                _signUpResult.value =
-                    repository.signUp(SignUpRequest(id, password, name, tel, email))
+        viewModelScope.launch {
+            repository.signUp(SignUpRequest(id, password, name, tel, email)).collect {
+                _signUpResult.value = it
             }
-        } catch (e: Exception) {
-            Log.e("Sign Up Error: ", e.message.toString())
         }
     }
 
