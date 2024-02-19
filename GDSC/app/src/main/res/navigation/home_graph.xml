@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_home_to_home_ai_category"
             app:destination="@id/navigation_home_ai_category" />
+        <action
+            android:id="@+id/action_home_to_home_use_guid"
+            app:destination="@id/navigation_home_use_guid" />
     </fragment>
     <fragment
         android:id="@+id/navigation_profile"
@@ -380,4 +383,9 @@
             android:id="@+id/action_home_ai_category_to_camera"
             app:destination="@id/navigation_camera" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_home_use_guid"
+        android:name="com.solution.gdsc.ui.home.HomeUseGuidFragment"
+        android:label="HomeUseGuidFragment"
+        tools:layout="@layout/fragment_home_use_guide"/>
 </navigation>
