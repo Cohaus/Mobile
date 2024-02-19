@@ -30,34 +30,42 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     private val userMyPageRepository: UserMyPageRepository
 ) : ViewModel() {
-
-    /*private val _isLogout = MutableLiveData<LogoutResponse>()
-    val isLogout: LiveData<LogoutResponse> = _isLogout*/
-
     private val _isLogout = MutableStateFlow(LogoutResponse())
     val isLogout: StateFlow<LogoutResponse> = _isLogout
+
     private val _userInfo = MutableStateFlow(UserInfoDto())
     val userInfo: StateFlow<UserInfoDto> = _userInfo
-    private val _isWithdraw = MutableLiveData<DefaultResponse>()
-    val isWithdraw: LiveData<DefaultResponse> = _isWithdraw
+
+    private val _isWithdraw = MutableStateFlow(DefaultResponse())
+    val isWithdraw: StateFlow<DefaultResponse> = _isWithdraw
+
     private val _isUpdate = MutableLiveData<UpdateUserInfoResponse>()
     val isUpdate: LiveData<UpdateUserInfoResponse> = _isUpdate
+
     private val _hasResult = MutableLiveData<VolunteerRegistrationResponse>()
     val hasResult: LiveData<VolunteerRegistrationResponse> = _hasResult
+
     private val _savedRecords = MutableStateFlow<List<RecordItem>>(emptyList())
     val savedRecords: StateFlow<List<RecordItem>> = _savedRecords
+
     private val _repairRecords = MutableStateFlow<List<RecordItem>>(emptyList())
     val repairRecords: StateFlow<List<RecordItem>> = _repairRecords
+
     private val _savedRecordInfo = MutableStateFlow(SavedRecordDto())
     val savedRecordInfo: StateFlow<SavedRecordDto> = _savedRecordInfo
+
     private val _deleteSavedRecord = MutableStateFlow(DeleteSavedRecordResponse(1, "", 1))
     val deleteSavedRecord: StateFlow<DeleteSavedRecordResponse> = _deleteSavedRecord
+
     private val _updateSavedRecord = MutableStateFlow(0)
     val updateSavedRecord: StateFlow<Int> = _updateSavedRecord
+
     private val _repairRecord = MutableStateFlow(RepairRecordResponse(data = null))
     val repairRecord: StateFlow<RepairRecordResponse> = _repairRecord
+
     private val _repairInfo = MutableStateFlow(RepairInfoResponse(data = null))
     val repairInfo: StateFlow<RepairInfoResponse> = _repairInfo
+
     private val _volunteerRepairList = MutableStateFlow(VolunteerRepairListResponse(data = null))
     val volunteerRepairList: StateFlow<VolunteerRepairListResponse> = _volunteerRepairList
 
@@ -110,7 +118,9 @@ class ProfileViewModel @Inject constructor(
     fun withdraw() {
         viewModelScope.launch {
             try {
-                _isWithdraw.value = userMyPageRepository.withdraw()
+                userMyPageRepository.withdraw().collect {
+                    _isWithdraw.value = it
+                }
             } catch (e: Exception) {
                 Log.e("Withdraw Error: ", e.message.toString())
             }

@@ -64,19 +64,12 @@ class UserMyPageDatasource @Inject constructor(
         return response
     }
 
-    suspend fun withdraw(): DefaultResponse {
-        var response = DefaultResponse(200, "회원탈퇴 성공", 1)
-        withContext(Dispatchers.IO) {
-            runCatching {
-                coHousService.withdraw()
-            }.onSuccess {
-                response = it
-                ChallengeApplication.getInstance().tokenManager.deleteToken()
-            }.onFailure {
-                Log.e(TAG, "Withdraw Failure")
-            }
-        }
-        return response
+    suspend fun withdraw(): Flow<DefaultResponse> = flow {
+        val response = coHousService.withdraw()
+        ChallengeApplication.getInstance().tokenManager.deleteToken()
+        emit(response)
+    }.catch {
+        Log.e(TAG, "Withdraw Failure ${it.message.toString()}")
     }
 
     suspend fun getUserRecord(): Flow<UserRecordResponse> = flow {

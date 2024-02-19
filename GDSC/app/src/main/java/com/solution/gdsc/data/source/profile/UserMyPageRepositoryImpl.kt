@@ -28,7 +28,7 @@ class UserMyPageRepositoryImpl @Inject constructor(
         updateUserInfoRequest: UpdateUserInfoRequest
     ): UpdateUserInfoResponse = dataSource.updateUserInfo(updateUserInfoRequest)
 
-    override suspend fun withdraw(): DefaultResponse = dataSource.withdraw()
+    override suspend fun withdraw(): Flow<DefaultResponse> = dataSource.withdraw()
     override suspend fun getUserRecord(): Flow<UserRecordResponse> = dataSource.getUserRecord()
     override suspend fun putVolunteerUser(
         volunteerRegistrationReq: VolunteerRegistrationReq

@@ -41,7 +41,6 @@ class SettingStateDialogFragment : DialogFragment() {
             DialogCategory.LOGOUT -> setCategoryLogout()
             else -> setCategoryWithdrawal()
         }
-        observe()
     }
 
     private fun setCategoryLogout() {
@@ -65,6 +64,7 @@ class SettingStateDialogFragment : DialogFragment() {
             }
             btnWithdrawalConfirm.setOnClickListener {
                 viewModel.withdraw()
+                withdraw()
             }
         }
     }
@@ -95,11 +95,18 @@ class SettingStateDialogFragment : DialogFragment() {
         }
     }
 
-        private fun observe() {
-            viewModel.isWithdraw.observe(viewLifecycleOwner) {
-                val action = SettingStateDialogFragmentDirections.actionSettingStateDialogToLogin()
-                findNavController().navigate(action)
-                requireActivity().finish()
+    private fun withdraw() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.isWithdraw.collectLatest {
+                    if (it.status in 200..299) {
+                        val action =
+                            SettingStateDialogFragmentDirections.actionSettingStateDialogToLogin()
+                        findNavController().navigate(action)
+                        requireActivity().finish()
+                    }
+                }
             }
         }
     }
+}
