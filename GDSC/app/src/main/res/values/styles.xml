@@ -280,6 +280,10 @@
         <item name="android:textColor">@color/gray_400</item>
     </style>
 
+    <style name="customTextViewFontStyle.Bold.S24.gray_dark">
+        <item name="android:textColor">@color/gray_dark</item>
+    </style>
+
     <style name="customTextViewFontStyle.Bold.S20.gray400">
         <item name="android:textColor">@color/gray_400</item>
     </style>
