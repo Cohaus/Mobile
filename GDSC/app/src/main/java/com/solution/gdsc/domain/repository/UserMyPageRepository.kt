@@ -5,6 +5,7 @@ import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.DeleteSavedRecordResponse
+import com.solution.gdsc.domain.model.response.LogoutResponse
 import com.solution.gdsc.domain.model.response.RepairInfoResponse
 import com.solution.gdsc.domain.model.response.RepairRecordResponse
 import com.solution.gdsc.domain.model.response.SavedRecordResponse
@@ -17,7 +18,7 @@ import com.solution.gdsc.domain.model.response.VolunteerRepairListResponse
 import kotlinx.coroutines.flow.Flow
 
 interface UserMyPageRepository {
-    suspend fun logout(): DefaultResponse
+    suspend fun logout(): Flow<LogoutResponse>
     suspend fun getUserInfo(): Flow<UserInfoResponse>
     suspend fun updateUserInfo(updateUserInfoRequest: UpdateUserInfoRequest): UpdateUserInfoResponse
     suspend fun withdraw(): DefaultResponse

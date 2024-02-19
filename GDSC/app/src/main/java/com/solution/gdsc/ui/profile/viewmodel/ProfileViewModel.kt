@@ -10,6 +10,7 @@ import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.DeleteSavedRecordResponse
+import com.solution.gdsc.domain.model.response.LogoutResponse
 import com.solution.gdsc.domain.model.response.RecordItem
 import com.solution.gdsc.domain.model.response.RepairInfoResponse
 import com.solution.gdsc.domain.model.response.RepairRecordResponse
@@ -30,8 +31,11 @@ class ProfileViewModel @Inject constructor(
     private val userMyPageRepository: UserMyPageRepository
 ) : ViewModel() {
 
-    private val _isLogout = MutableLiveData<DefaultResponse>()
-    val isLogout: LiveData<DefaultResponse> = _isLogout
+    /*private val _isLogout = MutableLiveData<LogoutResponse>()
+    val isLogout: LiveData<LogoutResponse> = _isLogout*/
+
+    private val _isLogout = MutableStateFlow(LogoutResponse())
+    val isLogout: StateFlow<LogoutResponse> = _isLogout
     private val _userInfo = MutableStateFlow(UserInfoDto())
     val userInfo: StateFlow<UserInfoDto> = _userInfo
     private val _isWithdraw = MutableLiveData<DefaultResponse>()
@@ -57,10 +61,22 @@ class ProfileViewModel @Inject constructor(
     private val _volunteerRepairList = MutableStateFlow(VolunteerRepairListResponse(data = null))
     val volunteerRepairList: StateFlow<VolunteerRepairListResponse> = _volunteerRepairList
 
-    fun logout() {
+    /*fun logout() {
         viewModelScope.launch {
             try {
                 _isLogout.value = userMyPageRepository.logout()
+            } catch (e: Exception) {
+                Log.e("Logout Error: ", e.message.toString())
+            }
+        }
+    }*/
+
+    fun logout() {
+        viewModelScope.launch {
+            try {
+                userMyPageRepository.logout().collect {
+                    _isLogout.value = it
+                }
             } catch (e: Exception) {
                 Log.e("Logout Error: ", e.message.toString())
             }

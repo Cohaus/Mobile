@@ -9,6 +9,7 @@ import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.DeleteSavedRecordResponse
+import com.solution.gdsc.domain.model.response.LogoutResponse
 import com.solution.gdsc.domain.model.response.RepairInfoResponse
 import com.solution.gdsc.domain.model.response.RepairRecordResponse
 import com.solution.gdsc.domain.model.response.SavedRecordResponse
@@ -31,19 +32,12 @@ import javax.inject.Inject
 class UserMyPageDatasource @Inject constructor(
     private val coHousService: CoHousService
 ) {
-    suspend fun logout(): DefaultResponse {
-        var response = DefaultResponse(200, "로그아웃 성공", 13)
-        withContext(Dispatchers.IO) {
-            runCatching {
-                coHousService.logout()
-            }.onSuccess {
-                response = it
-                ChallengeApplication.getInstance().tokenManager.deleteToken()
-            }.onFailure {
-                Log.e(TAG, "Logout Failure")
-            }
-        }
-        return response
+    suspend fun logout(): Flow<LogoutResponse> = flow {
+        val response = coHousService.logout()
+        ChallengeApplication.getInstance().tokenManager.deleteToken()
+        emit(response)
+    }.catch {
+        Log.e(TAG, "Logout Failure ${it.message.toString()}")
     }
 
     suspend fun getUserInfo(): Flow<UserInfoResponse> = flow {

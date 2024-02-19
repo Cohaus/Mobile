@@ -6,6 +6,7 @@ import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
 import com.solution.gdsc.domain.model.response.CountRepairResponse
 import com.solution.gdsc.domain.model.response.DefaultResponse
 import com.solution.gdsc.domain.model.response.DeleteSavedRecordResponse
+import com.solution.gdsc.domain.model.response.LogoutResponse
 import com.solution.gdsc.domain.model.response.RepairIdResponse
 import com.solution.gdsc.domain.model.response.RepairInfoResponse
 import com.solution.gdsc.domain.model.response.RepairRecordResponse
@@ -34,7 +35,7 @@ import retrofit2.http.Query
 interface CoHousService {
     // Profile
     @DELETE("/auth/logout")
-    suspend fun logout(): DefaultResponse
+    suspend fun logout(): LogoutResponse
 
     @GET("/my-page")
     suspend fun getUserInfo(): UserInfoResponse
