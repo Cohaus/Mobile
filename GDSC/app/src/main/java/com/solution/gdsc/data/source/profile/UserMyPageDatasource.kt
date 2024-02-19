@@ -3,7 +3,7 @@ package com.solution.gdsc.data.source.profile
 import android.content.ContentValues.TAG
 import android.util.Log
 import com.solution.gdsc.ChallengeApplication
-import com.solution.gdsc.data.remote.CoHousService
+import com.solution.gdsc.data.remote.CoHausService
 import com.solution.gdsc.domain.model.request.UpdateSavedRecordReq
 import com.solution.gdsc.domain.model.request.UpdateUserInfoRequest
 import com.solution.gdsc.domain.model.request.VolunteerRegistrationReq
@@ -25,10 +25,10 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class UserMyPageDatasource @Inject constructor(
-    private val coHousService: CoHousService
+    private val coHausService: CoHausService
 ) {
     suspend fun logout(): Flow<LogoutResponse> = flow {
-        val response = coHousService.logout()
+        val response = coHausService.logout()
         ChallengeApplication.getInstance().tokenManager.deleteToken()
         emit(response)
     }.catch {
@@ -36,7 +36,7 @@ class UserMyPageDatasource @Inject constructor(
     }
 
     suspend fun getUserInfo(): Flow<UserInfoResponse> = flow {
-        val response = coHousService.getUserInfo()
+        val response = coHausService.getUserInfo()
         emit(response)
         }.catch {
             ChallengeApplication.getInstance().tokenManager.deleteToken()
@@ -46,14 +46,14 @@ class UserMyPageDatasource @Inject constructor(
     suspend fun updateUserInfo(
         updateUserInfoRequest: UpdateUserInfoRequest
     ): Flow<UpdateUserInfoResponse> = flow<UpdateUserInfoResponse> {
-        val response = coHousService.updateUserInfo(updateUserInfoRequest)
+        val response = coHausService.updateUserInfo(updateUserInfoRequest)
         emit(response)
     }.catch {
         Log.e(TAG, "Update User Info Failure ${it.message.toString()}")
     }
 
     suspend fun withdraw(): Flow<DefaultResponse> = flow {
-        val response = coHousService.withdraw()
+        val response = coHausService.withdraw()
         ChallengeApplication.getInstance().tokenManager.deleteToken()
         emit(response)
     }.catch {
@@ -61,7 +61,7 @@ class UserMyPageDatasource @Inject constructor(
     }
 
     suspend fun getUserRecord(): Flow<UserRecordResponse> = flow {
-        val response = coHousService.getUserRecord()
+        val response = coHausService.getUserRecord()
         emit(response)
     }.catch {
         Log.e(TAG, "Get User Record Failure ${it.message}")
@@ -70,49 +70,49 @@ class UserMyPageDatasource @Inject constructor(
     suspend fun putVolunteerUser(
         volunteerRegistrationReq: VolunteerRegistrationReq
     ): Flow<VolunteerRegistrationResponse> = flow<VolunteerRegistrationResponse> {
-        val response = coHousService.putVolunteerUser(volunteerRegistrationReq)
+        val response = coHausService.putVolunteerUser(volunteerRegistrationReq)
         emit(response)
     }.catch {
         Log.e(TAG, "Put Volunteer User Failure ${it.message.toString()}")
     }
 
     fun getRecordInfo(recordId: Long): Flow<SavedRecordResponse> = flow {
-        val response = coHousService.getRecordInfo(recordId)
+        val response = coHausService.getRecordInfo(recordId)
         emit(response)
     }.catch {
         Log.e(TAG, "Get Record Info Failure ${it.message}")
     }
 
     fun deleteSavedRecord(recordId: Long): Flow<DeleteSavedRecordResponse> = flow {
-        val response = coHousService.deleteSavedRecord(recordId)
+        val response = coHausService.deleteSavedRecord(recordId)
         emit(response)
     }.catch {
         Log.e(TAG, "Delete Saved Record Failure ${it.message}")
     }
 
     fun updateSavedRecord(recordId: Long, updateSavedRecordReq: UpdateSavedRecordReq): Flow<UpdateSavedRecordResponse> = flow {
-        val response = coHousService.updateSavedRecord(recordId, updateSavedRecordReq)
+        val response = coHausService.updateSavedRecord(recordId, updateSavedRecordReq)
         emit(response)
     }.catch {
         Log.e(TAG, "Update Saved Record Failure ${it.message}")
     }
 
     suspend fun getRepairsRecord(repairId: Long): Flow<RepairRecordResponse> = flow {
-        val response = coHousService.getRepairsRecord(repairId)
+        val response = coHausService.getRepairsRecord(repairId)
         emit(response)
     }.catch {
         Log.e(TAG, "Get Repairs Record Failure ${it.message}")
     }
 
     suspend fun getRepairInfo(repairId: Long): Flow<RepairInfoResponse> = flow {
-        val response = coHousService.getRepairInfo(repairId)
+        val response = coHausService.getRepairInfo(repairId)
         emit(response)
     }.catch {
         Log.e(TAG, "Get Repair Info Failure ${it.message}")
     }
 
     fun getVolunteerRepairList(): Flow<VolunteerRepairListResponse> = flow {
-        val response = coHousService.getVolunteerRepairList()
+        val response = coHausService.getVolunteerRepairList()
         emit(response)
     }.catch {
         Log.e(TAG, "Get Volunteer Repair List Failure ${it.message}")

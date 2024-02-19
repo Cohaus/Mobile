@@ -1,6 +1,6 @@
 package com.solution.gdsc.di.module
 
-import com.solution.gdsc.data.remote.CoHousService
+import com.solution.gdsc.data.remote.CoHausService
 import com.solution.gdsc.data.remote.LoginService
 import dagger.Module
 import dagger.Provides
@@ -23,5 +23,5 @@ object ServiceModule {
     @Singleton
     fun provideOtherService(
         @NetworkModule.CoHousInterceptorOkHttpClient retrofit: Retrofit
-    ): CoHousService = retrofit.create(CoHousService::class.java)
+    ): CoHausService = retrofit.create(CoHausService::class.java)
 }

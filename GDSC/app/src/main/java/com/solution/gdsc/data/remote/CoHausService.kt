@@ -32,7 +32,7 @@ import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface CoHousService {
+interface CoHausService {
     // Profile
     @DELETE("/auth/logout")
     suspend fun logout(): LogoutResponse
