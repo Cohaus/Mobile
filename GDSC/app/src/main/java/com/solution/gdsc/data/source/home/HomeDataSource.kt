@@ -26,7 +26,7 @@ class HomeDataSource @Inject constructor(
         val detailRequestBody = detail.toRequestBody("text/plain".toMediaTypeOrNull())
         val gradeRequestBody = grade.toRequestBody("text/plain".toMediaTypeOrNull())
         val categoryRequestBody = category.toRequestBody("text/plain".toMediaTypeOrNull())
-
+        
         val file = File(imageFilePath)
         val imageRequestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
         val imagePart = MultipartBody.Part.createFormData("image", file.name, imageRequestBody)
