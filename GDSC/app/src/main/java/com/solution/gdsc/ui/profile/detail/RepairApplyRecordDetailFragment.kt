@@ -11,6 +11,7 @@ import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentRepairApplyRecordDetailBinding
 import com.solution.gdsc.domain.model.response.RepairRecordDto
+import com.solution.gdsc.ui.common.AiGrade
 import com.solution.gdsc.ui.profile.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -36,8 +37,19 @@ class RepairApplyRecordDetailFragment : BaseFragment<FragmentRepairApplyRecordDe
                     if (it.status == 200) {
                         repairRecord = it.data!!
                         binding.repairRecordDto = repairRecord
+                        setProgressbarColor()
                     }
                 }
+            }
+        }
+    }
+
+    private fun setProgressbarColor() {
+        with(binding) {
+            when (repairRecord.grade) {
+                AiGrade.SUPERIORITY.grade -> progressBarSafeGrade.setProgressBarColor(R.color.green_300)
+                AiGrade.GENERAL.grade -> progressBarSafeGrade.setProgressBarColor(R.color.green_300)
+                AiGrade.FAULTY.grade -> progressBarSafeGrade.setProgressBarColor(R.color.red)
             }
         }
     }
