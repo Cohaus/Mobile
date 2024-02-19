@@ -23,7 +23,7 @@ interface UserMyPageRepository {
     suspend fun updateUserInfo(updateUserInfoRequest: UpdateUserInfoRequest): UpdateUserInfoResponse
     suspend fun withdraw(): Flow<DefaultResponse>
     suspend fun getUserRecord(): Flow<UserRecordResponse>
-    suspend fun putVolunteerUser(volunteerRegistrationReq: VolunteerRegistrationReq): VolunteerRegistrationResponse
+    suspend fun putVolunteerUser(volunteerRegistrationReq: VolunteerRegistrationReq): Flow<VolunteerRegistrationResponse>
     suspend fun getSavedRecordInfo(recordId: Long): Flow<SavedRecordResponse>
     suspend fun deleteSavedRecord(recordId: Long): Flow<DeleteSavedRecordResponse>
     suspend fun updateSavedRecord(recordId: Long, updateSavedRecordReq: UpdateSavedRecordReq): Flow<UpdateSavedRecordResponse>

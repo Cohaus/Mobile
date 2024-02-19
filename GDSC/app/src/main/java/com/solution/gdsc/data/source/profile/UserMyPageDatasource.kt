@@ -18,11 +18,9 @@ import com.solution.gdsc.domain.model.response.UpdateUserInfoDto
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoResponse
 import com.solution.gdsc.domain.model.response.UserRecordResponse
-import com.solution.gdsc.domain.model.response.VolunteerInfo
 import com.solution.gdsc.domain.model.response.VolunteerRegistrationResponse
 import com.solution.gdsc.domain.model.response.VolunteerRepairListResponse
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -79,21 +77,13 @@ class UserMyPageDatasource @Inject constructor(
         Log.e(TAG, "Get User Record Failure ${it.message}")
     }
 
-    suspend fun putVolunteerUser(volunteerRegistrationReq: VolunteerRegistrationReq): VolunteerRegistrationResponse {
-        var response = VolunteerRegistrationResponse(1, "성공",
-            VolunteerInfo("a", null)
-        )
-        withContext(Dispatchers.IO) {
-            runCatching {
-                coHousService.putVolunteerUser(volunteerRegistrationReq)
-            }.onSuccess {
-                response =  it
-                delay(1000)
-            }.onFailure {
-                Log.e(TAG, "Put Volunteer User Failure")
-            }
-        }
-        return response
+    suspend fun putVolunteerUser(
+        volunteerRegistrationReq: VolunteerRegistrationReq
+    ): Flow<VolunteerRegistrationResponse> = flow<VolunteerRegistrationResponse> {
+        val response = coHousService.putVolunteerUser(volunteerRegistrationReq)
+        emit(response)
+    }.catch {
+        Log.e(TAG, "Put Volunteer User Failure ${it.message.toString()}")
     }
 
     fun getRecordInfo(recordId: Long): Flow<SavedRecordResponse> = flow {

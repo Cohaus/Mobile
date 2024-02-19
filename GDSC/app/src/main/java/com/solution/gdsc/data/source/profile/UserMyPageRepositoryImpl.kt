@@ -32,7 +32,7 @@ class UserMyPageRepositoryImpl @Inject constructor(
     override suspend fun getUserRecord(): Flow<UserRecordResponse> = dataSource.getUserRecord()
     override suspend fun putVolunteerUser(
         volunteerRegistrationReq: VolunteerRegistrationReq
-    ): VolunteerRegistrationResponse = dataSource.putVolunteerUser(volunteerRegistrationReq)
+    ): Flow<VolunteerRegistrationResponse> = dataSource.putVolunteerUser(volunteerRegistrationReq)
 
     override suspend fun getSavedRecordInfo(
         recordId: Long

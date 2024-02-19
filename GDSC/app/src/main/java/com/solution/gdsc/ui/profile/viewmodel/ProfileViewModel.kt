@@ -42,8 +42,8 @@ class ProfileViewModel @Inject constructor(
     private val _isUpdate = MutableLiveData<UpdateUserInfoResponse>()
     val isUpdate: LiveData<UpdateUserInfoResponse> = _isUpdate
 
-    private val _hasResult = MutableLiveData<VolunteerRegistrationResponse>()
-    val hasResult: LiveData<VolunteerRegistrationResponse> = _hasResult
+    private val _hasResult = MutableStateFlow(VolunteerRegistrationResponse(data = null))
+    val hasResult: StateFlow<VolunteerRegistrationResponse> = _hasResult
 
     private val _savedRecords = MutableStateFlow<List<RecordItem>>(emptyList())
     val savedRecords: StateFlow<List<RecordItem>> = _savedRecords
@@ -68,16 +68,6 @@ class ProfileViewModel @Inject constructor(
 
     private val _volunteerRepairList = MutableStateFlow(VolunteerRepairListResponse(data = null))
     val volunteerRepairList: StateFlow<VolunteerRepairListResponse> = _volunteerRepairList
-
-    /*fun logout() {
-        viewModelScope.launch {
-            try {
-                _isLogout.value = userMyPageRepository.logout()
-            } catch (e: Exception) {
-                Log.e("Logout Error: ", e.message.toString())
-            }
-        }
-    }*/
 
     fun logout() {
         viewModelScope.launch {
@@ -144,7 +134,11 @@ class ProfileViewModel @Inject constructor(
     fun putVolunteerUser(volunteerType: String, organizationName: String?) {
         viewModelScope.launch {
             try {
-                _hasResult.value = userMyPageRepository.putVolunteerUser(VolunteerRegistrationReq(volunteerType, organizationName))
+                userMyPageRepository.putVolunteerUser(
+                    VolunteerRegistrationReq(volunteerType, organizationName)
+                ).collect {
+                    _hasResult.value = it
+                }
             } catch (e: Exception) {
                 Log.e("Put Volunteer Error: ", e.message.toString())
             }
