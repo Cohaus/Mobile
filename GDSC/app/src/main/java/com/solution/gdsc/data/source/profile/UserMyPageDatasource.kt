@@ -14,17 +14,14 @@ import com.solution.gdsc.domain.model.response.RepairInfoResponse
 import com.solution.gdsc.domain.model.response.RepairRecordResponse
 import com.solution.gdsc.domain.model.response.SavedRecordResponse
 import com.solution.gdsc.domain.model.response.UpdateSavedRecordResponse
-import com.solution.gdsc.domain.model.response.UpdateUserInfoDto
 import com.solution.gdsc.domain.model.response.UpdateUserInfoResponse
 import com.solution.gdsc.domain.model.response.UserInfoResponse
 import com.solution.gdsc.domain.model.response.UserRecordResponse
 import com.solution.gdsc.domain.model.response.VolunteerRegistrationResponse
 import com.solution.gdsc.domain.model.response.VolunteerRepairListResponse
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class UserMyPageDatasource @Inject constructor(
@@ -46,20 +43,13 @@ class UserMyPageDatasource @Inject constructor(
             Log.e(TAG, "Get User Info Failure: ${it.message.toString()}")
         }
 
-    suspend fun updateUserInfo(updateUserInfoRequest: UpdateUserInfoRequest): UpdateUserInfoResponse {
-        var response = UpdateUserInfoResponse(200, "요청에 성공하였습니다.",
-            UpdateUserInfoDto(1, "장민수", "cty123", "mais2@ag.com", "010-1234-5678")
-            )
-        withContext(Dispatchers.IO) {
-            runCatching {
-                coHousService.updateUserInfo(updateUserInfoRequest)
-            }.onSuccess {
-                response = it
-            }.onFailure {
-                Log.e(TAG, "Update User Info Failure")
-            }
-        }
-        return response
+    suspend fun updateUserInfo(
+        updateUserInfoRequest: UpdateUserInfoRequest
+    ): Flow<UpdateUserInfoResponse> = flow<UpdateUserInfoResponse> {
+        val response = coHousService.updateUserInfo(updateUserInfoRequest)
+        emit(response)
+    }.catch {
+        Log.e(TAG, "Update User Info Failure ${it.message.toString()}")
     }
 
     suspend fun withdraw(): Flow<DefaultResponse> = flow {

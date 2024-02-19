@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.Flow
 interface UserMyPageRepository {
     suspend fun logout(): Flow<LogoutResponse>
     suspend fun getUserInfo(): Flow<UserInfoResponse>
-    suspend fun updateUserInfo(updateUserInfoRequest: UpdateUserInfoRequest): UpdateUserInfoResponse
+    suspend fun updateUserInfo(updateUserInfoRequest: UpdateUserInfoRequest): Flow<UpdateUserInfoResponse>
     suspend fun withdraw(): Flow<DefaultResponse>
     suspend fun getUserRecord(): Flow<UserRecordResponse>
     suspend fun putVolunteerUser(volunteerRegistrationReq: VolunteerRegistrationReq): Flow<VolunteerRegistrationResponse>

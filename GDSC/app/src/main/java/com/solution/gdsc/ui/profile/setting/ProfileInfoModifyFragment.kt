@@ -2,6 +2,9 @@ package com.solution.gdsc.ui.profile.setting
 
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.solution.gdsc.R
@@ -9,6 +12,8 @@ import com.solution.gdsc.base.BaseFragment
 import com.solution.gdsc.databinding.FragmentProfileInfoModifyBinding
 import com.solution.gdsc.ui.profile.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ProfileInfoModifyFragment : BaseFragment<FragmentProfileInfoModifyBinding>(R.layout.fragment_profile_info_modify) {
@@ -34,12 +39,12 @@ class ProfileInfoModifyFragment : BaseFragment<FragmentProfileInfoModifyBinding>
         }
         setInputText()
         clickUpdateButton()
-        observe()
     }
 
     private fun clickUpdateButton() {
         binding.btnModifyConfirm.setOnClickListener {
             updateInfo()
+            complete()
         }
     }
 
@@ -78,10 +83,14 @@ class ProfileInfoModifyFragment : BaseFragment<FragmentProfileInfoModifyBinding>
         binding.btnModifyConfirm.isEnabled = isValidId && isValidName && isValidEmail && isValidTel
     }
 
-    private fun observe() {
-        viewModel.isUpdate.observe(viewLifecycleOwner) {
-            if (it.status == 200) {
-                findNavController().navigateUp()
+    private fun complete() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.isUpdate.collectLatest {
+                    if (it.status == 200) {
+                        findNavController().navigateUp()
+                    }
+                }
             }
         }
     }

@@ -1,8 +1,6 @@
 package com.solution.gdsc.ui.profile.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.solution.gdsc.domain.model.request.UpdateSavedRecordReq
@@ -39,8 +37,8 @@ class ProfileViewModel @Inject constructor(
     private val _isWithdraw = MutableStateFlow(DefaultResponse())
     val isWithdraw: StateFlow<DefaultResponse> = _isWithdraw
 
-    private val _isUpdate = MutableLiveData<UpdateUserInfoResponse>()
-    val isUpdate: LiveData<UpdateUserInfoResponse> = _isUpdate
+    private val _isUpdate = MutableStateFlow(UpdateUserInfoResponse(data = null))
+    val isUpdate: StateFlow<UpdateUserInfoResponse> = _isUpdate
 
     private val _hasResult = MutableStateFlow(VolunteerRegistrationResponse(data = null))
     val hasResult: StateFlow<VolunteerRegistrationResponse> = _hasResult
@@ -96,9 +94,11 @@ class ProfileViewModel @Inject constructor(
     fun updateUserInfo(id: String, name: String, tel: String, email: String) {
         viewModelScope.launch {
             try {
-                _isUpdate.value = userMyPageRepository.updateUserInfo(
+                userMyPageRepository.updateUserInfo(
                     UpdateUserInfoRequest(id, name, tel, email)
-                )
+                ).collect {
+                    _isUpdate.value = it
+                }
             } catch (e: Exception) {
                 Log.e("Update User Info Error: ", e.message.toString())
             }
