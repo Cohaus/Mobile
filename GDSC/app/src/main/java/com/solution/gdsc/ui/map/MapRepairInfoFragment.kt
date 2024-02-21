@@ -13,6 +13,7 @@ import com.solution.gdsc.databinding.FragmentMapRepairInfoBinding
 import com.solution.gdsc.domain.model.response.RepairInfoDto
 import com.solution.gdsc.ui.common.RepairStatus
 import com.solution.gdsc.ui.map.viewmodel.MapViewModel
+import com.solution.gdsc.util.DateFormatter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -54,11 +55,18 @@ class MapRepairInfoFragment : BaseFragment<FragmentMapRepairInfoBinding>(R.layou
     }
 
     private fun setEcoWasteDialog(repairStatus: String) {
-        if (repairStatus == RepairStatus.COMPLETE.type) {
+        val date = getCurrentDate().substring(2)
+        if (repairStatus == RepairStatus.COMPLETE.type && repairInfo.completeDate == date) {
             binding.tvVolunteerRepairComplete.visibility = View.GONE
             val action = MapRepairInfoFragmentDirections.actionMapRepairInfoToDialogEcoWaste(args.repairId)
             findNavController().navigate(action)
         }
+    }
+
+    private fun getCurrentDate(): String {
+        val date = DateFormatter.getCurrentTime()
+        val newDate = DateFormatter.convertToDate(date)
+        return DateFormatter.convertToRepairDateFormat(newDate!!)
     }
 
     private fun setClickListener() {

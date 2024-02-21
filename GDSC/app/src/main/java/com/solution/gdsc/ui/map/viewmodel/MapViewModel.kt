@@ -99,7 +99,7 @@ class MapViewModel @Inject constructor(
     fun patchRepairComplete(repairId: Long, date: String) {
         viewModelScope.launch {
             try {
-                repository.patchRepairComplete(repairId, "20$date").collect {
+                repository.patchRepairComplete(repairId, date).collect {
                     _patchSuccess.value = it
                 }
             } catch (e: Exception) {
