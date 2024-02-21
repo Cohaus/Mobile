@@ -67,6 +67,9 @@ class HomeAiCategoryFragment : BaseFragment<FragmentHomeAiCategoryBinding>(R.lay
                 val action = HomeAiCategoryFragmentDirections.actionHomeAiCategoryToCamera(category)
                 findNavController().navigate(action)
             }
+            toolbarAiCategory.setNavigationOnClickListener {
+                findNavController().navigateUp()
+            }
         }
     }
 }
