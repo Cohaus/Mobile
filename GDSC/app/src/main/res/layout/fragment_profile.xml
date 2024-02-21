@@ -127,7 +127,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_user_name" />
 
                 <com.google.android.material.divider.MaterialDivider
-                    android:id="@+id/divider_profile"
+                    android:id="@+id/divider_profile_tree"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17dp"
@@ -135,6 +135,95 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/iv_user_state_image" />
+
+                <TextView
+                    android:id="@+id/tv_proceed_volunteer_list"
+                    style="@style/customTextViewFontStyle.Bold.S24"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="19dp"
+                    android:text="@string/text_proceed_volunteer_list"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/iv_user_state_image"
+                    app:layout_constraintTop_toBottomOf="@id/divider_profile_tree" />
+
+                <ImageButton
+                    android:id="@+id/ib_proceed_volunteer_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/description_repair_list_arrow"
+                    android:src="@drawable/ic_right_arrow"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_proceed_volunteer_list" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_proceed_volunteer_list"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="31dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toTopOf="@id/divider_profile_four"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_proceed_volunteer_list"
+                    tools:listitem="@layout/item_repair_apply" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider_profile_four"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
+                    app:dividerThickness="1dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_proceed_volunteer_list" />
+
+                <TextView
+                    android:id="@+id/tv_complete_list"
+                    style="@style/customTextViewFontStyle.Bold.S24"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="19dp"
+                    android:text="@string/text_complete_volunteer_list"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/iv_user_state_image"
+                    app:layout_constraintTop_toBottomOf="@id/divider_profile_four" />
+
+                <ImageButton
+                    android:id="@+id/ib_arrow_complete_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/description_repair_list_arrow"
+                    android:src="@drawable/ic_right_arrow"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_complete_list" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_complete_list"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_complete_list"
+                    tools:listitem="@layout/item_record_save" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
+                    app:dividerThickness="1dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_complete_list" />
 
                 <TextView
                     android:id="@+id/tv_repair_apply_list"
@@ -212,102 +301,11 @@
                     android:layout_marginBottom="24dp"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_save_list"
                     tools:listitem="@layout/item_record_save" />
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:id="@+id/divider_profile_tree"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="17dp"
-                    app:dividerThickness="1dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rv_save_list" />
-
-                <TextView
-                    android:id="@+id/tv_proceed_volunteer_list"
-                    style="@style/customTextViewFontStyle.Bold.S24"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="19dp"
-                    android:text="@string/text_proceed_volunteer_list"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/iv_user_state_image"
-                    app:layout_constraintTop_toBottomOf="@id/divider_profile_tree" />
-
-                <ImageButton
-                    android:id="@+id/ib_proceed_volunteer_list"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:contentDescription="@string/description_repair_list_arrow"
-                    android:src="@drawable/ic_right_arrow"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tv_proceed_volunteer_list" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_proceed_volunteer_list"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="31dp"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toTopOf="@id/divider_profile_four"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_proceed_volunteer_list"
-                    tools:listitem="@layout/item_repair_apply" />
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:id="@+id/divider_profile_four"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="17dp"
-                    app:dividerThickness="1dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rv_proceed_volunteer_list" />
-
-                <TextView
-                    android:id="@+id/tv_complete_list"
-                    style="@style/customTextViewFontStyle.Bold.S24"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="19dp"
-                    android:text="@string/text_complete_volunteer_list"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/iv_user_state_image"
-                    app:layout_constraintTop_toBottomOf="@id/divider_profile_four" />
-
-                <ImageButton
-                    android:id="@+id/ib_arrow_complete_list"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:contentDescription="@string/description_repair_list_arrow"
-                    android:src="@drawable/ic_right_arrow"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tv_complete_list" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_complete_list"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginBottom="24dp"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_complete_list"
-                    tools:listitem="@layout/item_record_save" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
