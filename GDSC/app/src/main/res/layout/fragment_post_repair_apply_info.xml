@@ -257,7 +257,7 @@
             app:layout_constraintEnd_toEndOf="@id/tv_volunteer_user_name"
             app:layout_constraintStart_toEndOf="@id/iv_volunteer_tel"
             app:layout_constraintTop_toBottomOf="@id/tv_meet_user"
-            tools:text="@{repairInfo.volunteerTel}" />
+            setTelFormat="@{repairInfo.volunteerTel}" />
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/divider_repair_info_two"
