@@ -13,7 +13,7 @@ data class SavedRecordDto(
     val image: String = "",
     val title: String = "",
     val detail: String = "",
-    val category: String = "",
+    val category: String? = "",
     val grade: String? = "",
     @SerializedName("created_at")
     val createdAt: String = "",

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.solution.gdsc.databinding.ItemRecordProceedBinding
+import com.solution.gdsc.databinding.ItemRecordCompleteBinding
 import com.solution.gdsc.domain.model.response.RepairItem
 
 class VolunteerCompleteAdapter(private val listener: RepairClickListener) : RecyclerView.Adapter<VolunteerCompleteAdapter.VolunteerCompleteViewHolder>()  {
@@ -48,7 +48,7 @@ class VolunteerCompleteAdapter(private val listener: RepairClickListener) : Recy
     }
 
     class VolunteerCompleteViewHolder(
-        private val binding: ItemRecordProceedBinding,
+        private val binding: ItemRecordCompleteBinding,
         private val listener: RepairClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: RepairItem) {
@@ -59,7 +59,7 @@ class VolunteerCompleteAdapter(private val listener: RepairClickListener) : Recy
         companion object {
             fun from(parent: ViewGroup, listener: RepairClickListener): VolunteerCompleteViewHolder {
                 return VolunteerCompleteViewHolder(
-                    ItemRecordProceedBinding.inflate(
+                    ItemRecordCompleteBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
                         false

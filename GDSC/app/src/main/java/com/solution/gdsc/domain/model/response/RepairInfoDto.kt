@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 data class RepairInfoDto(
     @SerializedName("repair_status")
     val repairStatus: String,
-    val category: String,
+    val category: String?,
     @SerializedName("request_date")
     val requestDate: String,
     @SerializedName("proceed_date")

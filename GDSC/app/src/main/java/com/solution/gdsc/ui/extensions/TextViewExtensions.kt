@@ -20,3 +20,14 @@ fun TextView.setGradeMessage(grade: String?) {
         else -> ""
     }
 }
+
+@BindingAdapter("setTelFormat")
+fun TextView.setTelNumber(number: String?) {
+    if (number == null) return
+    else {
+        val first = number.substring(0, 3) + "-"
+        val last = "-" + number.substring(7)
+        val middle = number.substring(3, 7)
+        text = "$first$middle$last"
+    }
+}
