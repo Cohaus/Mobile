@@ -86,10 +86,21 @@ class MapRepairInfoFragment : BaseFragment<FragmentMapRepairInfoBinding>(R.layou
             if (repairInfo!!.volunteerName == null) {
                 groupMatchBefore.visibility = View.VISIBLE
                 groupMatchAfter.visibility = View.GONE
+                groupRepairProceed.visibility = View.GONE
             } else {
                 groupMatchBefore.visibility = View.GONE
                 groupMatchAfter.visibility = View.VISIBLE
+                groupRepairProceed.visibility = View.VISIBLE
+                changeRepairStartGroup()
             }
+        }
+    }
+
+    private fun changeRepairStartGroup() {
+        with(binding) {
+            tvRepairApplyDateBox.setTextColor(resources.getColor(R.color.gray_450))
+            tvRepairApplyDateBox.setBackgroundResource(R.drawable.shape_button_24dp_gray400)
+            imageView2.setImageResource(R.drawable.ic_calendar_gray)
         }
     }
 }

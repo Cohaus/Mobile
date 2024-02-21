@@ -48,10 +48,21 @@ class PostRepairApplyInfoFragment : BaseFragment<FragmentPostRepairApplyInfoBind
             if (status == RepairStatus.REQUEST.type) {
                 groupFindBefore.visibility = View.VISIBLE
                 groupFindComplete.visibility = View.GONE
+                groupRepairProceed.visibility = View.GONE
             } else {
                 groupFindBefore.visibility = View.GONE
                 groupFindComplete.visibility = View.VISIBLE
+                groupRepairProceed.visibility = View.VISIBLE
+                changeRepairStartGroup()
             }
+        }
+    }
+
+    private fun changeRepairStartGroup() {
+        with(binding) {
+            tvRepairApplyDateBox.setTextColor(resources.getColor(R.color.gray_450))
+            tvRepairApplyDateBox.setBackgroundResource(R.drawable.shape_button_24dp_gray400)
+            imageView2.setImageResource(R.drawable.ic_calendar_gray)
         }
     }
 }

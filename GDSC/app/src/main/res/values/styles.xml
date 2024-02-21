@@ -216,6 +216,10 @@
         <item name="android:textColor">@color/gray_400</item>
     </style>
 
+    <style name="customTextViewFontStyle.Bold.S14.gray_450">
+        <item name="android:textColor">@color/gray_450</item>
+    </style>
+
     <style name="customTextViewFontStyle.Bold.S15">
         <item name="android:textSize">15sp</item>
     </style>
