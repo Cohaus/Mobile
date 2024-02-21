@@ -166,8 +166,7 @@
             android:layout_height="24dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="1dp"
-            android:background="@drawable/shape_button_24dp"
-            android:backgroundTint="#E6F5ED"
+            android:background="@drawable/shape_button_24dp_green_light"
             android:gravity="center_vertical"
             android:paddingStart="30dp"
             android:paddingEnd="1dp"
@@ -193,7 +192,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="@{repairInfo.requestDate}"
+            android:text="@{repairInfo.proceedDate}"
             app:layout_constraintStart_toEndOf="@id/tv_repair_proceed_date_box"
             app:layout_constraintTop_toTopOf="@id/tv_repair_proceed_date_box" />
 

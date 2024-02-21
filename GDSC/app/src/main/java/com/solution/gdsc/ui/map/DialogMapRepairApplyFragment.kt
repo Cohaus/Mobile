@@ -14,6 +14,7 @@ import androidx.navigation.fragment.navArgs
 import com.solution.gdsc.R
 import com.solution.gdsc.databinding.FragmentDialogMapRepairApplyBinding
 import com.solution.gdsc.ui.map.viewmodel.MapViewModel
+import com.solution.gdsc.util.DateFormatter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -38,6 +39,7 @@ class DialogMapRepairApplyFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         setLayout()
         pop()
+        getCurrentDate()
     }
 
     override fun onStart() {
@@ -54,9 +56,16 @@ class DialogMapRepairApplyFragment : DialogFragment() {
                 findNavController().navigateUp()
             }
             btnMapVolunteerApply.setOnClickListener {
-                viewModel.patchRepairInfo(args.date, args.repairId)
+                val date = getCurrentDate()
+                viewModel.patchRepairInfo(date, args.repairId)
             }
         }
+    }
+
+    private fun getCurrentDate(): String {
+        val date = DateFormatter.getCurrentTime()
+        val newDate = DateFormatter.convertToDate(date)
+        return DateFormatter.convertToRepairDateFormat(newDate!!)
     }
 
     private fun pop() {
