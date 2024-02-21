@@ -55,7 +55,6 @@
                 android:layout_width="0dp"
                 android:layout_height="495dp"
                 imageUrl="@{savedRecordInfo.image}"
-                android:background="@color/gray_500"
                 android:contentDescription="@string/description_post_image"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toTopOf="@id/tv_post_content"

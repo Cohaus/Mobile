@@ -13,14 +13,16 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="15dp"
             android:contentDescription="@string/description_home_image"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_home_main_image"
+            android:scaleType="fitCenter"
+            android:src="@drawable/image_sample"
             app:layout_constraintBottom_toTopOf="@+id/btn_ai_diagnosis"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_home_title_name" />
+            app:layout_constraintTop_toBottomOf="@id/iv_home_title_name"
+            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/iv_home_title_name"
@@ -29,7 +31,7 @@
             android:src="@drawable/ic_cohaus"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="50dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/description_coHous" />
@@ -42,7 +44,7 @@
             android:layout_marginStart="26dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="26dp"
-            android:text="편안한 공간을 위한"
+            android:text="편안한 공간을 위해"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_home_title_name" />
@@ -53,7 +55,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
-            android:text="우리 함께 만들어가는 어쩌구"
+            android:text="따뜻한 손길이 퍼지는 세상을\n함께 만들어가요"
             app:layout_constraintEnd_toEndOf="@id/home_middle_description"
             app:layout_constraintStart_toStartOf="@id/home_middle_description"
             app:layout_constraintTop_toBottomOf="@id/home_middle_description" />
@@ -67,8 +69,7 @@
             android:src="@drawable/ic_ai_capture"
             app:layout_constraintBottom_toBottomOf="@id/btn_ai_diagnosis"
             app:layout_constraintTop_toTopOf="@id/btn_ai_diagnosis"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_ai_diagnosis"
+            app:layout_constraintStart_toStartOf="@id/iv_use_guide"
             android:contentDescription="@string/description_ai_capture" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -76,6 +77,8 @@
             style="@style/customTextViewFontStyle.Bold.S18"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:paddingStart="11dp"
+            android:paddingEnd="11dp"
             android:layout_marginBottom="40dp"
             android:background="@android:color/transparent"
             android:gravity="center_vertical"
@@ -112,6 +115,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
+            android:paddingStart="11dp"
+            android:paddingEnd="11dp"
             android:gravity="center_vertical"
             android:background="@android:color/transparent"
             android:text="@string/text_general_repair_apply_go"
@@ -150,7 +155,8 @@
             android:background="@android:color/transparent"
             android:layout_marginBottom="23dp"
             android:layout_marginEnd="15dp"
-            android:layout_marginStart="11dp"
+            android:paddingStart="11dp"
+            android:paddingEnd="11dp"
             android:gravity="center_vertical"
             android:text="@string/text_how_to_use"
             app:layout_constraintBottom_toBottomOf="parent"

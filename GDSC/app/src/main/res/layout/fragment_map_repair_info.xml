@@ -29,6 +29,13 @@
             app:constraint_referenced_ids="tv_apply_user_info, tv_meet_user,
              tv_volunteer_user_tel, iv_volunteer_tel, tv_volunteer_user_name, tv_volunteer_repair_complete" />
 
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_repair_proceed"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tv_repair_proceed_date, tv_repair_proceed_date_box, imageView3" />
+
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar_repair_apply_info"
             android:layout_width="match_parent"
@@ -95,11 +102,11 @@
             android:layout_width="100dp"
             android:layout_height="24dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="25dp"
             android:background="@drawable/shape_button_24dp"
             android:backgroundTint="#BCDFCA"
             android:gravity="center_vertical"
             android:paddingStart="30dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_repair_apply_date_box"
             android:paddingEnd="10dp"
             android:text="카테고리"
             app:layout_constraintStart_toEndOf="@id/progress_bar_repair_info"
@@ -133,8 +140,8 @@
             android:layout_width="100dp"
             android:layout_height="24dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/shape_button_24dp"
-            android:backgroundTint="#E6F5ED"
+            app:layout_constraintBottom_toTopOf="@id/tv_repair_proceed_date_box"
+            android:background="@drawable/shape_button_24dp_green_light"
             android:gravity="center_vertical"
             android:paddingStart="30dp"
             android:paddingEnd="1dp"
@@ -162,6 +169,44 @@
             android:text="@{repairInfo.requestDate}"
             app:layout_constraintStart_toEndOf="@id/tv_repair_apply_date_box"
             app:layout_constraintTop_toTopOf="@id/tv_repair_apply_date_box" />
+
+        <TextView
+            android:id="@+id/tv_repair_proceed_date_box"
+            style="@style/customTextViewFontStyle.Bold.S14.green300"
+            android:layout_width="100dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/shape_button_24dp"
+            android:backgroundTint="#E6F5ED"
+            android:gravity="center_vertical"
+            android:paddingStart="30dp"
+            android:paddingEnd="1dp"
+            android:text="진행신청일"
+            app:layout_constraintBottom_toBottomOf="@+id/progress_bar_repair_info"
+            app:layout_constraintStart_toStartOf="@id/tv_repair_apply_date_box"
+            app:layout_constraintTop_toBottomOf="@id/tv_repair_apply_date_box" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:contentDescription="@string/description_repair_apply_date_icon"
+            android:src="@drawable/ic_calendar_green"
+            app:layout_constraintBottom_toBottomOf="@id/tv_repair_proceed_date_box"
+            app:layout_constraintStart_toStartOf="@id/tv_repair_proceed_date_box"
+            app:layout_constraintTop_toTopOf="@id/tv_repair_proceed_date_box" />
+
+        <TextView
+            android:id="@+id/tv_repair_proceed_date"
+            style="@style/customTextViewFontStyle.Bold.S14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@{repairInfo.requestDate}"
+            app:layout_constraintStart_toEndOf="@id/tv_repair_proceed_date_box"
+            app:layout_constraintTop_toTopOf="@id/tv_repair_proceed_date_box" />
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/divider_repair_info_one"
