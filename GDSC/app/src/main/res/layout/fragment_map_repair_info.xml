@@ -204,7 +204,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="@{repairInfo.requestDate}"
+            android:text="@{repairInfo.proceedDate}"
             app:layout_constraintStart_toEndOf="@id/tv_repair_proceed_date_box"
             app:layout_constraintTop_toTopOf="@id/tv_repair_proceed_date_box" />
 
