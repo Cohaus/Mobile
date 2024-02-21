@@ -87,7 +87,7 @@ class MapViewModel @Inject constructor(
     fun patchRepairInfo(date:String, repairId: Long) {
         viewModelScope.launch {
             try {
-                repository.patchRepairInfo("20$date", repairId).collect {
+                repository.patchRepairInfo(date, repairId).collect {
                     _patchSuccess.value = it
                 }
             } catch (e: Exception) {
