@@ -1,6 +1,6 @@
 package com.solution.gdsc.ui.profile.setting
 
-import android.content.res.ColorStateList
+import android.view.View
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -69,15 +69,12 @@ class SettingVolunteerRegistrationFragment
         if (isSingle == null) return
         with(binding) {
             if (isSingle!!) {
+                groupOrganizationSelect.visibility = View.GONE
                 tvInputOrganization.isEnabled = false
-                etInputOrganization.isEnabled = false
-                etInputOrganization.setBackgroundResource(R.drawable.shape_button_10dp_right_gray)
                 tvOrganizationInputGuide.isEnabled = false
             } else {
+                groupOrganizationSelect.visibility = View.VISIBLE
                 tvInputOrganization.isEnabled = true
-                etInputOrganization.isEnabled = true
-                etInputOrganization.background = null
-                etInputOrganization.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.gray_right));
                 tvOrganizationInputGuide.isEnabled = true
             }
         }
