@@ -96,7 +96,7 @@
             android:gravity="center_vertical"
             android:paddingStart="30dp"
             android:paddingEnd="10dp"
-            android:text="카테고리"
+            android:text="@string/text_category"
             app:layout_constraintStart_toEndOf="@id/progress_bar_repair_info"
             app:layout_constraintTop_toTopOf="@id/progress_bar_repair_info" />
 

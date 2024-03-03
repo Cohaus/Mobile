@@ -47,7 +47,7 @@
             android:paddingEnd="10dp"
             android:text="카테고리"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.36"
+            app:layout_constraintHorizontal_bias="0.22"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_repair_record_title" />
 
@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="@{requestRepairItem.category}"
+            android:text="철근 노출"
             app:layout_constraintStart_toEndOf="@id/tv_item_repair_category_box"
             app:layout_constraintTop_toTopOf="@id/tv_item_repair_category_box" />
 

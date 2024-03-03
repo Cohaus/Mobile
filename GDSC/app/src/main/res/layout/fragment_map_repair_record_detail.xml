@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="repairRecordDto"
             type="com.solution.gdsc.domain.model.response.RepairRecordDto" />
@@ -22,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:constraint_referenced_ids="layout_progress_map, tv_map_ai_diagnosis_result, divider_map" />
+                app:constraint_referenced_ids="layout_progress_map, tv_map_ai_diagnosis_result, divider_map, iv_ai_mark" />
 
             <ImageButton
                 android:id="@+id/ib_map_repair_back_button"
@@ -38,24 +39,24 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                style="@style/customTextViewFontStyle.Bold.S16.white"
                 android:id="@+id/tv_map_repair_apply"
+                style="@style/customTextViewFontStyle.Bold.S16.white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
                 android:layout_marginEnd="15dp"
                 android:background="@android:color/transparent"
-                android:text="신청하기"
                 android:elevation="1dp"
                 android:src="@drawable/ic_more"
+                android:text="@string/text_apply"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/iv_map_repair_detail_image"
-                android:layout_width="0dp"
-                android:layout_height="495dp"
                 imageUrl="@{repairRecordDto.image}"
+                android:layout_width="0dp"
+                android:layout_height="600dp"
                 android:contentDescription="@string/description_post_image"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toTopOf="@id/tv_map_post_content"
@@ -65,21 +66,33 @@
 
             <TextView
                 android:id="@+id/tv_map_repair_title"
-                style="@style/customTextViewFontStyle.Bold.S28.white"
+                style="@style/customTextViewFontStyle.Bold.S24"
+                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{repairRecordDto.title}"
                 app:layout_constraintBottom_toTopOf="@id/tv_map_repair_date"
                 app:layout_constraintStart_toStartOf="@id/tv_map_repair_date" />
 
+            <ImageView
+                android:id="@+id/iv_ai_mark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_ai_mark"
+                android:layout_marginStart="10dp"
+                app:layout_constraintStart_toEndOf="@id/tv_map_repair_title"
+                app:layout_constraintTop_toTopOf="@id/tv_map_repair_title"
+                app:layout_constraintBottom_toBottomOf="@id/tv_map_repair_title"
+                android:contentDescription="@string/description_ai_mark" />
+
             <TextView
                 android:id="@+id/tv_map_repair_date"
                 style="@style/customTextViewFontStyle.S15.white"
+                changeTimeFormat="@{repairRecordDto.createdAt}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
                 android:layout_marginBottom="9dp"
-                changeTimeFormat="@{repairRecordDto.createdAt}"
                 app:layout_constraintBottom_toBottomOf="@id/iv_map_repair_detail_image"
                 app:layout_constraintStart_toStartOf="@id/iv_map_repair_detail_image" />
 
@@ -89,6 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="14dp"
+                android:text="@{repairRecordDto.district}"
                 app:layout_constraintBottom_toBottomOf="@id/tv_map_repair_date"
                 app:layout_constraintEnd_toEndOf="@id/iv_map_repair_detail_image" />
 
@@ -122,10 +136,10 @@
                 style="@style/customTextViewFontStyle.Bold.S24"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
                 android:layout_marginStart="14dp"
+                android:layout_marginTop="18dp"
                 android:layout_marginEnd="14dp"
-                android:text="AI 진단 결과"
+                android:text="@string/text_diagnosis_ai_result"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider_map" />
@@ -135,7 +149,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
-                android:layout_marginBottom="31dp"
+                android:layout_marginBottom="25dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -165,10 +179,10 @@
 
                 <TextView
                     android:id="@+id/tv_map_safe_grade"
-                    style="@style/customTextViewFontStyle.Bold.S14"
+                    style="@style/customTextViewFontStyle.Bold.S14.gray_400"
+                    setGradeMessage="@{repairRecordDto.grade}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    setGradeMessage="@{repairRecordDto.grade}"
                     app:layout_constraintEnd_toEndOf="@id/progress_bar_map_safe_grade"
                     app:layout_constraintStart_toStartOf="@id/progress_bar_map_safe_grade"
                     app:layout_constraintTop_toBottomOf="@id/tv_map_safe_score" />

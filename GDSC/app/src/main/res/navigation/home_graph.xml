@@ -227,9 +227,9 @@
     </dialog>
     <fragment
         android:id="@+id/navigation_setting_detail_modify"
-        android:name="com.solution.gdsc.ui.profile.setting.SettingDetailModifyFragment"
+        android:name="com.solution.gdsc.ui.profile.setting.ProfileSettingDetailModifyFragment"
         android:label="SettingDetailModifyFragment"
-        tools:layout="@layout/fragment_setting_detail_modify">
+        tools:layout="@layout/fragment_profile_setting_detail_modify">
         <argument
             android:name="savedRecordDto"
             app:argType="com.solution.gdsc.domain.model.response.SavedRecordDto" />

@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 app:constraint_referenced_ids="layout_progress_proceed,
-                 tv_proceed_ai_diagnosis_result, divider_home_proceed" />
+                 tv_proceed_ai_diagnosis_result, divider_home_proceed, iv_ai_mark" />
 
             <ImageButton
                 android:id="@+id/ib_proceed_back_button"
@@ -48,7 +48,7 @@
                 android:layout_marginEnd="15dp"
                 android:background="@android:color/transparent"
                 android:elevation="1dp"
-                android:text="정보 보기"
+                android:text="@string/text_view_info"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,7 +56,7 @@
                 android:id="@+id/iv_proceed_detail_image"
                 imageUrl="@{repairRecordDto.image}"
                 android:layout_width="0dp"
-                android:layout_height="495dp"
+                android:layout_height="600dp"
                 android:contentDescription="@string/description_post_image"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toTopOf="@id/tv_proceed_content"
@@ -72,6 +72,16 @@
                 android:text="@{repairRecordDto.title}"
                 app:layout_constraintBottom_toTopOf="@id/tv_proceed_date"
                 app:layout_constraintStart_toStartOf="@id/tv_proceed_date" />
+
+            <ImageView
+                android:id="@+id/iv_ai_mark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_ai_mark"
+                app:layout_constraintStart_toEndOf="@id/tv_proceed_title"
+                app:layout_constraintTop_toTopOf="@id/tv_proceed_title"
+                app:layout_constraintBottom_toBottomOf="@id/tv_proceed_title"
+                android:contentDescription="@string/description_ai_mark" />
 
             <TextView
                 android:id="@+id/tv_proceed_date"
@@ -89,6 +99,7 @@
                 style="@style/customTextViewFontStyle.S16.white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{repairRecordDto.district}"
                 android:layout_marginEnd="14dp"
                 app:layout_constraintBottom_toBottomOf="@id/tv_proceed_date"
                 app:layout_constraintEnd_toEndOf="@id/iv_proceed_detail_image" />
@@ -126,7 +137,7 @@
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="18dp"
                 android:layout_marginEnd="14dp"
-                android:text="AI 진단 결과"
+                android:text="@string/text_diagnosis_ai_result"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider_home_proceed" />

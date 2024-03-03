@@ -80,6 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:text="안전"
                 app:layout_constraintBottom_toBottomOf="@id/progress_bar_safe_grade_home"
                 app:layout_constraintEnd_toEndOf="@id/progress_bar_safe_grade_home"
                 app:layout_constraintStart_toStartOf="@id/progress_bar_safe_grade_home"
@@ -87,9 +88,10 @@
 
             <TextView
                 android:id="@+id/tv_safe_grade"
-                style="@style/customTextViewFontStyle.Bold.S14"
+                style="@style/customTextViewFontStyle.Bold.S14.gray_400"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="모든 것이 안전한 상태입니다."
                 app:layout_constraintEnd_toEndOf="@id/progress_bar_safe_grade_home"
                 app:layout_constraintStart_toStartOf="@id/progress_bar_safe_grade_home"
                 app:layout_constraintTop_toBottomOf="@id/tv_safe_score_home" />

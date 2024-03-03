@@ -52,9 +52,9 @@
 
             <ImageView
                 android:id="@+id/iv_post_detail_image"
-                android:layout_width="0dp"
-                android:layout_height="495dp"
                 imageUrl="@{savedRecordInfo.image}"
+                android:layout_width="0dp"
+                android:layout_height="600dp"
                 android:contentDescription="@string/description_post_image"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toTopOf="@id/tv_post_content"
@@ -74,11 +74,11 @@
             <TextView
                 android:id="@+id/tv_post_date"
                 style="@style/customTextViewFontStyle.S15.white"
+                changeTimeFormat="@{savedRecordInfo.createdAt}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
                 android:layout_marginBottom="9dp"
-                changeTimeFormat="@{savedRecordInfo.createdAt}"
                 app:layout_constraintBottom_toBottomOf="@id/iv_post_detail_image"
                 app:layout_constraintStart_toStartOf="@id/iv_post_detail_image" />
 
@@ -121,10 +121,10 @@
                 style="@style/customTextViewFontStyle.Bold.S24"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
                 android:layout_marginStart="14dp"
+                android:layout_marginTop="18dp"
                 android:layout_marginEnd="14dp"
-                android:text="AI 진단 결과"
+                android:text="@string/text_diagnosis_ai_result"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider_home" />
@@ -165,9 +165,9 @@
                 <TextView
                     android:id="@+id/tv_safe_grade"
                     style="@style/customTextViewFontStyle.Bold.S14"
+                    setGradeMessage="@{savedRecordInfo.grade}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    setGradeMessage="@{savedRecordInfo.grade}"
                     app:layout_constraintEnd_toEndOf="@id/progress_bar_safe_grade"
                     app:layout_constraintStart_toStartOf="@id/progress_bar_safe_grade"
                     app:layout_constraintTop_toBottomOf="@id/tv_safe_score" />
