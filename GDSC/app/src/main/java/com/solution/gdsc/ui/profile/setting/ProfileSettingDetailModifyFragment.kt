@@ -9,16 +9,16 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
-import com.solution.gdsc.databinding.FragmentSettingDetailModifyBinding
+import com.solution.gdsc.databinding.FragmentProfileSettingDetailModifyBinding
 import com.solution.gdsc.ui.profile.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SettingDetailModifyFragment : BaseFragment<FragmentSettingDetailModifyBinding>(R.layout.fragment_setting_detail_modify) {
+class ProfileSettingDetailModifyFragment : BaseFragment<FragmentProfileSettingDetailModifyBinding>(R.layout.fragment_profile_setting_detail_modify) {
     private val viewModel by viewModels<ProfileViewModel>()
-    private val args by navArgs<SettingDetailModifyFragmentArgs>()
+    private val args by navArgs<ProfileSettingDetailModifyFragmentArgs>()
 
     private var inputTitle = ""
     private var inputContent = ""

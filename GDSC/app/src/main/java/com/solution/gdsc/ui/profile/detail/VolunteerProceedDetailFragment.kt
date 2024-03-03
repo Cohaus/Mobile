@@ -1,5 +1,6 @@
 package com.solution.gdsc.ui.profile.detail
 
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -42,6 +43,7 @@ class VolunteerProceedDetailFragment : BaseFragment<FragmentVolunteerProceedDeta
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.repairRecord.collectLatest {
+                    binding.groupProceedAiResult.visibility = View.VISIBLE
                     if (it.status in 200..299) binding.repairRecordDto = it.data
                 }
             }

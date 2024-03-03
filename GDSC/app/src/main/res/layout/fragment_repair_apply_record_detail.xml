@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="repairRecordDto"
             type="com.solution.gdsc.domain.model.response.RepairRecordDto" />
@@ -21,7 +22,7 @@
                 android:id="@+id/group_repair_ai_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:constraint_referenced_ids="layout_progress, tv_ai_diagnosis_result, divider_home" />
 
             <ImageButton
@@ -52,9 +53,9 @@
 
             <ImageView
                 android:id="@+id/iv_repair_detail_image"
-                android:layout_width="0dp"
-                android:layout_height="495dp"
                 imageUrl="@{repairRecordDto.image}"
+                android:layout_width="0dp"
+                android:layout_height="600dp"
                 android:contentDescription="@string/description_post_image"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toTopOf="@id/tv_post_content"
@@ -64,21 +65,31 @@
 
             <TextView
                 android:id="@+id/tv_repair_title"
-                style="@style/customTextViewFontStyle.Bold.S28.white"
+                style="@style/customTextViewFontStyle.Bold.S24"
+                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxLines="2"
                 android:text="@{repairRecordDto.title}"
                 app:layout_constraintBottom_toTopOf="@id/tv_repair_date"
                 app:layout_constraintStart_toStartOf="@id/tv_repair_date" />
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_ai_mark"
+                app:layout_constraintStart_toEndOf="@id/tv_repair_title"
+                app:layout_constraintTop_toTopOf="@id/tv_repair_title"
+                app:layout_constraintBottom_toBottomOf="@id/tv_repair_title" />
+
             <TextView
                 android:id="@+id/tv_repair_date"
                 style="@style/customTextViewFontStyle.S15.white"
+                changeTimeFormat="@{repairRecordDto.createdAt}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
                 android:layout_marginBottom="9dp"
-                changeTimeFormat="@{repairRecordDto.createdAt}"
                 app:layout_constraintBottom_toBottomOf="@id/iv_repair_detail_image"
                 app:layout_constraintStart_toStartOf="@id/iv_repair_detail_image" />
 
@@ -88,6 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="14dp"
+                android:text="@{repairRecordDto.district}"
                 app:layout_constraintBottom_toBottomOf="@id/tv_repair_date"
                 app:layout_constraintEnd_toEndOf="@id/iv_repair_detail_image" />
 
@@ -121,8 +133,8 @@
                 style="@style/customTextViewFontStyle.Bold.S24"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
                 android:layout_marginStart="14dp"
+                android:layout_marginTop="18dp"
                 android:layout_marginEnd="14dp"
                 android:text="AI 진단 결과"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -167,7 +179,7 @@
                     style="@style/customTextViewFontStyle.Bold.S14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="매우 우수"
+                    android:text="불량이 감지되었습니다."
                     app:layout_constraintEnd_toEndOf="@id/progress_bar_safe_grade"
                     app:layout_constraintStart_toStartOf="@id/progress_bar_safe_grade"
                     app:layout_constraintTop_toBottomOf="@id/tv_safe_score" />

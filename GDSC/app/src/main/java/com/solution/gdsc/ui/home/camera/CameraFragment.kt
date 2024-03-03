@@ -107,6 +107,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
                             it
                         )
                         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                        takePictureIntent.putExtra("android.intent.extras.CAMERA_FACING", android.hardware.Camera.CameraInfo.CAMERA_FACING_BACK)
                         startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO)
                     }
                 }

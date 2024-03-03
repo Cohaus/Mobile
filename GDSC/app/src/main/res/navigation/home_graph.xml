@@ -198,9 +198,9 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_profile_info_modify"
-        android:name="com.solution.gdsc.ui.profile.setting.ProfileInfoModifyFragment"
+        android:name="com.solution.gdsc.ui.profile.setting.ProfileSettingInfoModifyFragment"
         android:label="ProfileInfoModifyFragment"
-        tools:layout="@layout/fragment_profile_info_modify">
+        tools:layout="@layout/fragment_profile_setting_info_modify">
         <argument
             android:name="userInfo"
             app:argType="com.solution.gdsc.domain.model.response.UserInfoDto" />
@@ -227,9 +227,9 @@
     </dialog>
     <fragment
         android:id="@+id/navigation_setting_detail_modify"
-        android:name="com.solution.gdsc.ui.profile.setting.SettingDetailModifyFragment"
+        android:name="com.solution.gdsc.ui.profile.setting.ProfileSettingDetailModifyFragment"
         android:label="SettingDetailModifyFragment"
-        tools:layout="@layout/fragment_setting_detail_modify">
+        tools:layout="@layout/fragment_profile_setting_detail_modify">
         <argument
             android:name="savedRecordDto"
             app:argType="com.solution.gdsc.domain.model.response.SavedRecordDto" />

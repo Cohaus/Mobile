@@ -28,6 +28,7 @@ class MapRepairInfoFragment : BaseFragment<FragmentMapRepairInfoBinding>(R.layou
         viewModel.getRepairInfo(args.repairId)
         setRepairInfo()
         setClickListener()
+        setResumeInfo()
     }
 
     private fun setRepairInfo() {
@@ -42,6 +43,11 @@ class MapRepairInfoFragment : BaseFragment<FragmentMapRepairInfoBinding>(R.layou
                     }
                 }
             }
+        }
+    }
+
+    private fun setResumeInfo() {
+        lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.repairInfo.collectLatest {
                     if (it.status in 200..299) {
@@ -56,10 +62,12 @@ class MapRepairInfoFragment : BaseFragment<FragmentMapRepairInfoBinding>(R.layou
 
     private fun setEcoWasteDialog(repairStatus: String) {
         val date = getCurrentDate().substring(2)
-        if (repairStatus == RepairStatus.COMPLETE.type && repairInfo.completeDate == date) {
+        if (repairStatus == RepairStatus.COMPLETE.type) {
             binding.tvVolunteerRepairComplete.visibility = View.GONE
-            val action = MapRepairInfoFragmentDirections.actionMapRepairInfoToDialogEcoWaste(args.repairId)
-            findNavController().navigate(action)
+            if (repairInfo.completeDate == date) {
+                val action = MapRepairInfoFragmentDirections.actionMapRepairInfoToDialogEcoWaste(args.repairId)
+                findNavController().navigate(action)
+            }
         }
     }
 

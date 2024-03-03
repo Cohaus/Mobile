@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="23dp"
-            android:text="완료하기"
+            android:text="@string/text_complete"
             app:layout_constraintBottom_toBottomOf="@id/toolbar_repair_apply_info"
             app:layout_constraintEnd_toEndOf="@id/toolbar_repair_apply_info"
             app:layout_constraintTop_toTopOf="@id/toolbar_repair_apply_info" />
@@ -108,7 +108,7 @@
             android:paddingStart="30dp"
             app:layout_constraintBottom_toTopOf="@id/tv_repair_apply_date_box"
             android:paddingEnd="10dp"
-            android:text="카테고리"
+            android:text="@string/text_category"
             app:layout_constraintStart_toEndOf="@id/progress_bar_repair_info"
             app:layout_constraintTop_toTopOf="@id/progress_bar_repair_info" />
 
@@ -267,7 +267,8 @@
             android:layout_marginTop="6dp"
             android:src="@drawable/ic_tel"
             app:layout_constraintStart_toStartOf="@id/tv_volunteer_user_name"
-            app:layout_constraintTop_toBottomOf="@id/tv_meet_user" />
+            app:layout_constraintTop_toBottomOf="@id/tv_meet_user"
+            android:contentDescription="@string/description_tel_icon" />
 
         <TextView
             android:id="@+id/tv_volunteer_user_tel"

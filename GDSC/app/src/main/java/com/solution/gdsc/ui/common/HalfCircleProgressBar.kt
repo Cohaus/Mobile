@@ -55,6 +55,8 @@ class HalfCircleProgressBar(context: Context, attrs: AttributeSet) : View(contex
 
     fun setProgressBarColor(colorResId: Int) {
         progressPaint.color = context.getColor(colorResId)
+        indicatorStrokePaint.color = context.getColor(colorResId)
+        checkMarkPaint.color = context.getColor(colorResId)
         invalidate() // 새로운 색상으로 뷰를 다시 그리기
     }
 
