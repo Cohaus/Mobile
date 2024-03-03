@@ -9,15 +9,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.solution.gdsc.R
 import com.solution.gdsc.base.BaseFragment
-import com.solution.gdsc.databinding.FragmentProfileInfoModifyBinding
+import com.solution.gdsc.databinding.FragmentProfileSettingInfoModifyBinding
 import com.solution.gdsc.ui.profile.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ProfileInfoModifyFragment : BaseFragment<FragmentProfileInfoModifyBinding>(R.layout.fragment_profile_info_modify) {
-    private val args by navArgs<ProfileInfoModifyFragmentArgs>()
+class ProfileSettingInfoModifyFragment : BaseFragment<FragmentProfileSettingInfoModifyBinding>(R.layout.fragment_profile_setting_info_modify) {
+    private val args by navArgs<ProfileSettingInfoModifyFragmentArgs>()
     private val viewModel by viewModels<ProfileViewModel>()
 
     private var validId: String = ""
