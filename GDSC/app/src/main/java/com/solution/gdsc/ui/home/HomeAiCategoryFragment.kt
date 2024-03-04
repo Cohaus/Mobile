@@ -64,7 +64,9 @@ class HomeAiCategoryFragment : BaseFragment<FragmentHomeAiCategoryBinding>(R.lay
                 }
             }
             btnCategoryNextButton.setOnClickListener {
-                val action = HomeAiCategoryFragmentDirections.actionHomeAiCategoryToCamera(category)
+                /*val action = HomeAiCategoryFragmentDirections.actionHomeAiCategoryToCamera(category)
+                findNavController().navigate(action)*/
+                val action = HomeAiCategoryFragmentDirections.actionNavigationHomeAiCategoryToHomeDevelopActivity()
                 findNavController().navigate(action)
             }
             toolbarAiCategory.setNavigationOnClickListener {
