@@ -382,10 +382,17 @@
         <action
             android:id="@+id/action_home_ai_category_to_camera"
             app:destination="@id/navigation_camera" />
+        <action
+            android:id="@+id/action_navigation_home_ai_category_to_homeDevelopActivity"
+            app:destination="@id/homeDevelopActivity" />
     </fragment>
     <fragment
         android:id="@+id/navigation_home_use_guid"
         android:name="com.solution.gdsc.ui.home.HomeUseGuidFragment"
         android:label="HomeUseGuidFragment"
         tools:layout="@layout/fragment_home_use_guide"/>
+    <activity
+        android:id="@+id/homeDevelopActivity"
+        android:name="com.solution.gdsc.ui.home.HomeDevelopActivity"
+        android:label="HomeDevelopActivity" />
 </navigation>
