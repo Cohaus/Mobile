@@ -32,7 +32,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     private val saveApter = RecordSaveApter(this)
     private val proceedAdapter = VolunteerProceedAdapter(this)
     private val completeAdapter = VolunteerCompleteAdapter(this)
-    private var repairList = mutableListOf<RecordItem>()
 
     override fun setLayout() {
         binding.isLoading = true
