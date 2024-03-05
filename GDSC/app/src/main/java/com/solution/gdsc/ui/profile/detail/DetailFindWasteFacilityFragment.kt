@@ -1,6 +1,5 @@
 package com.solution.gdsc.ui.profile.detail
 
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -36,7 +35,6 @@ class DetailFindWasteFacilityFragment : BaseFragment<FragmentDetailFindWasteFaci
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.wasteFacilityInfo.collectLatest {
                     if (it.data != null) {
-                        Log.e("TAG", it.data.toString())
                         adapter.add(it.data.wasteFacilities.content)
                         binding.rvWasteFacilityList.adapter = adapter
                         changeVisibility(adapter.itemCount)

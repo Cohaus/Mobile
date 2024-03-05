@@ -52,7 +52,7 @@ class ProfileViewModel @Inject constructor(
     private val _savedRecordInfo = MutableStateFlow(SavedRecordDto())
     val savedRecordInfo: StateFlow<SavedRecordDto> = _savedRecordInfo
 
-    private val _deleteSavedRecord = MutableStateFlow(DeleteSavedRecordResponse(1, "", 1))
+    private val _deleteSavedRecord = MutableStateFlow(DeleteSavedRecordResponse())
     val deleteSavedRecord: StateFlow<DeleteSavedRecordResponse> = _deleteSavedRecord
 
     private val _updateSavedRecord = MutableStateFlow(0)
