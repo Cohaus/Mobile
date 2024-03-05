@@ -58,7 +58,6 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
     RepairClickListener {
     private var permissionDenied = false
     private lateinit var map: GoogleMap
-    private lateinit var adapter: RepairApplyRecordAdapter
     private var selectedMarker: Marker? = null
     private val viewModel by viewModels<MapViewModel>()
     private lateinit var geocoder: Geocoder
@@ -134,7 +133,6 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map),
         }
 
         googleMap.setOnMapClickListener {
-            // 다른 영역을 터치할 때 RecyclerView를 감춤
             hideRecyclerView()
         }
         viewModel.getAllRepairRecord()
