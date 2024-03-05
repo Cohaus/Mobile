@@ -66,15 +66,15 @@ class PostDetailFragment : BaseFragment<FragmentPostDetailBinding>(R.layout.frag
         with(binding) {
             when (grade) {
                 // to 등급에 따른 텍스트 변경 do
-                "우수" -> {
+                AiGrade.SUPERIORITY.grade -> {
                     progressBarSafeGrade.setProgress(100f)
                     groupAiResult.visibility = View.VISIBLE
                 }
-                "보통" -> {
+                AiGrade.GENERAL.grade -> {
                     binding.progressBarSafeGrade.setProgress(50f)
                     groupAiResult.visibility = View.VISIBLE
                 }
-                "불량" -> {
+                AiGrade.FAULTY.grade -> {
                     binding.progressBarSafeGrade.setProgress(30f)
                     groupAiResult.visibility = View.VISIBLE
                 }
