@@ -1,6 +1,5 @@
 package com.solution.gdsc.ui.profile.detail
 
-import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -24,7 +23,6 @@ class RepairApplyRecordDetailFragment : BaseFragment<FragmentRepairApplyRecordDe
     private lateinit var repairRecord: RepairRecordDto
 
     override fun setLayout() {
-        Log.e("ARGS", args.repairID.toString())
         viewModel.getRepairsRecord(args.repairID)
         setInfo()
         setClickListener()
